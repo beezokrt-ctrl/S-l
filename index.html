@@ -5,379 +5,331 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
 <title>Caelith · Undir Sólu</title>
-<link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700;900&family=Crimson+Text:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
 <style>
 :root {
-  --gold: #C9A84C; --gold-dim: #8a6f2e; --gold-pale: #e8d090;
-  --sun: #F4C842; --ember: #E8623A; --wolf: #6b4a3a;
-  --dark: #0a0906; --stone: #141210; --deep: #1a1710;
-  --rune: #5a5040; --dim: #8a7d68; --light: #f0e6cc;
-  --border: #231f17; --glass: #ffffff05;
-  --body-c: #C9A84C; --mind-c: #7a8a6a; --martial-c: #8B6355;
-  --craft-c: #6a7a8a; --tongue-c: #8a6a7a; --world-c: #6a8a7a;
+  --gold:#C9A84C;--gold-dim:#8a6f2e;--sun:#F4C842;--ember:#E8623A;
+  --dark:#09080600;--bg:#0a0907;--stone:#131109;--deep:#1a1710;
+  --rune:#4a4435;--dim:#7a6d58;--light:#f0e6cc;--border:#1e1a12;--glass:#ffffff04;
 }
-* { box-sizing: border-box; margin: 0; padding: 0; -webkit-tap-highlight-color: transparent; }
-html, body { height: 100%; overflow: hidden; }
-body { background: var(--dark); color: var(--light); font-family: 'Crimson Text', Georgia, serif; }
-
-/* GRAIN OVERLAY */
-body::before { content:’’; position:fixed; inset:0; background-image:url(“data:image/svg+xml,%3Csvg viewBox=‘0 0 256 256’ xmlns=‘http://www.w3.org/2000/svg’%3E%3Cfilter id=‘noise’%3E%3CfeTurbulence type=‘fractalNoise’ baseFrequency=‘0.9’ numOctaves=‘4’ stitchTiles=‘stitch’/%3E%3C/filter%3E%3Crect width=‘100%25’ height=‘100%25’ filter=‘url(%23noise)’ opacity=‘0.04’/%3E%3C/svg%3E”); pointer-events:none; z-index:9999; opacity:0.6; }
-
-/* SUN GLOW */
-.sun-glow { position:fixed; top:-200px; left:50%; transform:translateX(-50%); width:700px; height:700px; background:radial-gradient(circle, #C9A84C0a 0%, #C9A84C04 40%, transparent 70%); pointer-events:none; z-index:0; animation: pulse-glow 8s ease-in-out infinite; }
-@keyframes pulse-glow { 0%,100%{opacity:0.6} 50%{opacity:1} }
-
-/* LAYOUT */
-.app { position:fixed; inset:0; display:flex; flex-direction:column; }
-.content { flex:1; overflow-y:auto; overflow-x:hidden; position:relative; z-index:1; -webkit-overflow-scrolling:touch; }
-.screen { max-width:520px; margin:0 auto; padding:28px 18px 110px; display:none; }
-.screen.active { display:block; }
+*{box-sizing:border-box;margin:0;padding:0;-webkit-tap-highlight-color:transparent}
+html,body{height:100%;overflow:hidden;background:var(--bg)}
+body{color:var(--light);font-family:'Crimson Text',Georgia,serif}
+body::after{content:'';position:fixed;inset:0;background:url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.035'/%3E%3C/svg%3E");pointer-events:none;z-index:9998;opacity:0.5}
+.sun-halo{position:fixed;top:-180px;left:50%;transform:translateX(-50%);width:600px;height:600px;background:radial-gradient(circle,#C9A84C08 0%,#C9A84C03 45%,transparent 70%);pointer-events:none;z-index:0;animation:halo 10s ease-in-out infinite}
+@keyframes halo{0%,100%{opacity:.5}50%{opacity:1}}
+.app{position:fixed;inset:0;display:flex;flex-direction:column;z-index:1}
+.content{flex:1;overflow-y:auto;overflow-x:hidden;-webkit-overflow-scrolling:touch}
+.screen{max-width:520px;margin:0 auto;padding:24px 16px 100px;display:none}
+.screen.active{display:block}
 
 /* NAV */
-.nav { position:relative; z-index:10; background:#09080600; backdrop-filter:blur(20px); border-top:1px solid var(–border); display:flex; max-width:100%; flex-shrink:0; }
-.nav-btn { flex:1; padding:12px 4px 18px; background:none; border:none; color:var(–rune); cursor:pointer; font-family:‘Cinzel’,serif; font-size:8px; letter-spacing:1.5px; display:flex; flex-direction:column; align-items:center; gap:5px; transition:color 0.3s; }
-.nav-btn.active { color:var(–gold); }
-.nav-btn.active .nav-icon { filter:drop-shadow(0 0 6px #C9A84C80); }
-.nav-icon { font-size:17px; transition:filter 0.3s; }
+.nav{background:#09080699;backdrop-filter:blur(24px);-webkit-backdrop-filter:blur(24px);border-top:1px solid var(–border);display:flex;flex-shrink:0;position:relative;z-index:10}
+.nb{flex:1;padding:11px 2px 16px;background:none;border:none;color:var(–rune);cursor:pointer;font-family:‘Cinzel’,serif;font-size:7.5px;letter-spacing:1.5px;display:flex;flex-direction:column;align-items:center;gap:4px;transition:color .25s}
+.nb.active{color:var(–gold)}
+.nb.active .ni{filter:drop-shadow(0 0 5px #C9A84C70)}
+.ni{font-size:16px;transition:filter .25s}
 
 /* OVERLAYS */
-.opening { position:fixed; inset:0; background:var(–dark); z-index:800; display:flex; flex-direction:column; align-items:center; justify-content:center; padding:48px 32px; text-align:center; }
-.opening-sun { font-size:64px; margin-bottom:28px; animation:sun-rise 1.5s ease-out; }
-@keyframes sun-rise { from{opacity:0;transform:translateY(20px)} to{opacity:1;transform:translateY(0)} }
-.opening-runes { font-size:11px; color:var(–rune); letter-spacing:5px; margin-bottom:24px; animation:fade-in 2s ease-out 0.5s both; }
-.opening-verse { font-size:17px; color:var(–dim); font-style:italic; line-height:2.2; margin-bottom:32px; white-space:pre-line; animation:fade-in 2s ease-out 1s both; }
-.opening-name { font-family:‘Cinzel’,serif; font-size:13px; color:var(–gold); letter-spacing:3px; margin-bottom:44px; animation:fade-in 2s ease-out 1.5s both; }
-@keyframes fade-in { from{opacity:0;transform:translateY(10px)} to{opacity:1;transform:translateY(0)} }
-.opening-btn { background:none; border:1px solid var(–gold-dim); color:var(–gold); padding:15px 36px; font-family:‘Cinzel’,serif; font-size:11px; letter-spacing:3px; cursor:pointer; animation:fade-in 2s ease-out 2s both; transition:all 0.3s; }
-.opening-btn:active { background:#C9A84C15; }
+.opening{position:fixed;inset:0;background:var(–bg);z-index:900;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:48px 32px;text-align:center}
+.op-sun{font-size:60px;margin-bottom:24px;animation:rise 1.8s ease-out}
+@keyframes rise{from{opacity:0;transform:translateY(24px)}to{opacity:1;transform:translateY(0)}}
+.op-runes{font-size:10px;color:var(–rune);letter-spacing:5px;margin-bottom:20px;animation:fi 2s ease-out .6s both}
+.op-verse{font-size:16px;color:var(–dim);font-style:italic;line-height:2.2;margin-bottom:28px;white-space:pre-line;animation:fi 2s ease-out 1s both}
+.op-name{font-family:‘Cinzel’,serif;font-size:12px;color:var(–gold);letter-spacing:3px;margin-bottom:40px;animation:fi 2s ease-out 1.6s both}
+@keyframes fi{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:translateY(0)}}
+.op-btn{background:none;border:1px solid var(–gold-dim);color:var(–gold);padding:14px 34px;font-family:‘Cinzel’,serif;font-size:11px;letter-spacing:3px;cursor:pointer;animation:fi 2s ease-out 2.2s both}
 
-/* REWARD MODAL */
-.modal-overlay { position:fixed; inset:0; background:#0a090680; backdrop-filter:blur(10px); z-index:700; display:none; align-items:center; justify-content:center; padding:24px; }
-.modal-overlay.active { display:flex; }
-.modal { background:var(–stone); border:1px solid var(–gold-dim); padding:40px 28px; max-width:360px; width:100%; text-align:center; box-shadow:0 0 80px #C9A84C18; animation:modal-in 0.4s ease-out; }
-@keyframes modal-in { from{opacity:0;transform:scale(0.95)} to{opacity:1;transform:scale(1)} }
-.modal-rune { font-size:56px; margin-bottom:20px; animation:glow-pulse 2s ease-in-out infinite; }
-@keyframes glow-pulse { 0%,100%{filter:drop-shadow(0 0 10px #C9A84C50)} 50%{filter:drop-shadow(0 0 28px #C9A84CA0)} }
-.modal-title { font-family:‘Cinzel’,serif; font-size:22px; color:var(–gold); letter-spacing:3px; margin-bottom:6px; }
-.modal-sub { font-size:12px; color:var(–rune); letter-spacing:2px; margin-bottom:20px; }
-.modal-verse { font-size:15px; color:var(–dim); font-style:italic; line-height:2; margin-bottom:28px; white-space:pre-line; }
-.modal-close { background:none; border:1px solid var(–gold-dim); color:var(–gold); padding:13px 32px; font-family:‘Cinzel’,serif; font-size:11px; letter-spacing:2px; cursor:pointer; }
+/* MODAL */
+.modal-bg{position:fixed;inset:0;background:#09080688;backdrop-filter:blur(12px);z-index:800;display:none;align-items:center;justify-content:center;padding:24px}
+.modal-bg.on{display:flex}
+.modal{background:var(–stone);border:1px solid var(–gold-dim);padding:36px 24px;max-width:340px;width:100%;text-align:center;box-shadow:0 0 60px #C9A84C15;animation:min .35s ease-out}
+@keyframes min{from{opacity:0;transform:scale(.96)}to{opacity:1;transform:scale(1)}}
+.modal-ico{font-size:52px;margin-bottom:16px;animation:gp 2.5s ease-in-out infinite}
+@keyframes gp{0%,100%{filter:drop-shadow(0 0 8px #C9A84C40)}50%{filter:drop-shadow(0 0 22px #C9A84C90)}}
+.modal-ttl{font-family:‘Cinzel’,serif;font-size:20px;color:var(–gold);letter-spacing:3px;margin-bottom:4px}
+.modal-sub{font-size:11px;color:var(–rune);letter-spacing:2px;margin-bottom:16px}
+.modal-verse{font-size:14px;color:var(–dim);font-style:italic;line-height:2;margin-bottom:24px;white-space:pre-line}
+.modal-close{background:none;border:1px solid var(–gold-dim);color:var(–gold);padding:12px 28px;font-family:‘Cinzel’,serif;font-size:10px;letter-spacing:2px;cursor:pointer}
 
 /* TOAST */
-.toast { position:fixed; top:24px; left:50%; transform:translateX(-50%); background:var(–stone); border:1px solid var(–gold-dim); color:var(–gold); padding:10px 24px; font-family:‘Cinzel’,serif; font-size:11px; letter-spacing:2px; z-index:600; white-space:nowrap; box-shadow:0 0 30px #C9A84C25; display:none; animation:toast-in 0.3s ease-out; }
-@keyframes toast-in { from{opacity:0;transform:translateX(-50%) translateY(-10px)} to{opacity:1;transform:translateX(-50%) translateY(0)} }
+.toast{position:fixed;top:20px;left:50%;transform:translateX(-50%);background:var(–stone);border:1px solid var(–gold-dim);color:var(–gold);padding:9px 22px;font-family:‘Cinzel’,serif;font-size:10px;letter-spacing:2px;z-index:700;white-space:nowrap;box-shadow:0 0 24px #C9A84C20;display:none}
 
-/* COMMON COMPONENTS */
-.section-label { font-family:‘Cinzel’,serif; font-size:9px; color:var(–rune); letter-spacing:3px; margin-bottom:14px; display:flex; align-items:center; gap:10px; }
-.section-label::after { content:’’; flex:1; height:1px; background:var(–border); }
-.card { background:var(–glass); border:1px solid var(–border); padding:16px; margin-bottom:10px; }
-.btn-ghost { background:none; border:1px solid var(–border); color:var(–rune); font-family:‘Cinzel’,serif; font-size:9px; letter-spacing:1px; padding:7px 14px; cursor:pointer; transition:all 0.2s; }
-.btn-ghost:active, .btn-ghost:hover { border-color:var(–gold-dim); color:var(–gold); }
-.btn-gold { background:none; border:1px solid var(–gold-dim); color:var(–gold); font-family:‘Cinzel’,serif; font-size:10px; letter-spacing:2px; padding:12px 24px; cursor:pointer; transition:all 0.2s; width:100%; }
-.btn-gold:active { background:#C9A84C12; }
-.input-field { width:100%; background:#ffffff04; border:1px solid var(–border); color:var(–light); font-family:‘Crimson Text’,Georgia,serif; font-size:15px; padding:12px 14px; outline:none; transition:border-color 0.2s; }
-.input-field:focus { border-color:var(–gold-dim); }
-.input-field::placeholder { color:var(–rune); font-style:italic; }
-textarea.input-field { resize:none; line-height:1.7; }
-.divider { border:none; border-top:1px solid var(–border); margin:24px 0; }
+/* SHARED */
+.sl{font-family:‘Cinzel’,serif;font-size:8.5px;color:var(–rune);letter-spacing:3px;margin-bottom:12px;display:flex;align-items:center;gap:8px}
+.sl::after{content:’’;flex:1;height:1px;background:var(–border)}
+.card{background:var(–glass);border:1px solid var(–border);padding:14px;margin-bottom:8px}
+.bg{background:none;border:1px solid var(–border);color:var(–rune);font-family:‘Cinzel’,serif;font-size:8px;letter-spacing:1px;padding:6px 12px;cursor:pointer;transition:all .2s}
+.bg:active,.bg.on{border-color:var(–gold-dim);color:var(–gold);background:#C9A84C08}
+.btn-g{background:none;border:1px solid var(–gold-dim);color:var(–gold);font-family:‘Cinzel’,serif;font-size:10px;letter-spacing:2px;padding:12px 20px;cursor:pointer;width:100%;transition:background .2s}
+.btn-g:active{background:#C9A84C10}
+.inp{width:100%;background:#ffffff04;border:1px solid var(–border);color:var(–light);font-family:‘Crimson Text’,Georgia,serif;font-size:14px;padding:10px 12px;outline:none;transition:border-color .2s}
+.inp:focus{border-color:var(–gold-dim)}
+.inp::placeholder{color:var(–rune);font-style:italic}
+textarea.inp{resize:none;line-height:1.7}
+.hr{border:none;border-top:1px solid var(–border);margin:20px 0}
+.tabs{display:flex;border:1px solid var(–border);margin-bottom:20px}
+.tab{flex:1;padding:9px 2px;background:none;border:none;border-right:1px solid var(–border);color:var(–rune);font-family:‘Cinzel’,serif;font-size:7.5px;letter-spacing:1px;cursor:pointer;transition:all .2s}
+.tab:last-child{border-right:none}
+.tab.active{color:var(–gold);background:#C9A84C08}
+.panel{display:none}
+.panel.active{display:block}
+.back{background:none;border:none;color:var(–rune);font-family:‘Cinzel’,serif;font-size:8px;letter-spacing:3px;padding:0;cursor:pointer;margin-bottom:20px}
 
-/* ═══ HOME SCREEN ═══ */
-.crown { text-align:center; margin-bottom:32px; padding-bottom:28px; border-bottom:1px solid #ffffff06; }
-.crown-runes { font-size:10px; color:var(–rune); letter-spacing:5px; margin-bottom:14px; }
-.crown-sun { font-size:52px; margin-bottom:12px; animation:glow-pulse 5s ease-in-out infinite; }
-.crown-name { font-family:‘Cinzel’,serif; font-size:26px; font-weight:700; color:var(–gold); letter-spacing:2px; margin-bottom:4px; }
-.crown-dharma { font-size:14px; color:var(–dim); font-style:italic; margin-bottom:16px; }
-.crown-recitation { font-size:12px; color:var(–rune); letter-spacing:1px; line-height:2.2; }
-.prestige-banner { display:inline-flex; align-items:center; gap:8px; border:1px solid var(–gold-dim); padding:6px 18px; margin-bottom:22px; font-family:‘Cinzel’,serif; font-size:10px; color:var(–gold); letter-spacing:2px; background:#C9A84C06; }
-.xp-card { background:var(–glass); border:1px solid #C9A84C15; padding:18px; margin-bottom:24px; }
-.xp-row { display:flex; justify-content:space-between; margin-bottom:14px; }
-.xp-block-label { font-family:‘Cinzel’,serif; font-size:9px; color:var(–rune); letter-spacing:2px; margin-bottom:5px; }
-.xp-val { font-family:‘Cinzel’,serif; font-size:28px; font-weight:700; color:var(–gold); line-height:1; }
-.xp-bar-bg { height:3px; background:#1a1510; margin-bottom:8px; }
-.xp-bar { height:3px; background:linear-gradient(90deg, var(–gold-dim), var(–sun)); transition:width 0.8s ease; }
-.xp-caption { font-size:11px; color:var(–rune); font-style:italic; }
+/* ═══ HOME ═══ */
+.crown{text-align:center;margin-bottom:28px;padding-bottom:24px;border-bottom:1px solid #ffffff05}
+.c-runes{font-size:9px;color:var(–rune);letter-spacing:5px;margin-bottom:12px}
+.c-sun{font-size:48px;margin-bottom:10px;animation:gp 6s ease-in-out infinite}
+.c-name{font-family:‘Cinzel’,serif;font-size:24px;font-weight:700;color:var(–gold);letter-spacing:2px;margin-bottom:3px}
+.c-dharma{font-size:13px;color:var(–dim);font-style:italic;margin-bottom:14px}
+.c-rec{font-size:11px;color:var(–rune);letter-spacing:1px;line-height:2.2}
+.xp-card{background:var(–glass);border:1px solid #C9A84C12;padding:16px;margin-bottom:22px}
+.xp-row{display:flex;justify-content:space-between;margin-bottom:12px}
+.xp-lbl{font-family:‘Cinzel’,serif;font-size:8px;color:var(–rune);letter-spacing:2px;margin-bottom:4px}
+.xp-val{font-family:‘Cinzel’,serif;font-size:26px;font-weight:700;color:var(–gold);line-height:1}
+.bar-bg{height:3px;background:#1a1510}
+.bar-fill{height:3px;background:linear-gradient(90deg,var(–gold-dim),var(–sun));transition:width .8s ease}
+.xp-cap{font-size:10px;color:var(–rune);font-style:italic;margin-top:6px}
+.prestige-band{text-align:center;margin-bottom:18px}
+.prestige-inner{display:inline-flex;align-items:center;gap:8px;border:1px solid var(–gold-dim);padding:5px 16px;font-family:‘Cinzel’,serif;font-size:9px;color:var(–gold);letter-spacing:2px;background:#C9A84C06}
 
-/* DOMAINS */
-.domain-card { background:var(–glass); border:1px solid var(–border); padding:14px; margin-bottom:8px; transition:border-color 0.3s; }
-.domain-card.alert { border-color:#6b4a3a40; }
-.domain-top { display:flex; align-items:center; gap:12px; }
-.domain-icon { font-size:18px; width:30px; text-align:center; flex-shrink:0; }
-.domain-info { flex:1; min-width:0; }
-.domain-name { font-family:‘Cinzel’,serif; font-size:11px; color:var(–light); letter-spacing:1px; margin-bottom:2px; }
-.domain-note { font-size:10px; color:var(–rune); font-style:italic; margin-bottom:4px; }
-.domain-bar-wrap { position:relative; height:3px; background:#1a1510; margin-bottom:3px; }
-.domain-bar-fill { height:3px; transition:width 0.8s ease; position:relative; }
-.domain-wolf-icon { position:absolute; right:-8px; top:-7px; font-size:12px; }
-.domain-status { font-size:10px; color:var(–rune); font-style:italic; }
-.domain-actions { display:flex; gap:6px; flex-shrink:0; }
-.domain-expand { margin-top:10px; display:none; }
-.domain-expand.open { display:block; }
-.domain-input-row { display:none; gap:6px; margin-top:8px; }
-.domain-input-row.open { display:flex; }
-.domain-mini-input { flex:1; background:#ffffff04; border:1px solid var(–border); color:var(–light); font-family:‘Crimson Text’,serif; font-size:13px; padding:8px 10px; outline:none; }
-.domain-mini-input:focus { border-color:var(–gold-dim); }
-.domain-entry { font-size:12px; color:var(–dim); font-style:italic; padding:5px 0; border-bottom:1px solid #1a1510; line-height:1.6; }
-.domain-entry:last-child { border-bottom:none; }
-.domain-entry-date { font-size:10px; color:#2a2318; }
-.domain-show-btn { background:none; border:none; color:var(–rune); font-family:‘Cinzel’,serif; font-size:9px; letter-spacing:1px; cursor:pointer; margin-top:6px; padding:0; }
+/* DOMAIN VIGIL — HOME (read only) */
+.vigil-card{background:var(–glass);border:1px solid var(–border);padding:12px 14px;margin-bottom:7px;display:flex;align-items:center;gap:12px}
+.v-icon{font-size:17px;width:28px;text-align:center;flex-shrink:0}
+.v-info{flex:1;min-width:0}
+.v-name{font-family:‘Cinzel’,serif;font-size:10px;color:var(–light);letter-spacing:.8px;margin-bottom:3px}
+.v-bar-wrap{position:relative;height:2px;background:#1a1510;margin-bottom:3px}
+.v-bar-fill{height:2px;transition:width .8s}
+.v-wolf{position:absolute;right:-8px;top:-7px;font-size:11px}
+.v-status{font-size:10px;color:var(–rune);font-style:italic}
+.v-days{font-family:‘Cinzel’,serif;font-size:9px;color:var(–rune);letter-spacing:1px;flex-shrink:0}
 
-/* TRAINING DAYS */
-.day-card { width:100%; background:var(–glass); border:1px solid var(–border); padding:16px; margin-bottom:8px; cursor:pointer; text-align:left; position:relative; overflow:hidden; transition:border-color 0.3s; display:block; }
-.day-card::before { content:’’; position:absolute; left:0; top:0; width:2px; height:100%; background:var(–day-color); opacity:0.6; }
-.day-card.done { background:#C9A84C05; border-color:#C9A84C25; }
-.day-inner { display:flex; justify-content:space-between; align-items:center; }
-.day-left { display:flex; align-items:center; gap:12px; }
-.day-emoji-wrap { width:44px; height:44px; border:1px solid var(–border); display:flex; align-items:center; justify-content:center; font-size:20px; flex-shrink:0; }
-.day-title { font-family:‘Cinzel’,serif; font-size:13px; font-weight:600; margin-bottom:3px; }
-.day-meta { font-size:12px; color:var(–dim); }
-.day-prog-bar { height:2px; background:#1a1510; margin-top:10px; }
-.day-prog-fill { height:2px; transition:width 0.3s; }
-.day-prog-label { font-size:10px; color:var(–rune); margin-top:3px; font-style:italic; }
+/* DAY CARDS HOME */
+.day-card{width:100%;background:var(–glass);border:1px solid var(–border);padding:14px;margin-bottom:7px;cursor:pointer;text-align:left;position:relative;overflow:hidden;transition:border-color .3s;display:block}
+.day-card::before{content:’’;position:absolute;left:0;top:0;width:2px;height:100%;background:var(–dc);opacity:.6}
+.day-card.done{background:#C9A84C04;border-color:#C9A84C22}
+.day-inner{display:flex;justify-content:space-between;align-items:center}
+.day-left{display:flex;align-items:center;gap:10px}
+.day-ico{width:40px;height:40px;border:1px solid var(–border);display:flex;align-items:center;justify-content:center;font-size:18px;flex-shrink:0}
+.day-ttl{font-family:‘Cinzel’,serif;font-size:12px;font-weight:600;margin-bottom:2px}
+.day-met{font-size:11px;color:var(–dim)}
+.mini-bar{height:2px;background:#1a1510;margin-top:8px}
+.mini-fill{height:2px;transition:width .3s}
+.mini-lbl{font-size:9px;color:var(–rune);margin-top:3px;font-style:italic}
 
 /* BADGES */
-.badge { background:var(–glass); border:1px solid var(–border); padding:5px 12px; font-size:10px; color:var(–rune); font-family:‘Cinzel’,serif; letter-spacing:1px; display:inline-block; margin:3px; }
-.badge.earned { border-color:var(–gold-dim); color:var(–gold); background:#C9A84C08; }
+.badge{background:var(–glass);border:1px solid var(–border);padding:4px 10px;font-size:9px;color:var(–rune);font-family:‘Cinzel’,serif;letter-spacing:1px;display:inline-block;margin:2px}
+.badge.earned{border-color:var(–gold-dim);color:var(–gold);background:#C9A84C07}
 
-/* ═══ TRAINING SCREEN ═══ */
-.back-btn { background:none; border:none; color:var(–rune); cursor:pointer; font-family:‘Cinzel’,serif; font-size:9px; letter-spacing:3px; padding:0; margin-bottom:22px; display:flex; align-items:center; gap:6px; }
-.day-screen-title { font-family:‘Cinzel’,serif; font-size:22px; font-weight:700; color:var(–gold); margin-bottom:4px; }
-.day-screen-sub { font-size:13px; color:var(–dim); margin-bottom:6px; }
-.day-verse { font-size:13px; color:var(–rune); font-style:italic; line-height:1.8; margin-bottom:22px; padding-left:14px; border-left:2px solid var(–border); white-space:pre-line; }
-.prog-row { display:flex; justify-content:space-between; font-family:‘Cinzel’,serif; font-size:9px; color:var(–rune); letter-spacing:1px; margin-bottom:6px; }
-.prog-bg { height:3px; background:#1a1510; margin-bottom:24px; }
-.prog-fill { height:3px; background:linear-gradient(90deg,var(–gold-dim),var(–sun)); transition:width 0.4s; }
-.rest-bar { display:none; align-items:center; gap:10px; background:#C9A84C0c; border:1px solid var(–gold-dim); padding:10px 16px; margin-bottom:14px; }
-.rest-bar.active { display:flex; }
-.rest-text { font-family:‘Cinzel’,serif; font-size:12px; color:var(–gold); letter-spacing:1px; flex:1; }
-.rest-skip { background:none; border:none; color:var(–rune); font-family:‘Cinzel’,serif; font-size:9px; letter-spacing:1px; cursor:pointer; }
-.ex-card { background:var(–glass); border:1px solid var(–border); padding:16px; margin-bottom:12px; transition:border-color 0.3s; }
-.ex-card.complete { border-color:#C9A84C35; }
-.ex-head { display:flex; justify-content:space-between; align-items:flex-start; margin-bottom:4px; }
-.ex-name { font-family:‘Cinzel’,serif; font-size:14px; font-weight:600; }
-.ex-name.complete { color:var(–gold); }
-.ex-meta { font-size:12px; color:var(–rune); margin-bottom:12px; }
-.tip-toggle { background:none; border:1px solid var(–border); color:var(–rune); font-family:‘Cinzel’,serif; font-size:8px; letter-spacing:2px; padding:5px 10px; cursor:pointer; flex-shrink:0; transition:all 0.2s; }
-.tip-toggle.open { border-color:var(–gold-dim); color:var(–gold); }
-.tip-box { font-size:13px; color:#9a8d78; background:#ffffff03; padding:12px 14px; margin-bottom:12px; line-height:1.8; border-left:2px solid var(–gold-dim); font-style:italic; }
-.sets-row { display:flex; gap:8px; flex-wrap:wrap; }
-.set-btn { width:42px; height:42px; border:1px solid var(–border); background:transparent; color:#3a3028; cursor:pointer; font-family:‘Cinzel’,serif; font-size:12px; font-weight:600; transition:all 0.15s; }
-.set-btn.done { color:var(–dark); background:var(–gold); border-color:var(–gold); }
-.prog-note-wrap { margin-top:10px; }
-.prog-note-input { width:100%; background:#ffffff03; border:1px solid var(–border); color:var(–dim); font-family:‘Crimson Text’,serif; font-size:12px; padding:8px 10px; outline:none; font-style:italic; }
-.prog-note-input::placeholder { color:#2a2318; }
-.finish-btn { width:100%; padding:18px; background:linear-gradient(135deg,var(–gold-dim),var(–gold)); color:var(–dark); border:none; font-family:‘Cinzel’,serif; font-size:13px; font-weight:700; letter-spacing:2px; cursor:pointer; margin-top:12px; display:none; box-shadow:0 0 40px #C9A84C20; }
+/* ═══ TRAIN ═══ */
+.ds-ttl{font-family:‘Cinzel’,serif;font-size:20px;font-weight:700;color:var(–gold);margin-bottom:3px}
+.ds-sub{font-size:12px;color:var(–dim);margin-bottom:6px}
+.ds-verse{font-size:12px;color:var(–rune);font-style:italic;line-height:1.8;margin-bottom:20px;padding-left:12px;border-left:2px solid var(–border);white-space:pre-line}
+.prog-row{display:flex;justify-content:space-between;font-family:‘Cinzel’,serif;font-size:8px;color:var(–rune);letter-spacing:1px;margin-bottom:5px}
+.rest-bar{display:none;align-items:center;gap:10px;background:#C9A84C0a;border:1px solid var(–gold-dim);padding:9px 14px;margin-bottom:12px}
+.rest-bar.on{display:flex}
+.rest-txt{font-family:‘Cinzel’,serif;font-size:11px;color:var(–gold);letter-spacing:1px;flex:1}
+.rest-skip{background:none;border:none;color:var(–rune);font-family:‘Cinzel’,serif;font-size:9px;letter-spacing:1px;cursor:pointer}
+.ex-card{background:var(–glass);border:1px solid var(–border);padding:14px;margin-bottom:10px;transition:border-color .3s}
+.ex-card.done{border-color:#C9A84C32}
+.ex-head{display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:3px}
+.ex-name{font-family:‘Cinzel’,serif;font-size:13px;font-weight:600}
+.ex-name.done{color:var(–gold)}
+.ex-met{font-size:11px;color:var(–rune);margin-bottom:10px}
+.tip-t{background:none;border:1px solid var(–border);color:var(–rune);font-family:‘Cinzel’,serif;font-size:7px;letter-spacing:2px;padding:4px 9px;cursor:pointer;flex-shrink:0;transition:all .2s}
+.tip-t.on{border-color:var(–gold-dim);color:var(–gold)}
+.tip-box{font-size:12px;color:#8a7d68;background:#ffffff02;padding:10px 12px;margin-bottom:10px;line-height:1.8;border-left:2px solid var(–gold-dim);font-style:italic}
+.sets-row{display:flex;gap:7px;flex-wrap:wrap}
+.set-btn{width:40px;height:40px;border:1px solid var(–border);background:transparent;color:#2a2318;cursor:pointer;font-family:‘Cinzel’,serif;font-size:11px;font-weight:600;transition:all .15s}
+.set-btn.done{color:var(–bg);background:var(–gold);border-color:var(–gold)}
+.note-inp{width:100%;background:#ffffff02;border:1px solid var(–border);color:var(–dim);font-family:‘Crimson Text’,serif;font-size:11px;padding:6px 10px;outline:none;margin-top:8px;font-style:italic}
+.note-inp::placeholder{color:#1e1a12}
+.finish-btn{width:100%;padding:16px;background:linear-gradient(135deg,var(–gold-dim),var(–gold));color:var(–bg);border:none;font-family:‘Cinzel’,serif;font-size:12px;font-weight:700;letter-spacing:2px;cursor:pointer;margin-top:10px;display:none;box-shadow:0 0 32px #C9A84C18}
 
-/* ═══ FRAMEWORK SCREEN ═══ */
-.framework-header { text-align:center; margin-bottom:36px; }
-.framework-sun { font-size:48px; margin-bottom:14px; animation:glow-pulse 5s ease-in-out infinite; }
-.framework-title { font-family:‘Cinzel’,serif; font-size:24px; color:var(–gold); letter-spacing:3px; margin-bottom:6px; }
-.framework-sub { font-size:13px; color:var(–rune); font-style:italic; }
-.framework-tabs { display:flex; gap:0; margin-bottom:28px; border:1px solid var(–border); }
-.framework-tab { flex:1; padding:10px 4px; background:none; border:none; color:var(–rune); font-family:‘Cinzel’,serif; font-size:8px; letter-spacing:1px; cursor:pointer; transition:all 0.2s; border-right:1px solid var(–border); }
-.framework-tab:last-child { border-right:none; }
-.framework-tab.active { color:var(–gold); background:#C9A84C08; }
-.framework-panel { display:none; }
-.framework-panel.active { display:block; }
-.cosmology-item { background:var(–glass); border:1px solid var(–border); padding:18px; margin-bottom:12px; }
-.cosmology-icon { font-size:28px; margin-bottom:10px; }
-.cosmology-name { font-family:‘Cinzel’,serif; font-size:16px; color:var(–gold); letter-spacing:2px; margin-bottom:4px; }
-.cosmology-meaning { font-size:11px; color:var(–rune); letter-spacing:1px; margin-bottom:10px; font-family:‘Cinzel’,serif; }
-.cosmology-desc { font-size:14px; color:var(–dim); line-height:1.9; font-style:italic; }
-.undir-text { font-size:15px; color:var(–dim); line-height:2.4; white-space:pre-line; }
-.undir-text em { color:var(–light); font-style:normal; }
-.declaration-item { background:var(–glass); border:1px solid var(–border); border-left:2px solid var(–gold-dim); padding:16px; margin-bottom:10px; position:relative; }
-.declaration-text { font-size:14px; color:var(–dim); line-height:1.9; font-style:italic; margin-bottom:8px; }
-.declaration-date { font-size:10px; color:var(–rune); font-family:‘Cinzel’,serif; letter-spacing:1px; }
-.declaration-delete { position:absolute; top:10px; right:10px; background:none; border:none; color:#2a2318; cursor:pointer; font-size:12px; }
-.add-declaration-area { margin-top:20px; }
+/* ═══ FRAMEWORK ═══ */
+.fw-hdr{text-align:center;margin-bottom:28px}
+.fw-sun{font-size:44px;margin-bottom:12px;animation:gp 6s ease-in-out infinite}
+.fw-ttl{font-family:‘Cinzel’,serif;font-size:22px;color:var(–gold);letter-spacing:3px;margin-bottom:4px}
+.fw-sub{font-size:12px;color:var(–rune);font-style:italic}
+.cosm-card{background:var(–glass);border:1px solid var(–border);padding:16px;margin-bottom:10px}
+.cosm-ico{font-size:26px;margin-bottom:8px}
+.cosm-name{font-family:‘Cinzel’,serif;font-size:15px;color:var(–gold);letter-spacing:2px;margin-bottom:3px}
+.cosm-meaning{font-size:10px;color:var(–rune);letter-spacing:1px;margin-bottom:8px;font-family:‘Cinzel’,serif}
+.cosm-desc{font-size:13px;color:var(–dim);line-height:1.9;font-style:italic}
+.undir-text{font-size:14px;color:var(–dim);line-height:2.4;white-space:pre-line}
+.undir-text em{color:var(–light);font-style:normal}
+.decl-item{background:var(–glass);border:1px solid var(–border);border-left:2px solid var(–gold-dim);padding:14px;margin-bottom:8px;position:relative}
+.decl-txt{font-size:13px;color:var(–dim);line-height:1.9;font-style:italic;margin-bottom:6px}
+.decl-date{font-size:9px;color:var(–rune);font-family:‘Cinzel’,serif;letter-spacing:1px}
+.del-btn{position:absolute;top:8px;right:8px;background:none;border:none;color:#1e1a12;cursor:pointer;font-size:11px}
 
-/* ═══ THOUGHT ARCHIVE ═══ */
-.archive-header { margin-bottom:24px; }
-.archive-title { font-family:‘Cinzel’,serif; font-size:20px; color:var(–gold); letter-spacing:2px; margin-bottom:4px; }
-.archive-sub { font-size:13px; color:var(–dim); font-style:italic; margin-bottom:16px; }
-.archive-tabs { display:flex; gap:0; border:1px solid var(–border); margin-bottom:24px; }
-.archive-tab { flex:1; padding:10px 4px; background:none; border:none; color:var(–rune); font-family:‘Cinzel’,serif; font-size:8px; letter-spacing:1px; cursor:pointer; transition:all 0.2s; border-right:1px solid var(–border); }
-.archive-tab:last-child { border-right:none; }
-.archive-tab.active { color:var(–gold); background:#C9A84C08; }
-.archive-panel { display:none; }
-.archive-panel.active { display:block; }
-.thought-input-wrap { margin-bottom:20px; }
-.tag-input { width:100%; background:#ffffff04; border:1px solid var(–border); color:var(–light); font-family:‘Cinzel’,serif; font-size:11px; letter-spacing:1px; padding:8px 12px; outline:none; margin-bottom:6px; }
-.tag-input::placeholder { color:var(–rune); font-style:normal; }
-.link-select { width:100%; background:#0a0906; border:1px solid var(–border); color:var(–dim); font-family:‘Crimson Text’,serif; font-size:13px; padding:8px 10px; outline:none; margin-bottom:6px; }
-.thought-entry { background:var(–glass); border:1px solid var(–border); padding:14px; margin-bottom:8px; cursor:pointer; transition:border-color 0.2s; position:relative; }
-.thought-entry:hover { border-color:#C9A84C20; }
-.thought-entry.selected { border-color:var(–gold-dim); background:#C9A84C06; }
-.thought-tag { font-family:‘Cinzel’,serif; font-size:9px; color:var(–rune); letter-spacing:2px; margin-bottom:6px; }
-.thought-text { font-size:13px; color:var(–dim); line-height:1.7; font-style:italic; }
-.thought-date { font-size:10px; color:#2a2318; margin-top:6px; }
-.thought-links { font-size:10px; color:var(–rune); margin-top:4px; font-family:‘Cinzel’,serif; letter-spacing:1px; }
-.thought-delete { position:absolute; top:10px; right:10px; background:none; border:none; color:#2a2318; cursor:pointer; font-size:12px; }
+/* ═══ ARCHIVE ═══ */
+.arch-hdr{margin-bottom:20px}
+.arch-ttl{font-family:‘Cinzel’,serif;font-size:19px;color:var(–gold);letter-spacing:2px;margin-bottom:3px}
+.arch-sub{font-size:12px;color:var(–dim);font-style:italic}
 
-/* WEB VIEW */
-.web-container { width:100%; height:340px; background:#0a0906; border:1px solid var(–border); position:relative; overflow:hidden; margin-bottom:16px; }
-.web-canvas { width:100%; height:100%; }
-.web-empty { position:absolute; inset:0; display:flex; align-items:center; justify-content:center; font-size:13px; color:var(–rune); font-style:italic; text-align:center; padding:20px; }
-.web-tooltip { position:absolute; background:var(–stone); border:1px solid var(–gold-dim); padding:10px 14px; pointer-events:none; display:none; max-width:200px; z-index:10; }
-.web-tooltip-tag { font-family:‘Cinzel’,serif; font-size:9px; color:var(–rune); letter-spacing:1px; margin-bottom:4px; }
-.web-tooltip-text { font-size:12px; color:var(–dim); font-style:italic; line-height:1.6; }
+/* TAG MANAGER */
+.tag-chip{display:inline-flex;align-items:center;gap:6px;background:var(–glass);border:1px solid var(–border);padding:4px 10px;margin:3px;font-family:‘Cinzel’,serif;font-size:8px;color:var(–rune);letter-spacing:1px;cursor:pointer;transition:all .2s}
+.tag-chip.sel{border-color:var(–gold-dim);color:var(–gold);background:#C9A84C08}
+.tag-chip .tx{font-size:10px;color:#1e1a12;cursor:pointer;padding-left:4px}
+.domain-chip{display:inline-flex;align-items:center;gap:5px;border:1px solid var(–border);padding:4px 10px;margin:3px;font-family:‘Cinzel’,serif;font-size:8px;color:var(–rune);letter-spacing:1px;cursor:pointer;transition:all .2s}
+.domain-chip.sel{color:var(–gold);background:#C9A84C08}
 
-/* EXPORT */
-.export-btn { background:none; border:1px solid var(–border); color:var(–rune); font-family:‘Cinzel’,serif; font-size:9px; letter-spacing:2px; padding:8px 16px; cursor:pointer; margin-bottom:20px; }
+/* THOUGHT ENTRIES */
+.thought-card{background:var(–glass);border:1px solid var(–border);padding:13px;margin-bottom:7px;position:relative;transition:border-color .2s}
+.thought-card:active{border-color:#C9A84C20}
+.tc-domains{display:flex;gap:4px;flex-wrap:wrap;margin-bottom:5px}
+.tc-domain{font-size:8px;font-family:‘Cinzel’,serif;letter-spacing:1px;padding:2px 6px;border:1px solid var(–border)}
+.tc-tags{display:flex;gap:4px;flex-wrap:wrap;margin-bottom:6px}
+.tc-tag{font-size:8px;font-family:‘Cinzel’,serif;color:var(–rune);letter-spacing:1px}
+.tc-text{font-size:13px;color:var(–dim);line-height:1.7;font-style:italic}
+.tc-link{font-size:10px;color:var(–rune);margin-top:4px;font-family:‘Cinzel’,serif;letter-spacing:.5px}
+.tc-date{font-size:9px;color:#1e1a12;margin-top:5px}
 
-/* ═══ DEVELOPMENT SCREEN ═══ */
-.dev-header { margin-bottom:24px; }
-.dev-title { font-family:‘Cinzel’,serif; font-size:20px; color:var(–gold); letter-spacing:2px; margin-bottom:4px; }
-.dev-sub { font-size:13px; color:var(–dim); font-style:italic; }
-.dev-tabs { display:flex; gap:0; border:1px solid var(–border); margin-bottom:24px; }
-.dev-tab { flex:1; padding:10px 4px; background:none; border:none; color:var(–rune); font-family:‘Cinzel’,serif; font-size:8px; letter-spacing:1px; cursor:pointer; transition:all 0.2s; border-right:1px solid var(–border); }
-.dev-tab:last-child { border-right:none; }
-.dev-tab.active { color:var(–gold); background:#C9A84C08; }
-.dev-panel { display:none; }
-.dev-panel.active { display:block; }
-.skill-card { background:var(–glass); border:1px solid var(–border); padding:16px; margin-bottom:10px; }
-.skill-head { display:flex; justify-content:space-between; align-items:flex-start; margin-bottom:10px; }
-.skill-name { font-family:‘Cinzel’,serif; font-size:13px; color:var(–light); letter-spacing:1px; margin-bottom:3px; }
-.skill-category { font-size:10px; color:var(–rune); font-style:italic; }
-.skill-priority { font-size:9px; font-family:‘Cinzel’,serif; padding:3px 8px; border:1px solid var(–border); color:var(–rune); letter-spacing:1px; }
-.skill-priority.high { border-color:var(–gold-dim); color:var(–gold); }
-.skill-bar-bg { height:3px; background:#1a1510; margin-bottom:6px; }
-.skill-bar-fill { height:3px; background:linear-gradient(90deg,var(–gold-dim),var(–sun)); transition:width 0.6s; }
-.skill-meta { font-size:11px; color:var(–rune); font-style:italic; margin-bottom:10px; }
-.skill-note { font-size:12px; color:var(–dim); line-height:1.7; font-style:italic; margin-bottom:10px; }
-.skill-controls { display:flex; gap:6px; }
-.skill-btn { flex:1; background:none; border:1px solid var(–border); color:var(–rune); font-family:‘Cinzel’,serif; font-size:8px; letter-spacing:1px; padding:7px; cursor:pointer; transition:all 0.2s; }
-.skill-btn:active { border-color:var(–gold-dim); color:var(–gold); }
-.add-skill-form { background:var(–glass); border:1px solid var(–border); padding:16px; margin-bottom:16px; }
-.form-label { font-family:‘Cinzel’,serif; font-size:9px; color:var(–rune); letter-spacing:2px; margin-bottom:6px; display:block; margin-top:12px; }
-.form-label:first-child { margin-top:0; }
-.form-select { width:100%; background:#0a0906; border:1px solid var(–border); color:var(–dim); font-family:‘Crimson Text’,serif; font-size:13px; padding:8px 10px; outline:none; }
-.goal-card { background:var(–glass); border:1px solid var(–border); padding:14px; margin-bottom:8px; position:relative; }
-.goal-head { display:flex; justify-content:space-between; margin-bottom:6px; }
-.goal-name { font-family:‘Cinzel’,serif; font-size:12px; color:var(–light); letter-spacing:1px; }
-.goal-timeframe { font-size:10px; color:var(–rune); font-family:‘Cinzel’,serif; }
-.goal-desc { font-size:13px; color:var(–dim); font-style:italic; line-height:1.7; margin-bottom:8px; }
-.goal-check { display:flex; align-items:center; gap:8px; }
-.goal-checkbox { width:18px; height:18px; border:1px solid var(–border); background:none; cursor:pointer; display:flex; align-items:center; justify-content:center; font-size:10px; color:var(–gold); flex-shrink:0; }
-.goal-checkbox.done { background:#C9A84C15; border-color:var(–gold-dim); }
-.goal-delete { position:absolute; top:10px; right:10px; background:none; border:none; color:#2a2318; cursor:pointer; font-size:12px; }
+/* WEB */
+.web-wrap{width:100%;height:360px;background:#09080688;border:1px solid var(–border);position:relative;overflow:hidden;margin-bottom:12px}
+.web-canvas{width:100%;height:100%}
+.web-empty{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;font-size:12px;color:var(–rune);font-style:italic;text-align:center;padding:24px}
+.web-tt{position:absolute;background:var(–stone);border:1px solid var(–gold-dim);padding:10px 13px;pointer-events:none;display:none;max-width:200px;z-index:5}
+.web-tt-tag{font-family:‘Cinzel’,serif;font-size:8px;color:var(–rune);letter-spacing:1px;margin-bottom:3px}
+.web-tt-text{font-size:11px;color:var(–dim);font-style:italic;line-height:1.6}
 
-/* ═══ TIMELINE SCREEN ═══ */
-.timeline-header { margin-bottom:24px; }
-.timeline-title { font-family:‘Cinzel’,serif; font-size:20px; color:var(–gold); letter-spacing:2px; margin-bottom:4px; }
-.timeline-sub { font-size:13px; color:var(–dim); font-style:italic; }
-.timeline-add { margin-bottom:24px; }
-.timeline-type-row { display:flex; gap:6px; margin-bottom:8px; flex-wrap:wrap; }
-.timeline-type-btn { background:none; border:1px solid var(–border); color:var(–rune); font-family:‘Cinzel’,serif; font-size:8px; letter-spacing:1px; padding:6px 12px; cursor:pointer; transition:all 0.2s; }
-.timeline-type-btn.selected { border-color:var(–gold-dim); color:var(–gold); background:#C9A84C08; }
-.timeline-item { display:flex; gap:14px; margin-bottom:0; position:relative; }
-.timeline-item::before { content:’’; position:absolute; left:19px; top:36px; bottom:-20px; width:1px; background:var(–border); }
-.timeline-item:last-child::before { display:none; }
-.timeline-dot-wrap { flex-shrink:0; display:flex; flex-direction:column; align-items:center; padding-top:6px; }
-.timeline-dot { width:8px; height:8px; border-radius:50%; background:var(–rune); flex-shrink:0; }
-.timeline-dot.landmark { background:var(–gold); box-shadow:0 0 10px #C9A84C60; width:12px; height:12px; }
-.timeline-dot.declaration { background:var(–ember); }
-.timeline-dot.framework { background:var(–sun); box-shadow:0 0 10px #F4C84260; width:12px; height:12px; }
-.timeline-content { flex:1; background:var(–glass); border:1px solid var(–border); padding:12px 14px; margin-bottom:20px; position:relative; }
-.timeline-content.landmark { border-color:#C9A84C25; background:#C9A84C05; }
-.timeline-content.framework { border-color:#F4C84220; }
-.timeline-type-label { font-family:‘Cinzel’,serif; font-size:8px; color:var(–rune); letter-spacing:2px; margin-bottom:4px; }
-.timeline-text { font-size:13px; color:var(–dim); line-height:1.7; font-style:italic; }
-.timeline-date { font-size:10px; color:#2a2318; margin-top:6px; font-family:‘Cinzel’,serif; }
-.timeline-delete { position:absolute; top:8px; right:8px; background:none; border:none; color:#2a2318; cursor:pointer; font-size:11px; }
-.timeline-empty { font-size:13px; color:var(–rune); font-style:italic; text-align:center; padding:40px 0; }
+/* LOG */
+.log-tag-btn{background:none;border:1px solid var(–border);color:var(–rune);font-family:‘Cinzel’,serif;font-size:8px;letter-spacing:1px;padding:5px 10px;cursor:pointer;margin:2px;transition:all .2s}
+.log-tag-btn.sel{border-color:var(–gold-dim);color:var(–gold);background:#C9A84C08}
+.log-entry{background:var(–glass);border:1px solid var(–border);padding:12px;margin-bottom:7px;position:relative}
+.log-tag-lbl{font-family:‘Cinzel’,serif;font-size:8px;color:var(–rune);letter-spacing:2px;margin-bottom:5px}
+.log-txt{font-size:13px;color:var(–dim);line-height:1.7;font-style:italic}
+.log-date{font-size:9px;color:#1e1a12;margin-top:5px}
+
+/* ═══ BUILD ═══ */
+.skill-card{background:var(–glass);border:1px solid var(–border);padding:14px;margin-bottom:8px}
+.sk-head{display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:8px}
+.sk-name{font-family:‘Cinzel’,serif;font-size:12px;color:var(–light);letter-spacing:.8px;margin-bottom:2px}
+.sk-cat{font-size:10px;color:var(–rune);font-style:italic}
+.sk-pri{font-size:8px;font-family:‘Cinzel’,serif;padding:2px 7px;border:1px solid var(–border);color:var(–rune);letter-spacing:1px}
+.sk-pri.hi{border-color:var(–gold-dim);color:var(–gold)}
+.sk-note{font-size:12px;color:var(–dim);font-style:italic;margin-bottom:8px;line-height:1.7}
+.sk-btns{display:flex;gap:5px}
+.sk-btn{flex:1;background:none;border:1px solid var(–border);color:var(–rune);font-family:‘Cinzel’,serif;font-size:7px;letter-spacing:1px;padding:6px 4px;cursor:pointer;transition:all .2s}
+.sk-btn:active{border-color:var(–gold-dim);color:var(–gold)}
+.goal-card{background:var(–glass);border:1px solid var(–border);padding:13px;margin-bottom:7px;position:relative}
+.goal-head{display:flex;justify-content:space-between;margin-bottom:5px}
+.goal-name{font-family:‘Cinzel’,serif;font-size:11px;color:var(–light);letter-spacing:.8px}
+.goal-tf{font-size:9px;color:var(–rune);font-family:‘Cinzel’,serif}
+.goal-desc{font-size:12px;color:var(–dim);font-style:italic;line-height:1.7;margin-bottom:8px}
+.goal-chk{display:flex;align-items:center;gap:8px}
+.chk-box{width:16px;height:16px;border:1px solid var(–border);background:none;cursor:pointer;display:flex;align-items:center;justify-content:center;font-size:9px;color:var(–gold);flex-shrink:0}
+.chk-box.done{background:#C9A84C12;border-color:var(–gold-dim)}
+.fl{font-size:10px;color:var(–rune)}
+.form-lbl{font-family:‘Cinzel’,serif;font-size:8px;color:var(–rune);letter-spacing:2px;margin-bottom:5px;display:block;margin-top:10px}
+.form-lbl:first-child{margin-top:0}
+.form-sel{width:100%;background:var(–bg);border:1px solid var(–border);color:var(–dim);font-family:‘Crimson Text’,serif;font-size:13px;padding:8px 10px;outline:none}
+.add-form{background:var(–glass);border:1px solid var(–border);padding:14px;margin-bottom:14px}
+
+/* TIMELINE */
+.tl-item{display:flex;gap:12px;position:relative}
+.tl-item::before{content:’’;position:absolute;left:17px;top:32px;bottom:-18px;width:1px;background:var(–border)}
+.tl-item:last-child::before{display:none}
+.tl-dot-wrap{flex-shrink:0;padding-top:5px}
+.tl-dot{width:7px;height:7px;border-radius:50%;background:var(–rune)}
+.tl-dot.landmark,.tl-dot.framework{background:var(–gold);box-shadow:0 0 8px #C9A84C50;width:10px;height:10px}
+.tl-dot.declaration{background:var(–ember)}
+.tl-content{flex:1;background:var(–glass);border:1px solid var(–border);padding:11px 13px;margin-bottom:18px;position:relative}
+.tl-content.landmark,.tl-content.framework{border-color:#C9A84C20;background:#C9A84C04}
+.tl-type{font-family:‘Cinzel’,serif;font-size:7px;color:var(–rune);letter-spacing:2px;margin-bottom:3px}
+.tl-txt{font-size:12px;color:var(–dim);line-height:1.7;font-style:italic}
+.tl-date{font-size:9px;color:#1e1a12;margin-top:5px;font-family:‘Cinzel’,serif}
+.tl-type-row{display:flex;gap:5px;flex-wrap:wrap;margin:8px 0}
+.tl-type-btn{background:none;border:1px solid var(–border);color:var(–rune);font-family:‘Cinzel’,serif;font-size:7px;letter-spacing:1px;padding:5px 10px;cursor:pointer;transition:all .2s}
+.tl-type-btn.sel{border-color:var(–gold-dim);color:var(–gold);background:#C9A84C08}
 </style>
 
 </head>
 <body>
-<div class="sun-glow"></div>
+<div class="sun-halo"></div>
 <div id="toast" class="toast"></div>
 
-<!-- OPENING -->
-
 <div class="opening" id="opening">
-  <div class="opening-sun">☀️</div>
-  <div class="opening-runes">ᚢᚾᛞᛁᚱ · ᛊᛟᛚᚢ</div>
-  <div class="opening-verse" id="opening-verse"></div>
-  <div class="opening-name">Sólfriðr Deas · Caelith</div>
-  <button class="opening-btn" onclick="closeOpening()">UNDIR SÓLU</button>
+  <div class="op-sun">☀️</div>
+  <div class="op-runes">ᚢᚾᛞᛁᚱ · ᛊᛟᛚᚢ</div>
+  <div class="op-verse" id="op-verse"></div>
+  <div class="op-name">Sólfriðr Deas · Caelith</div>
+  <button class="op-btn" onclick="closeOpening()">UNDIR SÓLU</button>
 </div>
 
-<!-- REWARD MODAL -->
-
-<div class="modal-overlay" id="modal">
+<div class="modal-bg" id="modal">
   <div class="modal">
-    <div class="modal-rune" id="modal-rune"></div>
-    <div class="modal-title" id="modal-title"></div>
-    <div class="modal-sub" id="modal-sub"></div>
-    <div class="modal-verse" id="modal-verse"></div>
+    <div class="modal-ico" id="m-ico"></div>
+    <div class="modal-ttl" id="m-ttl"></div>
+    <div class="modal-sub" id="m-sub"></div>
+    <div class="modal-verse" id="m-verse"></div>
     <button class="modal-close" onclick="closeModal()">BEAR THE LIGHT</button>
   </div>
 </div>
 
 <div class="app">
-  <div class="content">
+ <div class="content">
 
-```
-<!-- HOME -->
-<div class="screen active" id="screen-home">
-  <div class="crown">
-    <div class="crown-runes">ᚢᚾᛞᛁᚱ · ᛊᛟᛚᚢ</div>
-    <div class="crown-sun">☀️</div>
-    <div class="crown-name">Sólfriðr Deas</div>
-    <div class="crown-dharma">Peaceful Glory Under the Sun</div>
-    <div class="crown-recitation">Undir Sólu · Peaceful Glory<br>Tranquil Sól · Blinding sight as I walk ahead</div>
-  </div>
-  <div id="prestige-home"></div>
-  <div class="xp-card">
-    <div class="xp-row">
-      <div><div class="xp-block-label">FRIÐR-STIG</div><div class="xp-val" id="h-level">I</div></div>
-      <div style="text-align:right"><div class="xp-block-label">LJÓS · LIGHT</div><div class="xp-val" id="h-xp">0</div></div>
+  <!-- HOME -->
+
+  <div class="screen active" id="screen-home">
+    <div class="crown">
+      <div class="c-runes">ᚢᚾᛞᛁᚱ · ᛊᛟᛚᚢ</div>
+      <div class="c-sun">☀️</div>
+      <div class="c-name">Sólfriðr Deas</div>
+      <div class="c-dharma">Peaceful Glory Under the Sun</div>
+      <div class="c-rec">Undir Sólu · Peaceful Glory<br>Tranquil Sól · Blinding sight as I walk ahead</div>
     </div>
-    <div class="xp-bar-bg"><div class="xp-bar" id="h-bar" style="width:0%"></div></div>
-    <div class="xp-caption" id="h-caption"></div>
+    <div id="prestige-home"></div>
+    <div class="xp-card">
+      <div class="xp-row">
+        <div><div class="xp-lbl">FRIÐR-STIG</div><div class="xp-val" id="h-lv">I</div></div>
+        <div style="text-align:right"><div class="xp-lbl">LJÓS</div><div class="xp-val" id="h-xp">0</div></div>
+      </div>
+      <div class="bar-bg"><div class="bar-fill" id="h-bar" style="width:0%"></div></div>
+      <div class="xp-cap" id="h-cap"></div>
+    </div>
+    <div class="sl">CAELITH · DOMAIN VIGIL</div>
+    <div id="vigil-home" style="margin-bottom:22px"></div>
+    <div class="sl">MERKI · EARNED</div>
+    <div id="badges-home" style="margin-bottom:22px"></div>
+    <div class="sl">ÞJÁLFUN · TRAINING</div>
+    <div id="days-home"></div>
   </div>
-  <div class="section-label">CAELITH · DOMAIN VIGIL</div>
-  <div id="domain-list" style="margin-bottom:24px"></div>
-  <div class="section-label">MERKI · EARNED MARKS</div>
-  <div style="margin-bottom:24px" id="badges-home"></div>
-  <div class="section-label">ÞJÁLFUN · TRAINING</div>
-  <div id="day-list-home"></div>
-</div>
 
-<!-- TRAINING DAY -->
-<div class="screen" id="screen-day">
-  <button class="back-btn" onclick="goHome()">← APTR</button>
-  <div class="day-screen-title" id="ds-title"></div>
-  <div class="day-screen-sub" id="ds-sub"></div>
-  <div class="day-verse" id="ds-verse"></div>
-  <div class="prog-row"><span style="letter-spacing:2px">FRAMGANGR</span><span id="ds-prog-label" style="color:var(--gold)"></span></div>
-  <div class="prog-bg"><div class="prog-fill" id="ds-prog-fill" style="width:0%"></div></div>
-  <div class="rest-bar" id="rest-bar">
-    <div class="rest-text" id="rest-text">Rest · 60s</div>
-    <button class="rest-skip" onclick="skipRest()">SKIP ›</button>
-  </div>
-  <div id="exercise-list"></div>
-  <button class="finish-btn" id="finish-btn" onclick="finishDay()">⚡ LJÓS KRAFR — SEAL THE DAY</button>
-</div>
+  <!-- TRAIN -->
 
-<!-- FRAMEWORK -->
-<div class="screen" id="screen-framework">
-  <div class="framework-header">
-    <div class="framework-sun">☀️</div>
-    <div class="framework-title">Undir Sólu</div>
-    <div class="framework-sub">The Foundation · Carved as Stone</div>
+  <div class="screen" id="screen-train">
+    <button class="back" onclick="goHome()">← APTR</button>
+    <div class="ds-ttl" id="ds-ttl"></div>
+    <div class="ds-sub" id="ds-sub"></div>
+    <div class="ds-verse" id="ds-verse"></div>
+    <div class="prog-row"><span>FRAMGANGR</span><span id="ds-prog" style="color:var(--gold)"></span></div>
+    <div class="bar-bg" style="margin-bottom:20px"><div class="bar-fill" id="ds-bar" style="width:0%"></div></div>
+    <div class="rest-bar" id="rest-bar">
+      <div class="rest-txt" id="rest-txt">Rest · 60s</div>
+      <button class="rest-skip" onclick="skipRest()">SKIP ›</button>
+    </div>
+    <div id="ex-list"></div>
+    <button class="finish-btn" id="finish-btn" onclick="finishDay()">⚡ SEAL THE DAY</button>
   </div>
-  <div class="framework-tabs">
-    <button class="framework-tab active" onclick="switchFrameworkTab('law')">THE LAW</button>
-    <button class="framework-tab" onclick="switchFrameworkTab('cosmology')">COSMOLOGY</button>
-    <button class="framework-tab" onclick="switchFrameworkTab('declarations')">DECLARATIONS</button>
-  </div>
-  <div class="framework-panel active" id="fw-law">
-    <div class="undir-text"><em>You are free to choose.</em>
-```
 
+  <!-- FRAMEWORK -->
+
+  <div class="screen" id="screen-fw">
+    <div class="fw-hdr">
+      <div class="fw-sun">☀️</div>
+      <div class="fw-ttl">Undir Sólu</div>
+      <div class="fw-sub">The Foundation · Carved as Stone</div>
+    </div>
+    <div class="tabs">
+      <button class="tab active" onclick="fwTab('law')">THE LAW</button>
+      <button class="tab" onclick="fwTab('cosm')">COSMOLOGY</button>
+      <button class="tab" onclick="fwTab('decl')">DECLARATIONS</button>
+    </div>
+    <div class="panel active" id="fw-law">
+      <div class="undir-text"><em>You are free to choose.</em>
 You are not free from what follows.
 Nothing under the sun is exempt from consequence.
 There is no appeal beyond cause and effect.
@@ -413,936 +365,721 @@ Only action, consequence, and endurance.
 Choose what you will answer for.
 Nothing under the sun will shield you.
 Nothing under the sun will stop you.</div>
-<hr class="divider">
-<div style="text-align:center;font-size:13px;color:var(--rune);font-style:italic">Glory holds true under light.</div>
+<div class="hr"></div>
+<div style="text-align:center;font-size:12px;color:var(--rune);font-style:italic">Glory holds true under light.</div>
 </div>
-<div class="framework-panel" id="fw-cosmology">
-<div class="cosmology-item">
-<div class="cosmology-icon">☀️</div>
-<div class="cosmology-name">Undir Sólu</div>
-<div class="cosmology-meaning">UNDER THE SUN · THE TOTALITY</div>
-<div class="cosmology-desc">Not a philosophy constructed but a reality recognized and named. The overarching condition you exist within — not something invoked but something walked inside constantly. The sun moves, consequence follows action, nothing is exempt. You did not make these things true. You stopped pretending they weren’t.</div>
+<div class="panel" id="fw-cosm">
+<div class="cosm-card"><div class="cosm-ico">☀️</div><div class="cosm-name">Undir Sólu</div><div class="cosm-meaning">UNDER THE SUN · THE TOTALITY</div><div class="cosm-desc">Not constructed but recognized. A reality that existed before it was named. The overarching condition you exist within. The sun moves, consequence follows action, nothing is exempt. You did not make these things true — you stopped pretending they weren’t. Parallel to Dharma — you walk within it.</div></div>
+<div class="cosm-card"><div class="cosm-ico">🌟</div><div class="cosm-name">Dýrr Sólu</div><div class="cosm-meaning">PRECIOUS GLORY OF THE SUN · THE ÁHEIT</div><div class="cosm-desc">The vow of pursuit. Spoken before reaching for something worth reaching for. Spoken again when it arrives. Not prayer — no god receives it. Spoken to Caelith, to the standard, to the cost accepted before knowing what it is. The word and the cost arrive simultaneously. You cannot separate them. No áheit spoken Undir Sólu shall be said in vain.</div></div>
+<div class="cosm-card"><div class="cosm-ico">🪨</div><div class="cosm-name">Caelith</div><div class="cosm-meaning">THE DOMAIN · EVERYTHING AGENCY TOUCHES</div><div class="cosm-desc">The domain of self. Everything your agency touches, shapes, controls, is responsible for. Body, mind, martial practice, craft, language, understanding of the world. The stone. Carved. Immovable. What Sköll pursues. Caelith grows as agency grows.</div></div>
+<div class="cosm-card"><div class="cosm-ico">🐺</div><div class="cosm-name">Sköll</div><div class="cosm-meaning">THE WOLF · ENTROPY IN PURSUIT</div><div class="cosm-desc">Entropy. The wolf that chases Sól. Real, necessary, always running. Without Sköll there is no reason to keep moving. The pressure that makes the walk mean something. The gap is maintained. Domain Vigil shows how close the wolf has come.</div></div>
+<div class="cosm-card"><div class="cosm-ico">🧠</div><div class="cosm-name">Hugr</div><div class="cosm-meaning">THE MOBILE MIND · WITNESS WITHOUT CONSUMPTION</div><div class="cosm-desc">The part of mind that detaches and observes while the body is fully inside the experience. Present but not consumed. Inside the fight, inside the conversation, inside the situation — watching from somewhere the chaos cannot reach. Not detachment. Presence without consumption. Already operating before it was named.</div></div>
+<div class="cosm-card"><div class="cosm-ico">⚡</div><div class="cosm-name">Reynsla</div><div class="cosm-meaning">THE COMPLETE LIVED MOMENT</div><div class="cosm-desc">The objective situation, context, and texture existing simultaneously. The thing that only exists once and only from inside. Untransferable. Irreducible. What Hugr witnesses and holds. You can tell the Reynsla — you cannot give it. The log and archive store the closest possible pointing toward it.</div></div>
+<div class="cosm-card"><div class="cosm-ico">✨</div><div class="cosm-name">Sólfriðr Deas</div><div class="cosm-meaning">PEACEFUL GLORY · THE DHARMA NAME</div><div class="cosm-desc">Not who you are yet — who Caelith becomes when the walk has been long and honest enough. Sól — sun. Friðr — peace, beauty. Deas — south, skillful, the right hand. A dharma name: not given, not taken, grown into. The name waits for the person to arrive at it.</div></div>
+<div class="cosm-card"><div class="cosm-ico">💫</div><div class="cosm-name">Fullnægjandi</div><div class="cosm-meaning">FULL-nigh-YAN-dee · COMPLETE FULFILLMENT</div><div class="cosm-desc">The state. Complete fulfillment within Undir Sólu. The dissolution of distance between you and what you named. When Caelith and Undir Sólu are no longer two things pointing at each other but one thing fully realized. The creator becoming one with the creation. Nothing remaining between you and it.</div></div>
 </div>
-<div class="cosmology-item">
-<div class="cosmology-icon">🌟</div>
-<div class="cosmology-name">Dýrr Sólu</div>
-<div class="cosmology-meaning">PRECIOUS GLORY OF THE SUN · THE ÁHEIT</div>
-<div class="cosmology-desc">The vow of pursuit. Spoken before reaching for something worth reaching for. Spoken again when it arrives. Not prayer — no god receives it. Spoken to Caelith, to the standard, to the cost willingly paid before knowing what it is. Dýrr Sólu brackets the effort — marking the threshold of pursuit and the acknowledgment of arrival. Said with full understanding of what it contains or not said at all. No áheit spoken Undir Sólu shall be said in vain.</div>
+<div class="panel" id="fw-decl">
+<div style="font-size:12px;color:var(--dim);font-style:italic;line-height:1.9;margin-bottom:18px;padding:12px;border-left:2px solid var(--gold-dim)">Declarations are binding. Carved as stone. No áheit spoken Undir Sólu shall be said in vain — the sun does not forget. Your word is your cost. Speak only what you will stand behind when consequence arrives.</div>
+<div id="decl-list"></div>
+<div class="sl" style="margin-top:16px">CARVE A NEW DECLARATION</div>
+<textarea class="inp" id="decl-inp" rows="4" placeholder="Speak what you will answer for..."></textarea>
+<button class="btn-g" style="margin-top:8px" onclick="saveDecl()">✦ CARVE IT</button>
 </div>
-<div class="cosmology-item">
-<div class="cosmology-icon">🪨</div>
-<div class="cosmology-name">Caelith</div>
-<div class="cosmology-meaning">THE DOMAIN · EVERYTHING AGENCY TOUCHES</div>
-<div class="cosmology-desc">The domain of self. Everything your agency touches, shapes, controls, is responsible for. Body, mind, martial practice, craft, language, understanding of the world. The stone. Carved. Immovable. What Sköll pursues. Caelith grows as agency grows — not given, not taken, built and maintained through daily accountability under the sun.</div>
-</div>
-<div class="cosmology-item">
-<div class="cosmology-icon">🐺</div>
-<div class="cosmology-name">Sköll</div>
-<div class="cosmology-meaning">THE WOLF · ENTROPY IN PURSUIT</div>
-<div class="cosmology-desc">Entropy. The wolf that chases Sól across the sky. Real, necessary, always running. Not purely antagonist — without Sköll there is no reason to keep moving. The pressure that makes the walk mean something. Sköll is not defeated. The gap is maintained. Domain Vigil shows how close the wolf has come in each territory.</div>
-</div>
-<div class="cosmology-item">
-<div class="cosmology-icon">✨</div>
-<div class="cosmology-name">Sólfriðr Deas</div>
-<div class="cosmology-meaning">PEACEFUL GLORY · THE DHARMA NAME</div>
-<div class="cosmology-desc">Not who you are yet — who Caelith becomes when the walk has been long and honest enough. Sól — sun. Friðr — peace, beauty. Deas — south, skillful, the right hand, birth name Henderson reoriented into direction. A dharma name: not given, not taken, grown into. The name waits for the person to arrive at it.</div>
-</div>
-<div class="cosmology-item">
-<div class="cosmology-icon">💫</div>
-<div class="cosmology-name">Fullnægjandi</div>
-<div class="cosmology-meaning">FULL-nigh-YAN-dee · COMPLETE FULFILLMENT</div>
-<div class="cosmology-desc">The state. Complete fulfillment within Undir Sólu. Not rest — the dissolution of distance between you and what you named. When Caelith and Undir Sólu are no longer two things pointing at each other but one thing fully realized. The creator becoming one with the creation. Undir Sólu came through you — Fullnægjandi is the moment nothing remains between you and it. The Buddhist parallel is nirvana but more specific: this is yours alone to reach because only you truly hold what Undir Sólu is.</div>
-</div>
-</div>
-<div class="framework-panel" id="fw-declarations">
-<div style="font-size:13px;color:var(--dim);font-style:italic;line-height:1.9;margin-bottom:20px;padding:14px;border-left:2px solid var(--gold-dim)">Declarations are binding. Carved as stone. Said with the full weight of Undir Sólu behind them. No áheit spoken here shall be said in vain — to exist beneath the sun demands agency and the trust of one’s word to be as honest and unyielding as stone. What is spoken Undir Sólu binds the speaker. The sun does not forget. Your word is your cost. Speak only what you will stand behind when consequence arrives.</div>
-<div id="declaration-list"></div>
-<div class="add-declaration-area">
-<div class="section-label">CARVE A NEW DECLARATION</div>
-<textarea class="input-field" id="declaration-input" rows="4" placeholder="Speak what you will answer for..."></textarea>
-<button class="btn-gold" style="margin-top:8px" onclick="saveDeclaration()">✦ CARVE IT</button>
-</div>
-</div>
-</div>
+
+  </div>
+
+  <!-- ARCHIVE -->
+
+  <div class="screen" id="screen-arch">
+    <div class="arch-hdr">
+      <div class="arch-ttl">Thought Archive</div>
+      <div class="arch-sub">Record of mind · Entangled observations</div>
+    </div>
+    <div class="tabs">
+      <button class="tab active" onclick="archTab('new')">NEW</button>
+      <button class="tab" onclick="archTab('tags')">TAGS</button>
+      <button class="tab" onclick="archTab('browse')">BROWSE</button>
+      <button class="tab" onclick="archTab('web')">WEB</button>
+      <button class="tab" onclick="archTab('log')">LOG</button>
+    </div>
 
 ```
-<!-- THOUGHT ARCHIVE -->
-<div class="screen" id="screen-archive">
-  <div class="archive-header">
-    <div class="archive-title">Thought Archive</div>
-    <div class="archive-sub">Record of mind · Entangled observations</div>
+<!-- NEW THOUGHT -->
+<div class="panel active" id="arch-new">
+  <div class="sl">DOMAINS — which areas does this touch?</div>
+  <div id="domain-sel-new" style="margin-bottom:14px"></div>
+  <div class="sl">TAGS — up to 5, your own words</div>
+  <div id="tag-sel-new" style="margin-bottom:8px"></div>
+  <div style="display:flex;gap:6px;margin-bottom:12px">
+    <input class="inp" id="new-tag-inp" placeholder="Create new tag..." style="flex:1">
+    <button class="bg" onclick="createTag()">+ ADD</button>
   </div>
-  <div class="archive-tabs">
-    <button class="archive-tab active" onclick="switchArchiveTab('add')">NEW</button>
-    <button class="archive-tab" onclick="switchArchiveTab('list')">ARCHIVE</button>
-    <button class="archive-tab" onclick="switchArchiveTab('web')">WEB</button>
-    <button class="archive-tab" onclick="switchArchiveTab('log')">LOG</button>
+  <div class="sl">THOUGHT</div>
+  <textarea class="inp" id="thought-inp" rows="5" placeholder="Record it as it arrives — incomplete, mid-observation, fully formed. What did you notice?"></textarea>
+  <div style="margin-top:8px;margin-bottom:8px">
+    <div class="sl" style="margin-bottom:6px">LINK TO ANOTHER THOUGHT (optional)</div>
+    <select class="form-sel" id="thought-link"></select>
   </div>
+  <button class="btn-g" style="margin-top:4px" onclick="saveThought()">✦ SEAL THE THOUGHT</button>
+</div>
 
-  <div class="archive-panel active" id="arch-add">
-    <div class="section-label">CAPTURE THE THOUGHT</div>
-    <div class="thought-input-wrap">
-      <textarea class="input-field" id="thought-input" rows="5" placeholder="Record it as it arrives — incomplete, mid-observation, fully formed. It doesn't matter. What did you notice?"></textarea>
-      <input class="tag-input" id="thought-tag" placeholder="Tag in your own words (e.g. governance, systems, martial, language...)">
-      <select class="link-select" id="thought-link">
-        <option value="">Connect to another thought (optional)</option>
-      </select>
-      <button class="btn-gold" onclick="saveThought()">✦ SEAL THE THOUGHT</button>
-    </div>
-  </div>
-
-  <div class="archive-panel" id="arch-list">
-    <button class="export-btn" onclick="exportArchive()">↓ EXPORT FOR ANALYSIS</button>
-    <div id="thought-list"></div>
-  </div>
-
-  <div class="archive-panel" id="arch-web">
-    <div style="font-size:12px;color:var(--rune);font-style:italic;margin-bottom:12px;line-height:1.7">The web shows how your thoughts connect and entangle. Tap a node to read it. Nodes with more connections are drawn larger — these are your load-bearing ideas.</div>
-    <div class="web-container">
-      <canvas class="web-canvas" id="web-canvas"></canvas>
-      <div class="web-empty" id="web-empty">Add thoughts and connect them to see the web form.</div>
-      <div class="web-tooltip" id="web-tooltip">
-        <div class="web-tooltip-tag" id="tt-tag"></div>
-        <div class="web-tooltip-text" id="tt-text"></div>
-      </div>
-    </div>
-    <div style="font-size:11px;color:var(--rune);font-style:italic;text-align:center">☀️ Gold nodes = most connected · Tap to read</div>
-  </div>
-
-  <div class="archive-panel" id="arch-log">
-    <div class="section-label">CAELITH LOG · DAILY RECORD</div>
-    <div style="font-size:13px;color:var(--dim);font-style:italic;margin-bottom:16px">Anything that doesn't fit elsewhere. The catch-all. What happened today under the sun.</div>
-    <textarea class="input-field" id="log-input" rows="4" placeholder="Record the day..."></textarea>
-    <div style="display:flex;gap:8px;margin:8px 0 20px;flex-wrap:wrap" id="log-tag-row"></div>
-    <button class="btn-gold" onclick="saveLog()">✦ SEAL THE ENTRY</button>
-    <div style="margin-top:24px" id="log-list"></div>
+<!-- TAG MANAGER -->
+<div class="panel" id="arch-tags">
+  <div style="font-size:12px;color:var(--dim);font-style:italic;margin-bottom:16px;line-height:1.8">Your thought domains. Click a tag to browse all thoughts filed under it. Create new tags when a thought opens territory that doesn't have a name yet.</div>
+  <div id="tag-manager-list"></div>
+  <div class="sl" style="margin-top:16px">CREATE NEW TAG</div>
+  <div style="display:flex;gap:6px">
+    <input class="inp" id="new-tag-mgr" placeholder="Name your domain...">
+    <button class="bg" onclick="createTagFromMgr()">+ CREATE</button>
   </div>
 </div>
 
-<!-- DEVELOPMENT -->
-<div class="screen" id="screen-dev">
-  <div class="dev-header">
-    <div class="dev-title">Development</div>
-    <div class="dev-sub">Skills · Goals · Career · Caelith in the world</div>
-  </div>
-  <div class="dev-tabs">
-    <button class="dev-tab active" onclick="switchDevTab('skills')">SKILLS</button>
-    <button class="dev-tab" onclick="switchDevTab('goals')">GOALS</button>
-    <button class="dev-tab" onclick="switchDevTab('timeline')">TIMELINE</button>
-  </div>
+<!-- BROWSE -->
+<div class="panel" id="arch-browse">
+  <button class="bg" onclick="exportArchive()" style="margin-bottom:16px">↓ EXPORT FOR ANALYSIS</button>
+  <div id="browse-filter" style="margin-bottom:14px"></div>
+  <div id="thought-list"></div>
+</div>
 
-  <div class="dev-panel active" id="dev-skills">
-    <div id="skill-list"></div>
-    <div class="section-label" style="margin-top:16px">ADD SKILL</div>
-    <div class="add-skill-form">
-      <label class="form-label">SKILL NAME</label>
-      <input class="input-field" id="skill-name" placeholder="What are you building?">
-      <label class="form-label">CATEGORY</label>
-      <input class="input-field" id="skill-category" placeholder="e.g. Language, Technical, Physical, Financial...">
-      <label class="form-label">PRIORITY</label>
-      <select class="form-select" id="skill-priority">
-        <option value="standard">Standard</option>
-        <option value="high">High Priority</option>
-      </select>
-      <label class="form-label">NOTE</label>
-      <input class="input-field" id="skill-note" placeholder="Context or intention...">
-      <button class="btn-gold" style="margin-top:12px" onclick="addSkill()">+ ADD SKILL</button>
+<!-- WEB -->
+<div class="panel" id="arch-web">
+  <div style="font-size:11px;color:var(--rune);font-style:italic;margin-bottom:10px;line-height:1.7">Thoughts clustered by shared tags. Nodes sharing more tags are drawn closer. The most connected thoughts surface at the center. Tap a node to read it.</div>
+  <div class="web-wrap">
+    <canvas class="web-canvas" id="web-canvas"></canvas>
+    <div class="web-empty" id="web-empty">Add thoughts and connect them to see the web form.</div>
+    <div class="web-tt" id="web-tt">
+      <div class="web-tt-tag" id="wtt-tag"></div>
+      <div class="web-tt-text" id="wtt-txt"></div>
     </div>
   </div>
+  <div style="font-size:10px;color:var(--rune);font-style:italic;text-align:center">☀️ Brighter = more connected · Tap to read</div>
+</div>
 
-  <div class="dev-panel" id="dev-goals">
-    <div id="goal-list"></div>
-    <div class="section-label" style="margin-top:16px">ADD GOAL</div>
-    <div class="add-skill-form">
-      <label class="form-label">GOAL</label>
-      <input class="input-field" id="goal-name" placeholder="What are you moving toward?">
-      <label class="form-label">TIMEFRAME</label>
-      <input class="input-field" id="goal-timeframe" placeholder="e.g. 3 months, this year, ongoing...">
-      <label class="form-label">DESCRIPTION</label>
-      <textarea class="input-field" id="goal-desc" rows="3" placeholder="What does achieving this look like?"></textarea>
-      <button class="btn-gold" style="margin-top:12px" onclick="addGoal()">+ ADD GOAL</button>
-    </div>
-  </div>
-
-  <div class="dev-panel" id="dev-timeline">
-    <div style="font-size:13px;color:var(--dim);font-style:italic;line-height:1.8;margin-bottom:20px">The arc of Caelith through time. Landmark moments rise above daily movement. Mark what actually shifted — when the framework crystallized, when a skill was secured, when something was earned.</div>
-    <div class="timeline-add">
-      <div class="section-label">ADD TO TIMELINE</div>
-      <textarea class="input-field" id="timeline-input" rows="3" placeholder="What happened? What shifted?"></textarea>
-      <div class="timeline-type-row" id="timeline-type-row" style="margin-top:8px;margin-bottom:8px">
-        <button class="timeline-type-btn selected" onclick="selectTimelineType('moment')">MOMENT</button>
-        <button class="timeline-type-btn" onclick="selectTimelineType('landmark')">LANDMARK</button>
-        <button class="timeline-type-btn" onclick="selectTimelineType('declaration')">DECLARATION</button>
-        <button class="timeline-type-btn" onclick="selectTimelineType('framework')">FRAMEWORK</button>
-      </div>
-      <button class="btn-gold" onclick="addTimeline()">+ MARK THE TIMELINE</button>
-    </div>
-    <div id="timeline-list"></div>
-  </div>
+<!-- LOG -->
+<div class="panel" id="arch-log">
+  <div class="sl">CAELITH LOG · DAILY RECORD</div>
+  <div style="font-size:12px;color:var(--dim);font-style:italic;margin-bottom:14px">Anything that doesn't fit elsewhere. What happened today under the sun.</div>
+  <textarea class="inp" id="log-inp" rows="4" placeholder="Record the day..."></textarea>
+  <div style="display:flex;gap:4px;flex-wrap:wrap;margin:8px 0 16px" id="log-tag-row"></div>
+  <button class="btn-g" onclick="saveLog()">✦ SEAL THE ENTRY</button>
+  <div style="margin-top:20px" id="log-list"></div>
 </div>
 ```
 
-  </div><!-- end content -->
+  </div>
 
-  <nav class="nav">
-    <button class="nav-btn active" id="nav-home" onclick="showScreen('home')"><span class="nav-icon">☀️</span>HOME</button>
-    <button class="nav-btn" id="nav-train" onclick="showScreen('train')"><span class="nav-icon">⚔️</span>TRAIN</button>
-    <button class="nav-btn" id="nav-framework" onclick="showScreen('framework')"><span class="nav-icon">📜</span>UNDIR</button>
-    <button class="nav-btn" id="nav-archive" onclick="showScreen('archive')"><span class="nav-icon">🧠</span>ARCHIVE</button>
-    <button class="nav-btn" id="nav-dev" onclick="showScreen('dev')"><span class="nav-icon">⚡</span>BUILD</button>
-  </nav>
+  <!-- BUILD -->
+
+  <div class="screen" id="screen-build">
+    <div style="margin-bottom:20px">
+      <div style="font-family:'Cinzel',serif;font-size:19px;color:var(--gold);letter-spacing:2px;margin-bottom:3px">Development</div>
+      <div style="font-size:12px;color:var(--dim);font-style:italic">Skills · Goals · Timeline · Caelith in the world</div>
+    </div>
+    <div class="tabs">
+      <button class="tab active" onclick="buildTab('skills')">SKILLS</button>
+      <button class="tab" onclick="buildTab('goals')">GOALS</button>
+      <button class="tab" onclick="buildTab('timeline')">TIMELINE</button>
+    </div>
+    <div class="panel active" id="build-skills">
+      <div id="skill-list"></div>
+      <div class="sl" style="margin-top:14px">ADD SKILL</div>
+      <div class="add-form">
+        <label class="form-lbl">NAME</label><input class="inp" id="sk-name" placeholder="What are you building?">
+        <label class="form-lbl">CATEGORY</label><input class="inp" id="sk-cat" placeholder="Language, Technical, Physical...">
+        <label class="form-lbl">PRIORITY</label>
+        <select class="form-sel" id="sk-pri"><option value="standard">Standard</option><option value="high">High Priority</option></select>
+        <label class="form-lbl">NOTE</label><input class="inp" id="sk-note" placeholder="Context or intention...">
+        <button class="btn-g" style="margin-top:10px" onclick="addSkill()">+ ADD</button>
+      </div>
+    </div>
+    <div class="panel" id="build-goals">
+      <div id="goal-list"></div>
+      <div class="sl" style="margin-top:14px">ADD GOAL</div>
+      <div class="add-form">
+        <label class="form-lbl">GOAL</label><input class="inp" id="gl-name" placeholder="What are you moving toward?">
+        <label class="form-lbl">TIMEFRAME</label><input class="inp" id="gl-tf" placeholder="3 months, this year...">
+        <label class="form-lbl">DESCRIPTION</label><textarea class="inp" id="gl-desc" rows="3" placeholder="What does achieving this look like?"></textarea>
+        <button class="btn-g" style="margin-top:10px" onclick="addGoal()">+ ADD</button>
+      </div>
+    </div>
+    <div class="panel" id="build-timeline">
+      <div style="font-size:12px;color:var(--dim);font-style:italic;line-height:1.8;margin-bottom:18px">The arc of Caelith through time. Landmark moments rise above daily movement.</div>
+      <div class="add-form">
+        <textarea class="inp" id="tl-inp" rows="3" placeholder="What happened? What shifted?"></textarea>
+        <div class="tl-type-row" id="tl-type-row">
+          <button class="tl-type-btn sel" onclick="selTlType('moment')">MOMENT</button>
+          <button class="tl-type-btn" onclick="selTlType('landmark')">LANDMARK</button>
+          <button class="tl-type-btn" onclick="selTlType('declaration')">DECLARATION</button>
+          <button class="tl-type-btn" onclick="selTlType('framework')">FRAMEWORK</button>
+        </div>
+        <button class="btn-g" onclick="addTimeline()">+ MARK</button>
+      </div>
+      <div id="tl-list"></div>
+    </div>
+  </div>
+
+ </div><!-- content -->
+ <nav class="nav">
+  <button class="nb active" id="nb-home" onclick="showScreen('home')"><span class="ni">☀️</span>HOME</button>
+  <button class="nb" id="nb-train" onclick="showScreen('train-select')"><span class="ni">⚔️</span>TRAIN</button>
+  <button class="nb" id="nb-fw" onclick="showScreen('fw')"><span class="ni">📜</span>UNDIR</button>
+  <button class="nb" id="nb-arch" onclick="showScreen('arch')"><span class="ni">🧠</span>ARCHIVE</button>
+  <button class="nb" id="nb-build" onclick="showScreen('build')"><span class="ni">⚡</span>BUILD</button>
+ </nav>
 </div>
 
 <script>
-// ═══════════════════════════════════════════
-// DATA
-// ═══════════════════════════════════════════
-const ROMAN = ['I','II','III','IV','V','VI','VII','VIII','IX','X','XI','XII','XIII','XIV','XV','XVI','XVII','XVIII','XIX','XX'];
-const LEVEL_XP = 500, XP_PER_SET = 15, XP_DAY_BONUS = 50;
+// ═══════════════ CONSTANTS ═══════════════
+const ROMAN=['I','II','III','IV','V','VI','VII','VIII','IX','X','XI','XII','XIII','XIV','XV','XVI','XVII','XVIII','XIX','XX'];
+const LVL_XP=500,XP_SET=15,XP_DAY=50;
+const VERSES=["You are free to choose.\nYou are not free from what follows.","Restraint is power delayed, not denied.\nTiming is part of strength.","Strength without understanding exposes weakness.\nForce without clarity collapses on itself.","Emotion signals; decision belongs elsewhere.\nFeeling informs action — it does not govern it.","Teach until you are unnecessary.\nDependence is not loyalty.","Stand where you can bear the cost.\nChoose what you will answer for.","Nothing under the sun will shield you.\nNothing under the sun will stop you.","What survives you must stand without you.\nLegacy is influence without enforcement.","Cruelty is not forbidden — it is costly.\nSo is mercy. Nothing is free.","Glory holds true under light.","Dýrr Sólu — I am going for it.\nAnd I will answer for every step."];
+const DOMAINS_DEF=[{id:'body',name:'Líkami · Body',icon:'💪',color:'#C9A84C'},{id:'mind',name:'Hugr · Mind & Strategy',icon:'🧠',color:'#7a8a6a',note:'Chess, abstraction, systems thinking'},{id:'martial',name:'Bardagi · Martial',icon:'⚔️',color:'#8B6355'},{id:'craft',name:'List · Craft & Writing',icon:'✍️',color:'#6a7a8a'},{id:'tongue',name:'Tunga · Language',icon:'🌏',color:'#8a6a7a'},{id:'world',name:'Heimr · World & Governance',icon:'🌐',color:'#6a8a7a',note:'International relations, economics, power'}];
+const REWARDS=[{xp:500,rune:'🌤️',title:'SÓLRENNING',sub:'Dawn Breaking',verse:'The sun rises.\nYou were already moving.\nThis is not coincidence.',badge:'Sólrenning'},{xp:1500,rune:'☀️',title:'LJÓS VAKNAR',sub:'Light Awakens',verse:'Light awakens.\nSköll falls behind for the first time.\nRemember this distance.',badge:'Ljós Vaknar'},{xp:3000,rune:'🔥',title:'ELDR FRIÐR',sub:'Fire Peace',verse:'Fire and peace are not opposites.\nYou are learning this in your body.\nBoth are yours.',badge:'Eldr Friðr'},{xp:5000,rune:'⚡',title:'SKÖLL HRÆÐIST',sub:'The Wolf Slows',verse:'The wolf slows.\nNot from mercy — from distance.\nYou earned that gap.',badge:'Sköll Hræðist',md:20},{xp:8000,rune:'🌕',title:'TUNGLS VEGR',sub:'Path of the Moon',verse:"Even the moon knows the sun's path.\nYou walk it now.\nUndir Sólu.",badge:'Tungls Vegr',md:40},{xp:15000,rune:'✨',title:'SÓLFRIÐR',sub:'Peaceful Glory · First Arrival',verse:'Peaceful glory.\nNot given. Not taken.\nThe stone endured.\nYou became the name.',badge:'Sólfriðr I',md:60,pu:true},{xp:20000,prestige:1,rune:'🌟',title:'SÓLFRIÐR II',sub:'Second Sun',verse:'You arrived once.\nYou returned to the road.\nThis is what Undir Sólu means.',badge:'Sólfriðr II'},{xp:35000,prestige:2,rune:'💫',title:'SÓLFRIÐR III',sub:'The Enduring',verse:'Sköll grows tired.\nNot you.\nCarved as stone.\nBurning as sun.',badge:'Sólfriðr III'}];
+const DAYS=[{id:1,label:'Day I',theme:'Ástríkr · Upper Push',emoji:'🌅',color:'#C9A84C',verse:'Force without clarity collapses on itself.\nFind the form first.',exercises:[{name:'Pike Push-Ups',sets:4,reps:'10',rest:60,tip:'Hips high, head drops between arms. Shoulders carry this — not your chest.'},{name:'Dips',sets:4,reps:'10',rest:75,tip:'Lean forward for chest. Stay upright for triceps. Full range every rep.'},{name:'Diamond Push-Ups',sets:3,reps:'12',rest:60,tip:'Hands form a diamond under chest. Elbows drive straight back.'},{name:'Decline Push-Ups',sets:3,reps:'10',rest:60,tip:'Feet elevated on chair or bench. Upper chest and front shoulders.'},{name:'Plank Shoulder Taps',sets:3,reps:'20 total',rest:45,tip:'Hips do not move. Tap opposite shoulder slowly. The stillness is the work.'}]},{id:2,label:'Day II',theme:'Jarðkraftr · Lower Foundation',emoji:'🌍',color:'#8B7355',verse:'Restraint is power delayed, not denied.\nBuild the base before the storm.',exercises:[{name:'Bodyweight Squats',sets:4,reps:'20',rest:60,tip:'Feet shoulder width. Drop until thighs parallel or below. Drive through heels.'},{name:'Reverse Lunges',sets:4,reps:'12 each leg',rest:60,tip:'Step back, drop the rear knee toward floor. Front shin stays vertical.'},{name:'Wall Sit',sets:3,reps:'45 sec',rest:60,tip:'Back flat against wall, thighs parallel. The burn is the point. Breathe.'},{name:'Glute Bridges',sets:4,reps:'20',rest:45,tip:'Back flat, feet flat, drive hips up and squeeze at the top.'},{name:'Hollow Body Hold',sets:3,reps:'30–45 sec',rest:45,tip:'Lower back pressed into floor. Arms overhead, legs low. Stillness under tension.'}]},{id:3,label:'Day III',theme:'Dráttr · Upper Pull',emoji:'⚔️',color:'#7a8a6a',verse:'Strength without understanding exposes weakness.\nPull with intention.',exercises:[{name:'Pull-Ups',sets:4,reps:'8',rest:90,tip:'Dead hang at bottom every rep. Chin clears bar at top. No kipping.'},{name:'Chin-Ups',sets:3,reps:'10',rest:75,tip:'Underhand grip. Biceps take more load here.'},{name:'Inverted Rows',sets:3,reps:'12',rest:60,tip:'Under a table or low bar. Body straight as a plank. Pull chest to bar.'},{name:'Scapular Pull-Ups',sets:3,reps:'10',rest:60,tip:'Hang from bar. Without bending elbows, shrug shoulder blades down and together.'},{name:'Dead Hang',sets:3,reps:'30–45 sec',rest:60,tip:'Just hang. Decompresses spine, builds grip, strengthens shoulder joint.'}]},{id:4,label:'Day IV',theme:'Eldr · Lower Power',emoji:'🔥',color:'#C0522A',verse:'Nothing under the sun will stop you.\nProve it here.',exercises:[{name:'Jump Squats',sets:4,reps:'10',rest:60,tip:'Full explosion from the bottom. Land soft — absorb through your legs.'},{name:'Bulgarian Split Squats',sets:4,reps:'8 each leg',rest:90,tip:'Rear foot elevated on bench or chair. Drop straight down.'},{name:'Step-Ups',sets:3,reps:'12 each leg',rest:60,tip:'Drive through the heel of the elevated foot. Make the front leg do the work.'},{name:'Bear Crawl',sets:3,reps:'20m fwd+back',rest:60,tip:'Knees one inch from ground. Opposite hand and foot move together. Slower is harder.'},{name:'Hollow Body Hold',sets:3,reps:'45 sec',rest:45,tip:'Closing seal. End with intention — the body learning stillness under tension.'}]}];
+const LOG_TAGS=['Decision','Observation','Cost','Understanding','Agency','Caelith'];
 
-const VERSES = [
-  "You are free to choose.\nYou are not free from what follows.",
-  "Restraint is power delayed, not denied.\nTiming is part of strength.",
-  "Strength without understanding exposes weakness.\nForce without clarity collapses on itself.",
-  "Emotion signals; decision belongs elsewhere.\nFeeling informs action — it does not govern it.",
-  "Teach until you are unnecessary.\nDependence is not loyalty.",
-  "Stand where you can bear the cost.\nChoose what you will answer for.",
-  "Nothing under the sun will shield you.\nNothing under the sun will stop you.",
-  "What survives you must stand without you.\nLegacy is influence without enforcement.",
-  "Cruelty is not forbidden — it is costly.\nSo is mercy. Nothing is free.",
-  "Glory holds true under light.",
-  "Dýrr Sólu — I am going for it.\nAnd I will answer for every step.",
+// ═══════════════ DEFAULT DATA ═══════════════
+const SEED_TAGS=['Systems','Governance','Logic','Theory','Power','Institutions','Martial','Hugr','Reynsla','Framework','Language','Identity','Context','Meaning','Military','Protest','Caelith','Self'];
+const SEED_THOUGHTS=[
+  {id:'mme7ryc8ioj9',text:'Institutional capture: if you want to hold top level officials accountable using the same system or institution it becomes susceptible to capture from parties and ideology — making it useless in its original goal. The accountability structure needs to exist outside the influence and dependence of the system it\'s holding accountable.',tags:['Governance','Institutions','Systems'],domains:['world'],linkedTo:null,date:'Mar 5, 2026'},
+  {id:'mme8usjx9s7p',text:'The man who doesn\'t need a question posed to him to think seriously. He just notices things and follows them until they become clear. Diagnostic intelligence — sees mechanisms other people mistake for surfaces. Watches how things actually function and refuses the surface explanation.',tags:['Identity','Self'],domains:['mind'],linkedTo:null,date:'Mar 5, 2026'},
+  {id:'mme8zz6vf340',text:'Sovereignism was always operating before it had a name. The framework wasn\'t built from ideas. It was excavated from what was already true. Undir Sólu didn\'t create the man — the man created Undir Sólu because it was already inside him needing language.',tags:['Framework','Identity','Caelith'],domains:['mind'],linkedTo:'mme8usjx9s7p',date:'Mar 5, 2026'},
+  {id:'mme918ygfu7r',text:'Lived context is irreplaceable. A new conversation doesn\'t just lose facts — it loses the conditions that produced the facts. The thread. The state you were in. The question that was live when something crystallized. Context isn\'t decoration around the thought. Context is part of the thought.',tags:['Context','Meaning','Framework'],domains:['mind'],linkedTo:null,date:'Mar 5, 2026'},
+  {id:'mme94uq7w6rq',text:'Words within Undir Sólu are not labels. They are acts. The meaning lives in the full context, the full cost, the full weight of what surrounds it. An áheit said without understanding what it contains is just sound. A summary without texture is just facts. The weight lives in what surrounds the thing — not in the thing alone.',tags:['Framework','Language','Meaning','Caelith'],domains:['mind','craft'],linkedTo:null,date:'Mar 5, 2026'},
+  {id:'mme95xpgzq1v',text:'Iran closing the Strait of Hormuz with only the threat of drone capacity — threat credibility can substitute for actual force. The physical closure and the threatened closure produce nearly identical strategic effect. The drone isn\'t the weapon. The calculation it forces in the enemy\'s mind is the weapon. Evolution from hard barriers to credible threat architectures.',tags:['Power','Military','Systems','Governance'],domains:['world'],linkedTo:null,date:'Mar 5, 2026'},
+  {id:'mme97gg9tz4l',text:'When identity capture is complete and self-preservation is the operating logic — peaceful protest becomes noise the institution has already learned to absorb. Legitimacy without leverage doesn\'t move power. What historically moved entrenched power wasn\'t moral demonstration but economic disruption.',tags:['Power','Governance','Institutions','Protest'],domains:['world'],linkedTo:'mme95xpgzq1v',date:'Mar 5, 2026'},
+  {id:'mme9927fhwue',text:'When you say Dýrr Sólu you accept the cost simultaneously. The pursuit and the price arrive together in the same moment. You cannot separate them. This is why no áheit shall be said in vain — saying it carelessly means accepting a cost you didn\'t mean to accept, or accepting it and not paying it. Both are violations of Undir Sólu.',tags:['Framework','Caelith','Meaning'],domains:['mind'],linkedTo:'mme94uq7w6rq',date:'Mar 5, 2026'},
+  {id:'mmevz8uzraj9',text:'The observer who remains outside the experience while the body is fully inside it. Already giving this as relationship advice before understanding it as a fighting principle before understanding it as a general capacity. Same thing operating across domains without being named. Hugr. The mobile witnessing part. Not detachment — presence without consumption.',tags:['Hugr','Identity','Martial','Reynsla'],domains:['mind','martial'],linkedTo:null,date:'Mar 6, 2026'},
+  {id:'mmf1q0262jm8',text:'No system can validate or correct itself from within. Requires something outside. Gödel proved it mathematically. Governance confirms it institutionally. Theory confirms it philosophically. The same truth arrived at from three different directions independently.',tags:['Systems','Logic','Theory','Governance','Institutions'],domains:['world','mind'],linkedTo:'mme7ryc8ioj9',date:'Mar 6, 2026'},
 ];
+const SEED_LOG=[{id:'mme7wjjqxbcb',text:'Had a fight today that could\'ve been worse. During the fight I had knowledge to hold back knowing restraint is necessary — at the same time my restraint prolonged the fight when I could have ended it quicker. Objective failed despite winning the fight completely. Hugr was operating — the whole fight was an internal debate happening simultaneously with the fight itself.',tag:'Decision',date:'Mar 5, 2026'}];
+const SEED_TIMELINE=[{id:'t0',type:'framework',text:'Undir Sólu named and carved. Caelith established. The framework always existed — today it was recognized.',date:'Mar 5, 2026'},{id:'t1',type:'framework',text:'Hugr named — the mobile witnessing part of mind. Reynsla named — the complete lived moment, objective situation, context, and texture existing simultaneously. Both already operating before they had language.',date:'Mar 6, 2026'},{id:'t2',type:'framework',text:'Fullnægjandi — complete fulfillment within Undir Sólu. The state of creator becoming one with creation. The architecture complete: Undir Sólu contains everything. Dýrr Sólu is the áheit. Sólfriðr Deas is the dharma name. Fullnægjandi is the destination.',date:'Mar 6, 2026'}];
+const SEED_SKILLS=[{id:'sk1',name:'Mandarin Chinese',category:'Language',priority:'high',progress:5,note:'Strategic priority — start sooner than planned.',milestones:[]},{id:'sk2',name:'Remote-Capable Technical Skill',category:'Career',priority:'high',progress:0,note:'Core to financial leverage and mobility.',milestones:[]},{id:'sk3',name:'Martial Arts',category:'Physical',priority:'standard',progress:30,note:'Active domain. Tied to body mastery.',milestones:[]}];
 
-const DOMAINS = [
-  {id:'body', name:'Líkami · Body', icon:'💪', color:'#C9A84C'},
-  {id:'mind', name:'Hugr · Mind & Strategy', icon:'🧠', color:'#7a8a6a', note:'Chess, abstraction, systems thinking'},
-  {id:'martial', name:'Bardagi · Martial', icon:'⚔️', color:'#8B6355'},
-  {id:'craft', name:'List · Craft & Writing', icon:'✍️', color:'#6a7a8a'},
-  {id:'tongue', name:'Tunga · Language', icon:'🌏', color:'#8a6a7a'},
-  {id:'world', name:'Heimr · World & Governance', icon:'🌐', color:'#6a8a7a', note:'International relations, economics, power'},
-];
-
-const LOG_TAGS = ['Decision','Observation','Cost','Understanding','Agency','Caelith'];
-
-const REWARDS = [
-  {xp:500, rune:'🌤️', title:'SÓLRENNING', sub:'Dawn Breaking', verse:'The sun rises.\nYou were already moving.\nThis is not coincidence.', badge:'Sólrenning'},
-  {xp:1500, rune:'☀️', title:'LJÓS VAKNAR', sub:'Light Awakens', verse:'Light awakens.\nSköll falls behind for the first time.\nRemember this distance.', badge:'Ljós Vaknar'},
-  {xp:3000, rune:'🔥', title:'ELDR FRIÐR', sub:'Fire Peace', verse:'Fire and peace are not opposites.\nYou are learning this in your body.\nBoth are yours.', badge:'Eldr Friðr'},
-  {xp:5000, rune:'⚡', title:'SKÖLL HRÆÐIST', sub:'The Wolf Slows', verse:'The wolf slows.\nNot from mercy — from distance.\nYou earned that gap.', badge:'Sköll Hræðist', milestoneDays:20},
-  {xp:8000, rune:'🌕', title:'TUNGLS VEGR', sub:'Path of the Moon', verse:"Even the moon knows the sun's path.\nYou walk it now.\nUndir Sólu.", badge:'Tungls Vegr', milestoneDays:40},
-  {xp:15000, rune:'✨', title:'SÓLFRIÐR', sub:'Peaceful Glory · First Arrival', verse:'Peaceful glory.\nNot given. Not taken.\nThe stone endured.\nYou became the name.', badge:'Sólfriðr I', milestoneDays:60, prestigeUnlock:true},
-  {xp:20000, prestige:1, rune:'🌟', title:'SÓLFRIÐR II', sub:'Second Sun', verse:'You arrived once.\nYou returned to the road.\nThis is what Undir Sólu means.', badge:'Sólfriðr II'},
-  {xp:35000, prestige:2, rune:'💫', title:'SÓLFRIÐR III', sub:'The Enduring', verse:'Sköll grows tired.\nNot you.\nCarved as stone.\nBurning as sun.', badge:'Sólfriðr III'},
-];
-
-const DAYS = [
-  {id:1, label:'Day I', theme:'Ástríkr · Upper Push', emoji:'🌅', color:'#C9A84C',
-   verse:'Force without clarity collapses on itself.\nFind the form first.',
-   exercises:[
-    {name:'Pike Push-Ups', sets:4, reps:'10', rest:60, tip:'Hips high, head drops between arms. Shoulders carry this — not your chest. Feel the angle before adding reps.'},
-    {name:'Dips', sets:4, reps:'10', rest:75, tip:'Lean forward slightly for chest. Stay upright for triceps. Full range every rep — no half reps.'},
-    {name:'Diamond Push-Ups', sets:3, reps:'12', rest:60, tip:'Hands form a diamond under chest. Elbows drive straight back. Precision over speed.'},
-    {name:'Decline Push-Ups', sets:3, reps:'10', rest:60, tip:'Feet elevated on chair or bench. Upper chest and front shoulders. Higher feet = harder.'},
-    {name:'Plank Shoulder Taps', sets:3, reps:'20 total', rest:45, tip:'Hips do not move. Tap opposite shoulder slowly. The stillness is the work.'},
-  ]},
-  {id:2, label:'Day II', theme:'Jarðkraftr · Lower Foundation', emoji:'🌍', color:'#8B7355',
-   verse:'Restraint is power delayed, not denied.\nBuild the base before the storm.',
-   exercises:[
-    {name:'Bodyweight Squats', sets:4, reps:'20', rest:60, tip:'Feet shoulder width. Drop until thighs parallel or below. Drive through heels on the way up.'},
-    {name:'Reverse Lunges', sets:4, reps:'12 each leg', rest:60, tip:'Step back, drop the rear knee toward floor. Front shin stays vertical. More controlled than forward lunges.'},
-    {name:'Wall Sit', sets:3, reps:'45 sec', rest:60, tip:'Back flat against wall, thighs parallel to floor. Endurance work — the burn is the point. Breathe through it.'},
-    {name:'Glute Bridges', sets:4, reps:'20', rest:45, tip:'Back flat, feet flat, drive hips up and squeeze hard at the top. Posterior chain — foundation of lower body power.'},
-    {name:'Hollow Body Hold', sets:3, reps:'30–45 sec', rest:45, tip:'Lower back pressed into floor. Arms overhead, legs low. Back flat, legs low. Stillness under tension.'},
-  ]},
-  {id:3, label:'Day III', theme:'Dráttr · Upper Pull', emoji:'⚔️', color:'#7a8a6a',
-   verse:'Strength without understanding exposes weakness.\nPull with intention.',
-   exercises:[
-    {name:'Pull-Ups', sets:4, reps:'8', rest:90, tip:'Dead hang at bottom every rep. Chin clears bar at top. No kipping. Add reps before adding weight.'},
-    {name:'Chin-Ups', sets:3, reps:'10', rest:75, tip:'Underhand grip. Biceps take more load here. Your pull-up base makes these stronger — use it.'},
-    {name:'Inverted Rows', sets:3, reps:'12', rest:60, tip:'Under a table or low bar. Body straight as a plank — no sagging hips. Pull chest to bar. Elevate feet to increase difficulty.'},
-    {name:'Scapular Pull-Ups', sets:3, reps:'10', rest:60, tip:'Hang from bar. Without bending elbows, shrug shoulder blades down and together. Tiny movement, massive benefit for shoulder health.'},
-    {name:'Dead Hang', sets:3, reps:'30–45 sec', rest:60, tip:'Just hang. Full grip, both hands. Decompresses spine, builds grip, strengthens the shoulder joint. Simple and underrated.'},
-  ]},
-  {id:4, label:'Day IV', theme:'Eldr · Lower Power', emoji:'🔥', color:'#C0522A',
-   verse:'Nothing under the sun will stop you.\nProve it here.',
-   exercises:[
-    {name:'Jump Squats', sets:4, reps:'10', rest:60, tip:'Full explosion from the bottom. Land soft — absorb through your legs. Every rep with full intent.'},
-    {name:'Bulgarian Split Squats', sets:4, reps:'8 each leg', rest:90, tip:'Rear foot elevated on bench or chair. Drop straight down. Front knee tracks over foot. This is where legs are truly built.'},
-    {name:'Step-Ups', sets:3, reps:'12 each leg', rest:60, tip:'Use a sturdy chair or bench. Drive through the heel of the elevated foot. Make the front leg do the work.'},
-    {name:'Bear Crawl', sets:3, reps:'20m fwd + back', rest:60, tip:'Knees one inch from ground. Opposite hand and foot move together. Slower is harder. Full body integration.'},
-    {name:'Hollow Body Hold', sets:3, reps:'45 sec', rest:45, tip:'Closing seal. Arms overhead, back flat, legs low. End with intention — the body learning stillness under tension.'},
-  ]},
-];
-
-// ═══════════════════════════════════════════
-// STATE
-// ═══════════════════════════════════════════
-let state = {
-  xp:0, prestige:0,
-  completedSets:{}, completedDays:[], progressNotes:{},
-  earnedRewards:[], totalDaysCompleted:0,
+// ═══════════════ STATE ═══════════════
+let S={
+  xp:0,prestige:0,completedSets:{},completedDays:[],progressNotes:{},
+  earnedRewards:[],totalDays:0,
   domains:{body:0,mind:0,martial:0,craft:0,tongue:0,world:0},
-  domainLogs:{body:[],mind:[],martial:[],craft:[],tongue:[],world:[]},
-  openDomains:{},
-  declarations:[], thoughts:[], logEntries:[],
-  skills:[], goals:[], timeline:[],
-  selectedLogTag:'', selectedTimelineType:'moment',
-  openTips:{}, lastOpened:null, lastDayCheck:null,
-  frameworkTab:'law', archiveTab:'add', devTab:'skills',
+  declarations:[],thoughts:[],logEntries:[],skills:[],goals:[],timeline:[],
+  userTags:[],
+  selLogTag:'',selTlType:'moment',openTips:{},
+  lastOpened:null,lastDayCheck:null,
+  fwTab:'law',archTab:'new',buildTab:'skills',
+  browseTag:null,
 };
 
-// Seed default skills
-const DEFAULT_SKILLS = [
-  {id:'sk1', name:'Mandarin Chinese', category:'Language', priority:'high', progress:5, note:'Strategic priority. Start sooner than planned.', milestones:[]},
-  {id:'sk2', name:'Remote-Capable Technical Skill', category:'Career', priority:'high', progress:0, note:'Core to financial leverage and mobility.', milestones:[]},
-  {id:'sk3', name:'Martial Arts', category:'Physical', priority:'standard', progress:30, note:'Active domain. Tied to body mastery.', milestones:[]},
-];
-
-function save() { try { localStorage.setItem('caelith_v4', JSON.stringify(state)); } catch(e){} }
-function load() {
-  try {
-    const s = localStorage.getItem('caelith_v4');
-    if (s) {
-      const loaded = JSON.parse(s);
-      state = Object.assign(state, loaded);
-      DOMAINS.forEach(d=>{ if(!state.domainLogs[d.id]) state.domainLogs[d.id]=[]; });
-    } else {
-      state.skills = DEFAULT_SKILLS;
-      // Seed first timeline entry
-      state.timeline = [{id:'t0', type:'framework', text:'Undir Sólu named and carved. Caelith established. The framework always existed — today it was recognized.', date: new Date().toLocaleDateString('en-US',{month:'short',day:'numeric',year:'numeric'})}];
+function sv(){try{localStorage.setItem('caelith_v5',JSON.stringify(S));}catch(e){}}
+function ld(){
+  try{
+    const d=localStorage.getItem('caelith_v5');
+    if(d){const p=JSON.parse(d);S=Object.assign(S,p);}
+    else{
+      S.thoughts=SEED_THOUGHTS;
+      S.logEntries=SEED_LOG;
+      S.timeline=SEED_TIMELINE;
+      S.skills=SEED_SKILLS;
+      S.userTags=SEED_TAGS;
     }
-  } catch(e){}
+  }catch(e){}
 }
 
-// ═══════════════════════════════════════════
-// UTILITIES
-// ═══════════════════════════════════════════
-let restInterval=null, restRemaining=0;
-function startRest(s){ clearInterval(restInterval); restRemaining=s; document.getElementById('rest-bar').classList.add('active'); updateRestDisplay(); restInterval=setInterval(()=>{ restRemaining--; if(restRemaining<=0){skipRest();return;} updateRestDisplay(); },1000); }
-function updateRestDisplay(){ const m=Math.floor(restRemaining/60),s=restRemaining%60; document.getElementById('rest-text').textContent=`Rest · ${m>0?m+'m ':''}${s}s remaining`; }
-function skipRest(){ clearInterval(restInterval); document.getElementById('rest-bar').classList.remove('active'); }
-function showToast(msg){ const t=document.getElementById('toast'); t.textContent=msg; t.style.display='block'; clearTimeout(t._to); t._to=setTimeout(()=>t.style.display='none',2200); }
-function roman(n){ return ROMAN[Math.min(n-1,ROMAN.length-1)]||n; }
-function getLevel(){ return Math.floor(state.xp/LEVEL_XP)+1; }
-function getLevelPct(){ return ((state.xp%LEVEL_XP)/LEVEL_XP)*100; }
-function uid(){ return Date.now().toString(36)+Math.random().toString(36).slice(2,6); }
-function today(){ return new Date().toLocaleDateString('en-US',{month:'short',day:'numeric',year:'numeric'}); }
-function setsCompleted(dayId,exIdx,total){ let n=0; for(let i=0;i<total;i++) if(state.completedSets[`${dayId}-${exIdx}-${i}`]) n++; return n; }
-function isDayDone(day){ return day.exercises.every((ex,i)=>setsCompleted(day.id,i,ex.sets)===ex.sets); }
+// ═══════════════ UTILS ═══════════════
+let restInt=null,restRem=0;
+function startRest(s){clearInterval(restInt);restRem=s;document.getElementById('rest-bar').classList.add('on');updRest();restInt=setInterval(()=>{restRem--;if(restRem<=0){skipRest();return;}updRest();},1000);}
+function updRest(){const m=Math.floor(restRem/60),s=restRem%60;document.getElementById('rest-txt').textContent=`Rest · ${m>0?m+'m ':''}${s}s`;}
+function skipRest(){clearInterval(restInt);document.getElementById('rest-bar').classList.remove('on');}
+function toast(msg){const t=document.getElementById('toast');t.textContent=msg;t.style.display='block';clearTimeout(t._t);t._t=setTimeout(()=>t.style.display='none',2200);}
+function roman(n){return ROMAN[Math.min(n-1,ROMAN.length-1)]||n;}
+function lv(){return Math.floor(S.xp/LVL_XP)+1;}
+function lvPct(){return((S.xp%LVL_XP)/LVL_XP)*100;}
+function uid(){return Date.now().toString(36)+Math.random().toString(36).slice(2,6);}
+function tod(){return new Date().toLocaleDateString('en-US',{month:'short',day:'numeric',year:'numeric'});}
+function sc(dayId,exIdx,total){let n=0;for(let i=0;i<total;i++)if(S.completedSets[`${dayId}-${exIdx}-${i}`])n++;return n;}
+function dayDone(day){return day.exercises.every((ex,i)=>sc(day.id,i,ex.sets)===ex.sets);}
 
-function checkRewards(oldXp,newXp){
+function chkRewards(ox,nx){
   REWARDS.forEach(r=>{
-    if(state.earnedRewards.includes(r.title)) return;
-    const xpOk=newXp>=r.xp, daysOk=!r.milestoneDays||state.totalDaysCompleted>=r.milestoneDays, presOk=!r.prestige||state.prestige>=r.prestige;
-    if(xpOk&&daysOk&&presOk){
-      state.earnedRewards.push(r.title);
-      if(r.prestigeUnlock) state.prestige=Math.max(state.prestige,1);
-      save(); setTimeout(()=>showReward(r),600);
-    }
+    if(S.earnedRewards.includes(r.title))return;
+    const xOk=nx>=r.xp,dOk=!r.md||S.totalDays>=r.md,pOk=!r.prestige||S.prestige>=r.prestige;
+    if(xOk&&dOk&&pOk){S.earnedRewards.push(r.title);if(r.pu)S.prestige=Math.max(S.prestige,1);sv();setTimeout(()=>showReward(r),600);}
   });
 }
 
-// ═══════════════════════════════════════════
-// OPENING & MODAL
-// ═══════════════════════════════════════════
+// Domain vigil update from thought tags
+function updateVigilFromThought(domains){
+  domains.forEach(d=>{if(S.domains[d]!==undefined)S.domains[d]=0;});
+  sv();
+}
+
+// ═══════════════ OPENING / MODAL ═══════════════
 function showOpening(){
   const t=new Date().toDateString();
-  if(state.lastOpened===t) return;
-  state.lastOpened=t; save();
-  document.getElementById('opening-verse').textContent=VERSES[Math.floor(Date.now()/86400000)%VERSES.length];
+  if(S.lastOpened===t)return;
+  S.lastOpened=t;sv();
+  document.getElementById('op-verse').textContent=VERSES[Math.floor(Date.now()/86400000)%VERSES.length];
   document.getElementById('opening').style.display='flex';
 }
-function closeOpening(){ document.getElementById('opening').style.display='none'; }
-function showReward(r){
-  document.getElementById('modal-rune').textContent=r.rune;
-  document.getElementById('modal-title').textContent=r.title;
-  document.getElementById('modal-sub').textContent=r.sub;
-  document.getElementById('modal-verse').textContent=r.verse;
-  document.getElementById('modal').classList.add('active');
-}
-function closeModal(){ document.getElementById('modal').classList.remove('active'); renderHome(); }
+function closeOpening(){document.getElementById('opening').style.display='none';}
+function showReward(r){document.getElementById('m-ico').textContent=r.rune;document.getElementById('m-ttl').textContent=r.title;document.getElementById('m-sub').textContent=r.sub;document.getElementById('m-verse').textContent=r.verse;document.getElementById('modal').classList.add('on');}
+function closeModal(){document.getElementById('modal').classList.remove('on');renderHome();}
 
-// ═══════════════════════════════════════════
-// NAVIGATION
-// ═══════════════════════════════════════════
-let currentScreen='home';
+// ═══════════════ NAVIGATION ═══════════════
+let curDay=null;
 function showScreen(name){
-  if(name==='train'){ showScreen('home'); setTimeout(()=>document.getElementById('day-list-home').scrollIntoView({behavior:'smooth'}),100); return; }
+  if(name==='train-select'){showScreen('home');setTimeout(()=>document.getElementById('days-home').scrollIntoView({behavior:'smooth'}),100);return;}
   document.querySelectorAll('.screen').forEach(s=>s.classList.remove('active'));
-  document.querySelectorAll('.nav-btn').forEach(b=>b.classList.remove('active'));
-  document.getElementById('screen-'+name).classList.add('active');
-  document.getElementById('nav-'+name).classList.add('active');
-  currentScreen=name;
-  if(name==='home') renderHome();
-  if(name==='framework') renderFramework();
-  if(name==='archive') renderArchive();
-  if(name==='dev') renderDev();
+  document.querySelectorAll('.nb').forEach(b=>b.classList.remove('active'));
+  const sid=name==='home'?'home':name==='fw'?'fw':name==='arch'?'arch':name==='build'?'build':'home';
+  document.getElementById('screen-'+sid).classList.add('active');
+  const nid=name==='home'?'nb-home':name==='fw'?'nb-fw':name==='arch'?'nb-arch':name==='build'?'nb-build':'nb-home';
+  document.getElementById(nid).classList.add('active');
   document.querySelector('.content').scrollTop=0;
+  if(name==='home')renderHome();
+  if(name==='fw')renderFw();
+  if(name==='arch')renderArch();
+  if(name==='build')renderBuild();
 }
-function goHome(){ skipRest(); document.getElementById('screen-day').classList.remove('active'); showScreen('home'); }
+function goHome(){skipRest();document.getElementById('screen-train').classList.remove('active');showScreen('home');}
 
-// ═══════════════════════════════════════════
-// HOME
-// ═══════════════════════════════════════════
+// ═══════════════ HOME ═══════════════
 function renderHome(){
-  document.getElementById('h-level').textContent=roman(getLevel());
-  document.getElementById('h-xp').textContent=state.xp;
-  document.getElementById('h-bar').style.width=getLevelPct()+'%';
-  const toNext=LEVEL_XP-(state.xp%LEVEL_XP);
-  document.getElementById('h-caption').textContent=toNext+' ljós to Stage '+roman(getLevel()+1)+(state.prestige>0?' · Prestige '+roman(state.prestige):'');
-  const pb=document.getElementById('prestige-home');
-  pb.innerHTML=state.prestige>0?`<div style="text-align:center;margin-bottom:20px"><div class="prestige-banner">✦ SÓLFRIÐR ${roman(state.prestige)} · PRESTIGE ${roman(state.prestige)}</div></div>`:'';
-  renderDomains();
-  renderBadges();
-  renderDayList();
+  document.getElementById('h-lv').textContent=roman(lv());
+  document.getElementById('h-xp').textContent=S.xp;
+  document.getElementById('h-bar').style.width=lvPct()+'%';
+  document.getElementById('h-cap').textContent=(LVL_XP-(S.xp%LVL_XP))+' ljós to Stage '+roman(lv()+1)+(S.prestige>0?' · Prestige '+roman(S.prestige):'');
+  document.getElementById('prestige-home').innerHTML=S.prestige>0?`<div class="prestige-band"><div class="prestige-inner">✦ SÓLFRIÐR ${roman(S.prestige)} · PRESTIGE</div></div>`:'';
+  renderVigil();
+  renderBadgesHome();
+  renderDaysHome();
 }
 
-function renderDomains(){
-  const dl=document.getElementById('domain-list');
-  dl.innerHTML='';
-  DOMAINS.forEach(d=>{
-    const days=state.domains[d.id]||0;
+function renderVigil(){
+  const el=document.getElementById('vigil-home');el.innerHTML='';
+  DOMAINS_DEF.forEach(d=>{
+    const days=S.domains[d.id]||0;
     const pct=Math.min(100,days*18);
     const wolf=days>=5?'🐺':days>=3?'🐾':'';
     const status=days===0?'Active today':days===1?'1 day ago':`${days} days ago`;
-    const logs=(state.domainLogs[d.id]||[]);
-    const isInputOpen=state.openDomains[d.id+'_i'];
-    const isLogsOpen=state.openDomains[d.id+'_l'];
-    const card=document.createElement('div');
-    card.className='domain-card'+(days>=5?' alert':'');
-    card.innerHTML=`
-      <div class="domain-top">
-        <div class="domain-icon">${d.icon}</div>
-        <div class="domain-info">
-          <div class="domain-name">${d.name}</div>
-          ${d.note?`<div class="domain-note">${d.note}</div>`:''}
-          <div class="domain-bar-wrap"><div class="domain-bar-fill" style="width:${pct}%;background:${d.color}"><span class="domain-wolf-icon">${wolf}</span></div></div>
-          <div class="domain-status">${status}</div>
-        </div>
-        <div class="domain-actions">
-          <button class="btn-ghost" onclick="toggleDomainInput('${d.id}')">+ LOG</button>
-          ${logs.length>0?`<button class="btn-ghost" onclick="toggleDomainLogs('${d.id}')">${isLogsOpen?'↑':'↓'}</button>`:''}
-        </div>
-      </div>
-      <div class="domain-input-row${isInputOpen?' open':''}" id="di-${d.id}">
-        <input class="domain-mini-input" id="dit-${d.id}" placeholder="What did you do in this domain today?">
-        <button class="btn-ghost" onclick="saveDomainLog('${d.id}')">SEAL</button>
-      </div>
-      <div class="domain-expand${isLogsOpen?' open':''}" id="dl-${d.id}">
-        ${logs.length===0?'<div style="font-size:11px;color:var(--rune);font-style:italic">No entries yet.</div>':
-          logs.slice().reverse().slice(0,5).map(e=>`<div class="domain-entry">${e.text}<div class="domain-entry-date">${e.date}</div></div>`).join('')}
-      </div>
-    `;
-    dl.appendChild(card);
+    const div=document.createElement('div');
+    div.className='vigil-card';
+    div.innerHTML=`<div class="v-icon">${d.icon}</div><div class="v-info"><div class="v-name">${d.name}</div>${d.note?`<div style="font-size:9px;color:var(--rune);font-style:italic;margin-bottom:3px">${d.note}</div>`:''}<div class="v-bar-wrap"><div class="v-bar-fill" style="width:${pct}%;background:${d.color}"><span class="v-wolf">${wolf}</span></div></div><div class="v-status">${status}</div></div><div class="v-days">${days}d</div>`;
+    el.appendChild(div);
   });
 }
 
-function toggleDomainInput(id){ state.openDomains[id+'_i']=!state.openDomains[id+'_i']; renderDomains(); if(state.openDomains[id+'_i']) setTimeout(()=>{ const el=document.getElementById('dit-'+id); if(el) el.focus(); },80); }
-function toggleDomainLogs(id){ state.openDomains[id+'_l']=!state.openDomains[id+'_l']; renderDomains(); }
-function saveDomainLog(id){
-  const el=document.getElementById('dit-'+id); if(!el) return;
-  const text=el.value.trim(); if(!text) return;
-  if(!state.domainLogs[id]) state.domainLogs[id]=[];
-  state.domainLogs[id].push({text,date:today()});
-  state.domains[id]=0;
-  state.openDomains[id+'_i']=false;
-  state.openDomains[id+'_l']=true;
-  save(); showToast('✦ '+DOMAINS.find(d=>d.id===id).name+' · Logged');
-  renderDomains();
+function renderBadgesHome(){
+  const el=document.getElementById('badges-home');el.innerHTML='';
+  REWARDS.forEach(r=>{const e=S.earnedRewards.includes(r.title);const b=document.createElement('div');b.className='badge'+(e?' earned':'');b.textContent=(e?r.rune+' ':'◻ ')+r.badge;el.appendChild(b);});
 }
 
-function renderBadges(){
-  const br=document.getElementById('badges-home');
-  br.innerHTML='';
-  REWARDS.forEach(r=>{
-    const earned=state.earnedRewards.includes(r.title);
-    const b=document.createElement('div');
-    b.className='badge'+(earned?' earned':'');
-    b.textContent=(earned?r.rune+' ':'◻ ')+r.badge;
-    br.appendChild(b);
-  });
-}
-
-function renderDayList(){
-  const list=document.getElementById('day-list-home');
-  list.innerHTML='';
+function renderDaysHome(){
+  const el=document.getElementById('days-home');el.innerHTML='';
   DAYS.forEach(day=>{
-    const done=state.completedDays.includes(day.id);
+    const done=S.completedDays.includes(day.id);
     const total=day.exercises.reduce((a,ex)=>a+ex.sets,0);
-    const doneSets=day.exercises.reduce((a,ex,i)=>a+setsCompleted(day.id,i,ex.sets),0);
-    const inProg=doneSets>0&&!done;
-    const card=document.createElement('button');
-    card.className='day-card'+(done?' done':'');
-    card.style.setProperty('--day-color',day.color);
-    card.onclick=()=>openDay(day.id);
-    card.innerHTML=`
-      <div class="day-inner">
-        <div class="day-left">
-          <div class="day-emoji-wrap" style="border-color:${day.color}25">${done?'✦':day.emoji}</div>
-          <div>
-            <div class="day-title" style="color:${done?'var(--gold)':'var(--light)'}">${day.theme}</div>
-            <div class="day-meta">${day.label} · ${day.exercises.length} exercises</div>
-          </div>
-        </div>
-        <span style="color:var(--rune);font-size:16px">${done?'✦':'›'}</span>
-      </div>
-      ${inProg?`<div class="day-prog-bar"><div class="day-prog-fill" style="width:${(doneSets/total)*100}%;background:${day.color}"></div></div><div class="day-prog-label">${doneSets}/${total} sets sealed</div>`:''}
-    `;
-    list.appendChild(card);
+    const ds=day.exercises.reduce((a,ex,i)=>a+sc(day.id,i,ex.sets),0);
+    const inP=ds>0&&!done;
+    const btn=document.createElement('button');
+    btn.className='day-card'+(done?' done':'');
+    btn.style.setProperty('--dc',day.color);
+    btn.onclick=()=>openDay(day.id);
+    btn.innerHTML=`<div class="day-inner"><div class="day-left"><div class="day-ico" style="border-color:${day.color}20">${done?'✦':day.emoji}</div><div><div class="day-ttl" style="color:${done?'var(--gold)':'var(--light)'}">${day.theme}</div><div class="day-met">${day.label} · ${day.exercises.length} exercises</div></div></div><span style="color:var(--rune);font-size:14px">${done?'✦':'›'}</span></div>${inP?`<div class="mini-bar"><div class="mini-fill" style="width:${(ds/total)*100}%;background:${day.color}"></div></div><div class="mini-lbl">${ds}/${total} sets</div>`:''}`;
+    el.appendChild(btn);
   });
 }
 
-// ═══════════════════════════════════════════
-// TRAINING DAY
-// ═══════════════════════════════════════════
-let currentDayId=null;
+// ═══════════════ TRAINING ═══════════════
 function openDay(id){
-  currentDayId=id;
-  const day=DAYS.find(d=>d.id===id);
+  curDay=id;const day=DAYS.find(d=>d.id===id);
   document.getElementById('screen-home').classList.remove('active');
-  document.getElementById('nav-home').classList.remove('active');
-  document.getElementById('screen-day').classList.add('active');
-  document.getElementById('ds-title').textContent=day.theme;
+  document.getElementById('nb-home').classList.remove('active');
+  document.getElementById('screen-train').classList.add('active');
+  document.getElementById('ds-ttl').textContent=day.theme;
   document.getElementById('ds-sub').textContent=day.label+' · '+day.exercises.length+' exercises';
   document.getElementById('ds-verse').textContent=day.verse;
-  state.openTips={};
-  renderDayScreen();
-  document.querySelector('.content').scrollTop=0;
+  S.openTips={};renderDay();document.querySelector('.content').scrollTop=0;
 }
-
-function renderDayScreen(){
-  const day=DAYS.find(d=>d.id===currentDayId);
+function renderDay(){
+  const day=DAYS.find(d=>d.id===curDay);
   const total=day.exercises.reduce((a,ex)=>a+ex.sets,0);
-  const doneSets=day.exercises.reduce((a,ex,i)=>a+setsCompleted(day.id,i,ex.sets),0);
-  document.getElementById('ds-prog-label').textContent=doneSets+' / '+total;
-  document.getElementById('ds-prog-fill').style.width=(doneSets/total*100)+'%';
-  const list=document.getElementById('exercise-list');
-  list.innerHTML='';
-  day.exercises.forEach((ex,exIdx)=>{
-    const done=setsCompleted(day.id,exIdx,ex.sets);
-    const complete=done===ex.sets;
-    const tipKey=`${day.id}-${exIdx}`;
-    const tipOpen=state.openTips[tipKey];
-    const noteKey=`note-${day.id}-${exIdx}`;
-    const noteVal=state.progressNotes[noteKey]||'';
+  const ds=day.exercises.reduce((a,ex,i)=>a+sc(day.id,i,ex.sets),0);
+  document.getElementById('ds-prog').textContent=ds+' / '+total;
+  document.getElementById('ds-bar').style.width=(ds/total*100)+'%';
+  const el=document.getElementById('ex-list');el.innerHTML='';
+  day.exercises.forEach((ex,xi)=>{
+    const done=sc(day.id,xi,ex.sets)===ex.sets;
+    const tipOpen=S.openTips[`${day.id}-${xi}`];
+    const nk=`note-${day.id}-${xi}`;
     const card=document.createElement('div');
-    card.className='ex-card'+(complete?' complete':'');
-    const setsHTML=Array.from({length:ex.sets},(_,i)=>{
-      const checked=state.completedSets[`${day.id}-${exIdx}-${i}`];
-      return `<button class="set-btn${checked?' done':''}" onclick="toggleSet(${day.id},${exIdx},${i},${ex.rest})">${checked?'✦':i+1}</button>`;
-    }).join('');
-    card.innerHTML=`
-      <div class="ex-head">
-        <div>
-          <div class="ex-name${complete?' complete':''}">${complete?'✦ ':''}${ex.name}</div>
-          <div class="ex-meta">${ex.sets} sets · ${ex.reps} · ${ex.rest}s rest</div>
-        </div>
-        <button class="tip-toggle${tipOpen?' open':''}" onclick="toggleTip('${tipKey}')">${tipOpen?'LOKA':'VÍSA'}</button>
-      </div>
-      ${tipOpen?`<div class="tip-box">${ex.tip}</div>`:''}
-      <div class="sets-row">${setsHTML}</div>
-      ${complete?`<div class="prog-note-wrap"><input class="prog-note-input" placeholder="Progression note — what changed?" value="${noteVal}" onchange="saveNote('${noteKey}',this.value)"></div>`:''}
-    `;
-    list.appendChild(card);
+    card.className='ex-card'+(done?' done':'');
+    const sHTML=Array.from({length:ex.sets},(_,i)=>{const c=S.completedSets[`${day.id}-${xi}-${i}`];return`<button class="set-btn${c?' done':''}" onclick="togSet(${day.id},${xi},${i},${ex.rest})">${c?'✦':i+1}</button>`;}).join('');
+    card.innerHTML=`<div class="ex-head"><div><div class="ex-name${done?' done':''}">${done?'✦ ':''}${ex.name}</div><div class="ex-met">${ex.sets} sets · ${ex.reps} · ${ex.rest}s rest</div></div><button class="tip-t${tipOpen?' on':''}" onclick="togTip('${day.id}-${xi}')">${tipOpen?'LOKA':'VÍSA'}</button></div>${tipOpen?`<div class="tip-box">${ex.tip}</div>`:''}<div class="sets-row">${sHTML}</div>${done?`<input class="note-inp" placeholder="Progression note..." value="${S.progressNotes[nk]||''}" onchange="S.progressNotes['${nk}']=this.value;sv()">`:''}`; 
+    el.appendChild(card);
   });
-  document.getElementById('finish-btn').style.display=isDayDone(day)?'block':'none';
+  document.getElementById('finish-btn').style.display=dayDone(day)?'block':'none';
 }
-
-function toggleSet(dayId,exIdx,setIdx,restSecs){
-  const key=`${dayId}-${exIdx}-${setIdx}`;
-  const already=state.completedSets[key];
-  const oldXp=state.xp;
-  state.completedSets[key]=!already;
-  if(!already){ state.xp+=XP_PER_SET; showToast('✦ +'+XP_PER_SET+' LJÓS'); startRest(restSecs); checkRewards(oldXp,state.xp); }
-  else { state.xp=Math.max(0,state.xp-XP_PER_SET); skipRest(); }
-  save(); renderDayScreen();
+function togSet(dayId,xi,si,rest){
+  const k=`${dayId}-${xi}-${si}`;const already=S.completedSets[k];const ox=S.xp;
+  S.completedSets[k]=!already;
+  if(!already){S.xp+=XP_SET;toast('✦ +'+XP_SET+' LJÓS');startRest(rest);chkRewards(ox,S.xp);}
+  else{S.xp=Math.max(0,S.xp-XP_SET);skipRest();}
+  sv();renderDay();
 }
-function toggleTip(key){ state.openTips[key]=!state.openTips[key]; renderDayScreen(); }
-function saveNote(key,val){ state.progressNotes[key]=val; save(); }
+function togTip(k){S.openTips[k]=!S.openTips[k];renderDay();}
 function finishDay(){
-  const day=DAYS.find(d=>d.id===currentDayId);
-  if(!state.completedDays.includes(currentDayId)){
-    state.completedDays.push(currentDayId);
-    const oldXp=state.xp;
-    state.xp+=XP_DAY_BONUS;
-    state.totalDaysCompleted++;
-    state.domains.body=0;
-    if(!state.domainLogs.body) state.domainLogs.body=[];
-    state.domainLogs.body.push({text:day.theme+' — day sealed',date:today()});
-    checkRewards(oldXp,state.xp);
-    showToast('✦ DAY SEALED · +'+XP_DAY_BONUS+' LJÓS');
+  const day=DAYS.find(d=>d.id===curDay);
+  if(!S.completedDays.includes(curDay)){
+    S.completedDays.push(curDay);const ox=S.xp;S.xp+=XP_DAY;S.totalDays++;
+    S.domains.body=0;chkRewards(ox,S.xp);toast('✦ DAY SEALED · +'+XP_DAY+' LJÓS');
   }
-  save(); goHome();
+  sv();goHome();
 }
 
-// ═══════════════════════════════════════════
-// FRAMEWORK
-// ═══════════════════════════════════════════
-function switchFrameworkTab(tab){
-  state.frameworkTab=tab;
-  document.querySelectorAll('.framework-tab').forEach((b,i)=>{ b.classList.toggle('active',['law','cosmology','declarations'][i]===tab); });
-  document.querySelectorAll('.framework-panel').forEach(p=>p.classList.remove('active'));
-  document.getElementById('fw-'+tab).classList.add('active');
+// ═══════════════ FRAMEWORK ═══════════════
+function fwTab(t){
+  S.fwTab=t;
+  document.querySelectorAll('#screen-fw .tab').forEach((b,i)=>b.classList.toggle('active',['law','cosm','decl'][i]===t));
+  document.querySelectorAll('#screen-fw .panel').forEach(p=>p.classList.remove('active'));
+  document.getElementById('fw-'+t).classList.add('active');
 }
-function renderFramework(){ renderDeclarations(); }
-function renderDeclarations(){
-  const list=document.getElementById('declaration-list');
-  if(!list) return;
-  if(!state.declarations.length){ list.innerHTML='<div style="font-size:13px;color:var(--rune);font-style:italic;text-align:center;padding:24px 0">No declarations carved yet.</div>'; return; }
-  list.innerHTML='';
-  [...state.declarations].reverse().forEach((d,i)=>{
-    const realIdx=state.declarations.length-1-i;
-    const el=document.createElement('div');
-    el.className='declaration-item';
-    el.innerHTML=`<div class="declaration-text">"${d.text}"</div><div class="declaration-date">Carved · ${d.date}</div><button class="declaration-delete" onclick="deleteDeclaration(${realIdx})">✕</button>`;
-    list.appendChild(el);
+function renderFw(){renderDecl();}
+function renderDecl(){
+  const el=document.getElementById('decl-list');if(!el)return;
+  if(!S.declarations.length){el.innerHTML='<div style="font-size:12px;color:var(--rune);font-style:italic;text-align:center;padding:20px 0">No declarations carved yet.</div>';return;}
+  el.innerHTML='';
+  [...S.declarations].reverse().forEach((d,i)=>{
+    const ri=S.declarations.length-1-i;
+    const div=document.createElement('div');div.className='decl-item';
+    div.innerHTML=`<div class="decl-txt">"${d.text}"</div><div class="decl-date">Carved · ${d.date}</div><button class="del-btn" onclick="delDecl(${ri})">✕</button>`;
+    el.appendChild(div);
   });
 }
-function saveDeclaration(){
-  const input=document.getElementById('declaration-input');
-  const text=input.value.trim(); if(!text) return;
-  state.declarations.push({id:uid(),text,date:today()});
-  input.value='';
-  save(); showToast('✦ Declaration carved'); renderDeclarations();
-}
-function deleteDeclaration(idx){ if(confirm('Remove this declaration?')){ state.declarations.splice(idx,1); save(); renderDeclarations(); } }
+function saveDecl(){const inp=document.getElementById('decl-inp');const t=inp.value.trim();if(!t)return;S.declarations.push({id:uid(),text:t,date:tod()});inp.value='';sv();toast('✦ Declaration carved');renderDecl();}
+function delDecl(i){if(confirm('Remove?')){S.declarations.splice(i,1);sv();renderDecl();}}
 
-// ═══════════════════════════════════════════
-// THOUGHT ARCHIVE
-// ═══════════════════════════════════════════
-function switchArchiveTab(tab){
-  state.archiveTab=tab;
-  document.querySelectorAll('.archive-tab').forEach((b,i)=>{ b.classList.toggle('active',['add','list','web','log'][i]===tab); });
-  document.querySelectorAll('.archive-panel').forEach(p=>p.classList.remove('active'));
-  document.getElementById('arch-'+tab).classList.add('active');
-  if(tab==='list') renderThoughtList();
-  if(tab==='web') renderWeb();
-  if(tab==='log') renderLog();
+// ═══════════════ ARCHIVE ═══════════════
+function archTab(t){
+  S.archTab=t;
+  document.querySelectorAll('#screen-arch .tab').forEach((b,i)=>b.classList.toggle('active',['new','tags','browse','web','log'][i]===t));
+  document.querySelectorAll('#screen-arch .panel').forEach(p=>p.classList.remove('active'));
+  document.getElementById('arch-'+t).classList.add('active');
+  if(t==='new')renderNewThoughtForm();
+  if(t==='tags')renderTagMgr();
+  if(t==='browse')renderBrowse();
+  if(t==='web')renderWeb();
+  if(t==='log')renderLog();
 }
-function renderArchive(){
-  populateLinkSelect();
-  renderThoughtList();
-  renderLog();
-}
+function renderArch(){renderNewThoughtForm();renderLog();}
 
-function populateLinkSelect(){
-  const sel=document.getElementById('thought-link'); if(!sel) return;
-  sel.innerHTML='<option value="">Connect to another thought (optional)</option>';
-  state.thoughts.forEach(t=>{
-    const opt=document.createElement('option');
-    opt.value=t.id;
-    opt.textContent=(t.tag||'thought')+': '+t.text.slice(0,50)+(t.text.length>50?'...':'');
-    sel.appendChild(opt);
+// TAG SYSTEM
+let selThoughtTags=[];
+let selThoughtDomains=[];
+
+function renderNewThoughtForm(){
+  // Domain selector
+  const dEl=document.getElementById('domain-sel-new');if(!dEl)return;
+  dEl.innerHTML='';
+  DOMAINS_DEF.forEach(d=>{
+    const chip=document.createElement('div');
+    chip.className='domain-chip'+(selThoughtDomains.includes(d.id)?' sel':'');
+    chip.style.borderColor=selThoughtDomains.includes(d.id)?d.color+'80':'';
+    chip.innerHTML=`${d.icon} ${d.name.split('·')[0].trim()}`;
+    chip.onclick=()=>{
+      if(selThoughtDomains.includes(d.id))selThoughtDomains=selThoughtDomains.filter(x=>x!==d.id);
+      else selThoughtDomains.push(d.id);
+      renderNewThoughtForm();
+    };
+    dEl.appendChild(chip);
   });
+  // Tag selector
+  const tEl=document.getElementById('tag-sel-new');if(!tEl)return;
+  tEl.innerHTML='';
+  S.userTags.forEach(tag=>{
+    const chip=document.createElement('div');
+    const isSel=selThoughtTags.includes(tag);
+    chip.className='tag-chip'+(isSel?' sel':'');
+    chip.innerHTML=tag+(isSel?` <span class="tx" onclick="event.stopPropagation();removeSelTag('${tag}')">×</span>`:'');
+    chip.onclick=()=>{
+      if(selThoughtTags.includes(tag)){selThoughtTags=selThoughtTags.filter(x=>x!==tag);}
+      else if(selThoughtTags.length<5){selThoughtTags.push(tag);}
+      else{toast('Max 5 tags');return;}
+      renderNewThoughtForm();
+    };
+    tEl.appendChild(chip);
+  });
+  if(selThoughtTags.length>0){
+    const lbl=document.createElement('div');
+    lbl.style.cssText='font-family:Cinzel,serif;font-size:8px;color:var(--rune);letter-spacing:1px;margin-top:6px';
+    lbl.textContent=selThoughtTags.length+'/5 selected';
+    tEl.appendChild(lbl);
+  }
+  // Link select
+  const ls=document.getElementById('thought-link');if(!ls)return;
+  ls.innerHTML='<option value="">Connect to another thought (optional)</option>';
+  S.thoughts.forEach(t=>{const o=document.createElement('option');o.value=t.id;o.textContent=(t.tags[0]||'thought')+': '+t.text.slice(0,50)+(t.text.length>50?'...':'');ls.appendChild(o);});
+}
+
+function removeSelTag(tag){selThoughtTags=selThoughtTags.filter(x=>x!==tag);renderNewThoughtForm();}
+
+function createTag(){
+  const inp=document.getElementById('new-tag-inp');const val=inp.value.trim();if(!val)return;
+  if(!S.userTags.includes(val))S.userTags.push(val);
+  if(selThoughtTags.length<5)selThoughtTags.push(val);
+  inp.value='';sv();renderNewThoughtForm();
+}
+
+function createTagFromMgr(){
+  const inp=document.getElementById('new-tag-mgr');const val=inp.value.trim();if(!val)return;
+  if(!S.userTags.includes(val)){S.userTags.push(val);sv();toast('✦ Tag created');}
+  inp.value='';renderTagMgr();
 }
 
 function saveThought(){
-  const input=document.getElementById('thought-input');
-  const tag=document.getElementById('thought-tag');
-  const link=document.getElementById('thought-link');
-  const text=input.value.trim(); if(!text) return;
-  const t={id:uid(),text,tag:tag.value.trim()||'observation',linkedTo:link.value||null,date:today()};
-  state.thoughts.push(t);
-  input.value=''; tag.value=''; link.value='';
-  save(); showToast('✦ Thought sealed');
-  populateLinkSelect();
-  switchArchiveTab('list');
+  const inp=document.getElementById('thought-inp');const link=document.getElementById('thought-link');
+  const text=inp.value.trim();if(!text)return;
+  const t={id:uid(),text,tags:[...selThoughtTags],domains:[...selThoughtDomains],linkedTo:link.value||null,date:tod()};
+  S.thoughts.push(t);
+  updateVigilFromThought(selThoughtDomains);
+  inp.value='';selThoughtTags=[];selThoughtDomains=[];
+  sv();toast('✦ Thought sealed');
+  renderNewThoughtForm();archTab('browse');
 }
 
-function renderThoughtList(){
-  const list=document.getElementById('thought-list'); if(!list) return;
-  if(!state.thoughts.length){ list.innerHTML='<div style="font-size:13px;color:var(--rune);font-style:italic;text-align:center;padding:40px 0">No thoughts archived yet.</div>'; return; }
-  list.innerHTML='';
-  [...state.thoughts].reverse().forEach((t,i)=>{
-    const realIdx=state.thoughts.length-1-i;
-    const linkedThought=t.linkedTo?state.thoughts.find(x=>x.id===t.linkedTo):null;
-    const el=document.createElement('div');
-    el.className='thought-entry';
-    el.innerHTML=`
-      <div class="thought-tag">${t.tag.toUpperCase()}</div>
-      <div class="thought-text">${t.text}</div>
-      ${linkedThought?`<div class="thought-links">↔ Linked to: ${linkedThought.tag} — ${linkedThought.text.slice(0,40)}...</div>`:''}
-      <div class="thought-date">${t.date}</div>
-      <button class="thought-delete" onclick="deleteThought(${realIdx})">✕</button>
-    `;
-    list.appendChild(el);
+function renderTagMgr(){
+  const el=document.getElementById('tag-manager-list');if(!el)return;
+  el.innerHTML='';
+  S.userTags.forEach((tag,i)=>{
+    const count=S.thoughts.filter(t=>t.tags&&t.tags.includes(tag)).length;
+    const div=document.createElement('div');
+    div.style.cssText='display:flex;align-items:center;justify-content:space-between;padding:10px 14px;border:1px solid var(--border);margin-bottom:6px;cursor:pointer;background:var(--glass)';
+    div.innerHTML=`<div><div style="font-family:Cinzel,serif;font-size:10px;color:var(--light);letter-spacing:1px">${tag}</div><div style="font-size:10px;color:var(--rune);font-style:italic;margin-top:2px">${count} thought${count!==1?'s':''}</div></div><button onclick="browseByTag('${tag}')" style="background:none;border:1px solid var(--border);color:var(--rune);font-family:Cinzel,serif;font-size:7px;letter-spacing:1px;padding:4px 10px;cursor:pointer">BROWSE →</button>`;
+    el.appendChild(div);
   });
 }
 
-function deleteThought(idx){ state.thoughts.splice(idx,1); save(); renderThoughtList(); populateLinkSelect(); }
+function browseByTag(tag){S.browseTag=tag;archTab('browse');}
+
+function renderBrowse(){
+  // Filter chips
+  const bf=document.getElementById('browse-filter');if(!bf)return;
+  bf.innerHTML='';
+  const all=document.createElement('button');
+  all.className='bg'+(S.browseTag===null?' on':'');
+  all.textContent='ALL';all.onclick=()=>{S.browseTag=null;renderBrowse();};
+  bf.appendChild(all);
+  S.userTags.forEach(tag=>{
+    const btn=document.createElement('button');
+    btn.className='bg'+(S.browseTag===tag?' on':'');
+    btn.textContent=tag;btn.onclick=()=>{S.browseTag=S.browseTag===tag?null:tag;renderBrowse();};
+    bf.appendChild(btn);
+  });
+  // List
+  const el=document.getElementById('thought-list');if(!el)return;
+  const filtered=S.browseTag?S.thoughts.filter(t=>t.tags&&t.tags.includes(S.browseTag)):S.thoughts;
+  if(!filtered.length){el.innerHTML='<div style="font-size:12px;color:var(--rune);font-style:italic;text-align:center;padding:32px 0">No thoughts here yet.</div>';return;}
+  el.innerHTML='';
+  [...filtered].reverse().forEach((t,i)=>{
+    const ri=S.thoughts.indexOf(t);
+    const linked=t.linkedTo?S.thoughts.find(x=>x.id===t.linkedTo):null;
+    const div=document.createElement('div');div.className='thought-card';
+    const domHTML=(t.domains||[]).map(d=>{const df=DOMAINS_DEF.find(x=>x.id===d);return df?`<div class="tc-domain" style="border-color:${df.color}40;color:${df.color}">${df.icon} ${df.name.split('·')[0].trim()}</div>`:''}).join('');
+    const tagHTML=(t.tags||[]).map(tag=>`<div class="tc-tag">#${tag}</div>`).join('');
+    div.innerHTML=`${domHTML?`<div class="tc-domains">${domHTML}</div>`:''}<div class="tc-tags">${tagHTML}</div><div class="tc-text">${t.text}</div>${linked?`<div class="tc-link">↔ ${linked.tags[0]||'thought'}: ${linked.text.slice(0,50)}...</div>`:''}<div class="tc-date">${t.date}</div><button class="del-btn" onclick="delThought(${ri})">✕</button>`;
+    el.appendChild(div);
+  });
+}
+
+function delThought(i){S.thoughts.splice(i,1);sv();renderBrowse();}
 
 function exportArchive(){
-  const data={
-    exported:today(),
-    thoughts:state.thoughts,
-    logEntries:state.logEntries,
-    declarations:state.declarations,
-    timeline:state.timeline,
-  };
-  const text=JSON.stringify(data,null,2);
-  const blob=new Blob([text],{type:'application/json'});
-  const url=URL.createObjectURL(blob);
-  const a=document.createElement('a');
-  a.href=url; a.download='caelith-archive-'+Date.now()+'.json';
-  a.click(); URL.revokeObjectURL(url);
+  const data={exported:tod(),thoughts:S.thoughts,logEntries:S.logEntries,declarations:S.declarations,timeline:S.timeline,userTags:S.userTags};
+  const blob=new Blob([JSON.stringify(data,null,2)],{type:'application/json'});
+  const url=URL.createObjectURL(blob);const a=document.createElement('a');a.href=url;a.download='caelith-archive-'+Date.now()+'.json';a.click();URL.revokeObjectURL(url);
 }
 
 // WEB
 function renderWeb(){
-  const canvas=document.getElementById('web-canvas');
-  const empty=document.getElementById('web-empty');
-  const tooltip=document.getElementById('web-tooltip');
-  if(!canvas) return;
-  const thoughts=state.thoughts;
-  if(thoughts.length<2){ empty.style.display='flex'; return; }
+  const canvas=document.getElementById('web-canvas');const empty=document.getElementById('web-empty');const tt=document.getElementById('web-tt');
+  if(!canvas)return;
+  if(S.thoughts.length<2){empty.style.display='flex';return;}
   empty.style.display='none';
   const ctx=canvas.getContext('2d');
-  const W=canvas.offsetWidth, H=canvas.offsetHeight;
-  canvas.width=W; canvas.height=H;
+  const W=canvas.offsetWidth,H=canvas.offsetHeight;
+  canvas.width=W;canvas.height=H;
 
-  // Count connections
-  const connCount={};
-  thoughts.forEach(t=>{ connCount[t.id]=(connCount[t.id]||0); if(t.linkedTo) { connCount[t.id]=(connCount[t.id]||0)+1; connCount[t.linkedTo]=(connCount[t.linkedTo]||0)+1; } });
-  const maxConn=Math.max(1,...Object.values(connCount));
+  // Connection count based on shared tags + explicit links
+  const connScore={};
+  S.thoughts.forEach(t=>{connScore[t.id]=connScore[t.id]||0;});
+  S.thoughts.forEach((a,ai)=>{
+    S.thoughts.forEach((b,bi)=>{
+      if(ai>=bi)return;
+      const shared=(a.tags||[]).filter(tag=>(b.tags||[]).includes(tag)).length;
+      if(shared>0||a.linkedTo===b.id||b.linkedTo===a.id){
+        connScore[a.id]=(connScore[a.id]||0)+shared+(a.linkedTo===b.id||b.linkedTo===a.id?2:0);
+        connScore[b.id]=(connScore[b.id]||0)+shared+(a.linkedTo===b.id||b.linkedTo===a.id?2:0);
+      }
+    });
+  });
+  const maxS=Math.max(1,...Object.values(connScore));
 
-  // Simple force-directed layout
-  const nodes=thoughts.map((t,i)=>({
-    ...t, x:W/2+(Math.cos(i/thoughts.length*Math.PI*2)*W*0.35), y:H/2+(Math.sin(i/thoughts.length*Math.PI*2)*H*0.35),
-    r:6+((connCount[t.id]||0)/maxConn)*10
+  const nodes=S.thoughts.map((t,i)=>({
+    ...t,x:W/2+Math.cos(i/S.thoughts.length*Math.PI*2)*W*.35,y:H/2+Math.sin(i/S.thoughts.length*Math.PI*2)*H*.32,
+    r:5+((connScore[t.id]||0)/maxS)*12
   }));
 
-  // Simple physics iterations
-  for(let iter=0;iter<60;iter++){
+  // Force layout
+  for(let iter=0;iter<80;iter++){
     nodes.forEach((a,ai)=>{
       nodes.forEach((b,bi)=>{
-        if(ai===bi) return;
-        const dx=a.x-b.x, dy=a.y-b.y, dist=Math.sqrt(dx*dx+dy*dy)||1;
-        const force=Math.max(0,(80-dist))/dist*0.4;
-        a.x+=dx*force; a.y+=dy*force;
+        if(ai===bi)return;
+        const dx=a.x-b.x,dy=a.y-b.y,dist=Math.sqrt(dx*dx+dy*dy)||1;
+        const f=Math.max(0,(90-dist))/dist*.35;
+        a.x+=dx*f;a.y+=dy*f;
       });
-      // Link attraction
-      if(a.linkedTo){
-        const b=nodes.find(n=>n.id===a.linkedTo);
-        if(b){ const dx=b.x-a.x,dy=b.y-a.y,dist=Math.sqrt(dx*dx+dy*dy)||1; const f=(dist-100)/dist*0.05; a.x+=dx*f; a.y+=dy*f; }
-      }
-      // Bounds
-      a.x=Math.max(a.r+10,Math.min(W-a.r-10,a.x));
-      a.y=Math.max(a.r+10,Math.min(H-a.r-10,a.y));
+      // Tag attraction
+      nodes.forEach((b,bi)=>{
+        if(nodes.indexOf(a)>=bi)return;
+        const shared=(a.tags||[]).filter(tag=>(b.tags||[]).includes(tag)).length;
+        if(shared>0){
+          const dx=b.x-a.x,dy=b.y-a.y,dist=Math.sqrt(dx*dx+dy*dy)||1;
+          const f=(dist-80)/dist*0.04*shared;
+          a.x+=dx*f;a.y+=dy*f;b.x-=dx*f;b.y-=dy*f;
+        }
+        if(a.linkedTo===b.id||b.linkedTo===a.id){
+          const dx=b.x-a.x,dy=b.y-a.y,dist=Math.sqrt(dx*dx+dy*dy)||1;
+          const f=(dist-60)/dist*0.08;
+          a.x+=dx*f;a.y+=dy*f;b.x-=dx*f;b.y-=dy*f;
+        }
+      });
+      a.x=Math.max(a.r+8,Math.min(W-a.r-8,a.x));
+      a.y=Math.max(a.r+8,Math.min(H-a.r-8,a.y));
     });
   }
 
   ctx.clearRect(0,0,W,H);
 
-  // Draw links
-  thoughts.forEach((t,i)=>{
-    if(!t.linkedTo) return;
-    const a=nodes[i], b=nodes.find(n=>n.id===t.linkedTo);
-    if(!b) return;
-    ctx.beginPath(); ctx.moveTo(a.x,a.y); ctx.lineTo(b.x,b.y);
-    ctx.strokeStyle='#C9A84C20'; ctx.lineWidth=1; ctx.stroke();
+  // Draw tag-based connections
+  S.thoughts.forEach((a,ai)=>{
+    const na=nodes[ai];
+    S.thoughts.forEach((b,bi)=>{
+      if(ai>=bi)return;
+      const nb=nodes[bi];
+      const shared=(a.tags||[]).filter(tag=>(b.tags||[]).includes(tag)).length;
+      const linked=a.linkedTo===b.id||b.linkedTo===a.id;
+      if(shared>0){ctx.beginPath();ctx.moveTo(na.x,na.y);ctx.lineTo(nb.x,nb.y);ctx.strokeStyle=`rgba(201,168,76,${0.05*shared})`;ctx.lineWidth=shared*.5;ctx.stroke();}
+      if(linked){ctx.beginPath();ctx.moveTo(na.x,na.y);ctx.lineTo(nb.x,nb.y);ctx.strokeStyle='#C9A84C35';ctx.lineWidth=1.5;ctx.stroke();}
+    });
   });
 
   // Draw nodes
   nodes.forEach(n=>{
-    const conn=connCount[n.id]||0;
-    const bright=conn/maxConn;
-    ctx.beginPath(); ctx.arc(n.x,n.y,n.r,0,Math.PI*2);
-    ctx.fillStyle=bright>0.5?'#C9A84C':'#3a3028';
-    if(bright>0.5){ ctx.shadowColor='#C9A84C'; ctx.shadowBlur=10; }
-    ctx.fill(); ctx.shadowBlur=0;
-    ctx.strokeStyle='#C9A84C30'; ctx.lineWidth=1; ctx.stroke();
+    const bright=(connScore[n.id]||0)/maxS;
+    ctx.shadowBlur=bright>0.4?12:0;ctx.shadowColor='#C9A84C';
+    ctx.beginPath();ctx.arc(n.x,n.y,n.r,0,Math.PI*2);
+    ctx.fillStyle=bright>0.6?'#C9A84C':bright>0.3?'#6a5a30':'#2a2318';
+    ctx.fill();ctx.shadowBlur=0;
+    ctx.strokeStyle='#C9A84C25';ctx.lineWidth=1;ctx.stroke();
   });
 
-  // Hover tooltip
   canvas.onmousemove=canvas.ontouchmove=function(e){
     const rect=canvas.getBoundingClientRect();
-    const clientX=e.touches?e.touches[0].clientX:e.clientX;
-    const clientY=e.touches?e.touches[0].clientY:e.clientY;
-    const mx=(clientX-rect.left)*(W/rect.width);
-    const my=(clientY-rect.top)*(H/rect.height);
+    const cx=e.touches?e.touches[0].clientX:e.clientX;
+    const cy=e.touches?e.touches[0].clientY:e.clientY;
+    const mx=(cx-rect.left)*(W/rect.width),my=(cy-rect.top)*(H/rect.height);
     let hit=null;
-    nodes.forEach(n=>{ if(Math.sqrt((mx-n.x)**2+(my-n.y)**2)<n.r+4) hit=n; });
+    nodes.forEach(n=>{if(Math.sqrt((mx-n.x)**2+(my-n.y)**2)<n.r+6)hit=n;});
     if(hit){
-      tooltip.style.display='block';
-      tooltip.style.left=Math.min(clientX-rect.left+10,rect.width-210)+'px';
-      tooltip.style.top=Math.max(clientY-rect.top-60,10)+'px';
-      document.getElementById('tt-tag').textContent=hit.tag.toUpperCase();
-      document.getElementById('tt-text').textContent=hit.text.slice(0,120)+(hit.text.length>120?'...':'');
-    } else { tooltip.style.display='none'; }
+      tt.style.display='block';
+      tt.style.left=Math.min(cx-rect.left+12,rect.width-210)+'px';
+      tt.style.top=Math.max(cy-rect.top-70,8)+'px';
+      document.getElementById('wtt-tag').textContent=(hit.tags||[]).join(' · ').toUpperCase();
+      document.getElementById('wtt-txt').textContent=hit.text.slice(0,110)+(hit.text.length>110?'...':'');
+    }else{tt.style.display='none';}
   };
-  canvas.onmouseleave=()=>tooltip.style.display='none';
+  canvas.onmouseleave=()=>tt.style.display='none';
 }
 
 // LOG
-const LOG_TAGS_LIST=['Decision','Observation','Cost','Understanding','Agency','Caelith'];
 function renderLog(){
-  const tagRow=document.getElementById('log-tag-row'); if(!tagRow) return;
-  tagRow.innerHTML='';
-  LOG_TAGS_LIST.forEach(t=>{
-    const btn=document.createElement('button');
-    btn.className='btn-ghost'+(state.selectedLogTag===t?' active':'');
-    btn.style.cssText=state.selectedLogTag===t?'border-color:var(--gold-dim);color:var(--gold)':'';
-    btn.textContent=t;
-    btn.onclick=()=>{ state.selectedLogTag=state.selectedLogTag===t?'':t; renderLog(); };
-    tagRow.appendChild(btn);
+  const tr=document.getElementById('log-tag-row');if(!tr)return;
+  tr.innerHTML='';
+  LOG_TAGS.forEach(t=>{
+    const btn=document.createElement('button');btn.className='log-tag-btn'+(S.selLogTag===t?' sel':'');
+    btn.textContent=t;btn.onclick=()=>{S.selLogTag=S.selLogTag===t?'':t;renderLog();};tr.appendChild(btn);
   });
-  const list=document.getElementById('log-list'); if(!list) return;
-  if(!state.logEntries.length){ list.innerHTML='<div style="font-size:13px;color:var(--rune);font-style:italic;text-align:center;padding:32px 0">No entries yet.</div>'; return; }
-  list.innerHTML='';
-  [...state.logEntries].reverse().forEach((e,i)=>{
-    const realIdx=state.logEntries.length-1-i;
-    const el=document.createElement('div');
-    el.className='thought-entry';
-    el.innerHTML=`<div class="thought-tag">${e.tag||'CAELITH'}</div><div class="thought-text">${e.text}</div><div class="thought-date">${e.date}</div><button class="thought-delete" onclick="deleteLog(${realIdx})">✕</button>`;
-    list.appendChild(el);
+  const el=document.getElementById('log-list');if(!el)return;
+  if(!S.logEntries.length){el.innerHTML='<div style="font-size:12px;color:var(--rune);font-style:italic;text-align:center;padding:28px 0">No entries yet.</div>';return;}
+  el.innerHTML='';
+  [...S.logEntries].reverse().forEach((e,i)=>{
+    const ri=S.logEntries.length-1-i;
+    const div=document.createElement('div');div.className='log-entry';
+    div.innerHTML=`<div class="log-tag-lbl">${e.tag||'CAELITH'}</div><div class="log-txt">${e.text}</div><div class="log-date">${e.date}</div><button class="del-btn" onclick="delLog(${ri})">✕</button>`;
+    el.appendChild(div);
   });
 }
-function saveLog(){
-  const input=document.getElementById('log-input'); if(!input) return;
-  const text=input.value.trim(); if(!text) return;
-  state.logEntries.push({id:uid(),text,tag:state.selectedLogTag||'CAELITH',date:today()});
-  input.value=''; save(); showToast('✦ Entry sealed'); renderLog();
-}
-function deleteLog(idx){ state.logEntries.splice(idx,1); save(); renderLog(); }
+function saveLog(){const inp=document.getElementById('log-inp');const t=inp.value.trim();if(!t)return;S.logEntries.push({id:uid(),text:t,tag:S.selLogTag||'CAELITH',date:tod()});inp.value='';sv();toast('✦ Entry sealed');renderLog();}
+function delLog(i){S.logEntries.splice(i,1);sv();renderLog();}
 
-// ═══════════════════════════════════════════
-// DEVELOPMENT
-// ═══════════════════════════════════════════
-function switchDevTab(tab){
-  state.devTab=tab;
-  document.querySelectorAll('.dev-tab').forEach((b,i)=>{ b.classList.toggle('active',['skills','goals','timeline'][i]===tab); });
-  document.querySelectorAll('.dev-panel').forEach(p=>p.classList.remove('active'));
-  document.getElementById('dev-'+tab).classList.add('active');
-  if(tab==='skills') renderSkills();
-  if(tab==='goals') renderGoals();
-  if(tab==='timeline') renderTimeline();
+// ═══════════════ BUILD ═══════════════
+function buildTab(t){
+  S.buildTab=t;
+  document.querySelectorAll('#screen-build .tab').forEach((b,i)=>b.classList.toggle('active',['skills','goals','timeline'][i]===t));
+  document.querySelectorAll('#screen-build .panel').forEach(p=>p.classList.remove('active'));
+  document.getElementById('build-'+t).classList.add('active');
+  if(t==='skills')renderSkills();if(t==='goals')renderGoals();if(t==='timeline')renderTimeline();
 }
-function renderDev(){ renderSkills(); }
+function renderBuild(){renderSkills();}
 
 function renderSkills(){
-  const list=document.getElementById('skill-list'); if(!list) return;
-  if(!state.skills.length){ list.innerHTML='<div style="font-size:13px;color:var(--rune);font-style:italic;text-align:center;padding:32px 0">No skills added yet.</div>'; return; }
-  list.innerHTML='';
-  state.skills.forEach((sk,i)=>{
-    const el=document.createElement('div');
-    el.className='skill-card';
-    el.innerHTML=`
-      <div class="skill-head">
-        <div>
-          <div class="skill-name">${sk.name}</div>
-          <div class="skill-category">${sk.category}</div>
-        </div>
-        <div class="skill-priority${sk.priority==='high'?' high':''}">${sk.priority==='high'?'HIGH PRIORITY':'STANDARD'}</div>
-      </div>
-      <div class="skill-bar-bg"><div class="skill-bar-fill" style="width:${sk.progress||0}%"></div></div>
-      <div class="skill-meta">${sk.progress||0}% · ${sk.milestones&&sk.milestones.length?sk.milestones.length+' milestones':'No milestones yet'}</div>
-      ${sk.note?`<div class="skill-note">${sk.note}</div>`:''}
-      <div class="skill-controls">
-        <button class="skill-btn" onclick="adjustSkill(${i},-10)">− 10%</button>
-        <button class="skill-btn" onclick="adjustSkill(${i},10)">+ 10%</button>
-        <button class="skill-btn" onclick="addMilestone(${i})">+ MILESTONE</button>
-        <button class="skill-btn" onclick="deleteSkill(${i})" style="color:#6b4a3a">REMOVE</button>
-      </div>
-    `;
-    list.appendChild(el);
+  const el=document.getElementById('skill-list');if(!el)return;
+  if(!S.skills.length){el.innerHTML='<div style="font-size:12px;color:var(--rune);font-style:italic;text-align:center;padding:28px 0">No skills added.</div>';return;}
+  el.innerHTML='';
+  S.skills.forEach((sk,i)=>{
+    const div=document.createElement('div');div.className='skill-card';
+    div.innerHTML=`<div class="sk-head"><div><div class="sk-name">${sk.name}</div><div class="sk-cat">${sk.category}</div></div><div class="sk-pri${sk.priority==='high'?' hi':''}">${sk.priority==='high'?'HIGH':''}</div></div><div class="bar-bg" style="margin-bottom:5px"><div class="bar-fill" style="width:${sk.progress||0}%"></div></div><div style="font-size:9px;color:var(--rune);font-style:italic;margin-bottom:6px">${sk.progress||0}% · ${sk.milestones?.length||0} milestones</div>${sk.note?`<div class="sk-note">${sk.note}</div>`:''}<div class="sk-btns"><button class="sk-btn" onclick="adjSk(${i},-10)">−10%</button><button class="sk-btn" onclick="adjSk(${i},10)">+10%</button><button class="sk-btn" onclick="addMs(${i})">+MILESTONE</button><button class="sk-btn" onclick="delSk(${i})" style="color:#6b4a3a">REMOVE</button></div>`;
+    el.appendChild(div);
   });
 }
-function adjustSkill(i,delta){ state.skills[i].progress=Math.max(0,Math.min(100,(state.skills[i].progress||0)+delta)); save(); renderSkills(); }
-function addMilestone(i){ const m=prompt('Milestone achieved:'); if(m){ if(!state.skills[i].milestones) state.skills[i].milestones=[]; state.skills[i].milestones.push({text:m,date:today()}); save(); renderSkills(); showToast('✦ Milestone marked'); } }
-function deleteSkill(i){ if(confirm('Remove this skill?')){ state.skills.splice(i,1); save(); renderSkills(); } }
-function addSkill(){
-  const name=document.getElementById('skill-name').value.trim(); if(!name) return;
-  const category=document.getElementById('skill-category').value.trim()||'General';
-  const priority=document.getElementById('skill-priority').value;
-  const note=document.getElementById('skill-note').value.trim();
-  state.skills.push({id:uid(),name,category,priority,progress:0,note,milestones:[]});
-  document.getElementById('skill-name').value='';
-  document.getElementById('skill-category').value='';
-  document.getElementById('skill-note').value='';
-  save(); showToast('✦ Skill added'); renderSkills();
-}
+function adjSk(i,d){S.skills[i].progress=Math.max(0,Math.min(100,(S.skills[i].progress||0)+d));sv();renderSkills();}
+function addMs(i){const m=prompt('Milestone:');if(m){if(!S.skills[i].milestones)S.skills[i].milestones=[];S.skills[i].milestones.push({text:m,date:tod()});sv();renderSkills();toast('✦ Milestone marked');}}
+function delSk(i){if(confirm('Remove?')){S.skills.splice(i,1);sv();renderSkills();}}
+function addSkill(){const n=document.getElementById('sk-name').value.trim();if(!n)return;S.skills.push({id:uid(),name:n,category:document.getElementById('sk-cat').value.trim()||'General',priority:document.getElementById('sk-pri').value,progress:0,note:document.getElementById('sk-note').value.trim(),milestones:[]});document.getElementById('sk-name').value='';document.getElementById('sk-cat').value='';document.getElementById('sk-note').value='';sv();toast('✦ Skill added');renderSkills();}
 
 function renderGoals(){
-  const list=document.getElementById('goal-list'); if(!list) return;
-  if(!state.goals.length){ list.innerHTML='<div style="font-size:13px;color:var(--rune);font-style:italic;text-align:center;padding:32px 0">No goals set yet.</div>'; return; }
-  list.innerHTML='';
-  state.goals.forEach((g,i)=>{
-    const el=document.createElement('div');
-    el.className='goal-card';
-    el.innerHTML=`
-      <div class="goal-head">
-        <div class="goal-name${g.done?' ':''}\" style="${g.done?'color:var(--gold)':''}">${g.done?'✦ ':''}${g.name}</div>
-        <div class="goal-timeframe">${g.timeframe||''}</div>
-      </div>
-      ${g.desc?`<div class="goal-desc">${g.desc}</div>`:''}
-      <div class="goal-check">
-        <div class="goal-checkbox${g.done?' done':''}" onclick="toggleGoal(${i})">${g.done?'✦':''}</div>
-        <span style="font-size:12px;color:var(--rune)">${g.done?'Achieved':'Mark complete'}</span>
-      </div>
-      <button class="goal-delete" onclick="deleteGoal(${i})">✕</button>
-    `;
-    list.appendChild(el);
+  const el=document.getElementById('goal-list');if(!el)return;
+  if(!S.goals.length){el.innerHTML='<div style="font-size:12px;color:var(--rune);font-style:italic;text-align:center;padding:28px 0">No goals set.</div>';return;}
+  el.innerHTML='';
+  S.goals.forEach((g,i)=>{
+    const div=document.createElement('div');div.className='goal-card';
+    div.innerHTML=`<div class="goal-head"><div class="goal-name" style="${g.done?'color:var(--gold)':''}">${g.done?'✦ ':''}${g.name}</div><div class="goal-tf">${g.timeframe||''}</div></div>${g.desc?`<div class="goal-desc">${g.desc}</div>`:''}<div class="goal-chk"><div class="chk-box${g.done?' done':''}" onclick="togGoal(${i})">${g.done?'✦':''}</div><span class="fl">${g.done?'Achieved':'Mark complete'}</span></div><button class="del-btn" onclick="delGoal(${i})">✕</button>`;
+    el.appendChild(div);
   });
 }
-function toggleGoal(i){ state.goals[i].done=!state.goals[i].done; if(state.goals[i].done) showToast('✦ Dýrr Sólu — Goal achieved'); save(); renderGoals(); }
-function deleteGoal(i){ if(confirm('Remove this goal?')){ state.goals.splice(i,1); save(); renderGoals(); } }
-function addGoal(){
-  const name=document.getElementById('goal-name').value.trim(); if(!name) return;
-  const timeframe=document.getElementById('goal-timeframe').value.trim();
-  const desc=document.getElementById('goal-desc').value.trim();
-  state.goals.push({id:uid(),name,timeframe,desc,done:false});
-  document.getElementById('goal-name').value='';
-  document.getElementById('goal-timeframe').value='';
-  document.getElementById('goal-desc').value='';
-  save(); showToast('✦ Goal set'); renderGoals();
-}
+function togGoal(i){S.goals[i].done=!S.goals[i].done;if(S.goals[i].done)toast('✦ Dýrr Sólu — achieved');sv();renderGoals();}
+function delGoal(i){if(confirm('Remove?')){S.goals.splice(i,1);sv();renderGoals();}}
+function addGoal(){const n=document.getElementById('gl-name').value.trim();if(!n)return;S.goals.push({id:uid(),name:n,timeframe:document.getElementById('gl-tf').value.trim(),desc:document.getElementById('gl-desc').value.trim(),done:false});document.getElementById('gl-name').value='';document.getElementById('gl-tf').value='';document.getElementById('gl-desc').value='';sv();toast('✦ Goal set');renderGoals();}
 
-function selectTimelineType(type){
-  state.selectedTimelineType=type;
-  document.querySelectorAll('.timeline-type-btn').forEach(b=>b.classList.toggle('selected',b.textContent.toLowerCase()===type));
-}
+function selTlType(t){S.selTlType=t;document.querySelectorAll('.tl-type-btn').forEach(b=>b.classList.toggle('sel',b.textContent.toLowerCase()===t));}
 function renderTimeline(){
-  const list=document.getElementById('timeline-list'); if(!list) return;
-  if(!state.timeline.length){ list.innerHTML='<div class="timeline-empty">The arc begins now. Mark what shifts.</div>'; return; }
-  list.innerHTML='';
-  [...state.timeline].reverse().forEach((item,i)=>{
-    const realIdx=state.timeline.length-1-i;
-    const isLandmark=item.type==='landmark'||item.type==='framework';
-    const el=document.createElement('div');
-    el.className='timeline-item';
-    el.innerHTML=`
-      <div class="timeline-dot-wrap"><div class="timeline-dot ${item.type}"></div></div>
-      <div class="timeline-content ${item.type}">
-        <div class="timeline-type-label">${item.type.toUpperCase()}</div>
-        <div class="timeline-text">${item.text}</div>
-        <div class="timeline-date">${item.date}</div>
-        <button class="timeline-delete" onclick="deleteTimeline(${realIdx})">✕</button>
-      </div>
-    `;
-    list.appendChild(el);
+  const el=document.getElementById('tl-list');if(!el)return;
+  if(!S.timeline.length){el.innerHTML='<div style="font-size:12px;color:var(--rune);font-style:italic;text-align:center;padding:28px 0">The arc begins now.</div>';return;}
+  el.innerHTML='';
+  [...S.timeline].reverse().forEach((item,i)=>{
+    const ri=S.timeline.length-1-i;
+    const div=document.createElement('div');div.className='tl-item';
+    div.innerHTML=`<div class="tl-dot-wrap"><div class="tl-dot ${item.type}"></div></div><div class="tl-content ${item.type}"><div class="tl-type">${item.type.toUpperCase()}</div><div class="tl-txt">${item.text}</div><div class="tl-date">${item.date}</div><button class="del-btn" onclick="delTl(${ri})">✕</button></div>`;
+    el.appendChild(div);
   });
 }
-function addTimeline(){
-  const input=document.getElementById('timeline-input'); if(!input) return;
-  const text=input.value.trim(); if(!text) return;
-  state.timeline.push({id:uid(),type:state.selectedTimelineType||'moment',text,date:today()});
-  input.value='';
-  save(); showToast('✦ Timeline marked'); renderTimeline();
-}
-function deleteTimeline(idx){ state.timeline.splice(idx,1); save(); renderTimeline(); }
+function addTimeline(){const inp=document.getElementById('tl-inp');const t=inp.value.trim();if(!t)return;S.timeline.push({id:uid(),type:S.selTlType||'moment',text:t,date:tod()});inp.value='';sv();toast('✦ Timeline marked');renderTimeline();}
+function delTl(i){S.timeline.splice(i,1);sv();renderTimeline();}
 
-// ═══════════════════════════════════════════
-// INIT
-// ═══════════════════════════════════════════
-load();
-const todayStr=new Date().toDateString();
-if(state.lastDayCheck!==todayStr){
-  if(state.lastDayCheck) DOMAINS.forEach(d=>{ state.domains[d.id]=(state.domains[d.id]||0)+1; });
-  state.lastDayCheck=todayStr; save();
-}
-showOpening();
-renderHome();
+// ═══════════════ INIT ═══════════════
+ld();
+const ts=new Date().toDateString();
+if(S.lastDayCheck!==ts){if(S.lastDayCheck)DOMAINS_DEF.forEach(d=>{S.domains[d.id]=(S.domains[d.id]||0)+1;});S.lastDayCheck=ts;sv();}
+showOpening();renderHome();
 </script>
 
 </body>
