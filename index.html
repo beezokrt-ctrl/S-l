@@ -18,9 +18,9 @@ html,body{height:100%;overflow:hidden;background:var(--bg2)}
 body{color:var(--light);font-family:'Crimson Text',Georgia,serif}
 body::before{content:'';position:fixed;inset:0;background:radial-gradient(ellipse at 50% -5%,#C9A84C0b 0%,transparent 55%);pointer-events:none;z-index:0}
 body::after{content:'';position:fixed;inset:0;background:url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.025'/%3E%3C/svg%3E");pointer-events:none;z-index:9998;opacity:.5}
-.app{position:fixed;inset:0;display:flex;flex-direction:column;z-index:1}
-.content{flex:1;overflow-y:auto;overflow-x:hidden;-webkit-overflow-scrolling:touch}
-.screen{max-width:520px;margin:0 auto;padding:22px 16px 100px;display:none}
+.app{position:fixed;inset:0;display:flex;flex-direction:column;z-index:1;overflow:hidden}
+.content{flex:1;min-height:0;overflow-y:auto;overflow-x:hidden;-webkit-overflow-scrolling:touch;}
+.screen{max-width:520px;margin:0 auto;padding:22px 16px 100px;display:none;}
 .screen.active{display:block}
 /* NAV */
 .nav{background:#09080680;backdrop-filter:blur(28px);-webkit-backdrop-filter:blur(28px);border-top:1px solid #1a1710;display:flex;flex-shrink:0;z-index:10}
@@ -453,7 +453,7 @@ textarea.inp{resize:none;line-height:1.7}
     <div class="m-ttl" id="m-ttl"></div>
     <div class="m-sub" id="m-sub"></div>
     <div class="m-verse" id="m-verse"></div>
-    <button class="m-close" onclick="closeModal()">BEAR THE LIGHT</button>
+    <button class="m-close" id="m-close" onclick="closeModal()">BEAR THE LIGHT</button>
   </div>
 </div>
 
@@ -481,12 +481,11 @@ textarea.inp{resize:none;line-height:1.7}
       <div class="arc-bar-bg"><div class="arc-bar-fill" id="h-bar" style="width:0%"></div></div>
       <div class="stage-cap" id="h-cap"></div>
     </div>
-    <div class="carve-strip" onclick="quickCarve()">
-      <div class="carve-ico">📜</div>
-    <!-- WEEKLY INTENTION -->
     <div id="intention-block" style="margin:0 0 14px 0">
       <div id="intention-display" onclick="editIntention()" style="cursor:pointer"></div>
     </div>
+    <div class="carve-strip" onclick="quickCarve()">
+      <div class="carve-ico">📜</div>
       <div><div class="carve-lbl">CARVE A DECLARATION</div><div style="font-size:10px;color:var(--muted);font-style:italic;margin-top:2px">Speak what you will answer for · Undir Sólu</div></div>
     </div>
     <div class="sl" id="vigil-sl">CAELITH · DOMAIN VIGIL</div>
@@ -698,7 +697,59 @@ textarea.inp{resize:none;line-height:1.7}
       <button class="m-close" onclick="qslClose()">CANCEL</button>
     </div>
   </div>
+
+```
+<!-- BARDAGI MARTIAL LOG -->
+<div class="panel" id="train-martial">
+  <div class="sl">BARDAGI · MARTIAL SESSION</div>
+  <div style="font-size:12px;color:var(--dim);font-style:italic;margin-bottom:14px;line-height:1.7">Drilling, technique, sparring, conditioning. Separate from strength training.</div>
+
+  <!-- Session type -->
+  <div class="sl" style="margin-bottom:8px">SESSION TYPE</div>
+  <div style="display:flex;gap:6px;flex-wrap:wrap;margin-bottom:14px" id="martial-type-row">
+    <button class="rec-check-btn" onclick="martialTypeToggle('drilling')">Drilling</button>
+    <button class="rec-check-btn" onclick="martialTypeToggle('sparring')">Sparring</button>
+    <button class="rec-check-btn" onclick="martialTypeToggle('conditioning')">Conditioning</button>
+    <button class="rec-check-btn" onclick="martialTypeToggle('technique')">Technique</button>
+    <button class="rec-check-btn" onclick="martialTypeToggle('forms')">Forms</button>
+    <button class="rec-check-btn" onclick="martialTypeToggle('weapons')">Weapons</button>
+  </div>
+
+  <!-- Rounds structure -->
+  <div class="sl" style="margin-bottom:8px">ROUNDS</div>
+  <div style="display:flex;gap:8px;margin-bottom:14px;align-items:center">
+    <input class="inp" id="martial-rounds" type="number" min="1" max="30" placeholder="# rounds" style="width:90px">
+    <span style="color:var(--muted);font-size:11px">×</span>
+    <input class="inp" id="martial-round-min" type="number" min="1" max="10" placeholder="min" style="width:70px">
+    <span style="color:var(--muted);font-size:11px">min each</span>
+  </div>
+
+  <!-- What was worked -->
+  <label class="form-lbl">WHAT WAS DRILLED / WORKED</label>
+  <textarea class="inp" id="martial-content" rows="3" placeholder="Techniques, combinations, positions, what was sharp, what broke down..."></textarea>
+
+  <!-- Intensity -->
+  <div class="sl" style="margin:10px 0 8px">INTENSITY</div>
+  <div style="display:flex;gap:6px;margin-bottom:14px">
+    <button class="int-btn" id="mart-int-light" onclick="martialIntToggle('light')">LIGHT</button>
+    <button class="int-btn sel-solid" id="mart-int-solid" onclick="martialIntToggle('solid')">SOLID</button>
+    <button class="int-btn" id="mart-int-war" onclick="martialIntToggle('war')">WAR</button>
+  </div>
+
+  <!-- Session note -->
+  <label class="form-lbl">SESSION NOTE</label>
+  <textarea class="inp" id="martial-note" rows="2" placeholder="What was Hugr doing? Any key moment, breakdown, or insight..."></textarea>
+
+  <button class="btn-gold" style="margin-top:12px;width:100%" onclick="saveMartial()">✦ SEAL BARDAGI SESSION</button>
+
+  <!-- Log -->
+  <div class="sl" style="margin-top:20px">RECENT SESSIONS</div>
+  <div id="martial-log-list"></div>
+</div>
+```
+
   <!-- FRAMEWORK -->
+
   <div class="screen" id="screen-fw">
     <div class="fw-crown"><div class="fw-ico">☀️</div><div class="fw-ttl">Undir Sólu</div><div class="fw-sub">The Foundation · Carved as Stone</div></div>
     <div class="tabs">
@@ -756,56 +807,6 @@ Nothing under the sun will stop you.</div>
 <button class="btn-gold" style="margin-top:8px" onclick="saveDecl()">✦ CARVE IT</button>
 </div>
 
-```
-<!-- BARDAGI MARTIAL LOG -->
-<div class="panel" id="train-martial">
-  <div class="sl">BARDAGI · MARTIAL SESSION</div>
-  <div style="font-size:12px;color:var(--dim);font-style:italic;margin-bottom:14px;line-height:1.7">Drilling, technique, sparring, conditioning. Separate from strength training.</div>
-
-  <!-- Session type -->
-  <div class="sl" style="margin-bottom:8px">SESSION TYPE</div>
-  <div style="display:flex;gap:6px;flex-wrap:wrap;margin-bottom:14px" id="martial-type-row">
-    <button class="rec-check-btn" onclick="martialTypeToggle('drilling')">Drilling</button>
-    <button class="rec-check-btn" onclick="martialTypeToggle('sparring')">Sparring</button>
-    <button class="rec-check-btn" onclick="martialTypeToggle('conditioning')">Conditioning</button>
-    <button class="rec-check-btn" onclick="martialTypeToggle('technique')">Technique</button>
-    <button class="rec-check-btn" onclick="martialTypeToggle('forms')">Forms</button>
-    <button class="rec-check-btn" onclick="martialTypeToggle('weapons')">Weapons</button>
-  </div>
-
-  <!-- Rounds structure -->
-  <div class="sl" style="margin-bottom:8px">ROUNDS</div>
-  <div style="display:flex;gap:8px;margin-bottom:14px;align-items:center">
-    <input class="inp" id="martial-rounds" type="number" min="1" max="30" placeholder="# rounds" style="width:90px">
-    <span style="color:var(--muted);font-size:11px">×</span>
-    <input class="inp" id="martial-round-min" type="number" min="1" max="10" placeholder="min" style="width:70px">
-    <span style="color:var(--muted);font-size:11px">min each</span>
-  </div>
-
-  <!-- What was worked -->
-  <label class="form-lbl">WHAT WAS DRILLED / WORKED</label>
-  <textarea class="inp" id="martial-content" rows="3" placeholder="Techniques, combinations, positions, what was sharp, what broke down..."></textarea>
-
-  <!-- Intensity -->
-  <div class="sl" style="margin:10px 0 8px">INTENSITY</div>
-  <div style="display:flex;gap:6px;margin-bottom:14px">
-    <button class="int-btn" id="mart-int-light" onclick="martialIntToggle('light')">LIGHT</button>
-    <button class="int-btn sel-solid" id="mart-int-solid" onclick="martialIntToggle('solid')">SOLID</button>
-    <button class="int-btn" id="mart-int-war" onclick="martialIntToggle('war')">WAR</button>
-  </div>
-
-  <!-- Session note -->
-  <label class="form-lbl">SESSION NOTE</label>
-  <textarea class="inp" id="martial-note" rows="2" placeholder="What was Hugr doing? Any key moment, breakdown, or insight..."></textarea>
-
-  <button class="btn-gold" style="margin-top:12px;width:100%" onclick="saveMartial()">✦ SEAL BARDAGI SESSION</button>
-
-  <!-- Log -->
-  <div class="sl" style="margin-top:20px">RECENT SESSIONS</div>
-  <div id="martial-log-list"></div>
-</div>
-```
-
   <!-- ARCHIVE -->
 
   <div class="screen" id="screen-arch">
@@ -848,6 +849,7 @@ Nothing under the sun will stop you.</div>
         <input class="inp" id="arch-search" placeholder="Search thoughts..." oninput="renderBrowse()">
         <button class="btn-g" onclick="exportArchive()" title="Full backup — all data">↓ BACKUP</button>
         <button class="btn-g" onclick="importBackup()" title="Restore from backup">↑ RESTORE</button>
+        <div id="backup-status" style="font-size:9px;color:var(--muted);font-style:italic;margin-top:4px;text-align:right"></div>
       </div>
       <div id="thought-streak-display"></div>
       <div id="browse-count" style="font-family:Cinzel,serif;font-size:8px;color:var(--muted);letter-spacing:1px;margin-bottom:10px"></div>
@@ -868,6 +870,18 @@ Nothing under the sun will stop you.</div>
       <select class="form-sel" id="log-link-sel" style="margin-bottom:8px"></select>
       <button class="btn-gold" onclick="saveLog()">✦ SEAL THE ENTRY</button>
       <div style="margin-top:18px" id="log-list"></div>
+    </div>
+    <div class="panel" id="arch-stream">
+      <div class="sl" style="margin-bottom:10px">ACTIVITY STREAM</div>
+      <div id="stream-filter-row" style="display:flex;gap:4px;flex-wrap:wrap;margin-bottom:12px">
+        <button class="rec-check-btn on" onclick="streamFilter('all')">ALL</button>
+        <button class="rec-check-btn" onclick="streamFilter('train')">TRAIN</button>
+        <button class="rec-check-btn" onclick="streamFilter('thought')">THOUGHT</button>
+        <button class="rec-check-btn" onclick="streamFilter('language')">LANGUAGE</button>
+        <button class="rec-check-btn" onclick="streamFilter('skill')">SKILL</button>
+        <button class="rec-check-btn" onclick="streamFilter('recovery')">RECOVERY</button>
+      </div>
+      <div id="stream-list"></div>
     </div>
   </div>
 
@@ -1021,23 +1035,23 @@ function hugrObserve(){
 
   // 1. Training hard, mind silent
   if(trainDays>=4&&thoughtDays===0){
-    observations.push({ico:'⚔️',ttl:'HUGR NOTICES',msg:'The body has moved '+trainDays+' days this week. The mind has been silent. Not a problem — but Hugr asks: what has the training been producing that hasn't been sealed yet? Something is there. Find it before it fades.'});
+    observations.push({ico:'⚔️',ttl:'HUGR NOTICES',msg:'The body has moved '+trainDays+' days this week. The mind has been silent. Not a problem — but Hugr asks: what has the training been producing that hasn\'t been sealed yet? Something is there. Find it before it fades.'});
   }
 
   // 2. Mind active, body dark
   if(thoughtDays>=5&&(S.domains.body||0)>=4){
-    observations.push({ico:'🧠',ttl:'HUGR NOTICES',msg:'Five days of thought sealed this week. The body domain has been dark for '+(S.domains.body||0)+' days. The mind is running ahead of the body. They're not separate in Caelith. What would it take to move both in the same day?'});
+    observations.push({ico:'🧠',ttl:'HUGR NOTICES',msg:'Five days of thought sealed this week. The body domain has been dark for '+(S.domains.body||0)+' days. The mind is running ahead of the body. They\'re not separate in Caelith. What would it take to move both in the same day?'});
   }
 
   // 3. Three+ domains dark
   if(darkDomains.length>=3){
     const names=darkDomains.slice(0,2).map(d=>domainNames[d]||d).join(' and ');
-    observations.push({ico:'🐺',ttl:'SKÖLL IS CLOSE',msg:names+' have been dark for a week or more. Not asking you to explain it. Asking you to look at it honestly. Is this rest or is this drift? The vigil doesn't judge. It just shows what's true.'});
+    observations.push({ico:'🐺',ttl:'SKÖLL IS CLOSE',msg:names+' have been dark for a week or more. Not asking you to explain it. Asking you to look at it honestly. Is this rest or is this drift? The vigil doesn\'t judge. It just shows what\'s true.'});
   }
 
   // 4. Three war sessions
   if(warSessions>=3){
-    observations.push({ico:'🔥',ttl:'HUGR NOTICES',msg:'Three war sessions this week. The body is being pushed hard. Make sure the recovery is real — not laziness dressed as rest, actual recovery. The wolf doesn't stop because you're tired. But neither should you be reckless.'});
+    observations.push({ico:'🔥',ttl:'HUGR NOTICES',msg:'Three war sessions this week. The body is being pushed hard. Make sure the recovery is real — not laziness dressed as rest, actual recovery. The wolf doesn\'t stop because you\'re tired. But neither should you be reckless.'});
   }
 
   // 5. Last log tagged Cost, silence after
@@ -1052,21 +1066,21 @@ function hugrObserve(){
   // 6. Archive milestone
   const archCount=(S.thoughts||[]).length;
   if(archCount>0&&archCount%10===0&&daysSinceLastHugr>=4){
-    observations.push({ico:'✨',ttl:'THE ARCHIVE SPEAKS',msg:archCount+' thoughts sealed. The web is getting complex. Go look at it — not to add anything, just to see what's there. Sometimes the pattern is only visible from outside.'});
+    observations.push({ico:'✨',ttl:'THE ARCHIVE SPEAKS',msg:archCount+' thoughts sealed. The web is getting complex. Go look at it — not to add anything, just to see what\'s there. Sometimes the pattern is only visible from outside.'});
   }
 
   // 7. Language neglect — had sessions before, now stopped
   const langDays=S.domains&&(S.domains.tongue||0);
   const totalLang=(S.langLog||[]).length;
   if(langDays>=10&&totalLang>0){
-    observations.push({ico:'🌏',ttl:'TUNGA FADES',msg:'Mandarin hasn't been touched in '+langDays+' days. Language is the one skill that actively regresses without contact. Ten minutes of characters today is better than nothing. The tongue domain is fading.'});
+    observations.push({ico:'🌏',ttl:'TUNGA FADES',msg:'Mandarin hasn\'t been touched in '+langDays+' days. Language is the one skill that actively regresses without contact. Ten minutes of characters today is better than nothing. The tongue domain is fading.'});
   }
 
   // 8. Low energy recovery pattern
   const recentRec=(S.recoveryLog||[]).slice(-5);
   const lowEnergy=recentRec.filter(r=>r.energy==='low'||r.energy==='medium').length;
   if(lowEnergy>=3&&trainDays>=3){
-    observations.push({ico:'⚠️',ttl:'HUGR NOTICES',msg:'Three or more recent recovery logs show low or medium energy alongside heavy training. The body is absorbing but make sure it's actually recovering. Training through accumulated fatigue is different from training through discomfort.'});
+    observations.push({ico:'⚠️',ttl:'HUGR NOTICES',msg:'Three or more recent recovery logs show low or medium energy alongside heavy training. The body is absorbing but make sure it\'s actually recovering. Training through accumulated fatigue is different from training through discomfort.'});
   }
 
   // 9. Long streak recognition
@@ -1082,20 +1096,20 @@ function hugrObserve(){
       const last=skSess[skSess.length-1];
       const daysSince=Math.floor((now-new Date(last.iso))/(1000*60*60*24));
       if(daysSince>=14&&daysSinceLastHugr>=3){
-        observations.push({ico:'🐺',ttl:'SKÖLL WATCHES',msg:sk.name+' had momentum — '+skSess.length+' sessions logged. It's been '+daysSince+' days. Skills don't wait. They fade at the same rate they were built. One session to keep it alive.'});
+        observations.push({ico:'🐺',ttl:'SKÖLL WATCHES',msg:sk.name+' had momentum — '+skSess.length+' sessions logged. It\'s been '+daysSince+' days. Skills don\'t wait. They fade at the same rate they were built. One session to keep it alive.'});
       }
     }
   });
 
   // 11. All domains neglected — total drift
   if(neglectedDoms.length===6){
-    observations.push({ico:'🌑',ttl:'SKÖLL IS VERY CLOSE',msg:'Every domain has been silent this week. Not one action across the entire Caelith. This is not rest. Something is happening. You know what it is. The app can't reach you — only you can.'});
+    observations.push({ico:'🌑',ttl:'SKÖLL IS VERY CLOSE',msg:'Every domain has been silent this week. Not one action across the entire Caelith. This is not rest. Something is happening. You know what it is. The app can\'t reach you — only you can.'});
   }
 
   // 12. Only one domain active all week — imbalance
   if(activeDoms.size===1&&week.length>=5){
     const onlyDom=[...activeDoms][0];
-    observations.push({ico:'⚖️',ttl:'HUGR NOTICES',msg:'Every action this week has been in one domain — '+(domainNames[onlyDom]||onlyDom)+'. Caelith is six domains for a reason. The others aren't competing with it. They feed it.'});
+    observations.push({ico:'⚖️',ttl:'HUGR NOTICES',msg:'Every action this week has been in one domain — '+(domainNames[onlyDom]||onlyDom)+'. Caelith is six domains for a reason. The others aren\'t competing with it. They feed it.'});
   }
 
   // 13. Declaration silence — none in 30+ days
@@ -1104,20 +1118,20 @@ function hugrObserve(){
     const declDate=lastDecl.iso?new Date(lastDecl.iso):new Date(lastDecl.date);
     const daysSinceDecl=Math.floor((now-declDate)/(1000*60*60*24));
     if(daysSinceDecl>=30){
-      observations.push({ico:'⬡',ttl:'HUGR NOTICES',msg:'No declaration carved in '+daysSinceDecl+' days. Declarations aren't ceremony — they're the moment you make something binding. Something has shifted since the last one. Name it.'});
+      observations.push({ico:'⬡',ttl:'HUGR NOTICES',msg:'No declaration carved in '+daysSinceDecl+' days. Declarations aren\'t ceremony — they\'re the moment you make something binding. Something has shifted since the last one. Name it.'});
     }
   }
 
   // 14. No recovery logs with heavy training
   if(trainDays>=4&&recoveryLogs===0){
-    observations.push({ico:'◎',ttl:'HUGR NOTICES',msg:'Heavy training week — '+trainDays+' days of movement — and no recovery logged. The data is incomplete. Sleep, energy, nutrition — these aren't optional. They explain the sessions.'});
+    observations.push({ico:'◎',ttl:'HUGR NOTICES',msg:'Heavy training week — '+trainDays+' days of movement — and no recovery logged. The data is incomplete. Sleep, energy, nutrition — these aren\'t optional. They explain the sessions.'});
   }
 
   // 15. Stage approaching — within 50 XP
   const nextStage=Math.ceil(S.xp/LVL)*LVL;
   const xpToNext=nextStage-S.xp;
   if(xpToNext<=50&&xpToNext>0){
-    observations.push({ico:'⚡',ttl:'STAGE APPROACHING',msg:'You're '+xpToNext+' Ljós from the next stage. One solid session gets you there. The receipt is being prepared.'});
+    observations.push({ico:'⚡',ttl:'STAGE APPROACHING',msg:'You\'re '+xpToNext+' Ljós from the next stage. One solid session gets you there. The receipt is being prepared.'});
   }
 
   // Pick one observation to surface
@@ -1431,7 +1445,8 @@ function renderHome(){
   document.getElementById("h-bar").style.width=lvPct()+"%";
   document.getElementById("h-cap").textContent=(LVL-(S.xp%LVL))+" ljós to Stage "+roman(lv()+1)+(S.prestige>0?" · Prestige "+roman(S.prestige):"");
   document.getElementById("prestige-home").innerHTML=S.prestige>0?'<div class="prestige-strip"><div class="prestige-inner">✦ SÓLFRIÐR '+roman(S.prestige)+' · PRESTIGE</div></div>':"";
-  renderVigil();renderBadgesHome();renderDaysHome();
+  renderIntention();renderVigil();renderBadgesHome();renderDaysHome();renderStatsHome();
+  const ctx=getTrainingContext();const ds=document.getElementById('day-suggestion');if(ds)ds.textContent=ctx.note;
 }
 
 function renderVigil(){
@@ -1621,13 +1636,13 @@ function renderDecl(){
     el.appendChild(div);
   });
 }
-function saveDecl(){const inp=document.getElementById("decl-inp");const t=inp.value.trim();if(!t)return;S.declarations.push({id:uid(),text:t,date:tod()});inp.value="";gainXP(XP_VAL.declaration);sv();renderDecl();}
+function saveDecl(){const inp=document.getElementById("decl-inp");const t=inp.value.trim();if(!t)return;S.declarations.push({id:uid(),text:t,date:tod(),iso:new Date().toISOString()});inp.value="";gainXP(XP_VAL.declaration);streamWrite("declaration",{domain:"mind",xp:XP_VAL.declaration,note:t.slice(0,80)});autoTimeline("Declaration carved: "+t.slice(0,60)+(t.length>60?"...":""),"declaration");vigilReset("mind","solid");sv();renderDecl();}
 function delDecl(i){if(confirm("Remove?")){S.declarations.splice(i,1);sv();renderDecl();}}
 
 // ARCHIVE
 let selTags=[],selDomains=[];
 function archTab(t){
-  document.querySelectorAll("#screen-arch .tab").forEach((b,i)=>b.classList.toggle("active",["new","tags","browse","web","log"][i]===t));
+  document.querySelectorAll("#screen-arch .tab").forEach((b,i)=>b.classList.toggle("active",["new","tags","browse","web","log","stream"][i]===t));
   ["arch-new","arch-tags","arch-browse","arch-web","arch-log","arch-stream"].forEach(id=>{const el=document.getElementById(id);if(el)el.classList.remove("active");});
   document.getElementById("arch-"+t).classList.add("active");
   if(t==="new")renderNewForm();
@@ -1635,6 +1650,7 @@ function archTab(t){
   if(t==="browse")renderBrowse();
   if(t==="web")renderWeb();
   if(t==="log")renderLog();
+  if(t==="stream"){renderStream();}
 }
 function renderArch(){renderBackupStatus();renderNewForm();renderLog();}
 function renderNewForm(){
@@ -2130,7 +2146,7 @@ function buildStageReceipt(oldXP, newXP){
   const stageStart = Math.floor(oldXP / LVL) * LVL;
   
   // Snapshot: take stream entries from roughly this stage window
-  // Since we can't perfectly map XP to stream entries, we use the last N entries
+  // Since we can\'t perfectly map XP to stream entries, we use the last N entries
   // where N = entries since we were at stageStart XP
   // Approximate: use entries from last (stage duration in time) 
   // Better: store stageStartTime, use entries since then
@@ -2834,7 +2850,7 @@ function renderIntention(){
   if(intent){
     el.innerHTML='<div class="intention-set">'+intent+'</div>';
   } else {
-    el.innerHTML='<div class="intention-empty">+ SET THIS WEEK\'S INTENTION</div>';
+    el.innerHTML='<div class="intention-empty">+ SET THIS WEEK&#39;S INTENTION</div>';
   }
 }
 function editIntention(){
@@ -2869,7 +2885,7 @@ else{el.textContent=‘Last backup ‘+days+‘d ago · back up now’,el.style.
 }
 
 function checkBackupReminder(){
-if(!S.lastBackup)return; // They’ve never backed up — don’t nag on first use
+if(!S.lastBackup)return; // They've never backed up — don't nag on first use
 const streamSinceBackup=(S.stream||[]).filter(e=>new Date(e.iso)>new Date(S.lastBackup)).length;
 if(streamSinceBackup>=50){
 showClockAlert(‘💾’,‘BACK UP YOUR DATA’,streamSinceBackup+’ actions since your last backup. Your data only lives in this browser. One tap to export it to your files. Settings → ↓ BACKUP.’);
@@ -2879,7 +2895,7 @@ showClockAlert(‘💾’,‘BACK UP YOUR DATA’,streamSinceBackup+’ actions 
 // ── AUTO-TIMELINE ─────────────────────────────────────────────────────────────
 function autoTimeline(text, type){
 if(!S.timeline)S.timeline=[];
-// Don’t duplicate within same day
+// Don't duplicate within same day
 const today=new Date().toDateString();
 const exists=S.timeline.some(t=>t.text===text&&new Date(t.date||t.iso).toDateString()===today);
 if(exists)return;
@@ -2919,6 +2935,7 @@ const mm=m<10?‘0’+m:m;
 const ampm=h<12?‘AM’:‘PM’;
 const icons={dawn:‘🌅’,day:‘☀️’,evening:‘🌆’,night:‘🌙’};
 el.innerHTML=icons[period]+’ <span style="font-family:Cinzel,serif;font-size:11px;color:var(--gold);letter-spacing:2px">’+hh+’:’+mm+’ ‘+ampm+’</span> <span style="font-size:8px;color:var(--muted);letter-spacing:1px">’+period.toUpperCase()+’</span>’;
+const ctx=getTrainingContext();const ds=document.getElementById(‘day-suggestion’);if(ds)ds.textContent=ctx.note;
 }
 
 function checkTimeAlerts(){
@@ -2931,7 +2948,7 @@ if(!S.lastStageTime)S.lastStageTime=null;
 if(!S.clockAlerts)S.clockAlerts={};
 const todayKey=now.toDateString();
 
-// Evening check — 8pm, haven’t trained today
+// Evening check — 8pm, haven't trained today
 if(h===20&&!S.clockAlerts[‘evening_’+todayKey]){
 const trainedToday=(S.freeTrainLog||[]).some(e=>{
 const ed=e.iso?new Date(e.iso):new Date(e.date);return ed.toDateString()===todayKey;
@@ -3080,7 +3097,7 @@ setTimeout(()=>{
 const trainContent=document.getElementById(‘screen-train’);
 if(trainContent)initSwipe(trainContent,swipeTrainLeft,swipeTrainRight);
 },500);
-</script>
 
+</script>
 </body>
 </html>
