@@ -35,7 +35,7 @@ body::after{content:'';position:fixed;inset:0;background:url("data:image/svg+xml
 .op-runes{font-size:9px;color:var(--muted);letter-spacing:5px;margin-bottom:16px;animation:fi 2s .5s both}
 .op-verse{font-size:15px;color:var(--dim);font-style:italic;line-height:2.3;margin-bottom:24px;white-space:pre-line;animation:fi 2s 1s both}
 .op-name{font-family:'Cinzel',serif;font-size:11px;color:var(--gold);letter-spacing:3px;margin-bottom:36px;animation:fi 2s 1.6s both}
-.op-btn{background:none;border:1px solid var(--gold-dim);color:var(--gold);padding:13px 32px;font-family:'Cinzel',serif;font-size:10px;letter-spacing:3px;cursor:pointer;animation:fi 2s 2.1s both}
+.op-btn{background:none;border:1px solid var(--gold-dim);color:var(--gold);padding:13px 48px;font-family:'Cinzel',serif;font-size:10px;letter-spacing:3px;cursor:pointer;animation:fi 2s 2.1s both;transition:all .3s}.op-btn:active{background:#C9A84C15;border-color:var(--gold)}
 @keyframes rise{from{opacity:0;transform:translateY(20px)}to{opacity:1;transform:translateY(0)}}
 @keyframes fi{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:translateY(0)}}
 /* MODAL */
@@ -85,7 +85,7 @@ textarea.inp{resize:none;line-height:1.7}
 .stage-card{background:var(--glass);border:1px solid #C9A84C10;padding:16px;margin-bottom:20px}
 .stage-row{display:flex;justify-content:space-between;align-items:flex-end;margin-bottom:12px}
 .stage-lbl{font-family:'Cinzel',serif;font-size:8px;color:var(--muted);letter-spacing:2px;margin-bottom:4px}
-.stage-val{font-family:'Cinzel',serif;font-size:28px;font-weight:700;color:var(--gold);line-height:1}
+.stage-val{font-family:'Cinzel',serif;font-size:32px;font-weight:700;color:var(--gold);line-height:1;text-shadow:0 0 20px #C9A84C30}
 .stage-sub{font-size:10px;color:var(--muted);font-style:italic;margin-top:3px}
 .arc-bar-bg{height:2px;background:#111009;margin-bottom:6px}
 .arc-bar-fill{height:2px;background:linear-gradient(90deg,var(--gold-dim),var(--sun));transition:width 1s ease}
@@ -97,8 +97,8 @@ textarea.inp{resize:none;line-height:1.7}
 .v-body{flex:1;min-width:0}
 .v-name{font-family:'Cinzel',serif;font-size:9.5px;color:var(--light);letter-spacing:.5px;margin-bottom:3px}
 .v-note{font-size:9px;color:var(--muted);font-style:italic;margin-bottom:3px}
-.v-bar-bg{height:2px;background:#0a0900;margin-bottom:3px}
-.v-bar-fill{height:2px;transition:width 1.2s ease,opacity .8s ease}
+.v-bar-bg{height:3px;background:#0a0900;margin-bottom:3px}
+.v-bar-fill{height:3px;transition:width 1.2s ease,opacity .8s ease}
 .v-status{font-size:9px;color:var(--muted);font-style:italic}
 .v-days{font-family:'Cinzel',serif;font-size:8px;color:var(--rune);flex-shrink:0}
 /* DAY CARDS */
@@ -127,7 +127,7 @@ textarea.inp{resize:none;line-height:1.7}
 .fl-date{font-size:9px;color:var(--rune)}
 .xp-pill{display:inline-block;background:#C9A84C10;border:1px solid var(--gold-dim);color:var(--gold);font-family:'Cinzel',serif;font-size:7px;letter-spacing:1px;padding:2px 7px;margin-top:4px}
 .intensity-row{display:flex;gap:6px;margin:10px 0}
-.int-btn{flex:1;padding:10px 4px;background:none;border:1px solid var(--border);color:var(--muted);font-family:'Cinzel',serif;font-size:8px;letter-spacing:1px;cursor:pointer;transition:all .2s;text-align:center}
+.int-btn{flex:1;padding:12px 4px;background:none;border:1px solid var(--border);color:var(--muted);font-family:'Cinzel',serif;font-size:8px;letter-spacing:1px;cursor:pointer;transition:all .2s;text-align:center}
 .int-btn.sel-light{border-color:#6a8a6a;color:#6a8a6a;background:#6a8a6a0a}
 .int-btn.sel-solid{border-color:var(--gold-dim);color:var(--gold);background:#C9A84C0a}
 .int-btn.sel-war{border-color:#C0522A;color:#E8723A;background:#C0522A0a}
@@ -157,8 +157,8 @@ textarea.inp{resize:none;line-height:1.7}
 .rest-strip.on{display:flex}
 .rest-txt{font-family:'Cinzel',serif;font-size:11px;color:var(--gold);letter-spacing:1px;flex:1}
 .rest-skip{background:none;border:none;color:var(--muted);font-family:'Cinzel',serif;font-size:8px;cursor:pointer}
-.ex-card{background:var(--glass);border:1px solid var(--border);padding:13px;margin-bottom:9px}
-.ex-card.done{border-color:#C9A84C28}
+.ex-card{background:var(--glass);border:1px solid var(--border);padding:13px;margin-bottom:9px;transition:border-color .3s}
+.ex-card.done{border-color:#C9A84C40;background:#C9A84C03}
 .ex-head{display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:3px}
 .ex-name{font-family:'Cinzel',serif;font-size:12px;font-weight:600}
 .ex-name.done{color:var(--gold)}
@@ -167,11 +167,11 @@ textarea.inp{resize:none;line-height:1.7}
 .tip-tog.on{border-color:var(--gold-dim);color:var(--gold)}
 .tip-box{font-size:11px;color:#7a6d58;background:#ffffff02;padding:9px 11px;margin-bottom:9px;line-height:1.9;border-left:1px solid var(--gold-dim);font-style:italic}
 .sets-row{display:flex;gap:6px;flex-wrap:wrap}
-.set-btn{width:38px;height:38px;border:1px solid var(--border);background:transparent;color:var(--rune);cursor:pointer;font-family:'Cinzel',serif;font-size:11px;font-weight:600}
+.set-btn{width:42px;height:42px;border:1px solid var(--border);background:transparent;color:var(--rune);cursor:pointer;font-family:'Cinzel',serif;font-size:11px;font-weight:600;transition:all .15s}.set-btn:active{transform:scale(.92)}
 .set-btn.done{color:var(--bg2);background:var(--gold);border-color:var(--gold)}
 .note-field{width:100%;background:#ffffff02;border:none;border-top:1px solid var(--border);color:var(--dim);font-family:'Crimson Text',serif;font-size:11px;padding:7px 10px;outline:none;margin-top:8px;font-style:italic}
 .note-field::placeholder{color:var(--rune)}
-.finish-btn{width:100%;padding:15px;background:linear-gradient(135deg,var(--gold-dim),var(--gold));color:var(--bg2);border:none;font-family:'Cinzel',serif;font-size:12px;font-weight:700;letter-spacing:2px;cursor:pointer;margin-top:8px;display:none}
+.finish-btn{width:100%;padding:16px;background:linear-gradient(135deg,var(--gold-dim),var(--gold));color:var(--bg2);border:none;font-family:'Cinzel',serif;font-size:12px;font-weight:700;letter-spacing:3px;cursor:pointer;margin-top:8px;display:none;box-shadow:0 0 20px #C9A84C20;transition:all .2s}.finish-btn:active{transform:scale(.98)}
 .add-ex-form{background:var(--glass);border:1px solid var(--border);padding:12px;margin-top:14px}
 .add-ex-row{display:flex;gap:6px;margin-bottom:6px}
 .add-ex-row .inp{flex:1}
@@ -196,7 +196,7 @@ textarea.inp{resize:none;line-height:1.7}
 .tag-chip.sel{border-color:var(--gold-dim);color:var(--gold);background:#C9A84C07}
 .domain-chip{display:inline-flex;align-items:center;gap:4px;border:1px solid var(--border);padding:4px 9px;margin:2px;font-family:'Cinzel',serif;font-size:7.5px;color:var(--muted);letter-spacing:1px;cursor:pointer}
 .domain-chip.sel{color:var(--gold);background:#C9A84C07}
-.thought-card{background:var(--glass);border:1px solid var(--border);padding:12px;margin-bottom:6px;position:relative}
+.thought-card{background:var(--glass);border:1px solid var(--border);border-left:2px solid #C9A84C15;padding:12px;margin-bottom:6px;position:relative;transition:border-color .2s}
 .tc-domains{display:flex;gap:3px;flex-wrap:wrap;margin-bottom:4px}
 .tc-domain{font-size:7.5px;font-family:'Cinzel',serif;letter-spacing:.8px;padding:2px 6px;border:1px solid var(--border)}
 .tc-tags{display:flex;gap:3px;flex-wrap:wrap;margin-bottom:5px}
@@ -351,8 +351,40 @@ textarea.inp{resize:none;line-height:1.7}
 /* DAY SEAL NOTE */
 .day-seal-note{width:100%;background:#ffffff02;border:1px solid var(–border);color:var(–dim);font-family:‘Crimson Text’,serif;font-size:12px;padding:10px 12px;outline:none;margin-top:8px;font-style:italic;resize:none}
 .day-seal-note::placeholder{color:var(–rune)}
-</style>
 
+/* QSL INT BUTTONS */
+.qsl-int{flex:1;padding:10px 4px;background:none;border:1px solid var(–border);color:var(–muted);font-family:‘Cinzel’,serif;font-size:8px;letter-spacing:1px;cursor:pointer;transition:all .2s;text-align:center}
+.qsl-int.on{border-color:var(–gold-dim);color:var(–gold);background:#C9A84C08}
+/* STREAM TAB */
+.stream-ico{font-size:14px;min-width:18px}
+
+/* STAGE RECEIPT */
+.sr-row{display:flex;justify-content:space-between;align-items:center;padding:7px 0;border-bottom:1px solid #ffffff04}
+.sr-row:last-child{border-bottom:none}
+.sr-lbl{font-size:10px;color:var(–dim);font-style:italic}
+.sr-val{font-family:‘Cinzel’,serif;font-size:11px;color:var(–gold)}
+.sr-section{font-family:‘Cinzel’,serif;font-size:7px;color:var(–muted);letter-spacing:2px;margin:12px 0 6px;padding-bottom:4px;border-bottom:1px solid var(–border)}
+.sr-domain-row{display:flex;gap:6px;flex-wrap:wrap;margin-bottom:10px}
+.sr-domain-pip{font-family:‘Cinzel’,serif;font-size:7px;letter-spacing:1px;padding:4px 8px;border:1px solid var(–border);color:var(–muted)}
+.sr-domain-pip.active{border-color:var(–gold-dim);color:var(–gold)}
+
+/* STAGE RECEIPT */
+.sr-row{display:flex;justify-content:space-between;align-items:center;padding:7px 0;border-bottom:1px solid #ffffff04}
+.sr-row:last-child{border-bottom:none}
+.sr-lbl{font-size:10px;color:var(–dim);font-style:italic}
+.sr-val{font-family:‘Cinzel’,serif;font-size:11px;color:var(–gold)}
+.sr-section{font-family:‘Cinzel’,serif;font-size:7px;color:var(–muted);letter-spacing:2px;margin:12px 0 6px;padding-bottom:4px;border-bottom:1px solid var(–border)}
+.sr-domain-row{display:flex;gap:6px;flex-wrap:wrap;margin-bottom:10px}
+.sr-domain-pip{font-family:‘Cinzel’,serif;font-size:7px;letter-spacing:1px;padding:4px 8px;border:1px solid var(–border);color:var(–muted)}
+.sr-domain-pip.active{border-color:var(–gold-dim);color:var(–gold)}
+
+/* WEEKLY INTENTION */
+.intention-set{background:var(–glass);border:1px solid var(–gold-dim);padding:12px 14px;font-family:‘Crimson Text’,serif;font-size:14px;color:var(–gold);font-style:italic;line-height:1.6;position:relative}
+.intention-set::before{content:‘THIS WEEK’;display:block;font-family:‘Cinzel’,serif;font-size:7px;color:var(–muted);letter-spacing:2px;margin-bottom:5px;font-style:normal}
+.intention-empty{border:1px dashed #C9A84C20;padding:12px 14px;font-family:‘Cinzel’,serif;font-size:8px;color:var(–rune);letter-spacing:2px;text-align:center;cursor:pointer}
+.intention-input{width:100%;background:#ffffff03;border:1px solid var(–gold-dim);color:var(–gold);font-family:‘Crimson Text’,serif;font-size:14px;padding:12px 14px;outline:none;font-style:italic;resize:none;line-height:1.6}
+
+</style>
 </head>
 <body>
 <div id="toast" class="toast"></div>
@@ -437,6 +469,8 @@ textarea.inp{resize:none;line-height:1.7}
       <div class="c-name">Sólfriðr Deas</div>
       <div class="c-dharma">Peaceful Glory Under the Sun</div>
       <div class="c-rec">Undir Sólu · Peaceful Glory<br>Tranquil Sól · Blinding sight as I walk ahead</div>
+      <div id="clock-display" style="margin-top:10px;font-size:12px;color:var(--dim)"></div>
+      <div id="day-suggestion" style="font-size:10px;color:var(--muted);font-style:italic;margin-top:4px"></div>
     </div>
     <div id="prestige-home"></div>
     <div class="stage-card">
@@ -449,9 +483,13 @@ textarea.inp{resize:none;line-height:1.7}
     </div>
     <div class="carve-strip" onclick="quickCarve()">
       <div class="carve-ico">📜</div>
+    <!-- WEEKLY INTENTION -->
+    <div id="intention-block" style="margin:0 0 14px 0">
+      <div id="intention-display" onclick="editIntention()" style="cursor:pointer"></div>
+    </div>
       <div><div class="carve-lbl">CARVE A DECLARATION</div><div style="font-size:10px;color:var(--muted);font-style:italic;margin-top:2px">Speak what you will answer for · Undir Sólu</div></div>
     </div>
-    <div class="sl">CAELITH · DOMAIN VIGIL</div>
+    <div class="sl" id="vigil-sl">CAELITH · DOMAIN VIGIL</div>
     <div id="vigil-home" style="margin-bottom:22px"></div>
     <div class="sl">MERKI · EARNED</div>
     <div id="badges-home" style="margin-bottom:22px"></div>
@@ -479,6 +517,7 @@ textarea.inp{resize:none;line-height:1.7}
       <button class="ttab" id="ttab-program" onclick="trainTab('program')">PROGRAM</button>
       <button class="ttab" id="ttab-recovery" onclick="trainTab('recovery')">RECOVERY</button>
       <button class="ttab" id="ttab-lang" onclick="trainTab('lang')">言語</button>
+      <button class="ttab" id="ttab-martial" onclick="trainTab('martial')">BARDAGI</button>
     </div>
     <div class="panel active" id="train-free">
       <div class="session-timer-bar">
@@ -602,7 +641,7 @@ textarea.inp{resize:none;line-height:1.7}
         <button class="tab active" onclick="langTab('mandarin')">普通話</button>
         <button class="tab" onclick="langTab('other')">OTHER</button>
       </div>
-      <div class="panel active" id="lang-mandarin">
+      <div id="lang-mandarin" style="display:block">
         <label class="form-lbl">TYPE</label>
         <div class="rec-check-row" id="lang-type-row">
           <button class="rec-check-btn" onclick="langTypeToggle('vocab')">VOCAB</button>
@@ -623,7 +662,7 @@ textarea.inp{resize:none;line-height:1.7}
         <button class="btn-gold" style="margin-top:8px" onclick="saveLang('mandarin')">✦ LOG SESSION</button>
         <div style="margin-top:18px" id="lang-log-list"></div>
       </div>
-      <div class="panel" id="lang-other">
+      <div id="lang-other" style="display:none">
         <input class="inp" id="lang-other-name" placeholder="Language name..." style="margin-bottom:8px">
         <textarea class="inp" id="lang-other-content" rows="3" placeholder="What you practiced..."></textarea>
         <button class="btn-gold" style="margin-top:8px" onclick="saveLang('other')">✦ LOG SESSION</button>
@@ -631,8 +670,35 @@ textarea.inp{resize:none;line-height:1.7}
     </div>
   </div>
 
-  <!-- FRAMEWORK -->
+  <!-- STAGE RECEIPT MODAL -->
 
+  <div class="modal-bg" id="stage-modal">
+    <div class="modal" style="max-height:85vh;overflow-y:auto">
+      <div class="m-ico" id="sr-ico">⚡</div>
+      <div class="m-ttl" id="sr-ttl">STAGE II</div>
+      <div class="m-sub" id="sr-sub">Friðr-Stig II · Reached</div>
+      <div class="m-verse" id="sr-verse"></div>
+      <div id="sr-receipt" style="margin:14px 0;text-align:left"></div>
+      <button class="m-close" onclick="closeStageMod()">BEAR THE LIGHT</button>
+    </div>
+  </div>
+  <!-- QUICK SKILL LOG MODAL -->
+  <div class="modal-bg" id="qsl-modal">
+    <div class="modal-box">
+      <div class="m-ico">✦</div>
+      <div class="m-ttl" id="qsl-name">Skill</div>
+      <div class="m-sub">LOG SESSION</div>
+      <div class="int-row" style="margin:14px 0">
+        <button class="int-btn qsl-int" data-v="light" onclick="qslSelInt('light')">LIGHT</button>
+        <button class="int-btn qsl-int on" data-v="solid" onclick="qslSelInt('solid')">SOLID</button>
+        <button class="int-btn qsl-int" data-v="war" onclick="qslSelInt('war')">WAR</button>
+      </div>
+      <textarea class="inp" id="qsl-note" rows="3" placeholder="What did you work on..."></textarea>
+      <button class="btn-gold" style="margin-top:10px;width:100%" onclick="qslSeal()">✦ SEAL SESSION</button>
+      <button class="m-close" onclick="qslClose()">CANCEL</button>
+    </div>
+  </div>
+  <!-- FRAMEWORK -->
   <div class="screen" id="screen-fw">
     <div class="fw-crown"><div class="fw-ico">☀️</div><div class="fw-ttl">Undir Sólu</div><div class="fw-sub">The Foundation · Carved as Stone</div></div>
     <div class="tabs">
@@ -690,7 +756,55 @@ Nothing under the sun will stop you.</div>
 <button class="btn-gold" style="margin-top:8px" onclick="saveDecl()">✦ CARVE IT</button>
 </div>
 
+```
+<!-- BARDAGI MARTIAL LOG -->
+<div class="panel" id="train-martial">
+  <div class="sl">BARDAGI · MARTIAL SESSION</div>
+  <div style="font-size:12px;color:var(--dim);font-style:italic;margin-bottom:14px;line-height:1.7">Drilling, technique, sparring, conditioning. Separate from strength training.</div>
+
+  <!-- Session type -->
+  <div class="sl" style="margin-bottom:8px">SESSION TYPE</div>
+  <div style="display:flex;gap:6px;flex-wrap:wrap;margin-bottom:14px" id="martial-type-row">
+    <button class="rec-check-btn" onclick="martialTypeToggle('drilling')">Drilling</button>
+    <button class="rec-check-btn" onclick="martialTypeToggle('sparring')">Sparring</button>
+    <button class="rec-check-btn" onclick="martialTypeToggle('conditioning')">Conditioning</button>
+    <button class="rec-check-btn" onclick="martialTypeToggle('technique')">Technique</button>
+    <button class="rec-check-btn" onclick="martialTypeToggle('forms')">Forms</button>
+    <button class="rec-check-btn" onclick="martialTypeToggle('weapons')">Weapons</button>
   </div>
+
+  <!-- Rounds structure -->
+  <div class="sl" style="margin-bottom:8px">ROUNDS</div>
+  <div style="display:flex;gap:8px;margin-bottom:14px;align-items:center">
+    <input class="inp" id="martial-rounds" type="number" min="1" max="30" placeholder="# rounds" style="width:90px">
+    <span style="color:var(--muted);font-size:11px">×</span>
+    <input class="inp" id="martial-round-min" type="number" min="1" max="10" placeholder="min" style="width:70px">
+    <span style="color:var(--muted);font-size:11px">min each</span>
+  </div>
+
+  <!-- What was worked -->
+  <label class="form-lbl">WHAT WAS DRILLED / WORKED</label>
+  <textarea class="inp" id="martial-content" rows="3" placeholder="Techniques, combinations, positions, what was sharp, what broke down..."></textarea>
+
+  <!-- Intensity -->
+  <div class="sl" style="margin:10px 0 8px">INTENSITY</div>
+  <div style="display:flex;gap:6px;margin-bottom:14px">
+    <button class="int-btn" id="mart-int-light" onclick="martialIntToggle('light')">LIGHT</button>
+    <button class="int-btn sel-solid" id="mart-int-solid" onclick="martialIntToggle('solid')">SOLID</button>
+    <button class="int-btn" id="mart-int-war" onclick="martialIntToggle('war')">WAR</button>
+  </div>
+
+  <!-- Session note -->
+  <label class="form-lbl">SESSION NOTE</label>
+  <textarea class="inp" id="martial-note" rows="2" placeholder="What was Hugr doing? Any key moment, breakdown, or insight..."></textarea>
+
+  <button class="btn-gold" style="margin-top:12px;width:100%" onclick="saveMartial()">✦ SEAL BARDAGI SESSION</button>
+
+  <!-- Log -->
+  <div class="sl" style="margin-top:20px">RECENT SESSIONS</div>
+  <div id="martial-log-list"></div>
+</div>
+```
 
   <!-- ARCHIVE -->
 
@@ -702,6 +816,7 @@ Nothing under the sun will stop you.</div>
       <button class="tab" onclick="archTab('browse')">BROWSE</button>
       <button class="tab" onclick="archTab('web')">WEB</button>
       <button class="tab" onclick="archTab('log')">LOG</button>
+      <button class="tab" onclick="archTab('stream')">STREAM</button>
     </div>
     <div class="panel active" id="arch-new">
       <div class="sl">DOMAINS</div>
@@ -735,8 +850,10 @@ Nothing under the sun will stop you.</div>
         <button class="btn-g" onclick="importBackup()" title="Restore from backup">↑ RESTORE</button>
       </div>
       <div id="thought-streak-display"></div>
+      <div id="browse-count" style="font-family:Cinzel,serif;font-size:8px;color:var(--muted);letter-spacing:1px;margin-bottom:10px"></div>
       <div id="browse-filter" style="margin-bottom:12px"></div>
       <div id="thought-list"></div>
+      <div id="browse-extra"></div>
     </div>
     <div class="panel" id="arch-web">
       <div style="font-size:10px;color:var(--muted);font-style:italic;margin-bottom:9px;line-height:1.7">Thoughts clustered by shared tags. Brighter = more connected. Tap to read.</div>
@@ -813,7 +930,19 @@ Nothing under the sun will stop you.</div>
 
 <script>
 const ROMAN=["I","II","III","IV","V","VI","VII","VIII","IX","X","XI","XII","XIII","XIV","XV","XVI","XVII","XVIII","XIX","XX"];
-const VERSES=["You are free to choose.\nYou are not free from what follows.","Restraint is power delayed, not denied.\nTiming is part of strength.","Strength without understanding exposes weakness.\nForce without clarity collapses on itself.","Emotion signals; decision belongs elsewhere.\nFeeling informs action — it does not govern it.","Stand where you can bear the cost.\nChoose what you will answer for.","Nothing under the sun will shield you.\nNothing under the sun will stop you.","The arc is still moving.\nNever finished. Always becoming.","Dýrr Sólu — I am going for it.\nAnd I will answer for every step.","Glory holds true under light."];
+const VERSES_DAWN=["The sun rises.\nYou were already moving.","This is the hour before the world has opinions.\nUse it.","Dawn is not given to the sleeping.\nYou are here. That is the first act.","Before the city wakes — Caelith moves.\nThis is what consistency looks like from the inside.","Sól climbs.\nSköll runs. So do you."];
+const VERSES_DAY=["You are free to choose.\nYou are not free from what follows.","Strength without understanding exposes weakness.\nForce without clarity collapses on itself.","Restraint is power delayed, not denied.\nTiming is part of strength.","Stand where you can bear the cost.\nChoose what you will answer for.","Emotion signals; decision belongs elsewhere.\nFeeling informs action — it does not govern it."];
+const VERSES_EVENING=["What did today cost?\nWhat did it return?","The session is done or it isn't.\nSköll doesn't negotiate with the sunset.","Seal what happened today before it becomes yesterday.\nThe archive holds what memory loses.","Evening is not rest yet.\nIt is accounting. What moved today?","The light is fading.\nWhat you did today is already permanent."];
+const VERSES_NIGHT=["Nothing under the sun will shield you.\nNothing under the sun will stop you.","The arc is still moving.\nNever finished. Always becoming.","Dýrr Sólu — I am going for it.\nAnd I will answer for every step.","Glory holds true under light.","Rest is part of Caelith.\nThe wolf runs while you sleep. Let him. You run tomorrow."];
+function getVerse(){
+  const h=new Date().getHours();
+  let pool;
+  if(h>=5&&h<10)pool=VERSES_DAWN;
+  else if(h>=10&&h<17)pool=VERSES_DAY;
+  else if(h>=17&&h<21)pool=VERSES_EVENING;
+  else pool=VERSES_NIGHT;
+  return pool[Math.floor(Date.now()/3600000)%pool.length];
+}
 const SOLM_MESSAGES=[
 {type:"question",text:"The last time you were genuinely afraid of something — not anxious, afraid — what did you do with it? Did Hugr hold or did it get consumed?"},
 {type:"check",text:"Sköll has been running for a while. Not asking if you've been moving. Asking if you know why you haven't been, if you haven't. There's a difference between rest and drift. Which one is this?"},
@@ -839,7 +968,17 @@ const SOLM_MESSAGES=[
 {type:"check",text:"The job situation. Not asking for a report. Asking — what is the actual constraint right now and have you addressed it or worked around it? GCT applies here too."},
 {type:"thought",text:"You once said you caught yourself misusing Dýrr Sólu. That the framework was real enough that careless use got caught immediately. What does that mean for the declarations you've carved? Are they all still true? Are you still answering for them?"},
 {type:"game",text:"Thought game: Someone offers you exactly what you want — the lifestyle, the training, the language immersion, the freedom — but the cost is that you can never explain your framework to anyone. It exists only inside you, unnamed, unshared. Do you take it?"},
-{type:"story",text:"Sól rides across the sky every day knowing Sköll is behind her. She doesn't look back. Not because she's unaware — she knows exactly how close he is. She rides because the ride is the point. The moment she stops to face him is the moment he catches her. What are you facing that you should be riding past?"}
+{type:"story",text:"Sól rides across the sky every day knowing Sköll is behind her. She doesn't look back. Not because she's unaware — she knows exactly how close he is. She rides because the ride is the point. The moment she stops to face him is the moment he catches her. What are you facing that you should be riding past?"},
+{type:"question",text:"The framework has language now. Reynsla, Hugr, Dýrr Sólu, Caelith. What changes when something has a name that didn't have one before? What did naming it do that understanding it couldn't?"},
+{type:"check",text:"Tunga. You know why Mandarin matters strategically. You've known for a while. The distance between knowing something is important and moving toward it daily — what lives in that gap for you right now?"},
+{type:"thought",text:"There are two kinds of strength. Strength that impresses and strength that holds when nothing is watching. Which one have you been building? Are they the same thing or have you been confusing them?"},
+{type:"game",text:"Thought game: You're 25. Eight years from now. Describe a Tuesday. Not a peak moment — just a regular Tuesday. Where are you, what are you doing, who's around. Does the Tuesday match the person you're building right now?"},
+{type:"story",text:"A teacher once told his student — the goal is not to become someone who never falls. The goal is to become someone who falls and the falling doesn't change what happens next. The student asked — what's the difference between that and not caring? The teacher said — everything. What's the difference?"},
+{type:"question",text:"You've been building something deliberately for a while now. Most people your age are not. That gap will widen. How do you carry that without it becoming arrogance — or without shrinking from it out of some misplaced humility?"},
+{type:"check",text:"The body. Not the performance — the actual state of it. How does it feel right now. Not after a session, not on a good day. Right now, in this moment. What is it telling you that you haven't been listening to?"},
+{type:"thought",text:"GCT says identify the constraint and address it. Logical Boundary Theory says the ceiling moves as constraints are removed. Apply both to the thing you want most right now. What is the actual constraint — not the surface one, the real one underneath it?"},
+{type:"game",text:"Thought game: You can transmit one piece of understanding — not advice, understanding — to every seventeen-year-old alive right now. One thing that if they actually grasped it would change the trajectory. What do you send?"},
+{type:"story",text:"There is a kind of person who is always preparing. Always getting ready. Always one thing away from beginning. And there is a kind of person who is always in the middle of something. The first person is comfortable. The second person is becoming. Which one have you been this week?"}
 ];
 
 function getSolmMessage(){
@@ -853,70 +992,139 @@ function getSolmMessage(){
 }
 
 function hugrObserve(){
-  // Hugr watches patterns and initiates when something is worth noting
-  // Called on app open — checks data, decides whether to speak
   const now=new Date();
   const daysSinceLastHugr=S.lastHugrMsg?Math.floor((now-new Date(S.lastHugrMsg))/(1000*60*60*24)):999;
-  if(daysSinceLastHugr<3)return; // won't speak more than every 3 days
+  if(daysSinceLastHugr<3)return;
 
   const observations=[];
+  const week=streamThisWeek();
+  const all=S.stream||[];
 
-  // Training streak
-  const recentDays=[];
-  for(let i=0;i<7;i++){const d=new Date(now);d.setDate(d.getDate()-i);recentDays.push(d.toDateString());}
-  const trainDays=(S.freeTrainLog||[]).filter(e=>{
-    const ed=e.iso?new Date(e.iso):new Date(e.date);return recentDays.includes(ed.toDateString());
-  }).length + (S.completedDays||[]).filter(x=>{
-    const ed=x.date?new Date(x.date):null;return ed&&recentDays.includes(ed.toDateString());
-  }).length;
-
-  // Thought streak  
-  const thoughtDays=new Set((S.thoughts||[]).filter(t=>{
-    const d=new Date(t.date);return(now-d)<7*24*60*60*1000;
-  }).map(t=>new Date(t.date).toDateString())).size;
-
-  // Last log entry tag
-  const lastLog=S.logEntries&&S.logEntries.length?S.logEntries[S.logEntries.length-1]:null;
+  // Core counts from stream
+  const trainDays=new Set(week.filter(e=>e.type==='train'||e.type==='program').map(e=>new Date(e.iso).toDateString())).size;
+  const thoughtDays=new Set(week.filter(e=>e.type==='thought'||e.type==='log').map(e=>new Date(e.iso).toDateString())).size;
+  const warSessions=week.filter(e=>e.intensity==='war').length;
+  const langSessions=week.filter(e=>e.type==='language').length;
+  const skillSessions=week.filter(e=>e.type==='skill').length;
+  const recoveryLogs=week.filter(e=>e.type==='recovery').length;
 
   // Domain darkness
   const darkDomains=Object.entries(S.domains||{}).filter(([k,v])=>v>=7).map(([k])=>k);
-  const domainNames={body:"Líkami",mind:"Hugr",martial:"Bardagi",craft:"List",tongue:"Tunga",world:"Heimr"};
+  const domainNames={body:'Líkami',mind:'Hugr',martial:'Bardagi',craft:'List',tongue:'Tunga',world:'Heimr'};
 
-  // War sessions this week
-  const warSessions=(S.freeTrainLog||[]).filter(e=>{const ed=e.iso?new Date(e.iso):new Date(e.date);return e.intensity==='war'&&recentDays.includes(ed.toDateString());}).length;
+  // Active domains this week
+  const activeDoms=new Set(week.map(e=>e.domain).filter(Boolean));
+  const neglectedDoms=Object.keys(S.domains||{}).filter(d=>!activeDoms.has(d));
 
-  // Build observation
+  // Last log tag
+  const lastLog=(S.logEntries||[]).length?(S.logEntries[0]):null;
+
+  // 1. Training hard, mind silent
   if(trainDays>=4&&thoughtDays===0){
-    observations.push({ico:"⚔️",ttl:"HUGR NOTICES",msg:"The body has been moving hard — "+trainDays+" sessions this week. The mind has been quiet. Not a problem. But Hugr asks: what has the training been producing that hasn't been sealed yet? Something is there. Find it."});
-  }
-  if(thoughtDays>=5&&S.domains&&(S.domains.body||0)>=4){
-    observations.push({ico:"🧠",ttl:"HUGR NOTICES",msg:"Five days of thought sealed this week. The body domain has been dark for "+(S.domains.body||0)+" days. The mind is running ahead of the body. They're not separate in Caelith. What would it take to move both in the same day?"});
-  }
-  if(darkDomains.length>=3){
-    const names=darkDomains.slice(0,2).map(d=>domainNames[d]||d).join(" and ");
-    observations.push({ico:"🐺",ttl:"SKÖLL IS CLOSE",msg:names+" have been dark for a week or more. Not asking you to explain it. Asking you to look at it honestly. Is this rest or is this drift? The vigil doesn't judge. It just shows what's true."});
-  }
-  if(warSessions>=3){
-    observations.push({ico:"🔥",ttl:"HUGR NOTICES",msg:"Three war sessions this week. The body is being pushed hard. Make sure the recovery is real — not laziness dressed as rest, actual recovery. The wolf doesn't stop because you're tired. But neither should you be reckless with the body that carries everything else."});
-  }
-  if(lastLog&&lastLog.tag==='Cost'&&daysSinceLastHugr>=5){
-    observations.push({ico:"⚡",ttl:"HUGR NOTICES",msg:"Your last log entry was tagged Cost. That was "+lastLog.date+". You haven't been in here since. What happened after that entry? Some things need to be sealed before they can be set down."});
-  }
-  if((S.thoughts||[]).length>0&&(S.thoughts||[]).length%10===0&&daysSinceLastHugr>=4){
-    observations.push({ico:"✨",ttl:"THE ARCHIVE SPEAKS",msg:(S.thoughts.length)+" thoughts sealed. The web is getting complex. Go look at it — not to add anything, just to see what's there. Sometimes the pattern is only visible from the outside looking at the whole thing at once."});
+    observations.push({ico:'⚔️',ttl:'HUGR NOTICES',msg:'The body has moved '+trainDays+' days this week. The mind has been silent. Not a problem — but Hugr asks: what has the training been producing that hasn't been sealed yet? Something is there. Find it before it fades.'});
   }
 
+  // 2. Mind active, body dark
+  if(thoughtDays>=5&&(S.domains.body||0)>=4){
+    observations.push({ico:'🧠',ttl:'HUGR NOTICES',msg:'Five days of thought sealed this week. The body domain has been dark for '+(S.domains.body||0)+' days. The mind is running ahead of the body. They're not separate in Caelith. What would it take to move both in the same day?'});
+  }
+
+  // 3. Three+ domains dark
+  if(darkDomains.length>=3){
+    const names=darkDomains.slice(0,2).map(d=>domainNames[d]||d).join(' and ');
+    observations.push({ico:'🐺',ttl:'SKÖLL IS CLOSE',msg:names+' have been dark for a week or more. Not asking you to explain it. Asking you to look at it honestly. Is this rest or is this drift? The vigil doesn't judge. It just shows what's true.'});
+  }
+
+  // 4. Three war sessions
+  if(warSessions>=3){
+    observations.push({ico:'🔥',ttl:'HUGR NOTICES',msg:'Three war sessions this week. The body is being pushed hard. Make sure the recovery is real — not laziness dressed as rest, actual recovery. The wolf doesn't stop because you're tired. But neither should you be reckless.'});
+  }
+
+  // 5. Last log tagged Cost, silence after
+  if(lastLog&&lastLog.tag==='Cost'){
+    const lastLogDate=lastLog.iso?new Date(lastLog.iso):new Date(lastLog.date);
+    const daysSince=Math.floor((now-lastLogDate)/(1000*60*60*24));
+    if(daysSince>=2){
+      observations.push({ico:'◈',ttl:'HUGR NOTICES',msg:'Your last log was tagged Cost. That was '+daysSince+' days ago. Nothing since. That kind of silence after a cost entry is worth looking at. Was it processed or was it buried?'});
+    }
+  }
+
+  // 6. Archive milestone
+  const archCount=(S.thoughts||[]).length;
+  if(archCount>0&&archCount%10===0&&daysSinceLastHugr>=4){
+    observations.push({ico:'✨',ttl:'THE ARCHIVE SPEAKS',msg:archCount+' thoughts sealed. The web is getting complex. Go look at it — not to add anything, just to see what's there. Sometimes the pattern is only visible from outside.'});
+  }
+
+  // 7. Language neglect — had sessions before, now stopped
+  const langDays=S.domains&&(S.domains.tongue||0);
+  const totalLang=(S.langLog||[]).length;
+  if(langDays>=10&&totalLang>0){
+    observations.push({ico:'🌏',ttl:'TUNGA FADES',msg:'Mandarin hasn't been touched in '+langDays+' days. Language is the one skill that actively regresses without contact. Ten minutes of characters today is better than nothing. The tongue domain is fading.'});
+  }
+
+  // 8. Low energy recovery pattern
+  const recentRec=(S.recoveryLog||[]).slice(-5);
+  const lowEnergy=recentRec.filter(r=>r.energy==='low'||r.energy==='medium').length;
+  if(lowEnergy>=3&&trainDays>=3){
+    observations.push({ico:'⚠️',ttl:'HUGR NOTICES',msg:'Three or more recent recovery logs show low or medium energy alongside heavy training. The body is absorbing but make sure it's actually recovering. Training through accumulated fatigue is different from training through discomfort.'});
+  }
+
+  // 9. Long streak recognition
+  const logStreak=(()=>{let s=0;const n=new Date();for(let i=0;i<365;i++){const d=new Date(n);d.setDate(d.getDate()-i);const ds=d.toDateString();const has=(S.thoughts||[]).some(t=>{const ed=t.iso?new Date(t.iso):new Date(t.date);return ed.toDateString()===ds;});if(has)s++;else if(i>0)break;}return s;})();
+  if(logStreak>=7&&logStreak%7===0){
+    observations.push({ico:'🔥',ttl:'HUGR NOTICES',msg:logStreak+' consecutive days of thought sealed. That is not nothing. The archive is becoming a real record of a mind in motion. Keep moving.'});
+  }
+
+  // 10. Skill abandoned — had sessions, none in 14+ days
+  (S.skills||[]).forEach(sk=>{
+    const skSess=streamBySkill(sk.name);
+    if(skSess.length>=3){
+      const last=skSess[skSess.length-1];
+      const daysSince=Math.floor((now-new Date(last.iso))/(1000*60*60*24));
+      if(daysSince>=14&&daysSinceLastHugr>=3){
+        observations.push({ico:'🐺',ttl:'SKÖLL WATCHES',msg:sk.name+' had momentum — '+skSess.length+' sessions logged. It's been '+daysSince+' days. Skills don't wait. They fade at the same rate they were built. One session to keep it alive.'});
+      }
+    }
+  });
+
+  // 11. All domains neglected — total drift
+  if(neglectedDoms.length===6){
+    observations.push({ico:'🌑',ttl:'SKÖLL IS VERY CLOSE',msg:'Every domain has been silent this week. Not one action across the entire Caelith. This is not rest. Something is happening. You know what it is. The app can't reach you — only you can.'});
+  }
+
+  // 12. Only one domain active all week — imbalance
+  if(activeDoms.size===1&&week.length>=5){
+    const onlyDom=[...activeDoms][0];
+    observations.push({ico:'⚖️',ttl:'HUGR NOTICES',msg:'Every action this week has been in one domain — '+(domainNames[onlyDom]||onlyDom)+'. Caelith is six domains for a reason. The others aren't competing with it. They feed it.'});
+  }
+
+  // 13. Declaration silence — none in 30+ days
+  const lastDecl=(S.declarations||[]).length?(S.declarations[0]):null;
+  if(lastDecl){
+    const declDate=lastDecl.iso?new Date(lastDecl.iso):new Date(lastDecl.date);
+    const daysSinceDecl=Math.floor((now-declDate)/(1000*60*60*24));
+    if(daysSinceDecl>=30){
+      observations.push({ico:'⬡',ttl:'HUGR NOTICES',msg:'No declaration carved in '+daysSinceDecl+' days. Declarations aren't ceremony — they're the moment you make something binding. Something has shifted since the last one. Name it.'});
+    }
+  }
+
+  // 14. No recovery logs with heavy training
+  if(trainDays>=4&&recoveryLogs===0){
+    observations.push({ico:'◎',ttl:'HUGR NOTICES',msg:'Heavy training week — '+trainDays+' days of movement — and no recovery logged. The data is incomplete. Sleep, energy, nutrition — these aren't optional. They explain the sessions.'});
+  }
+
+  // 15. Stage approaching — within 50 XP
+  const nextStage=Math.ceil(S.xp/LVL)*LVL;
+  const xpToNext=nextStage-S.xp;
+  if(xpToNext<=50&&xpToNext>0){
+    observations.push({ico:'⚡',ttl:'STAGE APPROACHING',msg:'You're '+xpToNext+' Ljós from the next stage. One solid session gets you there. The receipt is being prepared.'});
+  }
+
+  // Pick one observation to surface
   if(!observations.length)return;
   const obs=observations[Math.floor(Math.random()*observations.length)];
-  S.lastHugrMsg=now.toISOString();sv();
-  setTimeout(()=>{
-    document.getElementById("m-ico").textContent=obs.ico;
-    document.getElementById("m-ttl").textContent=obs.ttl;
-    document.getElementById("m-sub").textContent="";
-    document.getElementById("m-verse").textContent=obs.msg;
-    document.getElementById("m-close").textContent="NOTED";
-    document.getElementById("modal").classList.add("on");
-  },1200);
+  S.lastHugrMsg=new Date().toISOString();sv();
+  showClockAlert(obs.ico,obs.ttl,obs.msg);
 }
 
 function showSolmMessage(){
@@ -940,7 +1148,7 @@ const XP_VAL={set:15,light:30,solid:50,war:75,thought:20,declaration:30,goal:40,
 const LVL=500;
 const REWARDS=[{xp:500,rune:"🌤️",title:"SÓLRENNING",sub:"Dawn Breaking",verse:"The sun rises.\nYou were already moving.",badge:"Sólrenning"},{xp:1500,rune:"☀️",title:"LJÓS VAKNAR",sub:"Light Awakens",verse:"Light awakens.\nSköll falls behind for the first time.",badge:"Ljós Vaknar"},{xp:3000,rune:"🔥",title:"ELDR FRIÐR",sub:"Fire Peace",verse:"Fire and peace are not opposites.\nYou are learning this in your body.",badge:"Eldr Friðr"},{xp:5000,rune:"⚡",title:"SKÖLL HRÆÐIST",sub:"The Wolf Slows",verse:"The wolf slows.\nNot from mercy — from distance.",badge:"Sköll Hræðist"},{xp:8000,rune:"🌕",title:"TUNGLS VEGR",sub:"Path of the Moon",verse:"Even the moon knows the sun's path.\nYou walk it now.",badge:"Tungls Vegr"},{xp:15000,rune:"✨",title:"SÓLFRIÐR",sub:"Peaceful Glory",verse:"Peaceful glory.\nNot given. Not taken.\nThe stone endured.\nYou became the name.",badge:"Sólfriðr I",pu:true}];
 const DAYS=[{id:1,label:"Day I",theme:"Ástríkr · Upper Push",emoji:"🌅",color:"#C9A84C",verse:"Force without clarity collapses on itself.\nFind the form first.",exercises:[{name:"Pike Push-Ups",sets:4,reps:"10",rest:60,tip:"Hips high, head drops between arms. Shoulders carry this."},{name:"Dips",sets:4,reps:"10",rest:75,tip:"Lean forward for chest. Full range every rep."},{name:"Diamond Push-Ups",sets:3,reps:"12",rest:60,tip:"Hands form diamond under chest. Elbows drive straight back."},{name:"Decline Push-Ups",sets:3,reps:"10",rest:60,tip:"Feet elevated. Upper chest and front shoulders."},{name:"Plank Shoulder Taps",sets:3,reps:"20",rest:45,tip:"Hips do not move. Tap opposite shoulder slowly."}]},{id:2,label:"Day II",theme:"Jarðkraftr · Lower Foundation",emoji:"🌍",color:"#8B7355",verse:"Restraint is power delayed, not denied.\nBuild the base before the storm.",exercises:[{name:"Bodyweight Squats",sets:4,reps:"20",rest:60,tip:"Drop until thighs parallel or below. Drive through heels."},{name:"Reverse Lunges",sets:4,reps:"12 each",rest:60,tip:"Step back, drop rear knee toward floor."},{name:"Wall Sit",sets:3,reps:"45 sec",rest:60,tip:"Back flat, thighs parallel. The burn is the point."},{name:"Glute Bridges",sets:4,reps:"20",rest:45,tip:"Drive hips up and squeeze at the top."},{name:"Hollow Body Hold",sets:3,reps:"30-45 sec",rest:45,tip:"Lower back pressed into floor. Stillness under tension."}]},{id:3,label:"Day III",theme:"Dráttr · Upper Pull",emoji:"⚔️",color:"#7a8a6a",verse:"Strength without understanding exposes weakness.\nPull with intention.",exercises:[{name:"Pull-Ups",sets:4,reps:"8",rest:90,tip:"Dead hang at bottom every rep. No kipping."},{name:"Chin-Ups",sets:3,reps:"10",rest:75,tip:"Underhand grip. Biceps take more load."},{name:"Inverted Rows",sets:3,reps:"12",rest:60,tip:"Under table or low bar. Pull chest to bar."},{name:"Scapular Pull-Ups",sets:3,reps:"10",rest:60,tip:"Hang, shrug shoulder blades down without bending elbows."},{name:"Dead Hang",sets:3,reps:"30-45 sec",rest:60,tip:"Just hang. Decompresses spine, builds grip."}]},{id:4,label:"Day IV",theme:"Eldr · Lower Power",emoji:"🔥",color:"#C0522A",verse:"Nothing under the sun will stop you.\nProve it here.",exercises:[{name:"Jump Squats",sets:4,reps:"10",rest:60,tip:"Full explosion. Land soft."},{name:"Bulgarian Split Squats",sets:4,reps:"8 each",rest:90,tip:"Rear foot elevated. Drop straight down."},{name:"Step-Ups",sets:3,reps:"12 each",rest:60,tip:"Drive through heel of elevated foot."},{name:"Bear Crawl",sets:3,reps:"20m fwd+back",rest:60,tip:"Knees one inch from ground. Opposite hand and foot together."},{name:"Hollow Body Hold",sets:3,reps:"45 sec",rest:45,tip:"Closing seal. End with intention."}]}];
-const LOG_TAGS=["Decision","Observation","Cost","Understanding","Agency","Caelith","Reynsla"];
+const LOG_TAGS=["Decision","Observation","Cost","Understanding","Agency","Caelith","Reynsla","Martial","Language","Recovery","Insight"];
 const SEED_TAGS=["Systems","Governance","Logic","Theory","Power","Institutions","Martial","Hugr","Reynsla","Framework","Language","Identity","Context","Meaning","Military","Protest","Caelith","Self","GCT"];
 const SEED_THOUGHTS=[
 {id:"t1",text:"Institutional capture: the accountability structure needs to exist outside the influence and dependence of the system it's holding accountable. If top officials are held accountable using the same institution, it becomes susceptible to ideological capture — making it useless in its original goal.",tags:["Governance","Institutions","Systems"],domains:["world"],linkedTo:null,linkNote:null,date:"Mar 5, 2026"},
@@ -1104,6 +1312,13 @@ function isoSeal(){
   const m=Math.floor(isoSec/60),s=isoSec%60;
   const timeStr=m+':'+(s<10?'0':'')+s;
   if(!S.isoRecords)S.isoRecords=[];
+  if(!S.stream)S.stream=[];
+  if(S.weeklyIntention===undefined)S.weeklyIntention='';
+  if(!S.martialLog)S.martialLog=[];
+  if(S.lastBackup===undefined)S.lastBackup=null;
+  if(!S.lastStageTime)S.lastStageTime=null;
+  if(!S.clockAlerts)S.clockAlerts={};
+  if(!S.lastVigilCheck)S.lastVigilCheck=Date.now();
   S.isoRecords.push({time:isoSec,str:timeStr,date:tod()});
   const best=Math.max(...S.isoRecords.map(r=>r.time));
   const isBest=isoSec>=best;
@@ -1128,6 +1343,18 @@ function ld(){
   if(!S.lastMsgDate){S.lastMsgDate=new Date(Date.now()-13*24*60*60*1000).toISOString();sv();}
   if(!S.records)S.records={isoHolds:{},sessionTimes:{},daySets:{}};
   if(S.sessElapsed===undefined)S.sessElapsed=0;
+  if(!S.recoveryLog)S.recoveryLog=[];
+  if(!S.langLog)S.langLog=[];
+  if(!S.restLog)S.restLog=[];
+  if(!S.customEx)S.customEx={};
+  if(!S.isoRecords)S.isoRecords=[];
+  if(!S.stream)S.stream=[];
+  if(S.weeklyIntention===undefined)S.weeklyIntention='';
+  if(!S.martialLog)S.martialLog=[];
+  if(S.lastBackup===undefined)S.lastBackup=null;
+  if(!S.lastStageTime)S.lastStageTime=null;
+  if(!S.clockAlerts)S.clockAlerts={};
+  if(!S.lastVigilCheck)S.lastVigilCheck=Date.now();
 }
 
 let restInt=null,restRem=0;
@@ -1144,7 +1371,23 @@ function sc(dayId,xi,total){let n=0;for(let i=0;i<total;i++)if(S.completedSets[d
 function getAllEx(day){return [...day.exercises,...(S.customEx[day.id]||[])];}
 function cdDone(dayId){return S.completedDays.some(x=>(x.id||x)===dayId);}
 function dayDone(day){return getAllEx(day).every((ex,i)=>sc(day.id,i,ex.sets)===ex.sets);}
-function gainXP(amt){const ox=S.xp;S.xp+=amt;toast("✦ +"+amt+" LJÓS");chkRewards(ox,S.xp);sv();}
+function gainXP(amt){
+  const ox=S.xp;S.xp+=amt;
+  toast("✦ +"+amt+" LJÓS");
+  chkRewards(ox,S.xp);
+  // Detect stage crossing — show receipt
+  const oldStage=Math.floor(ox/LVL);
+  const newStage=Math.floor(S.xp/LVL);
+  if(newStage>oldStage){
+    setTimeout(()=>showStageModal(ox,S.xp),800);
+    autoTimeline('Reached Friðr-Stig '+roman(newStage+1),'milestone');
+  }
+  // Update home XP display if visible
+  const hxp=document.getElementById('h-xp');if(hxp)hxp.textContent=S.xp;
+  const hbar=document.getElementById('h-bar');if(hbar)hbar.style.width=lvPct()+'%';
+  const hlv=document.getElementById('h-lv');if(hlv)hlv.textContent=roman(lv());
+  sv();
+}
 function chkRewards(ox,nx){REWARDS.forEach(r=>{if(S.earnedRewards.includes(r.title))return;if(nx>=r.xp){S.earnedRewards.push(r.title);if(r.pu)S.prestige=Math.max(S.prestige,1);sv();setTimeout(()=>showReward(r),600);}});}
 function vigilGlow(d){return d===0?1:d===1?.8:d===2?.6:d===3?.4:d<=5?.2:.05;}
 function vigilReset(domain, intensity){
@@ -1159,9 +1402,9 @@ function showOpening(){
   const t=new Date().toDateString();
   if(S.lastOpened===t)return;
   S.lastOpened=t;sv();
-  document.getElementById("op-verse").textContent=VERSES[Math.floor(Date.now()/86400000)%VERSES.length];
+  const verse=getVerse();
+  document.getElementById("op-verse").textContent=verse;
   document.getElementById("opening").style.display="flex";
-  
 }
 function closeOpening(){document.getElementById("opening").style.display="none";if(!S.wtSeen){showWT();}else{hugrObserve();setTimeout(()=>{if(!document.getElementById("modal").classList.contains("on"))showSolmMessage();},1400);}}
 function showReward(r){document.getElementById("m-ico").textContent=r.rune;document.getElementById("m-ttl").textContent=r.title;document.getElementById("m-sub").textContent=r.sub;document.getElementById("m-verse").textContent=r.verse;document.getElementById("modal").classList.add("on");}
@@ -1193,6 +1436,9 @@ function renderHome(){
 
 function renderVigil(){
   const el=document.getElementById("vigil-home");el.innerHTML="";
+  const darkCount=Object.values(S.domains||{}).filter(v=>v>=4).length;
+  const sl=document.getElementById('vigil-sl');
+  if(sl)sl.innerHTML='CAELITH · DOMAIN VIGIL'+(darkCount>0?'<span style="color:#8B4513;font-size:7px;margin-left:8px">'+darkCount+' fading</span>':'<span style="color:var(--gold-dim);font-size:7px;margin-left:8px">all lit</span>');
   DOMAINS.forEach(d=>{
     const days=S.domains[d.id]||0,glow=vigilGlow(days),pct=glow*100;
     const div=document.createElement("div");div.className="vigil-item";
@@ -1246,6 +1492,7 @@ function saveFreeTrain(){
   document.getElementById("fl-intent").value="";document.getElementById("fl-exs").value="";document.getElementById("fl-note").value="";
   curIntensity='solid';
   ['light','solid','war'].forEach(v=>{const b=document.getElementById('int-'+v);if(b)b.className='int-btn';});
+  selIntensity('solid');
   isoReset();sessReset('free');
   sv();renderTrainFree();
 }
@@ -1284,7 +1531,9 @@ function openProgramDay(id){
   document.getElementById("pd-verse").textContent=day.verse;
   const prevTime=getSessionComparison(id);
   const subEl=document.getElementById("pd-sub");
-  if(subEl)subEl.textContent=day.label+" · "+day.exercises.length+" exercises"+(prevTime?" · last: "+prevTime:"");
+  const prevComp=S.completedDays.find(x=>(x.id||x)===id&&x.date);
+  const prevIntensity=prevComp&&prevComp.intensity?' · '+prevComp.intensity.toUpperCase():'';
+  if(subEl)subEl.textContent=day.label+" · "+getAllEx(day).length+" exercises"+(prevTime?" · last: "+prevTime+prevIntensity:"");
   S.openTips={};showDayHint();
   showScreen("train");trainTab("program");
   renderProgDay();
@@ -1342,6 +1591,7 @@ function finishDay(){
     const sealNote=document.getElementById('day-seal-note');
     const note=sealNote?sealNote.value.trim():'';
     S.completedDays.push({id:S.curDay,date:new Date().toISOString(),note,intensity:curDayIntensity});
+    streamWrite('program',{domain:'body',intensity:curDayIntensity,xp:XP_VAL[curDayIntensity]||XP_VAL.solid,note:note||S.curDay});
     const xp=XP_VAL[curDayIntensity]||XP_VAL.solid;
     gainXP(xp);S.totalDays++;vigilReset('body', curDayIntensity);
     const t=sealSessTime(S.curDay);
@@ -1356,7 +1606,7 @@ function finishDay(){
 // FRAMEWORK
 function fwTab(t){
   document.querySelectorAll("#screen-fw .tab").forEach((b,i)=>b.classList.toggle("active",["law","cosm","decl"][i]===t));
-  document.querySelectorAll("#screen-fw .panel").forEach(p=>p.classList.remove("active"));
+  ["fw-law","fw-cosm","fw-decl"].forEach(id=>{const el=document.getElementById(id);if(el)el.classList.remove("active");});
   document.getElementById("fw-"+t).classList.add("active");
 }
 function renderFw(){renderDecl();}
@@ -1378,7 +1628,7 @@ function delDecl(i){if(confirm("Remove?")){S.declarations.splice(i,1);sv();rende
 let selTags=[],selDomains=[];
 function archTab(t){
   document.querySelectorAll("#screen-arch .tab").forEach((b,i)=>b.classList.toggle("active",["new","tags","browse","web","log"][i]===t));
-  document.querySelectorAll("#screen-arch .panel").forEach(p=>p.classList.remove("active"));
+  ["arch-new","arch-tags","arch-browse","arch-web","arch-log","arch-stream"].forEach(id=>{const el=document.getElementById(id);if(el)el.classList.remove("active");});
   document.getElementById("arch-"+t).classList.add("active");
   if(t==="new")renderNewForm();
   if(t==="tags")renderTagMgr();
@@ -1386,7 +1636,7 @@ function archTab(t){
   if(t==="web")renderWeb();
   if(t==="log")renderLog();
 }
-function renderArch(){renderNewForm();renderLog();}
+function renderArch(){renderBackupStatus();renderNewForm();renderLog();}
 function renderNewForm(){
   const dEl=document.getElementById("domain-sel-new");if(!dEl)return;
   dEl.innerHTML="";
@@ -1442,6 +1692,8 @@ function renderBrowse(){
     const searchMatch=!query||t.text.toLowerCase().includes(query)||(t.tags||[]).some(tag=>tag.toLowerCase().includes(query))||(t.linkNote||'').toLowerCase().includes(query);
     return tagMatch&&searchMatch;
   });
+  const countEl=document.getElementById('browse-count');
+  if(countEl)countEl.textContent=filtered.length+(S.browseTag?' · #'+S.browseTag:query?' · "'+query+'"':' · ALL THOUGHTS');
   if(!filtered.length){el.innerHTML='<div style="font-size:12px;color:var(--muted);font-style:italic;text-align:center;padding:24px 0">No thoughts here yet.</div>';return;}
   el.innerHTML="";
   [...filtered].reverse().forEach(t=>{
@@ -1477,14 +1729,22 @@ function exportArchive(){
     userTags:S.userTags,customEx:S.customEx,
     // Records
     records:S.records,isoRecords:S.isoRecords,restLog:S.restLog,
-    recoveryLog:S.recoveryLog,langLog:S.langLog,
+    recoveryLog:S.recoveryLog,langLog:S.langLog,martialLog:S.martialLog,
     // Messages
-    msgIndex:S.msgIndex,lastMsgDate:S.lastMsgDate,lastHugrMsg:S.lastHugrMsg
+    msgIndex:S.msgIndex,lastMsgDate:S.lastMsgDate,lastHugrMsg:S.lastHugrMsg,
+    // Clock
+    clockAlerts:S.clockAlerts,lastVigilCheck:S.lastVigilCheck,
+    weeklyIntention:S.weeklyIntention,
+    lastBackup:S.lastBackup,
+    stream:S.stream,
+    lastStageTime:S.lastStageTime
   };
   const blob=new Blob([JSON.stringify(data,null,2)],{type:"application/json"});
   const url=URL.createObjectURL(blob);const a=document.createElement("a");
   a.href=url;a.download="solm-backup-"+Date.now()+".json";a.click();URL.revokeObjectURL(url);
+  S.lastBackup=new Date().toISOString();sv();
   toast("✦ Full backup exported");
+  renderBackupStatus();
 }
 function importBackup(){
   const inp=document.createElement("input");inp.type="file";inp.accept=".json";
@@ -1495,11 +1755,7 @@ function importBackup(){
       try{
         const data=JSON.parse(ev.target.result);
         if(!data.version||!data.version.includes('solm'))throw new Error("Not a Solm backup");
-        const fields=['xp','prestige','totalDays','completedSets','completedDays','progressNotes',
-          'earnedRewards','domains','declarations','thoughts','logEntries','freeTrainLog',
-          'skills','goals','timeline','userTags','customEx','records','isoRecords','restLog',
-          'msgIndex','lastMsgDate','lastHugrMsg'];
-        const fields=['xp','prestige','totalDays','completedSets','completedDays','progressNotes','earnedRewards','domains','declarations','thoughts','logEntries','freeTrainLog','skills','goals','timeline','userTags','customEx','records','isoRecords','restLog','msgIndex','lastMsgDate','lastHugrMsg','recoveryLog','langLog','wtSeen','dayHintSeen'];
+        const fields=['xp','prestige','totalDays','completedSets','completedDays','progressNotes','earnedRewards','domains','declarations','thoughts','logEntries','freeTrainLog','skills','goals','timeline','userTags','customEx','records','isoRecords','restLog','msgIndex','lastMsgDate','lastHugrMsg','recoveryLog','langLog','wtSeen','dayHintSeen','stream','clockAlerts','lastVigilCheck','lastStageTime','weeklyIntention','lastBackup','martialLog'];
         fields.forEach(f=>{if(data[f]!==undefined)S[f]=data[f];});
         sv();renderHome();renderTrainFree();renderTrainProgram();
         toast("✦ Backup restored");
@@ -1527,6 +1783,40 @@ function renderWeb(){
   nodes.forEach(n=>{const br=(cs[n.id]||0)/maxS;ctx.shadowBlur=br>0.4?10:0;ctx.shadowColor="#C9A84C";ctx.beginPath();ctx.arc(n.x,n.y,n.r,0,Math.PI*2);ctx.fillStyle=br>0.6?"#C9A84C":br>0.3?"#6a5a2a":"#201c14";ctx.fill();ctx.shadowBlur=0;ctx.strokeStyle="#C9A84C20";ctx.lineWidth=1;ctx.stroke();});
   canvas.onmousemove=canvas.ontouchmove=function(e){const rect=canvas.getBoundingClientRect();const cx=e.touches?e.touches[0].clientX:e.clientX,cy=e.touches?e.touches[0].clientY:e.clientY;const mx=(cx-rect.left)*(W/rect.width),my=(cy-rect.top)*(H/rect.height);let hit=null;nodes.forEach(n=>{if(Math.sqrt((mx-n.x)**2+(my-n.y)**2)<n.r+7)hit=n;});if(hit){tt.style.display="block";tt.style.left=Math.min(cx-rect.left+10,rect.width-200)+"px";tt.style.top=Math.max(cy-rect.top-65,6)+"px";document.getElementById("wtt-tag").textContent=(hit.tags||[]).join(" · ").toUpperCase();document.getElementById("wtt-txt").textContent=hit.text.slice(0,100)+(hit.text.length>100?"...":"");}else tt.style.display="none";};
   canvas.onmouseleave=()=>tt.style.display="none";
+  // Tap/click to explore connections
+  function handleCanvasTap(e){
+    e.preventDefault();
+    const rect=canvas.getBoundingClientRect();
+    const cx=e.touches?e.touches[0].clientX:e.clientX;
+    const cy=e.touches?e.touches[0].clientY:e.clientY;
+    const mx=(cx-rect.left)*(W/rect.width);
+    const my=(cy-rect.top)*(H/rect.height);
+    nodes.forEach(n=>{
+      if(Math.sqrt((mx-n.x)**2+(my-n.y)**2)<n.r+10){
+        const t=S.thoughts.find(th=>th.id===n.id);
+        if(!t)return;
+        const connected=S.thoughts.filter(other=>
+          other.id!==t.id&&(
+            (t.tags||[]).some(tag=>(other.tags||[]).includes(tag))||
+            t.linkedTo===other.id||other.linkedTo===t.id
+          )
+        );
+        const connText=connected.length
+          ?'\n\nConnected to '+connected.length+' thought'+(connected.length>1?'s':'')+':'
+          +'\n'+connected.slice(0,3).map(c=>'· '+c.text.slice(0,50)+(c.text.length>50?'...':'')).join('\n')
+          :'';
+        document.getElementById('m-ico').textContent='◈';
+        document.getElementById('m-ttl').textContent=(t.tags&&t.tags.length?'#'+t.tags[0]:'THOUGHT');
+        document.getElementById('m-sub').textContent=t.date+(t.tags&&t.tags.length>1?' · '+t.tags.slice(1).map(tg=>'#'+tg).join(' '):'');
+        document.getElementById('m-verse').textContent=t.text+connText;
+        document.getElementById('m-close').textContent='CLOSE';
+        document.getElementById('modal').classList.add('on');
+        tt.style.display='none';
+      }
+    });
+  }
+  canvas.addEventListener('click',handleCanvasTap);
+  canvas.addEventListener('touchend',handleCanvasTap,{passive:false});
 }
 function renderLog(){
   const tr=document.getElementById("log-tag-row");if(!tr)return;tr.innerHTML="";
@@ -1542,7 +1832,7 @@ function renderLog(){
     const div=document.createElement("div");div.className="log-entry";
     div.innerHTML='<div class="log-tag-lbl">'+(e.tag||"CAELITH")+'</div><div class="log-txt">'+e.text+'</div>'+
       (e.linkPreview?'<div class="tc-link-note" style="margin-top:5px">↔ '+e.linkPreview+'...</div>':'')+
-      '<div class="log-date">'+e.date+'</div><button class="del-btn" onclick="delLog('+ri+')">✕</button>';
+      '<div class="log-date">'+e.date+(e.tag&&e.tag!=='CAELITH'?'':'')+' · '+(e.tag||'CAELITH')+'</div><button class="del-btn" onclick="delLog('+ri+')">✕</button>';
     el.appendChild(div);
   });
 }
@@ -1560,13 +1850,21 @@ function delLog(i){S.logEntries.splice(i,1);sv();renderLog();}
 // BUILD
 function buildTab(t){
   document.querySelectorAll("#screen-build .tab").forEach((b,i)=>b.classList.toggle("active",["skills","goals","timeline"][i]===t));
-  document.querySelectorAll("#screen-build .panel").forEach(p=>p.classList.remove("active"));
+  ["build-skills","build-goals","build-timeline"].forEach(id=>{const el=document.getElementById(id);if(el)el.classList.remove("active");});
   document.getElementById("build-"+t).classList.add("active");
   if(t==="skills")renderSkills();if(t==="goals")renderGoals();if(t==="timeline")renderTimeline();
 }
 function renderBuild(){renderSkills();}
 // renderSkills defined above with Sköll indicators
-function adjSk(i,d){S.skills[i].progress=Math.max(0,Math.min(100,(S.skills[i].progress||0)+d));sv();renderSkills();}
+function adjSk(i,d){
+  S.skills[i].progress=Math.max(0,Math.min(100,(S.skills[i].progress||0)+d));
+  if(d>0){
+    const sk=S.skills[i];
+    const domMap={body:'body',mind:'mind',martial:'martial',craft:'craft',tongue:'tongue',world:'world'};
+    streamWrite('skill',{domain:domMap[sk.domain]||'mind',xp:10,skill:sk.name,note:'Progress: '+sk.progress+'%',intensity:'log'});
+  }
+  sv();renderSkills();
+}
 function addMs(i){const m=prompt("Milestone:");if(m){if(!S.skills[i].milestones)S.skills[i].milestones=[];S.skills[i].milestones.push({text:m,date:tod()});sv();renderSkills();gainXP(20);}}
 function delSk(i){if(confirm("Remove?")){S.skills.splice(i,1);sv();renderSkills();}}
 function addSkill(){const n=document.getElementById("sk-name").value.trim();if(!n)return;S.skills.push({id:uid(),name:n,category:document.getElementById("sk-cat").value.trim()||"General",priority:document.getElementById("sk-pri").value,progress:0,note:document.getElementById("sk-note").value.trim(),milestones:[]});document.getElementById("sk-name").value="";document.getElementById("sk-cat").value="";document.getElementById("sk-note").value="";sv();toast("✦ Skill added");renderSkills();}
@@ -1580,7 +1878,19 @@ function renderGoals(){
     el.appendChild(div);
   });
 }
-function togGoal(i){S.goals[i].done=!S.goals[i].done;if(S.goals[i].done){toast("✦ Dýrr Sólu — achieved");gainXP(XP_VAL.goal);}sv();renderGoals();}
+function togGoal(i){
+  S.goals[i].done=!S.goals[i].done;
+  if(S.goals[i].done){
+    toast("✦ Dýrr Sólu — achieved");
+    gainXP(XP_VAL.goal);
+    const g=S.goals[i];
+    const domMap={body:'body',mind:'mind',martial:'martial',craft:'craft',tongue:'tongue',world:'world'};
+    streamWrite('declaration',{domain:domMap[g.domain]||'mind',xp:XP_VAL.goal,note:'Goal achieved: '+g.text.slice(0,60),skill:null,intensity:'solid'});
+    autoTimeline('Goal achieved: '+g.text.slice(0,50)+(g.text.length>50?'...':''),'milestone');
+    vigilReset(domMap[g.domain]||'mind','solid');
+  }
+  sv();renderGoals();
+}
 function delGoal(i){if(confirm("Remove?")){S.goals.splice(i,1);sv();renderGoals();}}
 function addGoal(){const n=document.getElementById("gl-name").value.trim();if(!n)return;S.goals.push({id:uid(),name:n,timeframe:document.getElementById("gl-tf").value.trim(),desc:document.getElementById("gl-desc").value.trim(),done:false});document.getElementById("gl-name").value="";document.getElementById("gl-tf").value="";document.getElementById("gl-desc").value="";sv();toast("✦ Goal set");renderGoals();}
 function selTlType(t){S.selTlType=t;document.querySelectorAll(".tl-type-btn").forEach(b=>b.classList.toggle("sel",b.textContent.toLowerCase()===t));}
@@ -1613,6 +1923,7 @@ function saveRecovery(){
   if(!S.recoveryLog)S.recoveryLog=[];
   const entry={id:uid(),date:tod(),iso:new Date().toISOString(),...recState,note};
   S.recoveryLog.push(entry);
+  streamWrite('recovery',{domain:'body',xp:10,note:(entry.sleep?'sleep:'+entry.sleep+' ':'')+( entry.energy?'energy:'+entry.energy:''),intensity:'log'});
   if(S.recoveryLog.length>90)S.recoveryLog=S.recoveryLog.slice(-90);
   recState={sleep:null,energy:null,nutrition:null,soreness:null};
   document.querySelectorAll('.rec-check-btn').forEach(b=>b.classList.remove('on'));
@@ -1650,8 +1961,8 @@ function langTimeToggle(val){
 }
 function langTab(t){
   document.querySelectorAll('#train-lang .tab').forEach((b,i)=>b.classList.toggle('active',['mandarin','other'][i]===t));
-  document.querySelectorAll('#train-lang .panel').forEach(p=>p.classList.remove('active'));
-  document.getElementById('lang-'+t).classList.add('active');
+  ['lang-mandarin','lang-other'].forEach(id=>{const el=document.getElementById(id);if(el)el.style.display='none';});
+  const target=document.getElementById('lang-'+t);if(target)target.style.display='block';
 }
 function saveLang(mode){
   if(!S.langLog)S.langLog=[];
@@ -1659,10 +1970,11 @@ function saveLang(mode){
   const lang=mode==='mandarin'?'Mandarin':document.getElementById('lang-other-name').value.trim()||'Other';
   if(!content)return;
   S.langLog.push({id:uid(),lang,type:langType,time:langTime,content,date:tod(),iso:new Date().toISOString()});
+  streamWrite('language',{domain:'tongue',intensity:langTime==='2h+'?'war':langTime==='1h'?'solid':langTime==='30m'?'light':'log',xp:20,note:content.slice(0,80),skill:lang,tags:[langType].filter(Boolean)});
   if(S.langLog.length>200)S.langLog=S.langLog.slice(-200);
   // Update Mandarin skill progress automatically
   if(mode==='mandarin'){
-    const sk=S.skills.find(s=>s.name.toLowerCase().includes('mandarin'));
+    const sk=S.skills.find(s=>s.name.toLowerCase().includes('mandarin')||s.name.toLowerCase().includes('chinese')||s.name.toLowerCase().includes('普通'));
     if(sk){
       const sessions=(S.langLog||[]).filter(e=>e.lang==='Mandarin').length;
       sk.progress=Math.min(100,Math.floor(sessions*0.5));
@@ -1691,9 +2003,8 @@ function renderLangLog(){
 
 // TRAIN TAB — update to include new tabs
 function trainTab(t){
-  document.querySelectorAll('.ttab').forEach((b,i)=>b.classList.toggle('active',['free','program','recovery','lang'][i]===t));
-  document.querySelectorAll('#screen-train > .content-inner > .panel, #screen-train .panel').forEach(p=>{});
-  ['train-free','train-program','train-recovery','train-lang'].forEach(id=>{
+  document.querySelectorAll('.ttab').forEach((b,i)=>b.classList.toggle('active',['free','program','recovery','lang','martial'][i]===t));
+  ['train-free','train-program','train-recovery','train-lang','train-martial'].forEach(id=>{
     const el=document.getElementById(id);if(el)el.classList.remove('active');
   });
   const target=document.getElementById('train-'+t);if(target)target.classList.add('active');
@@ -1701,6 +2012,7 @@ function trainTab(t){
   if(t==='program')renderTrainProgram();
   if(t==='recovery')renderRecoveryLog();
   if(t==='lang')renderLangLog();
+  if(t==='martial')renderMartialLog();
 }
 
 // PROGRAM DAY RESET
@@ -1733,50 +2045,42 @@ function updateDayButtons(isDone){
 // WEEKLY SUMMARY
 function renderWeeklySummary(){
   const el=document.getElementById('weekly-summary');if(!el)return;
-  const now=new Date();
-  const days7=[];
-  for(let i=6;i>=0;i--){const d=new Date(now);d.setDate(d.getDate()-i);days7.push(d.toDateString());}
+  const week=streamThisWeek();
 
-  const trainSessions=(S.freeTrainLog||[]).filter(e=>{
-    const ed=e.iso?new Date(e.iso):new Date(e.date);return days7.includes(ed.toDateString());
-  }).length + (S.completedDays||[]).filter(x=>{
-    const ed=x.date?new Date(x.date):null;return ed&&days7.includes(ed.toDateString());
-  }).length;
+  const trainSessions=week.filter(e=>e.type==='train'||e.type==='program').length;
+  const thoughtsSealed=week.filter(e=>e.type==='thought').length;
+  const langSessions=week.filter(e=>e.type==='language').length;
+  const skillSessions=week.filter(e=>e.type==='skill').length;
+  const warSess=week.filter(e=>e.intensity==='war').length;
+  const totalXP=week.reduce((a,e)=>a+(e.xp||0),0);
 
-  const thoughtsSealed=(S.thoughts||[]).filter(t=>days7.includes(new Date(t.date).toDateString())).length;
-
-  const langSessions=(S.langLog||[]).filter(e=>{
-    const ed=e.iso?new Date(e.iso):new Date(e.date);return days7.includes(ed.toDateString());
-  }).length;
-
-  const warSess=(S.freeTrainLog||[]).filter(e=>{
-    const ed=e.iso?new Date(e.iso):new Date(e.date);
-    return e.intensity==='war'&&days7.includes(ed.toDateString());
-  }).length;
-
-  // Most active domain this week
+  // Most active domain from stream
   const domCount={};
-  (S.thoughts||[]).filter(t=>days7.includes(new Date(t.date).toDateString()))
-    .forEach(t=>(t.domains||[]).forEach(d=>domCount[d]=(domCount[d]||0)+1));
-  (S.freeTrainLog||[]).filter(e=>{const ed=e.iso?new Date(e.iso):new Date(e.date);return days7.includes(ed.toDateString());})
-    .forEach(()=>domCount.body=(domCount.body||0)+2);
-  (S.langLog||[]).filter(e=>{const ed=e.iso?new Date(e.iso):new Date(e.date);return days7.includes(ed.toDateString());})
-    .forEach(()=>domCount.tongue=(domCount.tongue||0)+2);
+  week.forEach(e=>{if(e.domain)domCount[e.domain]=(domCount[e.domain]||0)+1;});
   const topDom=Object.entries(domCount).sort((a,b)=>b[1]-a[1])[0];
   const topDomName=topDom?(DOMAINS.find(d=>d.id===topDom[0])||{name:topDom[0]}).name.split('·')[0].trim():'—';
 
-  // Dark domains (neglected 7+ days)
-  const darkCount=Object.values(S.domains||{}).filter(v=>v>=7).length;
+  // Neglected domains — not in stream this week
+  const activeDoms=new Set(week.map(e=>e.domain).filter(Boolean));
+  const neglected=DOMAINS.filter(d=>!activeDoms.has(d.id));
 
   const rows=[
-    {lbl:'Training sessions',val:trainSessions+' / 7 days'},
+    {lbl:'Total actions',val:week.length+' this week'},
+    {lbl:'Training sessions',val:trainSessions},
     {lbl:'Thoughts sealed',val:thoughtsSealed},
     {lbl:'Language sessions',val:langSessions},
+    {lbl:'Skill sessions',val:skillSessions},
     {lbl:'War intensity',val:warSess+' session'+(warSess!==1?'s':'')},
+    {lbl:'XP earned this week',val:totalXP+' Ljós'},
     {lbl:'Most active domain',val:topDomName},
-    {lbl:'Domains neglected 7+ days',val:darkCount>0?darkCount+' domain'+(darkCount>1?'s':''):'None · vigil lit'},
+    {lbl:'Untouched domains',val:neglected.length?neglected.map(d=>d.name.split('·')[0].trim()).join(', '):'All domains active ✦'},
   ];
 
+  const hasActivity=trainSessions>0||thoughtsSealed>0||langSessions>0;
+  if(!hasActivity){
+    el.innerHTML='<div style="font-size:11px;color:var(--muted);font-style:italic;text-align:center;padding:14px;background:var(--glass);border:1px solid var(--border)">No activity this week yet. The vigil is watching.</div>';
+    return;
+  }
   el.innerHTML='<div class="week-card">'+rows.map(r=>'<div class="week-row"><span class="week-lbl">'+r.lbl+'</span><span class="week-val">'+r.val+'</span></div>').join('')+'</div>';
 }
 
@@ -1813,6 +2117,196 @@ function renderWebStats(){
     el.after(extra);
   }
 }
+
+
+
+
+// ── STAGE RECEIPT ─────────────────────────────────────────────────────────────
+function buildStageReceipt(oldXP, newXP){
+  // Get stream entries that happened during this stage
+  // We estimate by looking at last (500) XP worth of stream entries
+  const allStream = S.stream || [];
+  const stageNum = Math.floor(newXP / LVL) + 1;
+  const stageStart = Math.floor(oldXP / LVL) * LVL;
+  
+  // Snapshot: take stream entries from roughly this stage window
+  // Since we can't perfectly map XP to stream entries, we use the last N entries
+  // where N = entries since we were at stageStart XP
+  // Approximate: use entries from last (stage duration in time) 
+  // Better: store stageStartTime, use entries since then
+  const stageStartTime = S.lastStageTime || null;
+  let stageEntries;
+  if(stageStartTime){
+    stageEntries = allStream.filter(e => new Date(e.iso) >= new Date(stageStartTime));
+  } else {
+    // First stage — use all entries
+    stageEntries = allStream.slice(-100);
+  }
+  S.lastStageTime = new Date().toISOString();
+  sv();
+
+  // Build stats
+  const byType = {};
+  stageEntries.forEach(e => byType[e.type] = (byType[e.type]||0)+1);
+  
+  const warSess = stageEntries.filter(e=>e.intensity==='war').length;
+  const solidSess = stageEntries.filter(e=>e.intensity==='solid').length;
+  const lightSess = stageEntries.filter(e=>e.intensity==='light').length;
+  
+  const activeDoms = {};
+  stageEntries.forEach(e=>{if(e.domain)activeDoms[e.domain]=(activeDoms[e.domain]||0)+1;});
+  
+  const skillsUsed = [...new Set(stageEntries.filter(e=>e.skill).map(e=>e.skill))];
+  
+  const totalEntries = stageEntries.length;
+  const totalXPInStage = stageEntries.reduce((a,e)=>a+(e.xp||0),0);
+  
+  // Days active in this stage
+  const activeDays = new Set(stageEntries.map(e=>new Date(e.iso).toDateString())).size;
+  
+  // Best session time this stage
+  const sessionTimes = stageEntries.filter(e=>e.sessionTime).map(e=>e.sessionTime);
+
+  return {
+    stageNum, warSess, solidSess, lightSess,
+    byType, activeDoms, skillsUsed,
+    totalEntries, totalXPInStage, activeDays,
+    sessionTimes
+  };
+}
+
+function showStageModal(oldXP, newXP){
+  const stageNum = Math.floor(newXP / LVL) + 1;
+  const r = buildStageReceipt(oldXP, newXP);
+  
+  document.getElementById('sr-ico').textContent = ['🌅','⚡','🔥','☀️','🌙','⬡','🐺','✦','🌟','💎'][Math.min(stageNum-1,9)];
+  document.getElementById('sr-ttl').textContent = 'FRIÐR-STIG ' + roman(stageNum);
+  document.getElementById('sr-sub').textContent = 'Stage ' + stageNum + ' · ' + newXP + ' Ljós total';
+  document.getElementById('sr-verse').textContent = getVerse();
+  
+  const typeLabels = {train:'Training sessions',program:'Program days',thought:'Thoughts sealed',log:'Log entries',declaration:'Declarations',language:'Language sessions',skill:'Skill sessions',recovery:'Recovery logs'};
+  
+  let html = '';
+  
+  // Domain activity
+  html += '<div class="sr-section">DOMAINS ACTIVE THIS STAGE</div>';
+  html += '<div class="sr-domain-row">';
+  DOMAINS.forEach(d=>{
+    const count = r.activeDoms[d.id]||0;
+    html += '<div class="sr-domain-pip'+(count>0?' active':'')+'">'+d.name.split('·')[0].trim()+(count>0?' ·'+count:' ·0')+'</div>';
+  });
+  html += '</div>';
+  
+  // Effort breakdown
+  html += '<div class="sr-section">EFFORT THIS STAGE</div>';
+  html += '<div>';
+  if(r.warSess) html += '<div class="sr-row"><span class="sr-lbl">War sessions</span><span class="sr-val">'+r.warSess+'</span></div>';
+  if(r.solidSess) html += '<div class="sr-row"><span class="sr-lbl">Solid sessions</span><span class="sr-val">'+r.solidSess+'</span></div>';
+  if(r.lightSess) html += '<div class="sr-row"><span class="sr-lbl">Light sessions</span><span class="sr-val">'+r.lightSess+'</span></div>';
+  
+  Object.entries(r.byType).forEach(([type, count])=>{
+    if(type==='train'||type==='program')return; // already shown as sessions
+    html += '<div class="sr-row"><span class="sr-lbl">'+(typeLabels[type]||type)+'</span><span class="sr-val">'+count+'</span></div>';
+  });
+  html += '</div>';
+  
+  // Summary stats
+  html += '<div class="sr-section">SUMMARY</div>';
+  html += '<div>';
+  html += '<div class="sr-row"><span class="sr-lbl">Days active</span><span class="sr-val">'+r.activeDays+'</span></div>';
+  html += '<div class="sr-row"><span class="sr-lbl">Total actions</span><span class="sr-val">'+r.totalEntries+'</span></div>';
+  html += '<div class="sr-row"><span class="sr-lbl">XP earned</span><span class="sr-val">'+r.totalXPInStage+' Ljós</span></div>';
+  
+  // Skills practiced
+  if(r.skillsUsed.length){
+    html += '<div class="sr-row"><span class="sr-lbl">Skills practiced</span><span class="sr-val" style="font-size:9px;text-align:right;max-width:60%">'+r.skillsUsed.join(' · ')+'</span></div>';
+  }
+  html += '</div>';
+  
+  document.getElementById('sr-receipt').innerHTML = html;
+  document.getElementById('stage-modal').classList.add('on');
+}
+
+function closeStageMod(){
+  document.getElementById('stage-modal').classList.remove('on');
+  renderHome();
+}
+
+// STREAM VIEW
+let streamFilterActive='all';
+function streamFilter(type){
+  streamFilterActive=type;
+  document.querySelectorAll('#stream-filter-row .rec-check-btn').forEach(b=>{
+    b.classList.toggle('on',b.textContent.toLowerCase()===type||(type==='all'&&b.textContent==='ALL'));
+  });
+  renderStream();
+}
+function renderStream(){
+  const el=document.getElementById('stream-list');if(!el)return;
+  let entries=[...(S.stream||[])].reverse();
+  if(streamFilterActive!=='all')entries=entries.filter(e=>e.type===streamFilterActive);
+  if(!entries.length){
+    el.innerHTML='<div style="font-size:11px;color:var(--muted);font-style:italic;text-align:center;padding:20px 0">The stream is empty. Every action will appear here.</div>';
+    return;
+  }
+  const typeIco={train:'⚡',program:'📋',thought:'◈',log:'▸',declaration:'⬡',language:'言',recovery:'◎',skill:'✦'};
+  const typeCol={train:'#C9A84C',program:'#A0826D',thought:'#8899AA',log:'#7A8A7A',declaration:'#C9A84C',language:'#88AACC',recovery:'#AA8888',skill:'#AABBAA'};
+  el.innerHTML=entries.slice(0,60).map(e=>{
+    const ico=typeIco[e.type]||'·';
+    const col=typeCol[e.type]||'var(--muted)';
+    const age=(()=>{const d=Math.floor((Date.now()-new Date(e.iso))/(1000*60*60*24));return d===0?'today':d===1?'yesterday':d+'d ago';})();
+    return '<div style="display:flex;gap:10px;padding:9px 0;border-bottom:1px solid #ffffff04;align-items:flex-start">'+
+      '<span style="font-size:14px;color:'+col+';min-width:18px;margin-top:1px">'+ico+'</span>'+
+      '<div style="flex:1;min-width:0">'+
+        '<div style="font-family:Cinzel,serif;font-size:7px;color:'+col+';letter-spacing:1px;margin-bottom:2px">'+
+          e.type.toUpperCase()+(e.skill?' · '+e.skill:'')+(e.intensity?' · '+e.intensity.toUpperCase():'')+
+        '</div>'+
+        (e.note?'<div style="font-size:11px;color:var(--dim);font-style:italic;line-height:1.5;white-space:nowrap;overflow:hidden;text-overflow:ellipsis">'+e.note+'</div>':'')+
+      '</div>'+
+      '<span style="font-size:8px;color:var(--rune);white-space:nowrap;margin-top:2px">'+age+'</span>'+
+    '</div>';
+  }).join('');
+}
+
+// QUICK SKILL LOG — tap LOG on any skill to record a practice session
+let qslIdx=null;
+function quickSkillLog(i){
+  qslIdx=i;
+  const sk=S.skills[i];
+  document.getElementById('qsl-name').textContent=sk.name;
+  document.getElementById('qsl-note').value='';
+  document.getElementById('qsl-modal').classList.add('on');
+  // reset intensity
+  document.querySelectorAll('.qsl-int').forEach(b=>b.classList.remove('on'));
+  document.querySelector('.qsl-int[data-v="solid"]').classList.add('on');
+  qslIntensity='solid';
+}
+let qslIntensity='solid';
+function qslSelInt(v){
+  qslIntensity=v;
+  document.querySelectorAll('.qsl-int').forEach(b=>b.classList.toggle('on',b.dataset.v===v));
+}
+function qslSeal(){
+  if(qslIdx===null)return;
+  const sk=S.skills[qslIdx];
+  const note=document.getElementById('qsl-note').value.trim();
+  const intXP={light:1,solid:2,war:3,log:0.5}[qslIntensity]||1;
+  // Write to stream
+  streamWrite('skill',{domain:sk.domain,intensity:qslIntensity,xp:Math.round(intXP*15),skill:sk.name,note});
+  // Progress bump
+  sk.progress=Math.min(100,(sk.progress||0)+(intXP*3));
+  // Skill session log
+  if(!sk.sessions)sk.sessions=[];
+  sk.sessions.push({note,intensity:qslIntensity,date:tod(),iso:new Date().toISOString()});
+  if(sk.sessions.length>50)sk.sessions=sk.sessions.slice(-50);
+  gainXP(Math.round(intXP*15));
+  sv();
+  document.getElementById('qsl-modal').classList.remove('on');
+  renderSkills();
+  toast('✦ '+sk.name+' session sealed');
+  qslIdx=null;
+}
+function qslClose(){document.getElementById('qsl-modal').classList.remove('on');qslIdx=null;}
 
 // WALKTHROUGH
 let wtStep=0;const WT_TOTAL=6;
@@ -1968,8 +2462,8 @@ function renderStatsCells(){
   let streak=0;
   for(let i=0;i<365;i++){
     const d=new Date(now);d.setDate(d.getDate()-i);const ds=d.toDateString();
-    const hasThought=(S.thoughts||[]).some(t=>new Date(t.date).toDateString()===ds);
-    const hasLog=(S.logEntries||[]).some(t=>new Date(t.date).toDateString()===ds);
+    const hasThought=(S.thoughts||[]).some(t=>{const ed=t.iso?new Date(t.iso):new Date(t.date);return ed.toDateString()===ds;});
+    const hasLog=(S.logEntries||[]).some(t=>{const ed=t.iso?new Date(t.iso):new Date(t.date);return ed.toDateString()===ds;});
     if(hasThought||hasLog)streak++;
     else if(i>0)break;
   }
@@ -1980,14 +2474,16 @@ function renderStatsCells(){
   const warThisWeek=(S.freeTrainLog||[]).filter(e=>{const ed=e.iso?new Date(e.iso):new Date(e.date);return e.intensity==='war'&&(now-ed)<7*24*60*60*1000;}).length;
   // Archive size
   const archSize=(S.thoughts||[]).length;
+  const thoughtsThisWeek=(S.thoughts||[]).filter(t=>{const ed=t.iso?new Date(t.iso):new Date(t.date);return(now-ed)<7*24*60*60*1000;}).length;
+  const logThisWeek=(S.logEntries||[]).filter(t=>{const ed=t.iso?new Date(t.iso):new Date(t.date);return(now-ed)<7*24*60*60*1000;}).length;
   // Best iso
   const bestIso=S.isoRecords&&S.isoRecords.length?Math.max(...S.isoRecords.map(r=>r.time)):0;
   const bestIsoStr=bestIso>0?(Math.floor(bestIso/60)+':'+(bestIso%60<10?'0':'')+bestIso%60):'—';
   el.innerHTML=
-    '<div class="stat-cell"><div class="stat-val">'+streak+'</div><div class="stat-lbl">MIND STREAK</div><div class="stat-sub">consecutive days</div></div>'+
-    '<div class="stat-cell"><div class="stat-val">'+totalSess+'</div><div class="stat-lbl">SESSIONS</div><div class="stat-sub">body domain</div></div>'+
-    '<div class="stat-cell"><div class="stat-val">'+warSess+'</div><div class="stat-lbl">WAR SESSIONS</div><div class="stat-sub">maximum output</div></div>'+
-    '<div class="stat-cell"><div class="stat-val">'+archSize+'</div><div class="stat-lbl">THOUGHTS SEALED</div><div class="stat-sub">'+bestIsoStr+' best hold</div></div>';
+    '<div class="stat-cell"><div class="stat-val">'+(streak||'—')+'</div><div class="stat-lbl">MIND STREAK</div><div class="stat-sub">'+(streak?'consecutive days':'start today')+'</div></div>'+
+    '<div class="stat-cell"><div class="stat-val">'+(totalSess||'—')+'</div><div class="stat-lbl">SESSIONS</div><div class="stat-sub">'+(totalSess?'body domain':'no sessions yet')+'</div></div>'+
+    '<div class="stat-cell"><div class="stat-val">'+(warSess||'—')+'</div><div class="stat-lbl">WAR SESSIONS</div><div class="stat-sub">'+(warSess?'maximum output':'none yet')+'</div></div>'+
+    '<div class="stat-cell"><div class="stat-val">'+(archSize||'—')+'</div><div class="stat-lbl">THOUGHTS SEALED</div><div class="stat-sub">'+(thoughtsThisWeek?thoughtsThisWeek+' this week':'archive empty')+'</div></div>';
 }
 
 function renderDomainXP(){
@@ -2006,6 +2502,8 @@ function renderDomainXP(){
   (S.logEntries||[]).forEach(()=>domXP.mind+=10);
   const total=Object.values(domXP).reduce((a,b)=>a+b,1);
   el.innerHTML='';
+  const hasXP=Object.values(domXP).some(v=>v>0);
+  if(!hasXP){el.innerHTML='<div style="font-size:11px;color:var(--muted);font-style:italic;text-align:center;padding:14px;background:var(--glass);border:1px solid var(--border)">Move through the domains. The breakdown will appear.</div>';return;}
   DOMAINS.forEach(d=>{
     const pct=Math.round((domXP[d.id]||0)/total*100);
     const div=document.createElement('div');div.className='domain-xp-bar';
@@ -2048,14 +2546,18 @@ function renderHeatMap(){
   });
   // Legend
   const leg=document.createElement('div');
-  leg.style.cssText='display:flex;align-items:center;gap:6px;margin-top:6px;font-family:Cinzel,serif;font-size:7px;color:var(--muted);letter-spacing:1px';
-  leg.innerHTML='LESS <div class="heat-cell"></div><div class="heat-cell t1"></div><div class="heat-cell t2"></div><div class="heat-cell t3"></div><div class="heat-cell t4"></div> MORE';
+  leg.style.cssText='display:flex;align-items:center;justify-content:space-between;margin-top:6px;font-family:Cinzel,serif;font-size:7px;color:var(--muted);letter-spacing:1px';
+  const activeCount=days.filter(d=>d.score>0).length;
+  leg.innerHTML='<span>'+activeCount+'/30 days active</span><span style="display:flex;align-items:center;gap:4px">LESS <div class="heat-cell" style="display:inline-block"></div><div class="heat-cell t2" style="display:inline-block"></div><div class="heat-cell t4" style="display:inline-block"></div> MORE</span>';
   el.appendChild(leg);
 }
 
 function renderRecordsPanel(){
   const el=document.getElementById('records-panel');if(!el)return;
   const rows=[];
+  // Always show XP
+  rows.push({name:'Total Ljós earned',val:S.xp.toLocaleString()});
+  rows.push({name:'Stage',val:'Friðr-Stig '+roman(lv())});
   // Best iso hold
   if(S.isoRecords&&S.isoRecords.length){
     const best=Math.max(...S.isoRecords.map(r=>r.time));
@@ -2085,6 +2587,43 @@ function renderRecordsPanel(){
   // Thoughts linked
   const linked=(S.thoughts||[]).filter(t=>t.linkedTo).length;
   if(linked)rows.push({name:'Thoughts linked',val:linked+' connections'});
+  // Rest compliance
+  if((S.restLog||[]).length>=3){
+    const recent=(S.restLog||[]).slice(-20);
+    const compliant=recent.filter(r=>r.actual>=r.programmed*0.7).length;
+    const pct=Math.round(compliant/recent.length*100);
+    rows.push({name:'Rest compliance (last 20)',val:pct+'%'});
+  }
+  // Language sessions
+  const langTotal=(S.langLog||[]).length;
+  if(langTotal)rows.push({name:'Language sessions logged',val:langTotal});
+  // Recovery entries
+  const recTotal=(S.recoveryLog||[]).length;
+  if(recTotal){
+    const lastRec=(S.recoveryLog||[])[recTotal-1];
+    const energyStr=lastRec&&lastRec.energy?'Last energy: '+lastRec.energy:'';
+    rows.push({name:'Recovery logs',val:recTotal+(energyStr?' · '+energyStr:'')});
+  }
+  // Stream stats
+  if((S.stream||[]).length){
+    const allStream=S.stream||[];
+    rows.push({name:'Total stream entries',val:allStream.length});
+    // Most practiced skill
+    const skillCount={};allStream.filter(e=>e.skill).forEach(e=>skillCount[e.skill]=(skillCount[e.skill]||0)+1);
+    const topSkill=Object.entries(skillCount).sort((a,b)=>b[1]-a[1])[0];
+    if(topSkill)rows.push({name:'Most practiced skill',val:topSkill[0]+' · '+topSkill[1]+' sessions'});
+    // Longest daily streak from stream
+    let maxStrk=0,curStrk=0,lastD=null;
+    const streamDays=[...new Set(allStream.map(e=>new Date(e.iso).toDateString()))].sort();
+    streamDays.forEach(d=>{
+      const td=new Date(d);
+      if(lastD&&(td-lastD)===86400000)curStrk++;
+      else curStrk=1;
+      maxStrk=Math.max(maxStrk,curStrk);
+      lastD=td;
+    });
+    if(maxStrk>1)rows.push({name:'Longest active streak',val:maxStrk+' consecutive days'});
+  }
 
   if(!rows.length){el.innerHTML='<div style="font-size:11px;color:var(--muted);font-style:italic;text-align:center;padding:8px 0">Records build as you move.</div>';return;}
   el.innerHTML=rows.map(r=>'<div class="record-row"><span class="rec-name">'+r.name+'</span><span class="rec-val">'+r.val+'</span></div>').join('');
@@ -2118,11 +2657,429 @@ function renderThoughtStreak(){
     '<div class="thought-streak">0 DAY STREAK · seal a thought today</div>';
 }
 
+
+
+
+
+// ── BARDAGI MARTIAL LOG ────────────────────────────────────────────────────────
+let martialType=null, martialIntensity='solid';
+
+function martialTypeToggle(val){
+  martialType=martialType===val?null:val;
+  document.querySelectorAll('#martial-type-row .rec-check-btn').forEach(b=>{
+    b.classList.toggle('on', b.textContent.toLowerCase()===val && martialType===val);
+  });
+}
+
+function martialIntToggle(val){
+  martialIntensity=val;
+  ['light','solid','war'].forEach(v=>{
+    const b=document.getElementById('mart-int-'+v);
+    if(b)b.className='int-btn'+(v===val?' sel-'+v:'');
+  });
+}
+
+function saveMartial(){
+  const rounds=parseInt(document.getElementById('martial-rounds').value)||null;
+  const roundMin=parseInt(document.getElementById('martial-round-min').value)||null;
+  const content=document.getElementById('martial-content').value.trim();
+  const note=document.getElementById('martial-note').value.trim();
+  if(!content&&!rounds)return;
+
+  if(!S.martialLog)S.martialLog=[];
+
+  const roundStr=rounds&&roundMin?rounds+'×'+roundMin+'min':rounds?rounds+' rounds':null;
+  const xpAmt=martialIntensity==='war'?75:martialIntensity==='light'?30:50;
+
+  const entry={
+    id:uid(),
+    type:martialType||'session',
+    rounds:roundStr,
+    content,
+    note,
+    intensity:martialIntensity,
+    xp:xpAmt,
+    date:tod(),
+    iso:new Date().toISOString()
+  };
+  S.martialLog.push(entry);
+  if(S.martialLog.length>200)S.martialLog=S.martialLog.slice(-200);
+
+  streamWrite('train',{
+    domain:'martial',
+    intensity:martialIntensity,
+    xp:xpAmt,
+    note:(martialType?martialType+' · ':'')+content.slice(0,80)+(roundStr?' · '+roundStr:''),
+    skill:'Martial Arts',
+    tags:[martialType].filter(Boolean)
+  });
+
+  vigilReset('martial', martialIntensity);
+  gainXP(xpAmt);
+
+  // Reset form
+  document.getElementById('martial-content').value='';
+  document.getElementById('martial-note').value='';
+  document.getElementById('martial-rounds').value='';
+  document.getElementById('martial-round-min').value='';
+  martialType=null;
+  martialIntensity='solid';
+  document.querySelectorAll('#martial-type-row .rec-check-btn').forEach(b=>b.classList.remove('on'));
+  ['light','solid','war'].forEach(v=>{
+    const b=document.getElementById('mart-int-'+v);
+    if(b)b.className='int-btn'+(v==='solid'?' sel-solid':'');
+  });
+
+  sv();renderMartialLog();toast('✦ Bardagi sealed');
+}
+
+function renderMartialLog(){
+  const el=document.getElementById('martial-log-list');if(!el)return;
+  const log=(S.martialLog||[]);
+  if(!log.length){
+    el.innerHTML='<div style="font-size:11px;color:var(--muted);font-style:italic;text-align:center;padding:16px 0">No sessions logged yet.</div>';
+    return;
+  }
+  el.innerHTML='';
+  [...log].reverse().slice(0,10).forEach((e,i)=>{
+    const div=document.createElement('div');div.className='lang-entry';
+    const intCol={war:'#C0522A',solid:'#C9A84C',light:'#7a8a6a'}[e.intensity]||'var(--muted)';
+    div.innerHTML=
+      '<div class="lang-type" style="color:'+intCol+'">'+
+        (e.type?e.type.toUpperCase():' SESSION')+(e.rounds?' · '+e.rounds:'')+'</div>'+
+      '<div class="lang-content">'+e.content+'</div>'+
+      (e.note?'<div class="lang-date" style="margin-top:4px;font-style:italic;color:var(--dim)">'+e.note+'</div>':'')+
+      '<div class="lang-date">'+e.date+' · <span style="color:'+intCol+'">'+e.intensity.toUpperCase()+'</span></div>';
+    el.appendChild(div);
+  });
+}
+
+// ── UNIFIED ACTIVITY STREAM ──────────────────────────────────────────────────
+// Every action in the app writes here. Everything reads from here.
+function streamWrite(type, data){
+  if(!S.stream)S.stream=[];
+  if(S.weeklyIntention===undefined)S.weeklyIntention='';
+  if(!S.martialLog)S.martialLog=[];
+  if(S.lastBackup===undefined)S.lastBackup=null;
+  if(!S.lastStageTime)S.lastStageTime=null;
+  const entry={
+    id:uid(),
+    type,        // 'train'|'program'|'thought'|'log'|'declaration'|'language'|'recovery'|'skill'
+    domain:data.domain||null,
+    skill:data.skill||null,
+    intensity:data.intensity||null,
+    xp:data.xp||0,
+    note:data.note||'',
+    tags:data.tags||[],
+    date:tod(),
+    iso:new Date().toISOString(),
+    ...data
+  };
+  S.stream.push(entry);
+  if(S.stream.length>1000)S.stream=S.stream.slice(-1000);
+  // Update vigil from stream
+  if(entry.domain)vigilReset(entry.domain, entry.intensity||'log');
+  sv();
+  return entry;
+}
+
+function streamToday(){
+  const today=new Date().toDateString();
+  return (S.stream||[]).filter(e=>new Date(e.iso).toDateString()===today);
+}
+
+function streamLastN(n){
+  return (S.stream||[]).slice(-n);
+}
+
+function streamBySkill(skillName){
+  return (S.stream||[]).filter(e=>e.skill&&e.skill.toLowerCase()===skillName.toLowerCase());
+}
+
+function streamByType(type){
+  return (S.stream||[]).filter(e=>e.type===type);
+}
+
+function streamThisWeek(){
+  const cutoff=new Date();cutoff.setDate(cutoff.getDate()-7);
+  return (S.stream||[]).filter(e=>new Date(e.iso)>=cutoff);
+}
+
+// Derive skill progress from stream — sessions logged against this skill
+function skillProgressFromStream(skillName){
+  const sessions=streamBySkill(skillName);
+  if(!sessions.length)return 0;
+  const recent=sessions.slice(-50);
+  // Weight by recency and intensity
+  let score=0;
+  recent.forEach(s=>{
+    const age=(Date.now()-new Date(s.iso))/(1000*60*60*24);
+    const recency=Math.max(0.1,1-(age/90)); // fades over 90 days
+    const intWeight={war:3,solid:2,light:1,log:0.5}[s.intensity]||1;
+    score+=recency*intWeight;
+  });
+  return Math.min(100,Math.round(score*4));
+}
+
+// Domain activity from stream
+function domainActivityToday(domainId){
+  return streamToday().filter(e=>e.domain===domainId).length;
+}
+
+
+// ── WEEKLY INTENTION ──────────────────────────────────────────────────────────
+function renderIntention(){
+  const el=document.getElementById('intention-display');if(!el)return;
+  const intent=S.weeklyIntention||'';
+  if(intent){
+    el.innerHTML='<div class="intention-set">'+intent+'</div>';
+  } else {
+    el.innerHTML='<div class="intention-empty">+ SET THIS WEEK\'S INTENTION</div>';
+  }
+}
+function editIntention(){
+  const current=S.weeklyIntention||'';
+  const el=document.getElementById('intention-display');
+  el.innerHTML='<textarea class="intention-input" id="intention-inp" rows="2" placeholder="What does this week demand of you...">'+current+'</textarea>'+
+
+```
+'<button class="btn-gold" style="width:100%;margin-top:6px" onclick="saveIntention()">\u2746 SET INTENTION</button>';
+```
+
+const inp=document.getElementById(‘intention-inp’);
+if(inp){inp.focus();inp.setSelectionRange(inp.value.length,inp.value.length);}
+}
+function saveIntention(){
+const val=document.getElementById(‘intention-inp’)?.value.trim();
+if(val!==undefined){
+S.weeklyIntention=val;
+streamWrite(‘declaration’,{domain:‘mind’,xp:0,note:’Intention: ’+val.slice(0,60)});
+sv();
+}
+renderIntention();
+}
+
+function renderBackupStatus(){
+const el=document.getElementById(‘backup-status’);if(!el)return;
+if(!S.lastBackup){el.textContent=‘Never backed up · export now’;el.style.color=’#8B4513’;return;}
+const days=Math.floor((Date.now()-new Date(S.lastBackup))/(1000*60*60*24));
+if(days===0)el.textContent=‘Backed up today ✦’,el.style.color=‘var(–gold-dim)’;
+else if(days<=3)el.textContent=’Last backup ’+days+‘d ago’,el.style.color=‘var(–muted)’;
+else{el.textContent=‘Last backup ‘+days+‘d ago · back up now’,el.style.color=’#8B4513’;}
+}
+
+function checkBackupReminder(){
+if(!S.lastBackup)return; // They’ve never backed up — don’t nag on first use
+const streamSinceBackup=(S.stream||[]).filter(e=>new Date(e.iso)>new Date(S.lastBackup)).length;
+if(streamSinceBackup>=50){
+showClockAlert(‘💾’,‘BACK UP YOUR DATA’,streamSinceBackup+’ actions since your last backup. Your data only lives in this browser. One tap to export it to your files. Settings → ↓ BACKUP.’);
+}
+}
+
+// ── AUTO-TIMELINE ─────────────────────────────────────────────────────────────
+function autoTimeline(text, type){
+if(!S.timeline)S.timeline=[];
+// Don’t duplicate within same day
+const today=new Date().toDateString();
+const exists=S.timeline.some(t=>t.text===text&&new Date(t.date||t.iso).toDateString()===today);
+if(exists)return;
+S.timeline.unshift({id:uid(),text,type:type||‘moment’,date:tod(),iso:new Date().toISOString(),auto:true});
+if(S.timeline.length>200)S.timeline=S.timeline.slice(0,200);
+sv();
+}
+
+// ── INTERNAL CLOCK ────────────────────────────────────────────────────────────
+let clockInt=null;
+
+function getTimeContext(){
+const now=new Date();
+const h=now.getHours();
+const m=now.getMinutes();
+const day=now.getDay(); // 0=Sun
+const dayNames=[‘Sunday’,‘Monday’,‘Tuesday’,‘Wednesday’,‘Thursday’,‘Friday’,‘Saturday’];
+const period=h>=5&&h<10?‘dawn’:h>=10&&h<17?‘day’:h>=17&&h<21?‘evening’:‘night’;
+const periodLabel={dawn:‘Dawn’,day:‘Day’,evening:‘Evening’,night:‘Night’};
+return {now,h,m,day,dayName:dayNames[day],period,periodLabel:periodLabel[period]};
+}
+
+function startClock(){
+if(clockInt)return;
+updClockDisplay();
+clockInt=setInterval(()=>{
+updClockDisplay();
+checkTimeAlerts();
+},60000); // every minute
+}
+
+function updClockDisplay(){
+const {now,h,m,period} = getTimeContext();
+const el=document.getElementById(‘clock-display’);if(!el)return;
+const hh=h%12||12;
+const mm=m<10?‘0’+m:m;
+const ampm=h<12?‘AM’:‘PM’;
+const icons={dawn:‘🌅’,day:‘☀️’,evening:‘🌆’,night:‘🌙’};
+el.innerHTML=icons[period]+’ <span style="font-family:Cinzel,serif;font-size:11px;color:var(--gold);letter-spacing:2px">’+hh+’:’+mm+’ ‘+ampm+’</span> <span style="font-size:8px;color:var(--muted);letter-spacing:1px">’+period.toUpperCase()+’</span>’;
+}
+
+function checkTimeAlerts(){
+const {h,day,period,dayName,now}=getTimeContext();
+if(!S.stream)S.stream=[];
+if(S.weeklyIntention===undefined)S.weeklyIntention=’’;
+if(!S.martialLog)S.martialLog=[];
+if(S.lastBackup===undefined)S.lastBackup=null;
+if(!S.lastStageTime)S.lastStageTime=null;
+if(!S.clockAlerts)S.clockAlerts={};
+const todayKey=now.toDateString();
+
+// Evening check — 8pm, haven’t trained today
+if(h===20&&!S.clockAlerts[‘evening_’+todayKey]){
+const trainedToday=(S.freeTrainLog||[]).some(e=>{
+const ed=e.iso?new Date(e.iso):new Date(e.date);return ed.toDateString()===todayKey;
+})||(S.completedDays||[]).some(x=>{
+const ed=x.date?new Date(x.date):null;return ed&&ed.toDateString()===todayKey;
+});
+if(!trainedToday){
+S.clockAlerts[‘evening_’+todayKey]=true;sv();
+showClockAlert(‘🌆’,‘EVENING CHECK’,‘The day is almost done. The body hasn't moved yet. Not an accusation — a question. Is there still time?’);
+}
+}
+
+// Dawn push — 6am, new day
+if(h===6&&!S.clockAlerts[‘dawn_’+todayKey]){
+S.clockAlerts[‘dawn_’+todayKey]=true;sv();
+const daysSinceLastTrain=(()=>{
+const logs=[…(S.freeTrainLog||[]),…(S.completedDays||[]).filter(x=>x.date)];
+if(!logs.length)return 999;
+const last=logs.map(e=>new Date(e.iso||e.date||e)).sort((a,b)=>b-a)[0];
+return Math.floor((now-last)/(1000*60*60*1000));
+})();
+if(daysSinceLastTrain>=2){
+showClockAlert(‘🌅’,‘DAWN’,‘Two days without movement. Today is the answer. Sköll doesn't slow because you're tired.’);
+}
+}
+
+// Night seal reminder — 10pm, no thoughts today
+if(h===22&&!S.clockAlerts[‘night_’+todayKey]){
+const thoughtToday=(S.thoughts||[]).some(t=>{
+const ed=t.iso?new Date(t.iso):new Date(t.date);return ed.toDateString()===todayKey;
+});
+const logToday=(S.logEntries||[]).some(t=>{
+const ed=t.iso?new Date(t.iso):new Date(t.date);return ed.toDateString()===todayKey;
+});
+if(!thoughtToday&&!logToday){
+S.clockAlerts[‘night_’+todayKey]=true;sv();
+showClockAlert(‘🌙’,‘NIGHT SEAL’,‘Nothing sealed today. Before you sleep — one thought. One log entry. One sentence about what today was. The archive holds what memory loses.’);
+}
+}
+
+// Purge old clock alerts (keep only last 7 days)
+if(S.clockAlerts){
+const cutoff=new Date(now);cutoff.setDate(cutoff.getDate()-7);
+Object.keys(S.clockAlerts).forEach(k=>{
+const dateStr=k.split(’*’).slice(1).join(’*’);
+if(dateStr&&new Date(dateStr)<cutoff)delete S.clockAlerts[k];
+});
+}
+}
+
+function showClockAlert(ico,ttl,msg){
+// Only show if no modal is open
+if(document.getElementById(‘modal’).classList.contains(‘on’))return;
+if(document.getElementById(‘wt-modal’).classList.contains(‘on’))return;
+document.getElementById(‘m-ico’).textContent=ico;
+document.getElementById(‘m-ttl’).textContent=ttl;
+document.getElementById(‘m-sub’).textContent=’’;
+document.getElementById(‘m-verse’).textContent=msg;
+document.getElementById(‘m-close’).textContent=‘NOTED’;
+document.getElementById(‘modal’).classList.add(‘on’);
+}
+
+// Vigil fade is now hourly — not just daily reset at midnight
+function updVigilHourly(){
+// Each domain loses a small fraction per hour of inactivity
+// Full day = 24 increments of 1/24
+// We track in fractional days now
+const now=Date.now();
+const lastCheck=S.lastVigilCheck||now;
+const hoursElapsed=(now-lastCheck)/(1000*60*60);
+if(hoursElapsed>=1){
+const daysElapsed=hoursElapsed/24;
+DOMAINS.forEach(d=>{
+if(S.domains[d.id]!==undefined){
+S.domains[d.id]=Math.min(14,S.domains[d.id]+daysElapsed);
+}
+});
+S.lastVigilCheck=now;
+sv();
+}
+}
+
+// Day-aware training suggestions
+function getTrainingContext(){
+const {day,dayName,h,period}=getTimeContext();
+const suggestions={
+1:{name:‘Day I · Upper Push’,note:‘Monday — fresh week, fresh push.’},
+2:{name:‘Day II · Lower Foundation’,note:‘Tuesday — build the base.’},
+3:{name:‘Day III · Upper Pull’,note:‘Wednesday — pull day.’},
+4:{name:‘Day IV · Lower Power’,note:‘Thursday — power output.’},
+5:{name:‘Rest or free session’,note:‘Friday — read the body.’},
+6:{name:‘Free session or makeup’,note:‘Saturday — your call.’},
+0:{name:‘Recovery’,note:‘Sunday — let it absorb.’}
+};
+return suggestions[day]||{name:’’,note:’’};
+}
+
+// SWIPE GESTURES for train tabs
+let touchStartX=0,touchStartY=0;
+function initSwipe(el,onLeft,onRight){
+el.addEventListener(‘touchstart’,e=>{touchStartX=e.touches[0].clientX;touchStartY=e.touches[0].clientY;},{passive:true});
+el.addEventListener(‘touchend’,e=>{
+const dx=e.changedTouches[0].clientX-touchStartX;
+const dy=e.changedTouches[0].clientY-touchStartY;
+if(Math.abs(dx)>50&&Math.abs(dx)>Math.abs(dy)*1.5){
+if(dx<0)onLeft();else onRight();
+}
+},{passive:true});
+}
+const trainTabs=[‘free’,‘program’,‘recovery’,‘lang’,‘martial’];
+function swipeTrainLeft(){
+const active=trainTabs.findIndex(t=>document.getElementById(‘train-’+t)&&document.getElementById(‘train-’+t).classList.contains(‘active’));
+if(active<trainTabs.length-1)trainTab(trainTabs[active+1]);
+}
+function swipeTrainRight(){
+const active=trainTabs.findIndex(t=>document.getElementById(‘train-’+t)&&document.getElementById(‘train-’+t).classList.contains(‘active’));
+if(active>0)trainTab(trainTabs[active-1]);
+}
+
+// Re-render on visibility change (coming back to tab/app)
+document.addEventListener(‘visibilitychange’,()=>{
+if(!document.hidden){
+const activeScreen=document.querySelector(’.screen.active’);
+if(activeScreen&&activeScreen.id===‘screen-home’)renderHome();
+}
+});
+// KEYBOARD
+document.addEventListener(‘keydown’,e=>{
+if(e.key===‘Escape’){
+closeQC();
+qslClose();
+document.getElementById(‘stage-modal’).classList.remove(‘on’);
+document.getElementById(‘modal’).classList.remove(‘on’);
+document.getElementById(‘wt-modal’).classList.remove(‘on’);
+}
+});
+
 // INIT
 ld();
 const ts=new Date().toDateString();
-if(S.lastDayCheck!==ts){if(S.lastDayCheck)DOMAINS.forEach(d=>{S.domains[d.id]=(S.domains[d.id]||0)+1;});S.lastDayCheck=ts;sv();}
-showOpening();renderHome();
+if(S.lastDayCheck!==ts){S.lastDayCheck=ts;sv();}
+updVigilHourly();
+showOpening();renderHome();startClock();checkBackupReminder();
+// Init swipe on train panels
+setTimeout(()=>{
+const trainContent=document.getElementById(‘screen-train’);
+if(trainContent)initSwipe(trainContent,swipeTrainLeft,swipeTrainRight);
+},500);
 </script>
 
 </body>
