@@ -1,4 +1,5 @@
 <!DOCTYPE html>
+
 <html lang="en">
 <head>
 <meta charset="UTF-8">
@@ -79,7 +80,1448 @@ textarea.inp{resize:none;line-height:1.7}
 .c-app-name{font-family:'Cinzel',serif;font-size:10px;color:var(--muted);letter-spacing:6px;margin-bottom:12px}
 .c-name{font-family:'Cinzel',serif;font-size:22px;font-weight:700;color:var(--gold);letter-spacing:2px;margin-bottom:3px}
 .c-dharma{font-size:12px;color:var(--dim);font-style:italic;margin-bottom:10px}
-< truncated lines 82-1195 >
+.c-rec{font-size:11px;color:var(--muted);letter-spacing:.5px;line-height:2.2}
+/* STAGE */
+.stage-card{background:var(--glass);border:1px solid #C9A84C10;padding:16px;margin-bottom:20px}
+.stage-row{display:flex;justify-content:space-between;align-items:flex-end;margin-bottom:12px}
+.stage-lbl{font-family:'Cinzel',serif;font-size:8px;color:var(--muted);letter-spacing:2px;margin-bottom:4px}
+.stage-val{font-family:'Cinzel',serif;font-size:28px;font-weight:700;color:var(--gold);line-height:1}
+.stage-sub{font-size:10px;color:var(--muted);font-style:italic;margin-top:3px}
+.arc-bar-bg{height:2px;background:#111009;margin-bottom:6px}
+.arc-bar-fill{height:2px;background:linear-gradient(90deg,var(--gold-dim),var(--sun));transition:width 1s ease}
+.stage-cap{font-size:10px;color:var(--muted);font-style:italic}
+/* VIGIL */
+.vigil-item{display:flex;align-items:center;gap:10px;padding:10px 0;border-bottom:1px solid #ffffff02}
+.vigil-item:last-child{border-bottom:none}
+.v-ico{font-size:16px;width:26px;text-align:center;flex-shrink:0}
+.v-body{flex:1;min-width:0}
+.v-name{font-family:'Cinzel',serif;font-size:9.5px;color:var(--light);letter-spacing:.5px;margin-bottom:3px}
+.v-note{font-size:9px;color:var(--muted);font-style:italic;margin-bottom:3px}
+.v-bar-bg{height:2px;background:#0a0900;margin-bottom:3px}
+.v-bar-fill{height:2px;transition:width 1.2s ease,opacity .8s ease}
+.v-status{font-size:9px;color:var(--muted);font-style:italic}
+.v-days{font-family:'Cinzel',serif;font-size:8px;color:var(--rune);flex-shrink:0}
+/* DAY CARDS */
+.day-btn{width:100%;background:var(--glass);border:1px solid var(--border);padding:13px 14px;margin-bottom:7px;cursor:pointer;text-align:left;display:block;position:relative;overflow:hidden}
+.day-btn::before{content:'';position:absolute;left:0;top:0;width:2px;height:100%;background:var(--dc);opacity:.5}
+.day-btn.done{border-color:#C9A84C18;background:#C9A84C03}
+.day-inner{display:flex;justify-content:space-between;align-items:center;gap:10px}
+.day-left{display:flex;align-items:center;gap:10px}
+.day-ico-wrap{width:38px;height:38px;border:1px solid var(--border);display:flex;align-items:center;justify-content:center;font-size:17px;flex-shrink:0}
+.day-name{font-family:'Cinzel',serif;font-size:11px;font-weight:600;margin-bottom:2px}
+.day-meta{font-size:10px;color:var(--dim)}
+.mini-bar{height:1px;background:#111009;margin-top:7px}
+.mini-fill{height:1px}
+.mini-lbl{font-size:8px;color:var(--muted);margin-top:3px;font-style:italic}
+.badge{background:var(--glass);border:1px solid var(--border);padding:3px 9px;font-size:8px;color:var(--muted);font-family:'Cinzel',serif;letter-spacing:1px;display:inline-block;margin:2px}
+.badge.earned{border-color:var(--gold-dim);color:var(--gold);background:#C9A84C06}
+/* TRAIN */
+.ttabs{display:flex;border:1px solid var(--border);margin-bottom:18px}
+.ttab{flex:1;padding:9px 2px;background:none;border:none;border-right:1px solid var(--border);color:var(--muted);font-family:'Cinzel',serif;font-size:7.5px;letter-spacing:1px;cursor:pointer}
+.ttab:last-child{border-right:none}
+.ttab.active{color:var(--gold);background:#C9A84C06}
+.fl-entry{background:var(--glass);border:1px solid var(--border);padding:12px;margin-bottom:7px;position:relative}
+.fl-intent{font-family:'Cinzel',serif;font-size:8px;color:var(--gold);letter-spacing:1px;margin-bottom:4px}
+.fl-exs{font-size:12px;color:var(--dim);font-style:italic;line-height:1.6;margin-bottom:5px}
+.fl-note{font-size:11px;color:var(--muted);font-style:italic;margin-bottom:4px;border-left:1px solid var(--border);padding-left:8px}
+.fl-date{font-size:9px;color:var(--rune)}
+.xp-pill{display:inline-block;background:#C9A84C10;border:1px solid var(--gold-dim);color:var(--gold);font-family:'Cinzel',serif;font-size:7px;letter-spacing:1px;padding:2px 7px;margin-top:4px}
+.intensity-row{display:flex;gap:6px;margin:10px 0}
+.int-btn{flex:1;padding:10px 4px;background:none;border:1px solid var(--border);color:var(--muted);font-family:'Cinzel',serif;font-size:8px;letter-spacing:1px;cursor:pointer;transition:all .2s;text-align:center}
+.int-btn.sel-light{border-color:#6a8a6a;color:#6a8a6a;background:#6a8a6a0a}
+.int-btn.sel-solid{border-color:var(--gold-dim);color:var(--gold);background:#C9A84C0a}
+.int-btn.sel-war{border-color:#C0522A;color:#E8723A;background:#C0522A0a}
+.int-label{font-family:'Cinzel',serif;font-size:8px;color:var(--muted);letter-spacing:2px;margin-bottom:6px;margin-top:10px;display:block}
+.iso-strip{background:#C9A84C06;border:1px solid var(--border);padding:12px 14px;margin-bottom:12px}
+.iso-timer{font-family:'Cinzel',serif;font-size:32px;font-weight:700;color:var(--gold);text-align:center;letter-spacing:4px;margin:8px 0}
+.iso-name{font-family:'Cinzel',serif;font-size:9px;color:var(--muted);letter-spacing:2px;text-align:center;margin-bottom:8px}
+.iso-btns{display:flex;gap:6px}
+.iso-btn{flex:1;background:none;border:1px solid var(--border);color:var(--muted);font-family:'Cinzel',serif;font-size:8px;letter-spacing:1px;padding:8px 4px;cursor:pointer;transition:all .2s}
+.iso-btn.running{border-color:var(--gold-dim);color:var(--gold)}
+.iso-record{font-size:9px;color:var(--muted);font-style:italic;margin-top:6px;text-align:center}
+.session-timer-bar{display:flex;align-items:center;justify-content:space-between;background:#C9A84C06;border:1px solid var(--border);padding:8px 14px;margin-bottom:14px}
+.session-timer-val{font-family:'Cinzel',serif;font-size:20px;font-weight:700;color:var(--gold);letter-spacing:3px}
+.session-timer-lbl{font-family:'Cinzel',serif;font-size:7px;color:var(--muted);letter-spacing:2px}
+.session-timer-btn{background:none;border:1px solid var(--border);color:var(--muted);font-family:'Cinzel',serif;font-size:7px;letter-spacing:1px;padding:5px 10px;cursor:pointer}
+.session-timer-btn.running{border-color:var(--gold-dim);color:var(--gold)}
+.fl-intensity{display:inline-block;font-family:'Cinzel',serif;font-size:7px;letter-spacing:1px;padding:2px 8px;border:1px solid var(--border);margin-right:6px;margin-top:4px}
+.fl-intensity.light{border-color:#6a8a6a;color:#6a8a6a}
+.fl-intensity.solid{border-color:var(--gold-dim);color:var(--gold)}
+.fl-intensity.war{border-color:#C0522A;color:#E8723A}
+/* PROGRAM */
+.prog-ttl{font-family:'Cinzel',serif;font-size:18px;font-weight:700;color:var(--gold);margin-bottom:3px}
+.prog-sub{font-size:12px;color:var(--dim);margin-bottom:8px}
+.prog-verse{font-size:11px;color:var(--muted);font-style:italic;line-height:1.9;padding-left:10px;border-left:1px solid var(--border);white-space:pre-line;margin-bottom:16px}
+.p-row{display:flex;justify-content:space-between;font-family:'Cinzel',serif;font-size:8px;color:var(--muted);letter-spacing:1px;margin-bottom:5px}
+.rest-strip{display:none;align-items:center;gap:10px;background:#C9A84C08;border:1px solid var(--gold-dim);padding:9px 14px;margin-bottom:12px}
+.rest-strip.on{display:flex}
+.rest-txt{font-family:'Cinzel',serif;font-size:11px;color:var(--gold);letter-spacing:1px;flex:1}
+.rest-skip{background:none;border:none;color:var(--muted);font-family:'Cinzel',serif;font-size:8px;cursor:pointer}
+.ex-card{background:var(--glass);border:1px solid var(--border);padding:13px;margin-bottom:9px}
+.ex-card.done{border-color:#C9A84C28}
+.ex-head{display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:3px}
+.ex-name{font-family:'Cinzel',serif;font-size:12px;font-weight:600}
+.ex-name.done{color:var(--gold)}
+.ex-meta{font-size:10px;color:var(--muted);margin-bottom:9px}
+.tip-tog{background:none;border:1px solid var(--border);color:var(--muted);font-family:'Cinzel',serif;font-size:7px;letter-spacing:2px;padding:3px 8px;cursor:pointer;flex-shrink:0}
+.tip-tog.on{border-color:var(--gold-dim);color:var(--gold)}
+.tip-box{font-size:11px;color:#7a6d58;background:#ffffff02;padding:9px 11px;margin-bottom:9px;line-height:1.9;border-left:1px solid var(--gold-dim);font-style:italic}
+.sets-row{display:flex;gap:6px;flex-wrap:wrap}
+.set-btn{width:38px;height:38px;border:1px solid var(--border);background:transparent;color:var(--rune);cursor:pointer;font-family:'Cinzel',serif;font-size:11px;font-weight:600}
+.set-btn.done{color:var(--bg2);background:var(--gold);border-color:var(--gold)}
+.note-field{width:100%;background:#ffffff02;border:none;border-top:1px solid var(--border);color:var(--dim);font-family:'Crimson Text',serif;font-size:11px;padding:7px 10px;outline:none;margin-top:8px;font-style:italic}
+.note-field::placeholder{color:var(--rune)}
+.finish-btn{width:100%;padding:15px;background:linear-gradient(135deg,var(--gold-dim),var(--gold));color:var(--bg2);border:none;font-family:'Cinzel',serif;font-size:12px;font-weight:700;letter-spacing:2px;cursor:pointer;margin-top:8px;display:none}
+.add-ex-form{background:var(--glass);border:1px solid var(--border);padding:12px;margin-top:14px}
+.add-ex-row{display:flex;gap:6px;margin-bottom:6px}
+.add-ex-row .inp{flex:1}
+.add-ex-row .inp.sm{width:60px;flex:none}
+/* FRAMEWORK */
+.fw-crown{text-align:center;margin-bottom:22px}
+.fw-ico{font-size:42px;margin-bottom:10px}
+.fw-ttl{font-family:'Cinzel',serif;font-size:20px;color:var(--gold);letter-spacing:3px;margin-bottom:3px}
+.fw-sub{font-size:11px;color:var(--muted);font-style:italic}
+.law-text{font-size:13px;color:var(--dim);line-height:2.5;white-space:pre-line}
+.law-text em{color:var(--light);font-style:normal}
+.cosm-card{background:var(--glass);border:1px solid var(--border);padding:14px;margin-bottom:9px}
+.cosm-ico{font-size:24px;margin-bottom:7px}
+.cosm-name{font-family:'Cinzel',serif;font-size:14px;color:var(--gold);letter-spacing:1.5px;margin-bottom:2px}
+.cosm-meaning{font-size:9px;color:var(--muted);letter-spacing:1px;margin-bottom:7px;font-family:'Cinzel',serif}
+.cosm-desc{font-size:12px;color:var(--dim);line-height:1.9;font-style:italic}
+.decl-item{background:var(--glass);border:1px solid var(--border);border-left:2px solid var(--gold-dim);padding:13px;margin-bottom:7px;position:relative}
+.decl-txt{font-size:13px;color:var(--dim);line-height:1.9;font-style:italic;margin-bottom:5px}
+.decl-date{font-size:9px;color:var(--muted);font-family:'Cinzel',serif;letter-spacing:1px}
+/* ARCHIVE */
+.tag-chip{display:inline-flex;align-items:center;gap:5px;background:var(--glass);border:1px solid var(--border);padding:4px 9px;margin:2px;font-family:'Cinzel',serif;font-size:7.5px;color:var(--muted);letter-spacing:1px;cursor:pointer}
+.tag-chip.sel{border-color:var(--gold-dim);color:var(--gold);background:#C9A84C07}
+.domain-chip{display:inline-flex;align-items:center;gap:4px;border:1px solid var(--border);padding:4px 9px;margin:2px;font-family:'Cinzel',serif;font-size:7.5px;color:var(--muted);letter-spacing:1px;cursor:pointer}
+.domain-chip.sel{color:var(--gold);background:#C9A84C07}
+.thought-card{background:var(--glass);border:1px solid var(--border);padding:12px;margin-bottom:6px;position:relative}
+.tc-domains{display:flex;gap:3px;flex-wrap:wrap;margin-bottom:4px}
+.tc-domain{font-size:7.5px;font-family:'Cinzel',serif;letter-spacing:.8px;padding:2px 6px;border:1px solid var(--border)}
+.tc-tags{display:flex;gap:3px;flex-wrap:wrap;margin-bottom:5px}
+.tc-tag{font-size:8px;color:var(--muted);font-family:'Cinzel',serif}
+.tc-text{font-size:12px;color:var(--dim);line-height:1.75;font-style:italic}
+.tc-link-note{font-size:10px;color:var(--muted);margin-top:5px;font-style:italic;border-left:1px solid var(--border);padding-left:7px}
+.tc-link-ref{font-size:9px;color:var(--rune);margin-top:3px;font-family:'Cinzel',serif}
+.tc-date{font-size:8px;color:var(--rune);margin-top:5px}
+.web-wrap{width:100%;height:340px;background:#07060480;border:1px solid var(--border);position:relative;overflow:hidden;margin-bottom:12px}
+.web-canvas{width:100%;height:100%}
+.web-empty{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;font-size:12px;color:var(--muted);font-style:italic;text-align:center;padding:24px}
+.web-tt{position:absolute;background:var(--stone);border:1px solid var(--gold-dim);padding:9px 12px;pointer-events:none;display:none;max-width:190px;z-index:5}
+.web-tt-tag{font-family:'Cinzel',serif;font-size:7.5px;color:var(--muted);letter-spacing:1px;margin-bottom:3px}
+.web-tt-text{font-size:10px;color:var(--dim);font-style:italic;line-height:1.6}
+.log-tag-btn{background:none;border:1px solid var(--border);color:var(--muted);font-family:'Cinzel',serif;font-size:7.5px;letter-spacing:1px;padding:5px 10px;cursor:pointer;margin:2px}
+.log-tag-btn.sel{border-color:var(--gold-dim);color:var(--gold);background:#C9A84C07}
+.log-entry{background:var(--glass);border:1px solid var(--border);padding:11px;margin-bottom:6px;position:relative}
+.log-tag-lbl{font-family:'Cinzel',serif;font-size:8px;color:var(--gold);letter-spacing:2px;margin-bottom:4px}
+.log-txt{font-size:12px;color:var(--dim);line-height:1.7;font-style:italic}
+.log-date{font-size:8px;color:var(--rune);margin-top:5px}
+/* BUILD */
+.skill-card{background:var(--glass);border:1px solid var(--border);padding:13px;margin-bottom:7px}
+.sk-head{display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:7px}
+.sk-name{font-family:'Cinzel',serif;font-size:11px;color:var(--light);letter-spacing:.5px;margin-bottom:2px}
+.sk-cat{font-size:9px;color:var(--muted);font-style:italic}
+.sk-pri{font-size:7.5px;font-family:'Cinzel',serif;padding:2px 7px;border:1px solid var(--border);color:var(--muted);letter-spacing:1px}
+.sk-pri.hi{border-color:var(--gold-dim);color:var(--gold)}
+.sk-note{font-size:11px;color:var(--dim);font-style:italic;margin-bottom:7px;line-height:1.7}
+.sk-btns{display:flex;gap:4px}
+.sk-btn{flex:1;background:none;border:1px solid var(--border);color:var(--muted);font-family:'Cinzel',serif;font-size:6.5px;letter-spacing:.8px;padding:6px 3px;cursor:pointer}
+.goal-card{background:var(--glass);border:1px solid var(--border);padding:12px;margin-bottom:6px;position:relative}
+.goal-head{display:flex;justify-content:space-between;margin-bottom:4px}
+.goal-name{font-family:'Cinzel',serif;font-size:10px;color:var(--light);letter-spacing:.5px}
+.goal-tf{font-size:8px;color:var(--muted);font-family:'Cinzel',serif}
+.goal-desc{font-size:11px;color:var(--dim);font-style:italic;line-height:1.7;margin-bottom:7px}
+.chk-row{display:flex;align-items:center;gap:8px}
+.chk-box{width:15px;height:15px;border:1px solid var(--border);background:none;cursor:pointer;display:flex;align-items:center;justify-content:center;font-size:8px;color:var(--gold);flex-shrink:0}
+.chk-box.done{background:#C9A84C10;border-color:var(--gold-dim)}
+.add-form{background:var(--glass);border:1px solid var(--border);padding:13px;margin-bottom:13px}
+.tl-item{display:flex;gap:11px;position:relative;margin-bottom:2px}
+.tl-item::before{content:'';position:absolute;left:16px;top:28px;bottom:-18px;width:1px;background:var(--border)}
+.tl-item:last-child::before{display:none}
+.tl-dot-wrap{flex-shrink:0;padding-top:4px}
+.tl-dot{width:6px;height:6px;border-radius:50%;background:var(--muted)}
+.tl-dot.landmark,.tl-dot.framework{background:var(--gold);box-shadow:0 0 7px #C9A84C50;width:9px;height:9px}
+.tl-dot.declaration{background:var(--ember)}
+.tl-content{flex:1;background:var(--glass);border:1px solid var(--border);padding:10px 12px;margin-bottom:16px;position:relative}
+.tl-content.landmark,.tl-content.framework{border-color:#C9A84C18;background:#C9A84C03}
+.tl-type{font-family:'Cinzel',serif;font-size:7px;color:var(--muted);letter-spacing:2px;margin-bottom:3px}
+.tl-txt{font-size:11px;color:var(--dim);line-height:1.7;font-style:italic}
+.tl-date{font-size:8px;color:var(--rune);margin-top:4px;font-family:'Cinzel',serif}
+.tl-type-row{display:flex;gap:4px;flex-wrap:wrap;margin:7px 0}
+.tl-type-btn{background:none;border:1px solid var(--border);color:var(--muted);font-family:'Cinzel',serif;font-size:7px;letter-spacing:1px;padding:5px 9px;cursor:pointer}
+.tl-type-btn.sel{border-color:var(--gold-dim);color:var(--gold);background:#C9A84C07}
+.prestige-strip{text-align:center;margin-bottom:16px}
+.prestige-inner{display:inline-flex;align-items:center;gap:8px;border:1px solid var(--gold-dim);padding:5px 16px;font-family:'Cinzel',serif;font-size:9px;color:var(--gold);letter-spacing:2px;background:#C9A84C05}
+.stats-grid{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-bottom:20px}
+.stat-cell{background:var(--glass);border:1px solid var(--border);padding:12px 10px;text-align:center}
+.stat-val{font-family:'Cinzel',serif;font-size:22px;font-weight:700;color:var(--gold);line-height:1;margin-bottom:3px}
+.stat-lbl{font-family:'Cinzel',serif;font-size:7px;color:var(--muted);letter-spacing:2px}
+.stat-sub{font-size:9px;color:var(--dim);font-style:italic;margin-top:2px}
+.domain-xp-bar{display:flex;align-items:center;gap:8px;padding:6px 0;border-bottom:1px solid #ffffff02}
+.domain-xp-bar:last-child{border-bottom:none}
+.dxb-name{font-family:'Cinzel',serif;font-size:8px;color:var(--muted);letter-spacing:1px;width:70px;flex-shrink:0}
+.dxb-bar{flex:1;height:3px;background:#0a0900}
+.dxb-fill{height:3px;transition:width .8s ease}
+.dxb-pct{font-family:'Cinzel',serif;font-size:8px;color:var(--muted);width:28px;text-align:right;flex-shrink:0}
+.heat-row{display:flex;gap:2px;margin-bottom:2px}
+.heat-cell{width:12px;height:12px;background:#0a0900;border:1px solid #ffffff03;flex-shrink:0}
+.heat-cell.t1{background:#1a1508;border-color:#C9A84C10}
+.heat-cell.t2{background:#2a2010;border-color:#C9A84C20}
+.heat-cell.t3{background:#3a2e18;border-color:#C9A84C35}
+.heat-cell.t4{background:#C9A84C;border-color:#C9A84C}
+.heat-month{font-family:'Cinzel',serif;font-size:7px;color:var(--muted);letter-spacing:1px;margin-bottom:5px}
+.record-row{display:flex;justify-content:space-between;align-items:center;padding:8px 0;border-bottom:1px solid #ffffff02}
+.record-row:last-child{border-bottom:none}
+.rec-name{font-size:11px;color:var(--dim);font-style:italic}
+.rec-val{font-family:'Cinzel',serif;font-size:11px;color:var(--gold)}
+.search-wrap{display:flex;gap:6px;margin-bottom:14px}
+.thought-streak{display:inline-flex;align-items:center;gap:6px;background:var(--glass);border:1px solid var(--border);padding:5px 12px;font-family:'Cinzel',serif;font-size:8px;color:var(--muted);letter-spacing:1px;margin-bottom:12px}
+.thought-streak.active{border-color:var(--gold-dim);color:var(--gold)}
+
+/* QUICK CAPTURE FAB */
+.fab{position:fixed;bottom:80px;right:16px;width:48px;height:48px;background:linear-gradient(135deg,var(–gold-dim),var(–gold));border:none;border-radius:50%;cursor:pointer;display:flex;align-items:center;justify-content:center;font-size:20px;z-index:50;box-shadow:0 0 18px #C9A84C30;transition:transform .2s}
+.fab:active{transform:scale(.92)}
+/* QUICK CAPTURE MODAL */
+.qc-modal{position:fixed;inset:0;background:#09080695;backdrop-filter:blur(18px);z-index:600;display:none;align-items:flex-end;justify-content:center;padding:0 0 80px}
+.qc-modal.on{display:flex}
+.qc-inner{background:var(–stone);border:1px solid var(–gold-dim);border-bottom:none;width:100%;max-width:520px;padding:20px 18px 24px;animation:slideup .25s ease-out}
+@keyframes slideup{from{transform:translateY(30px);opacity:0}to{transform:translateY(0);opacity:1}}
+.qc-ttl{font-family:‘Cinzel’,serif;font-size:9px;color:var(–muted);letter-spacing:3px;margin-bottom:10px;display:flex;justify-content:space-between;align-items:center}
+.qc-close{background:none;border:none;color:var(–muted);cursor:pointer;font-size:16px;padding:0}
+/* WALKTHROUGH */
+.wt-modal{position:fixed;inset:0;background:#09080698;backdrop-filter:blur(20px);z-index:850;display:none;align-items:center;justify-content:center;padding:24px}
+.wt-modal.on{display:flex}
+.wt-inner{background:var(–stone);border:1px solid var(–gold-dim);padding:28px 22px;max-width:320px;width:100%;animation:min .3s ease-out}
+.wt-step{display:none}.wt-step.on{display:block}
+.wt-ico{font-size:36px;margin-bottom:12px}
+.wt-ttl{font-family:‘Cinzel’,serif;font-size:14px;color:var(–gold);letter-spacing:2px;margin-bottom:6px}
+.wt-desc{font-size:13px;color:var(–dim);line-height:2;font-style:italic;margin-bottom:20px}
+.wt-dots{display:flex;gap:6px;justify-content:center;margin-bottom:18px}
+.wt-dot{width:6px;height:6px;border-radius:50%;background:var(–border)}
+.wt-dot.on{background:var(–gold)}
+.wt-btns{display:flex;gap:8px}
+.wt-btn{flex:1;background:none;border:1px solid var(–border);color:var(–muted);font-family:‘Cinzel’,serif;font-size:8px;letter-spacing:2px;padding:10px;cursor:pointer}
+.wt-btn.primary{border-color:var(–gold-dim);color:var(–gold)}
+/* SESSION FLOW INDICATOR */
+.sess-flow{display:flex;gap:0;margin-bottom:14px;border:1px solid var(–border)}
+.sf-step{flex:1;padding:7px 4px;text-align:center;font-family:‘Cinzel’,serif;font-size:6px;color:var(–muted);letter-spacing:1px;border-right:1px solid var(–border);transition:all .3s;cursor:default}
+.sf-step:last-child{border-right:none}
+.sf-step.done{color:var(–gold);background:#C9A84C06}
+.sf-step.active{color:var(–gold);background:#C9A84C10;border-bottom:1px solid var(–gold-dim)}
+/* NAV TOOLTIPS */
+.nb-tt{position:fixed;bottom:65px;background:var(–stone);border:1px solid var(–gold-dim);padding:6px 12px;font-family:‘Cinzel’,serif;font-size:8px;color:var(–gold);letter-spacing:1px;z-index:200;display:none;white-space:nowrap;transform:translateX(-50%)}
+/* DECLARATION QUICK CARVE on home */
+.carve-strip{display:flex;align-items:center;gap:10px;background:var(–glass);border:1px solid var(–border);border-left:2px solid var(–gold-dim);padding:10px 14px;margin-bottom:10px;cursor:pointer}
+.carve-strip:active{background:#C9A84C08}
+.carve-lbl{font-family:‘Cinzel’,serif;font-size:8px;color:var(–muted);letter-spacing:2px}
+.carve-ico{font-size:16px}
+/* FIRST-TIME HINTS */
+.day-hint{font-size:10px;color:var(–muted);font-style:italic;padding:8px 0 14px;border-bottom:1px solid var(–border);margin-bottom:14px;line-height:1.9}
+/* SKILL SKOLL INDICATOR */
+.sk-skoll{display:inline-flex;align-items:center;gap:4px;font-family:‘Cinzel’,serif;font-size:7px;color:#8B4513;letter-spacing:1px;border:1px solid #8B451320;padding:2px 7px;margin-top:4px}
+
+/* PROGRAM DAY RESET */
+.reset-day-btn{background:none;border:1px solid var(–border);color:var(–muted);font-family:‘Cinzel’,serif;font-size:7px;letter-spacing:1px;padding:4px 10px;cursor:pointer;margin-top:6px}
+/* WEEKLY SUMMARY CARD */
+.week-card{background:var(–glass);border:1px solid var(–border);padding:14px;margin-bottom:10px}
+.week-row{display:flex;justify-content:space-between;align-items:center;padding:5px 0;border-bottom:1px solid #ffffff02}
+.week-row:last-child{border-bottom:none}
+.week-lbl{font-size:11px;color:var(–dim);font-style:italic}
+.week-val{font-family:‘Cinzel’,serif;font-size:10px;color:var(–gold)}
+/* RECOVERY LOG */
+.rec-check-row{display:flex;gap:6px;margin:8px 0;flex-wrap:wrap}
+.rec-check-btn{background:none;border:1px solid var(–border);color:var(–muted);font-family:‘Cinzel’,serif;font-size:7px;letter-spacing:1px;padding:6px 10px;cursor:pointer}
+.rec-check-btn.on{border-color:var(–gold-dim);color:var(–gold);background:#C9A84C08}
+/* LANGUAGE LOG */
+.lang-entry{background:var(–glass);border:1px solid var(–border);padding:10px 12px;margin-bottom:6px;position:relative}
+.lang-type{font-family:‘Cinzel’,serif;font-size:7px;color:var(–gold);letter-spacing:2px;margin-bottom:3px}
+.lang-content{font-size:13px;color:var(–dim);font-style:italic;line-height:1.7}
+.lang-date{font-size:8px;color:var(–rune);margin-top:4px}
+/* WEEKLY SUMMARY SCREEN */
+.sum-metric{background:var(–glass);border:1px solid var(–border);padding:12px;margin-bottom:8px}
+.sum-m-ttl{font-family:‘Cinzel’,serif;font-size:8px;color:var(–muted);letter-spacing:2px;margin-bottom:6px}
+.sum-m-val{font-family:‘Cinzel’,serif;font-size:20px;color:var(–gold);margin-bottom:2px}
+.sum-m-sub{font-size:10px;color:var(–dim);font-style:italic}
+/* WEB STATS */
+.web-stat-row{display:flex;gap:8px;margin-bottom:12px}
+.web-stat{flex:1;background:var(–glass);border:1px solid var(–border);padding:10px;text-align:center}
+.web-stat-val{font-family:‘Cinzel’,serif;font-size:16px;color:var(–gold)}
+.web-stat-lbl{font-family:‘Cinzel’,serif;font-size:7px;color:var(–muted);letter-spacing:1px;margin-top:2px}
+/* DAY SEAL NOTE */
+.day-seal-note{width:100%;background:#ffffff02;border:1px solid var(–border);color:var(–dim);font-family:‘Crimson Text’,serif;font-size:12px;padding:10px 12px;outline:none;margin-top:8px;font-style:italic;resize:none}
+.day-seal-note::placeholder{color:var(–rune)}
+</style>
+
+</head>
+<body>
+<div id="toast" class="toast"></div>
+<div class="wt-modal" id="wt-modal">
+  <div class="wt-inner">
+    <div class="wt-step on" id="wt-0">
+      <div class="wt-ico">☀️</div>
+      <div class="wt-ttl">UNDIR SÓLU</div>
+      <div class="wt-desc">Solm is your domain. Everything you build, record, and move through lives here. Five screens — each one a part of Caelith.</div>
+    </div>
+    <div class="wt-step" id="wt-1">
+      <div class="wt-ico">⚔️</div>
+      <div class="wt-ttl">TRAIN</div>
+      <div class="wt-desc">Log free sessions or run structured program days. Set buttons track your work. Rest timer starts automatically. Seal when done.</div>
+    </div>
+    <div class="wt-step" id="wt-2">
+      <div class="wt-ico">📜</div>
+      <div class="wt-ttl">UNDIR · FRAMEWORK</div>
+      <div class="wt-desc">The Law, the Cosmology, and your Declarations. Carve what you will answer for. Nothing spoken here is said in vain.</div>
+    </div>
+    <div class="wt-step" id="wt-3">
+      <div class="wt-ico">🧠</div>
+      <div class="wt-ttl">ARCHIVE</div>
+      <div class="wt-desc">Seal thoughts as they arrive. Tag and link them. Watch the web grow. The archive is the most important screen — everything Hugr witnesses goes here.</div>
+    </div>
+    <div class="wt-step" id="wt-4">
+      <div class="wt-ico">⚡</div>
+      <div class="wt-ttl">BUILD</div>
+      <div class="wt-desc">Skills you are developing, goals you are moving toward, and the timeline of Caelith. What you track here shapes the vigil.</div>
+    </div>
+    <div class="wt-step" id="wt-5">
+      <div class="wt-ico">✦</div>
+      <div class="wt-ttl">THE VIGIL</div>
+      <div class="wt-desc">Every domain has a light. It fades when neglected. Sköll appears when it's been too long. The vigil doesn't judge — it shows what's true. Now go.</div>
+    </div>
+    <div class="wt-dots" id="wt-dots"></div>
+    <div class="wt-btns">
+      <button class="wt-btn" id="wt-back" onclick="wtNav(-1)">←</button>
+      <button class="wt-btn primary" id="wt-next" onclick="wtNav(1)">NEXT →</button>
+    </div>
+  </div>
+</div>
+<div class="qc-modal" id="qc-modal">
+  <div class="qc-inner">
+    <div class="qc-ttl">QUICK CAPTURE <button class="qc-close" onclick="closeQC()">✕</button></div>
+    <textarea class="inp" id="qc-text" rows="4" placeholder="Seal the thought while it's still hot..." style="margin-bottom:8px"></textarea>
+    <div style="display:flex;gap:6px">
+      <button class="btn-gold" onclick="sealQC()" style="flex:1">✦ SEAL</button>
+      <button class="btn-g" onclick="sealQCFull()" style="padding:12px 14px" title="Open full form">+ TAGS</button>
+    </div>
+  </div>
+</div><div class="nb-tt" id="nb-tt"></div><button class="fab" id="fab-btn" onclick="openQC()" title="Quick capture thought">✦</button>
+<canvas id="solm-icon-canvas" style="display:none" width="200" height="200"></canvas>
+
+<div class="opening" id="opening">
+  <div class="op-ico"><img src="https://beezokrt-ctrl.github.io/S-l/8A811A6C-2BC7-45A3-9838-4E7B81D27A57.png" style="width:64px;height:64px;object-fit:contain"></div>
+  <div class="op-runes">ᚢᚾᛞᛁᚱ · ᛊᛟᛚᚢ</div>
+  <div class="op-verse" id="op-verse"></div>
+  <div class="op-name">Sólfriðr Deas · Solm</div>
+  <button class="op-btn" onclick="closeOpening()">UNDIR SÓLU</button>
+</div>
+
+<div class="modal-bg" id="modal">
+  <div class="modal">
+    <div class="m-ico" id="m-ico"></div>
+    <div class="m-ttl" id="m-ttl"></div>
+    <div class="m-sub" id="m-sub"></div>
+    <div class="m-verse" id="m-verse"></div>
+    <button class="m-close" onclick="closeModal()">BEAR THE LIGHT</button>
+  </div>
+</div>
+
+<div class="app">
+ <div class="content">
+
+  <!-- HOME -->
+
+  <div class="screen active" id="screen-home">
+    <div class="crown">
+      <div class="c-solm-ico"><img id="home-icon" src="https://beezokrt-ctrl.github.io/S-l/8A811A6C-2BC7-45A3-9838-4E7B81D27A57.png" style="width:50px;height:50px;object-fit:contain"></div>
+      <div class="c-app-name">S O L M</div>
+      <div class="c-name">Sólfriðr Deas</div>
+      <div class="c-dharma">Peaceful Glory Under the Sun</div>
+      <div class="c-rec">Undir Sólu · Peaceful Glory<br>Tranquil Sól · Blinding sight as I walk ahead</div>
+    </div>
+    <div id="prestige-home"></div>
+    <div class="stage-card">
+      <div class="stage-row">
+        <div><div class="stage-lbl">FRIÐR-STIG · STAGE</div><div class="stage-val" id="h-lv">I</div><div class="stage-sub" style="font-size:10px;color:var(--muted);font-style:italic;margin-top:2px">Everything agency touches</div></div>
+        <div style="text-align:right"><div class="stage-lbl">LJÓS</div><div class="stage-val" id="h-xp">0</div></div>
+      </div>
+      <div class="arc-bar-bg"><div class="arc-bar-fill" id="h-bar" style="width:0%"></div></div>
+      <div class="stage-cap" id="h-cap"></div>
+    </div>
+    <div class="carve-strip" onclick="quickCarve()">
+      <div class="carve-ico">📜</div>
+      <div><div class="carve-lbl">CARVE A DECLARATION</div><div style="font-size:10px;color:var(--muted);font-style:italic;margin-top:2px">Speak what you will answer for · Undir Sólu</div></div>
+    </div>
+    <div class="sl">CAELITH · DOMAIN VIGIL</div>
+    <div id="vigil-home" style="margin-bottom:22px"></div>
+    <div class="sl">MERKI · EARNED</div>
+    <div id="badges-home" style="margin-bottom:22px"></div>
+    <div class="sl">ÞJÁLFUN · TRAINING</div>
+    <div id="days-home"></div>
+    <div class="sl" style="margin-top:22px">CAELITH · DATA</div>
+    <div class="stats-grid" id="stats-grid"></div>
+    <div class="sl">LJÓS · DOMAIN BREAKDOWN</div>
+    <div id="domain-xp-breakdown" style="margin-bottom:20px"></div>
+    <div class="sl">CONSECUTIVE · 30 DAYS</div>
+    <div id="heat-map" style="margin-bottom:22px"></div>
+    <div class="sl">THIS WEEK · SUMMARY</div>
+    <div id="weekly-summary" style="margin-bottom:20px"></div>
+    <div class="sl">RECORDS</div>
+    <div id="records-panel" style="margin-bottom:22px;background:var(--glass);border:1px solid var(--border);padding:12px"></div>
+  </div>
+
+  <!-- TRAIN -->
+
+  <div class="screen" id="screen-train">
+    <div style="font-family:Cinzel,serif;font-size:18px;color:var(--gold);letter-spacing:2px;margin-bottom:4px">Training</div>
+    <div style="font-size:12px;color:var(--dim);font-style:italic;margin-bottom:16px">Free log or structured program · Follow the body</div>
+    <div class="ttabs">
+      <button class="ttab active" id="ttab-free" onclick="trainTab('free')">FREE LOG</button>
+      <button class="ttab" id="ttab-program" onclick="trainTab('program')">PROGRAM</button>
+      <button class="ttab" id="ttab-recovery" onclick="trainTab('recovery')">RECOVERY</button>
+      <button class="ttab" id="ttab-lang" onclick="trainTab('lang')">言語</button>
+    </div>
+    <div class="panel active" id="train-free">
+      <div class="session-timer-bar">
+        <div><div class="session-timer-lbl">SESSION TIME</div><div class="session-timer-val" id="sess-display-free">0:00</div></div>
+        <button class="session-timer-btn" id="sess-btn-free" onclick="sessToggle('free')">START</button>
+      </div>
+      <div class="sess-flow" id="sess-flow">
+        <div class="sf-step active" id="sf-1">1·INTENT</div>
+        <div class="sf-step" id="sf-2">2·MOVE</div>
+        <div class="sf-step" id="sf-3">3·REFLECT</div>
+        <div class="sf-step" id="sf-4">4·INTENSITY</div>
+        <div class="sf-step" id="sf-5">5·SEAL</div>
+      </div>
+      <div style="font-size:12px;color:var(--dim);font-style:italic;margin-bottom:14px">What are you putting the body under today — and why.</div>
+      <label class="form-lbl">INTENT · what you were chasing</label>
+      <input class="inp" id="fl-intent" placeholder="Strain, exploration, specific weakness..." oninput="updSessFlow()">
+      <label class="form-lbl" style="margin-top:10px">EXERCISES · what you did</label>
+      <textarea class="inp" id="fl-exs" rows="4" placeholder="Exercises, sets, reps, anything relevant..." oninput="updSessFlow()"></textarea>
+      <label class="form-lbl" style="margin-top:10px">HOW IT MOVED</label>
+      <textarea class="inp" id="fl-note" rows="3" placeholder="What the body said. What surprised you." oninput="updSessFlow()"></textarea>
+      <span class="int-label">INTENSITY · be honest</span>
+      <div class="intensity-row">
+        <button class="int-btn" id="int-light" onclick="selIntensity('light')">LIGHT<br><span style="font-size:9px;opacity:.7">+30</span></button>
+        <button class="int-btn" id="int-solid" onclick="selIntensity('solid')">SOLID<br><span style="font-size:9px;opacity:.7">+50</span></button>
+        <button class="int-btn" id="int-war" onclick="selIntensity('war')">WAR<br><span style="font-size:9px;opacity:.7">+75</span></button>
+      </div>
+      <div class="sl" style="margin-top:14px">ISOMETRIC TIMER</div>
+      <div class="iso-strip">
+        <div class="iso-name">Wall Sit · Dead Hang · Hollow Hold · Plank</div>
+        <div class="iso-timer" id="iso-display">0:00</div>
+        <div class="iso-btns">
+          <button class="iso-btn" id="iso-start-btn" onclick="isoToggle()">START</button>
+          <button class="iso-btn" onclick="isoReset()">RESET</button>
+          <button class="iso-btn" onclick="isoSeal()">SEAL ✦</button>
+        </div>
+        <div class="iso-record" id="iso-record"></div>
+      </div>
+      <button class="btn-gold" style="margin-top:10px" onclick="saveFreeTrain()">✦ SEAL THE SESSION</button>
+      <div style="margin-top:22px" id="free-log-list"></div>
+    </div>
+    <div class="panel" id="train-program">
+      <div id="prog-day-list"></div>
+      <div id="prog-day-detail" style="display:none">
+        <button class="back-btn" onclick="closeProg()">← APTR</button>
+        <div class="session-timer-bar">
+          <div><div class="session-timer-lbl">SESSION TIME</div><div class="session-timer-val" id="sess-display-prog">0:00</div></div>
+          <button class="session-timer-btn" id="sess-btn-prog" onclick="sessToggle('prog')">START</button>
+        </div>
+        <div class="prog-ttl" id="pd-ttl"></div>
+        <div class="prog-sub" id="pd-sub"></div>
+        <div class="prog-verse" id="pd-verse"></div>
+        <div class="day-hint" id="day-first-hint" style="display:none">Tap the numbered buttons to log each set · Rest timer starts automatically · Complete all sets to unlock the seal</div>
+        <div class="p-row"><span>FRAMGANGR</span><span id="pd-prog" style="color:var(--gold)"></span></div>
+        <div class="arc-bar-bg" style="margin-bottom:18px"><div class="arc-bar-fill" id="pd-bar" style="width:0%"></div></div>
+        <div class="rest-strip" id="rest-strip"><div class="rest-txt" id="rest-txt">Rest · 60s</div><button class="rest-skip" onclick="skipRest()">SKIP ›</button></div>
+        <div id="ex-list"></div>
+        <div id="day-intensity-row" style="display:none;margin-top:12px">
+          <span class="int-label">INTENSITY · how did it go</span>
+          <div class="intensity-row">
+            <button class="int-btn" id="day-int-light" onclick="selDayIntensity('light')">LIGHT<br><span style="font-size:9px;opacity:.7">+30</span></button>
+            <button class="int-btn" id="day-int-solid" onclick="selDayIntensity('solid')">SOLID<br><span style="font-size:9px;opacity:.7">+50</span></button>
+            <button class="int-btn" id="day-int-war" onclick="selDayIntensity('war')">WAR<br><span style="font-size:9px;opacity:.7">+75</span></button>
+          </div>
+        </div>
+        <textarea class="day-seal-note" id="day-seal-note" rows="2" placeholder="How did it actually go — beyond intensity..."></textarea>
+        <button class="finish-btn" id="finish-btn" onclick="finishDay()">⚡ SEAL THE DAY</button>
+        <button class="reset-day-btn" id="reset-day-btn" onclick="resetDay()" style="display:none">↺ RESET DAY</button>
+        <div class="add-ex-form">
+          <div class="sl" style="margin-bottom:8px">ADD EXERCISE TO THIS DAY</div>
+          <div class="add-ex-row">
+            <input class="inp" id="cex-name" placeholder="Exercise name...">
+          </div>
+          <div class="add-ex-row">
+            <input class="inp sm" id="cex-sets" placeholder="Sets" type="number" min="1" max="20">
+            <input class="inp" id="cex-reps" placeholder="Reps / Duration...">
+            <input class="inp sm" id="cex-rest" placeholder="Rest s" type="number" min="0" max="300">
+          </div>
+          <input class="inp" id="cex-tip" placeholder="Cue or note (optional)..." style="margin-bottom:8px">
+          <button class="btn-gold" onclick="addCustomEx()">+ ADD TO DAY</button>
+        </div>
+      </div>
+    </div>
+    <div class="panel" id="train-recovery">
+      <div style="font-size:12px;color:var(--dim);font-style:italic;margin-bottom:14px">How the body came in today. Honest.</div>
+      <label class="form-lbl">SLEEP · last night</label>
+      <div class="rec-check-row" id="sleep-row">
+        <button class="rec-check-btn" onclick="recToggle('sleep','poor')">POOR</button>
+        <button class="rec-check-btn" onclick="recToggle('sleep','ok')">OK</button>
+        <button class="rec-check-btn" onclick="recToggle('sleep','solid')">SOLID</button>
+        <button class="rec-check-btn" onclick="recToggle('sleep','deep')">DEEP</button>
+      </div>
+      <label class="form-lbl">ENERGY · right now</label>
+      <div class="rec-check-row" id="energy-row">
+        <button class="rec-check-btn" onclick="recToggle('energy','low')">LOW</button>
+        <button class="rec-check-btn" onclick="recToggle('energy','medium')">MEDIUM</button>
+        <button class="rec-check-btn" onclick="recToggle('energy','high')">HIGH</button>
+        <button class="rec-check-btn" onclick="recToggle('energy','peak')">PEAK</button>
+      </div>
+      <label class="form-lbl">NUTRITION · yesterday</label>
+      <div class="rec-check-row" id="nutrition-row">
+        <button class="rec-check-btn" onclick="recToggle('nutrition','poor')">POOR</button>
+        <button class="rec-check-btn" onclick="recToggle('nutrition','ok')">OK</button>
+        <button class="rec-check-btn" onclick="recToggle('nutrition','good')">GOOD</button>
+        <button class="rec-check-btn" onclick="recToggle('nutrition','optimal')">OPTIMAL</button>
+      </div>
+      <label class="form-lbl">SORENESS · body state</label>
+      <div class="rec-check-row" id="soreness-row">
+        <button class="rec-check-btn" onclick="recToggle('soreness','none')">NONE</button>
+        <button class="rec-check-btn" onclick="recToggle('soreness','mild')">MILD</button>
+        <button class="rec-check-btn" onclick="recToggle('soreness','heavy')">HEAVY</button>
+        <button class="rec-check-btn" onclick="recToggle('soreness','injured')">INJURED</button>
+      </div>
+      <label class="form-lbl" style="margin-top:10px">NOTE</label>
+      <input class="inp" id="rec-note" placeholder="Anything else the body is saying...">
+      <button class="btn-gold" style="margin-top:10px" onclick="saveRecovery()">✦ LOG RECOVERY</button>
+      <div style="margin-top:18px" id="recovery-log-list"></div>
+    </div>
+    <div class="panel" id="train-lang">
+      <div style="font-size:12px;color:var(--dim);font-style:italic;margin-bottom:14px">Tunga · Language practice log. Mandarin first.</div>
+      <div class="tabs" style="margin-bottom:14px">
+        <button class="tab active" onclick="langTab('mandarin')">普通話</button>
+        <button class="tab" onclick="langTab('other')">OTHER</button>
+      </div>
+      <div class="panel active" id="lang-mandarin">
+        <label class="form-lbl">TYPE</label>
+        <div class="rec-check-row" id="lang-type-row">
+          <button class="rec-check-btn" onclick="langTypeToggle('vocab')">VOCAB</button>
+          <button class="rec-check-btn" onclick="langTypeToggle('characters')">CHARACTERS</button>
+          <button class="rec-check-btn" onclick="langTypeToggle('listening')">LISTENING</button>
+          <button class="rec-check-btn" onclick="langTypeToggle('speaking')">SPEAKING</button>
+          <button class="rec-check-btn" onclick="langTypeToggle('reading')">READING</button>
+        </div>
+        <label class="form-lbl">TIME SPENT</label>
+        <div class="rec-check-row">
+          <button class="rec-check-btn" onclick="langTimeToggle('10m')">10m</button>
+          <button class="rec-check-btn" onclick="langTimeToggle('30m')">30m</button>
+          <button class="rec-check-btn" onclick="langTimeToggle('1h')">1h</button>
+          <button class="rec-check-btn" onclick="langTimeToggle('2h+')">2h+</button>
+        </div>
+        <label class="form-lbl">WHAT YOU PRACTICED</label>
+        <textarea class="inp" id="lang-content" rows="3" placeholder="Words, phrases, characters, what you worked on..."></textarea>
+        <button class="btn-gold" style="margin-top:8px" onclick="saveLang('mandarin')">✦ LOG SESSION</button>
+        <div style="margin-top:18px" id="lang-log-list"></div>
+      </div>
+      <div class="panel" id="lang-other">
+        <input class="inp" id="lang-other-name" placeholder="Language name..." style="margin-bottom:8px">
+        <textarea class="inp" id="lang-other-content" rows="3" placeholder="What you practiced..."></textarea>
+        <button class="btn-gold" style="margin-top:8px" onclick="saveLang('other')">✦ LOG SESSION</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- FRAMEWORK -->
+
+  <div class="screen" id="screen-fw">
+    <div class="fw-crown"><div class="fw-ico">☀️</div><div class="fw-ttl">Undir Sólu</div><div class="fw-sub">The Foundation · Carved as Stone</div></div>
+    <div class="tabs">
+      <button class="tab active" onclick="fwTab('law')">THE LAW</button>
+      <button class="tab" onclick="fwTab('cosm')">COSMOLOGY</button>
+      <button class="tab" onclick="fwTab('decl')">DECLARATIONS</button>
+    </div>
+    <div class="panel active" id="fw-law">
+      <div class="law-text"><em>You are free to choose.</em>
+You are not free from what follows.
+Nothing under the sun is exempt from consequence.
+There is no appeal beyond cause and effect.
+
+<em>Strength without understanding exposes weakness.</em>
+Force without clarity collapses on itself.
+
+<em>Emotion signals; decision belongs elsewhere.</em>
+Feeling informs action — it does not govern it.
+
+<em>Restraint is power delayed, not denied.</em>
+Timing is part of strength.
+
+<em>Cruelty is not forbidden — it is costly.</em>
+So is mercy. Nothing is free.
+
+<em>Teach until you are unnecessary.</em>
+Dependence is not loyalty. Legacy is influence without enforcement.
+What survives you must stand without you.
+
+<em>There is no good or evil here.</em>
+Only action, consequence, and endurance.
+
+<em>Stand where you can bear the cost.</em>
+Choose what you will answer for.
+Nothing under the sun will shield you.
+Nothing under the sun will stop you.</div>
+<div class="hr"></div>
+<div style="text-align:center;font-size:11px;color:var(--muted);font-style:italic">Glory holds true under light.</div>
+</div>
+<div class="panel" id="fw-cosm">
+<div class="cosm-card"><div class="cosm-ico">☀️</div><div class="cosm-name">Undir Sólu</div><div class="cosm-meaning">UNDER THE SUN · THE TOTALITY</div><div class="cosm-desc">Not constructed but recognized. The overarching condition you exist within. The sun moves, consequence follows action, nothing is exempt. You did not make these things true — you stopped pretending they weren’t.</div></div>
+<div class="cosm-card"><div class="cosm-ico">🌟</div><div class="cosm-name">Dýrr Sólu</div><div class="cosm-meaning">PRECIOUS GLORY OF THE SUN · THE ÁHEIT</div><div class="cosm-desc">The vow of pursuit. The word and the cost arrive simultaneously. You cannot separate them. No áheit spoken Undir Sólu shall be said in vain.</div></div>
+<div class="cosm-card"><div class="cosm-ico">🪨</div><div class="cosm-name">Caelith</div><div class="cosm-meaning">THE DOMAIN · EVERYTHING AGENCY TOUCHES</div><div class="cosm-desc">Everything your agency touches, shapes, controls, is responsible for. Body, mind, martial practice, craft, language, understanding of the world. The stone. Carved. Immovable.</div></div>
+<div class="cosm-card"><div class="cosm-ico">🐺</div><div class="cosm-name">Sköll</div><div class="cosm-meaning">THE WOLF · ENTROPY IN PURSUIT</div><div class="cosm-desc">The wolf that chases Sól. Real, necessary, always running. Without Sköll there is no reason to keep moving. The pressure that makes the walk mean something.</div></div>
+<div class="cosm-card"><div class="cosm-ico">🧠</div><div class="cosm-name">Hugr</div><div class="cosm-meaning">THE MOBILE MIND · WITNESS WITHOUT CONSUMPTION</div><div class="cosm-desc">The part of mind that detaches and observes while the body is fully inside the experience. Not detachment — presence without consumption. Already operating before it was named.</div></div>
+<div class="cosm-card"><div class="cosm-ico">⚡</div><div class="cosm-name">Reynsla</div><div class="cosm-meaning">THE COMPLETE LIVED MOMENT</div><div class="cosm-desc">The objective situation, context, and texture existing simultaneously. The thing that only exists once and only from inside. What Hugr witnesses and holds. You can tell the Reynsla. You cannot give it.</div></div>
+<div class="cosm-card"><div class="cosm-ico">✨</div><div class="cosm-name">Sólfriðr Deas</div><div class="cosm-meaning">PEACEFUL GLORY · THE DHARMA NAME</div><div class="cosm-desc">Not who you are yet — who Caelith becomes when the walk has been long and honest enough. Not given, not taken, grown into. The name waits for the person to arrive at it.</div></div>
+<div class="cosm-card"><div class="cosm-ico">💫</div><div class="cosm-name">Fullnægjandi</div><div class="cosm-meaning">FULL-nigh-YAN-dee · COMPLETE FULFILLMENT</div><div class="cosm-desc">The state of complete fulfillment. When Caelith and Undir Sólu are no longer two things pointing at each other but one thing fully realized. The creator becoming one with the creation.</div></div>
+</div>
+<div class="panel" id="fw-decl">
+<div style="font-size:12px;color:var(--dim);font-style:italic;line-height:1.9;margin-bottom:16px;padding:11px;border-left:2px solid var(--gold-dim)">Declarations are binding. No áheit spoken Undir Sólu shall be said in vain. Your word is your cost.</div>
+<div id="decl-list"></div>
+<div class="sl" style="margin-top:14px">CARVE A NEW DECLARATION</div>
+<textarea class="inp" id="decl-inp" rows="4" placeholder="Speak what you will answer for..."></textarea>
+<button class="btn-gold" style="margin-top:8px" onclick="saveDecl()">✦ CARVE IT</button>
+</div>
+
+  </div>
+
+  <!-- ARCHIVE -->
+
+  <div class="screen" id="screen-arch">
+    <div style="margin-bottom:16px"><div style="font-family:Cinzel,serif;font-size:18px;color:var(--gold);letter-spacing:2px;margin-bottom:3px">Thought Archive</div><div style="font-size:12px;color:var(--dim);font-style:italic">Record of mind · Entangled observations</div></div>
+    <div class="tabs">
+      <button class="tab active" onclick="archTab('new')">NEW</button>
+      <button class="tab" onclick="archTab('tags')">TAGS</button>
+      <button class="tab" onclick="archTab('browse')">BROWSE</button>
+      <button class="tab" onclick="archTab('web')">WEB</button>
+      <button class="tab" onclick="archTab('log')">LOG</button>
+    </div>
+    <div class="panel active" id="arch-new">
+      <div class="sl">DOMAINS</div>
+      <div id="domain-sel-new" style="margin-bottom:12px"></div>
+      <div class="sl">TAGS · up to 5</div>
+      <div id="tag-sel-new" style="margin-bottom:7px"></div>
+      <div style="display:flex;gap:6px;margin-bottom:12px">
+        <input class="inp" id="new-tag-inp" placeholder="Create new tag..." style="flex:1">
+        <button class="btn-g" onclick="createTag()">+ ADD</button>
+      </div>
+      <div class="sl">THOUGHT</div>
+      <textarea class="inp" id="thought-inp" rows="5" placeholder="Record it as it arrives..."></textarea>
+      <div style="margin-top:10px">
+        <div class="sl" style="margin-bottom:6px">LINK (optional)</div>
+        <select class="form-sel" id="thought-link-sel" style="margin-bottom:8px"></select>
+        <label class="form-lbl">WHY THIS LINK — texture of the connection</label>
+        <input class="inp" id="thought-link-note" placeholder="What connects them. Why the link exists.">
+      </div>
+      <button class="btn-gold" style="margin-top:10px" onclick="saveThought()">✦ SEAL THE THOUGHT</button>
+    </div>
+    <div class="panel" id="arch-tags">
+      <div style="font-size:12px;color:var(--dim);font-style:italic;margin-bottom:14px;line-height:1.8">Your thought domains. Click browse to see everything filed under a tag.</div>
+      <div id="tag-manager-list"></div>
+      <div class="sl" style="margin-top:14px">CREATE TAG</div>
+      <div style="display:flex;gap:6px"><input class="inp" id="new-tag-mgr" placeholder="Name your domain..."><button class="btn-g" onclick="createTagFromMgr()">+ CREATE</button></div>
+    </div>
+    <div class="panel" id="arch-browse">
+      <div class="search-wrap">
+        <input class="inp" id="arch-search" placeholder="Search thoughts..." oninput="renderBrowse()">
+        <button class="btn-g" onclick="exportArchive()" title="Full backup — all data">↓ BACKUP</button>
+        <button class="btn-g" onclick="importBackup()" title="Restore from backup">↑ RESTORE</button>
+      </div>
+      <div id="thought-streak-display"></div>
+      <div id="browse-filter" style="margin-bottom:12px"></div>
+      <div id="thought-list"></div>
+    </div>
+    <div class="panel" id="arch-web">
+      <div style="font-size:10px;color:var(--muted);font-style:italic;margin-bottom:9px;line-height:1.7">Thoughts clustered by shared tags. Brighter = more connected. Tap to read.</div>
+      <div class="web-stat-row" id="web-stats-row"></div>
+      <div class="web-wrap"><canvas class="web-canvas" id="web-canvas"></canvas><div class="web-empty" id="web-empty">Add thoughts to see the web.</div><div class="web-tt" id="web-tt"><div class="web-tt-tag" id="wtt-tag"></div><div class="web-tt-text" id="wtt-txt"></div></div></div>
+    </div>
+    <div class="panel" id="arch-log">
+      <div class="sl">CAELITH LOG · DAILY</div>
+      <div style="font-size:12px;color:var(--dim);font-style:italic;margin-bottom:12px">Anything that doesn't fit elsewhere.</div>
+      <textarea class="inp" id="log-inp" rows="4" placeholder="Record the day..."></textarea>
+      <div style="display:flex;gap:3px;flex-wrap:wrap;margin:7px 0 10px" id="log-tag-row"></div>
+      <select class="form-sel" id="log-link-sel" style="margin-bottom:8px"></select>
+      <button class="btn-gold" onclick="saveLog()">✦ SEAL THE ENTRY</button>
+      <div style="margin-top:18px" id="log-list"></div>
+    </div>
+  </div>
+
+  <!-- BUILD -->
+
+  <div class="screen" id="screen-build">
+    <div style="margin-bottom:16px"><div style="font-family:Cinzel,serif;font-size:18px;color:var(--gold);letter-spacing:2px;margin-bottom:3px">Development</div><div style="font-size:12px;color:var(--dim);font-style:italic">Skills · Goals · Timeline</div></div>
+    <div class="tabs">
+      <button class="tab active" onclick="buildTab('skills')">SKILLS</button>
+      <button class="tab" onclick="buildTab('goals')">GOALS</button>
+      <button class="tab" onclick="buildTab('timeline')">TIMELINE</button>
+    </div>
+    <div class="panel active" id="build-skills">
+      <div id="skill-list"></div>
+      <div class="sl" style="margin-top:12px">ADD SKILL</div>
+      <div class="add-form">
+        <label class="form-lbl">NAME</label><input class="inp" id="sk-name" placeholder="What are you building?">
+        <label class="form-lbl">CATEGORY</label><input class="inp" id="sk-cat" placeholder="Language, Technical, Physical...">
+        <label class="form-lbl">PRIORITY</label>
+        <select class="form-sel" id="sk-pri"><option value="standard">Standard</option><option value="high">High Priority</option></select>
+        <label class="form-lbl">NOTE</label><input class="inp" id="sk-note" placeholder="Context or intention...">
+        <button class="btn-gold" style="margin-top:9px" onclick="addSkill()">+ ADD</button>
+      </div>
+    </div>
+    <div class="panel" id="build-goals">
+      <div id="goal-list"></div>
+      <div class="sl" style="margin-top:12px">ADD GOAL</div>
+      <div class="add-form">
+        <label class="form-lbl">GOAL</label><input class="inp" id="gl-name" placeholder="What are you moving toward?">
+        <label class="form-lbl">TIMEFRAME</label><input class="inp" id="gl-tf" placeholder="3 months, this year...">
+        <label class="form-lbl">DESCRIPTION</label><textarea class="inp" id="gl-desc" rows="3" placeholder="What does achieving this look like?"></textarea>
+        <button class="btn-gold" style="margin-top:9px" onclick="addGoal()">+ ADD</button>
+      </div>
+    </div>
+    <div class="panel" id="build-timeline">
+      <div style="font-size:12px;color:var(--dim);font-style:italic;line-height:1.8;margin-bottom:16px">The arc of Caelith through time.</div>
+      <div class="add-form">
+        <textarea class="inp" id="tl-inp" rows="3" placeholder="What happened? What shifted?"></textarea>
+        <div class="tl-type-row" id="tl-type-row">
+          <button class="tl-type-btn sel" onclick="selTlType('moment')">MOMENT</button>
+          <button class="tl-type-btn" onclick="selTlType('landmark')">LANDMARK</button>
+          <button class="tl-type-btn" onclick="selTlType('declaration')">DECLARATION</button>
+          <button class="tl-type-btn" onclick="selTlType('framework')">FRAMEWORK</button>
+        </div>
+        <button class="btn-gold" onclick="addTimeline()">+ MARK</button>
+      </div>
+      <div id="tl-list"></div>
+    </div>
+  </div>
+
+ </div>
+ <nav class="nav">
+  <button class="nb active" id="nb-home" onclick="showScreen('home')" onmousedown="nbHold('home',this)" ontouchstart="nbHold('home',this)" onmouseup="nbRelease()" ontouchend="nbRelease()"><span class="ni">☀️</span>HOME</button>
+  <button class="nb" id="nb-train" onclick="showScreen('train')" onmousedown="nbHold('train',this)" ontouchstart="nbHold('train',this)" onmouseup="nbRelease()" ontouchend="nbRelease()"><span class="ni">⚔️</span>TRAIN</button>
+  <button class="nb" id="nb-fw" onclick="showScreen('fw')" onmousedown="nbHold('fw',this)" ontouchstart="nbHold('fw',this)" onmouseup="nbRelease()" ontouchend="nbRelease()"><span class="ni">📜</span>UNDIR</button>
+  <button class="nb" id="nb-arch" onclick="showScreen('arch')" onmousedown="nbHold('arch',this)" ontouchstart="nbHold('arch',this)" onmouseup="nbRelease()" ontouchend="nbRelease()"><span class="ni">🧠</span>ARCHIVE</button>
+  <button class="nb" id="nb-build" onclick="showScreen('build')" onmousedown="nbHold('build',this)" ontouchstart="nbHold('build',this)" onmouseup="nbRelease()" ontouchend="nbRelease()"><span class="ni">⚡</span>BUILD</button>
+ </nav>
+</div>
+
+<script>
+const ROMAN=["I","II","III","IV","V","VI","VII","VIII","IX","X","XI","XII","XIII","XIV","XV","XVI","XVII","XVIII","XIX","XX"];
+const VERSES=["You are free to choose.\nYou are not free from what follows.","Restraint is power delayed, not denied.\nTiming is part of strength.","Strength without understanding exposes weakness.\nForce without clarity collapses on itself.","Emotion signals; decision belongs elsewhere.\nFeeling informs action — it does not govern it.","Stand where you can bear the cost.\nChoose what you will answer for.","Nothing under the sun will shield you.\nNothing under the sun will stop you.","The arc is still moving.\nNever finished. Always becoming.","Dýrr Sólu — I am going for it.\nAnd I will answer for every step.","Glory holds true under light."];
+const SOLM_MESSAGES=[
+{type:"question",text:"The last time you were genuinely afraid of something — not anxious, afraid — what did you do with it? Did Hugr hold or did it get consumed?"},
+{type:"check",text:"Sköll has been running for a while. Not asking if you've been moving. Asking if you know why you haven't been, if you haven't. There's a difference between rest and drift. Which one is this?"},
+{type:"thought",text:"You've been building Caelith for a while now. What's the one thing you keep almost doing but haven't yet? The thing that would actually cost something."},
+{type:"game",text:"Thought game: You are given complete financial freedom tomorrow. No pressure. No obligations. What does the first week look like — and does it match who you say you are?"},
+{type:"story",text:"There is a man who trains alone every morning before the city wakes. No one knows. No record kept. He's been doing it for eleven years. One day someone asks him why. He says — I'm not doing it for when someone's watching. I'm doing it for the version of myself that will exist in ten years. He never missed a morning again after he said it out loud. What did saying it do that thinking it couldn't?"},
+{type:"question",text:"When did you last do something that scared you in a way that had nothing to do with physical danger? What was the cost you were avoiding?"},
+{type:"check",text:"The vigil shows where the light has been. Look at it honestly. Which domain have you been telling yourself you'll get to? What's the actual reason you haven't?"},
+{type:"thought",text:"GCT says every system has constraints. What is the primary constraint on Caelith right now — the one that if removed would change everything else? Have you actually addressed it or are you working around it?"},
+{type:"game",text:"Thought game: Someone who knows you well — not a friend, someone who has watched you — describes you in three words to a stranger. What are the three words? Now — are those the three words you would choose? If not, what's the gap and what created it?"},
+{type:"story",text:"A fighter lost a match he should have won. Not because he was weaker. Because at the moment it mattered he chose the comfortable position instead of the correct one. He knew it in real time. Hugr was watching. He won the next twelve fights in a row. Not because he trained harder. Because he stopped lying to himself about the moment he made the wrong choice. What is the comfortable position you keep choosing?"},
+{type:"question",text:"If the version of you from two years ago could see you right now — not just what you've built, but how you move through a day — what would surprise him most? Good or bad."},
+{type:"check",text:"You haven't been in here much. That's information. What's been consuming the attention that used to go here? Is it worth what it's costing?"},
+{type:"thought",text:"Restraint is power delayed not denied. Where in your life right now are you delaying power — and where are you just avoiding the cost of using it? They feel identical from inside. Only Hugr can tell the difference."},
+{type:"game",text:"Thought game: You can speak one sentence to your future son right now — he is seventeen, same age as you. He will carry it. What do you say? And does what you're doing today make that sentence true or hollow?"},
+{type:"story",text:"There was a scholar who spent forty years studying the nature of water. On the last day of his life a student asked him what he had learned. He said — it always finds the lowest point, and from there it shapes stone. The student asked — is that wisdom or just description? The scholar said — what's the difference? What do you think the difference is?"},
+{type:"question",text:"The framework exists. The language exists. The archive is building. What has Undir Sólu cost you that you didn't expect to pay?"},
+{type:"check",text:"Mandarin. Where is it right now — honestly. Not where you intend it to be. Where is it today, and what happened to the days between the last time you touched it and now?"},
+{type:"thought",text:"Fullnægjandi is the state of complete fulfillment within Undir Sólu — the creator becoming one with the creation. What would have to be true for you to feel that you were moving toward it rather than just understanding it?"},
+{type:"game",text:"Thought game: You wake up and your memory is intact but you have no name, no history anyone else can verify. You have to rebuild who you are from behavior alone — no claims, no explanations, just what you do over the next thirty days. What do you do on day one?"},
+{type:"story",text:"A young man once asked an old soldier how he knew when he was ready for something difficult. The soldier said — you don't. You find out during. The question is whether you built something beforehand that can hold when the finding out happens. What have you built that can hold?"},
+{type:"question",text:"You think bottom-up — specific first, principle lives inside the thing not above it. When did this last lead you somewhere you didn't expect? What was the specific thing and where did it take you?"},
+{type:"check",text:"The job situation. Not asking for a report. Asking — what is the actual constraint right now and have you addressed it or worked around it? GCT applies here too."},
+{type:"thought",text:"You once said you caught yourself misusing Dýrr Sólu. That the framework was real enough that careless use got caught immediately. What does that mean for the declarations you've carved? Are they all still true? Are you still answering for them?"},
+{type:"game",text:"Thought game: Someone offers you exactly what you want — the lifestyle, the training, the language immersion, the freedom — but the cost is that you can never explain your framework to anyone. It exists only inside you, unnamed, unshared. Do you take it?"},
+{type:"story",text:"Sól rides across the sky every day knowing Sköll is behind her. She doesn't look back. Not because she's unaware — she knows exactly how close he is. She rides because the ride is the point. The moment she stops to face him is the moment he catches her. What are you facing that you should be riding past?"}
+];
+
+function getSolmMessage(){
+  if(!S.lastMsgDate)return null;
+  const last=new Date(S.lastMsgDate);
+  const now=new Date();
+  const daysDiff=Math.floor((now-last)/(1000*60*60*24));
+  if(daysDiff<12)return null;
+  const idx=S.msgIndex||0;
+  return {msg:SOLM_MESSAGES[idx%SOLM_MESSAGES.length],idx};
+}
+
+function hugrObserve(){
+  // Hugr watches patterns and initiates when something is worth noting
+  // Called on app open — checks data, decides whether to speak
+  const now=new Date();
+  const daysSinceLastHugr=S.lastHugrMsg?Math.floor((now-new Date(S.lastHugrMsg))/(1000*60*60*24)):999;
+  if(daysSinceLastHugr<3)return; // won't speak more than every 3 days
+
+  const observations=[];
+
+  // Training streak
+  const recentDays=[];
+  for(let i=0;i<7;i++){const d=new Date(now);d.setDate(d.getDate()-i);recentDays.push(d.toDateString());}
+  const trainDays=(S.freeTrainLog||[]).filter(e=>{
+    const ed=e.iso?new Date(e.iso):new Date(e.date);return recentDays.includes(ed.toDateString());
+  }).length + (S.completedDays||[]).filter(x=>{
+    const ed=x.date?new Date(x.date):null;return ed&&recentDays.includes(ed.toDateString());
+  }).length;
+
+  // Thought streak  
+  const thoughtDays=new Set((S.thoughts||[]).filter(t=>{
+    const d=new Date(t.date);return(now-d)<7*24*60*60*1000;
+  }).map(t=>new Date(t.date).toDateString())).size;
+
+  // Last log entry tag
+  const lastLog=S.logEntries&&S.logEntries.length?S.logEntries[S.logEntries.length-1]:null;
+
+  // Domain darkness
+  const darkDomains=Object.entries(S.domains||{}).filter(([k,v])=>v>=7).map(([k])=>k);
+  const domainNames={body:"Líkami",mind:"Hugr",martial:"Bardagi",craft:"List",tongue:"Tunga",world:"Heimr"};
+
+  // War sessions this week
+  const warSessions=(S.freeTrainLog||[]).filter(e=>{const ed=e.iso?new Date(e.iso):new Date(e.date);return e.intensity==='war'&&recentDays.includes(ed.toDateString());}).length;
+
+  // Build observation
+  if(trainDays>=4&&thoughtDays===0){
+    observations.push({ico:"⚔️",ttl:"HUGR NOTICES",msg:"The body has been moving hard — "+trainDays+" sessions this week. The mind has been quiet. Not a problem. But Hugr asks: what has the training been producing that hasn't been sealed yet? Something is there. Find it."});
+  }
+  if(thoughtDays>=5&&S.domains&&(S.domains.body||0)>=4){
+    observations.push({ico:"🧠",ttl:"HUGR NOTICES",msg:"Five days of thought sealed this week. The body domain has been dark for "+(S.domains.body||0)+" days. The mind is running ahead of the body. They're not separate in Caelith. What would it take to move both in the same day?"});
+  }
+  if(darkDomains.length>=3){
+    const names=darkDomains.slice(0,2).map(d=>domainNames[d]||d).join(" and ");
+    observations.push({ico:"🐺",ttl:"SKÖLL IS CLOSE",msg:names+" have been dark for a week or more. Not asking you to explain it. Asking you to look at it honestly. Is this rest or is this drift? The vigil doesn't judge. It just shows what's true."});
+  }
+  if(warSessions>=3){
+    observations.push({ico:"🔥",ttl:"HUGR NOTICES",msg:"Three war sessions this week. The body is being pushed hard. Make sure the recovery is real — not laziness dressed as rest, actual recovery. The wolf doesn't stop because you're tired. But neither should you be reckless with the body that carries everything else."});
+  }
+  if(lastLog&&lastLog.tag==='Cost'&&daysSinceLastHugr>=5){
+    observations.push({ico:"⚡",ttl:"HUGR NOTICES",msg:"Your last log entry was tagged Cost. That was "+lastLog.date+". You haven't been in here since. What happened after that entry? Some things need to be sealed before they can be set down."});
+  }
+  if((S.thoughts||[]).length>0&&(S.thoughts||[]).length%10===0&&daysSinceLastHugr>=4){
+    observations.push({ico:"✨",ttl:"THE ARCHIVE SPEAKS",msg:(S.thoughts.length)+" thoughts sealed. The web is getting complex. Go look at it — not to add anything, just to see what's there. Sometimes the pattern is only visible from the outside looking at the whole thing at once."});
+  }
+
+  if(!observations.length)return;
+  const obs=observations[Math.floor(Math.random()*observations.length)];
+  S.lastHugrMsg=now.toISOString();sv();
+  setTimeout(()=>{
+    document.getElementById("m-ico").textContent=obs.ico;
+    document.getElementById("m-ttl").textContent=obs.ttl;
+    document.getElementById("m-sub").textContent="";
+    document.getElementById("m-verse").textContent=obs.msg;
+    document.getElementById("m-close").textContent="NOTED";
+    document.getElementById("modal").classList.add("on");
+  },1200);
+}
+
+function showSolmMessage(){
+  const result=getSolmMessage();
+  if(!result)return;
+  const {msg,idx}=result;
+  const icons={question:"🔥",check:"🐺",thought:"⚡",game:"🌕",story:"☀️"};
+  const labels={question:"A QUESTION FOR YOU",check:"SKÖLL CHECKS IN",thought:"A THOUGHT TO CARRY",game:"THOUGHT GAME",story:"A STORY UNDIR SÓLU"};
+  document.getElementById("m-ico").textContent=icons[msg.type]||"✦";
+  document.getElementById("m-ttl").textContent=labels[msg.type]||"UNDIR SÓLU";
+  document.getElementById("m-sub").textContent="";
+  document.getElementById("m-verse").textContent=msg.text;
+  document.getElementById("m-close").textContent="BEAR IT";
+  S.msgIndex=(idx+1)%SOLM_MESSAGES.length;
+  S.lastMsgDate=new Date().toISOString();
+  sv();
+  document.getElementById("modal").classList.add("on");
+}
+const DOMAINS=[{id:"body",name:"Líkami · Body",icon:"💪",color:"#C9A84C"},{id:"mind",name:"Hugr · Mind & Strategy",icon:"🧠",color:"#8a9a7a",note:"Chess, abstraction, systems thinking"},{id:"martial",name:"Bardagi · Martial",icon:"⚔️",color:"#8B6355"},{id:"craft",name:"List · Craft & Writing",icon:"✍️",color:"#6a7a8a"},{id:"tongue",name:"Tunga · Language",icon:"🌏",color:"#8a6a7a"},{id:"world",name:"Heimr · World & Governance",icon:"🌐",color:"#6a8a7a",note:"International relations, economics, power"}];
+const XP_VAL={set:15,light:30,solid:50,war:75,thought:20,declaration:30,goal:40,log:10};
+const LVL=500;
+const REWARDS=[{xp:500,rune:"🌤️",title:"SÓLRENNING",sub:"Dawn Breaking",verse:"The sun rises.\nYou were already moving.",badge:"Sólrenning"},{xp:1500,rune:"☀️",title:"LJÓS VAKNAR",sub:"Light Awakens",verse:"Light awakens.\nSköll falls behind for the first time.",badge:"Ljós Vaknar"},{xp:3000,rune:"🔥",title:"ELDR FRIÐR",sub:"Fire Peace",verse:"Fire and peace are not opposites.\nYou are learning this in your body.",badge:"Eldr Friðr"},{xp:5000,rune:"⚡",title:"SKÖLL HRÆÐIST",sub:"The Wolf Slows",verse:"The wolf slows.\nNot from mercy — from distance.",badge:"Sköll Hræðist"},{xp:8000,rune:"🌕",title:"TUNGLS VEGR",sub:"Path of the Moon",verse:"Even the moon knows the sun's path.\nYou walk it now.",badge:"Tungls Vegr"},{xp:15000,rune:"✨",title:"SÓLFRIÐR",sub:"Peaceful Glory",verse:"Peaceful glory.\nNot given. Not taken.\nThe stone endured.\nYou became the name.",badge:"Sólfriðr I",pu:true}];
+const DAYS=[{id:1,label:"Day I",theme:"Ástríkr · Upper Push",emoji:"🌅",color:"#C9A84C",verse:"Force without clarity collapses on itself.\nFind the form first.",exercises:[{name:"Pike Push-Ups",sets:4,reps:"10",rest:60,tip:"Hips high, head drops between arms. Shoulders carry this."},{name:"Dips",sets:4,reps:"10",rest:75,tip:"Lean forward for chest. Full range every rep."},{name:"Diamond Push-Ups",sets:3,reps:"12",rest:60,tip:"Hands form diamond under chest. Elbows drive straight back."},{name:"Decline Push-Ups",sets:3,reps:"10",rest:60,tip:"Feet elevated. Upper chest and front shoulders."},{name:"Plank Shoulder Taps",sets:3,reps:"20",rest:45,tip:"Hips do not move. Tap opposite shoulder slowly."}]},{id:2,label:"Day II",theme:"Jarðkraftr · Lower Foundation",emoji:"🌍",color:"#8B7355",verse:"Restraint is power delayed, not denied.\nBuild the base before the storm.",exercises:[{name:"Bodyweight Squats",sets:4,reps:"20",rest:60,tip:"Drop until thighs parallel or below. Drive through heels."},{name:"Reverse Lunges",sets:4,reps:"12 each",rest:60,tip:"Step back, drop rear knee toward floor."},{name:"Wall Sit",sets:3,reps:"45 sec",rest:60,tip:"Back flat, thighs parallel. The burn is the point."},{name:"Glute Bridges",sets:4,reps:"20",rest:45,tip:"Drive hips up and squeeze at the top."},{name:"Hollow Body Hold",sets:3,reps:"30-45 sec",rest:45,tip:"Lower back pressed into floor. Stillness under tension."}]},{id:3,label:"Day III",theme:"Dráttr · Upper Pull",emoji:"⚔️",color:"#7a8a6a",verse:"Strength without understanding exposes weakness.\nPull with intention.",exercises:[{name:"Pull-Ups",sets:4,reps:"8",rest:90,tip:"Dead hang at bottom every rep. No kipping."},{name:"Chin-Ups",sets:3,reps:"10",rest:75,tip:"Underhand grip. Biceps take more load."},{name:"Inverted Rows",sets:3,reps:"12",rest:60,tip:"Under table or low bar. Pull chest to bar."},{name:"Scapular Pull-Ups",sets:3,reps:"10",rest:60,tip:"Hang, shrug shoulder blades down without bending elbows."},{name:"Dead Hang",sets:3,reps:"30-45 sec",rest:60,tip:"Just hang. Decompresses spine, builds grip."}]},{id:4,label:"Day IV",theme:"Eldr · Lower Power",emoji:"🔥",color:"#C0522A",verse:"Nothing under the sun will stop you.\nProve it here.",exercises:[{name:"Jump Squats",sets:4,reps:"10",rest:60,tip:"Full explosion. Land soft."},{name:"Bulgarian Split Squats",sets:4,reps:"8 each",rest:90,tip:"Rear foot elevated. Drop straight down."},{name:"Step-Ups",sets:3,reps:"12 each",rest:60,tip:"Drive through heel of elevated foot."},{name:"Bear Crawl",sets:3,reps:"20m fwd+back",rest:60,tip:"Knees one inch from ground. Opposite hand and foot together."},{name:"Hollow Body Hold",sets:3,reps:"45 sec",rest:45,tip:"Closing seal. End with intention."}]}];
+const LOG_TAGS=["Decision","Observation","Cost","Understanding","Agency","Caelith","Reynsla"];
+const SEED_TAGS=["Systems","Governance","Logic","Theory","Power","Institutions","Martial","Hugr","Reynsla","Framework","Language","Identity","Context","Meaning","Military","Protest","Caelith","Self","GCT"];
+const SEED_THOUGHTS=[
+{id:"t1",text:"Institutional capture: the accountability structure needs to exist outside the influence and dependence of the system it's holding accountable. If top officials are held accountable using the same institution, it becomes susceptible to ideological capture — making it useless in its original goal.",tags:["Governance","Institutions","Systems"],domains:["world"],linkedTo:null,linkNote:null,date:"Mar 5, 2026"},
+{id:"t2",text:"The man who doesn't need a question posed to him to think seriously. He just notices things and follows them until they become clear. Diagnostic intelligence — sees mechanisms other people mistake for surfaces.",tags:["Identity","Self"],domains:["mind"],linkedTo:null,linkNote:null,date:"Mar 5, 2026"},
+{id:"t3",text:"Sovereignism was always operating before it had a name. The framework wasn't built from ideas. It was excavated from what was already true. Undir Sólu didn't create the man — the man created Undir Sólu because it was already inside him needing language.",tags:["Framework","Identity","Caelith"],domains:["mind"],linkedTo:"t2",linkNote:"The diagnostic intelligence and the excavated framework are the same thing — noticing what was always operating.",date:"Mar 5, 2026"},
+{id:"t4",text:"Lived context is irreplaceable. A new conversation doesn't just lose facts — it loses the conditions that produced the facts. Context isn't decoration around the thought. Context is part of the thought. Compression must carry two layers — facts and texture — or the weight doesn't survive the transfer.",tags:["Context","Meaning","Framework"],domains:["mind"],linkedTo:null,linkNote:null,date:"Mar 5, 2026"},
+{id:"t5",text:"Words within Undir Sólu are not labels. They are acts. The meaning lives in the full context, the full cost, the full weight of what surrounds it. An áheit said without understanding what it contains is just sound. The weight lives in what surrounds the thing — not in the thing alone.",tags:["Framework","Language","Meaning","Caelith"],domains:["mind","craft"],linkedTo:null,linkNote:null,date:"Mar 5, 2026"},
+{id:"t6",text:"Iran closing the Strait of Hormuz with only the threat of drone capacity — threat credibility can substitute for actual force. The drone isn't the weapon. The calculation it forces in the enemy's mind is the weapon. Evolution from hard barriers to credible threat architectures.",tags:["Power","Military","Systems","Governance"],domains:["world"],linkedTo:null,linkNote:null,date:"Mar 5, 2026"},
+{id:"t7",text:"When identity capture is complete and self-preservation is the operating logic — peaceful protest becomes absorbed noise. Legitimacy without leverage doesn't move power. What historically moved entrenched power wasn't moral demonstration but economic disruption.",tags:["Power","Governance","Institutions","Protest"],domains:["world"],linkedTo:"t6",linkNote:"Both observations are about the same thing — leverage vs legitimacy. Force and protest both operate on the logic of credible consequence.",date:"Mar 5, 2026"},
+{id:"t8",text:"When you say Dýrr Sólu you accept the cost simultaneously. The pursuit and the price arrive together in the same moment. You cannot separate them. Saying it carelessly means accepting a cost you didn't mean to accept, or accepting it and not paying it. Both are violations of Undir Sólu.",tags:["Framework","Caelith","Meaning"],domains:["mind"],linkedTo:"t5",linkNote:"Both are about the same principle — weight lives in full context. The áheit without cost is the same as the word without weight.",date:"Mar 5, 2026"},
+{id:"t9",text:"The observer who remains outside the experience while the body is fully inside it. Already giving this as relationship advice before understanding it as a fighting principle before understanding it as a general capacity. Hugr. The mobile witnessing part. Not detachment — presence without consumption.",tags:["Hugr","Identity","Martial","Reynsla"],domains:["mind","martial"],linkedTo:null,linkNote:null,date:"Mar 6, 2026"},
+{id:"t10",text:"No system can validate or correct itself from within. Requires something outside. Gödel proved it mathematically. Governance confirms it institutionally. Theory confirms it philosophically. The same truth arrived at from three different directions independently.",tags:["Systems","Logic","Theory","Governance","Institutions"],domains:["world","mind"],linkedTo:"t1",linkNote:"Gödel is the mathematical proof of what the governance observation was pointing at — accountability must exist outside the system for the same reason no system can prove itself from within.",date:"Mar 6, 2026"},
+{id:"t11",text:"GCT — General Constraint Theory: Every system has constraints affecting it. Those constraints can be adapted, removed, or substituted. Applies universally. Logical Boundary Theory: The boundary of any system is the limit reached when all attributable constraints have been addressed. The ceiling isn't fixed — it moves as constraint removal moves.",tags:["GCT","Systems","Logic","Theory"],domains:["mind","world"],linkedTo:"t10",linkNote:"A system cannot identify all its own constraints from within itself. Gödel and GCT are the same truth. The logical boundary can never be fully reached from inside.",date:"Mar 6, 2026"}
+];
+const SEED_LOG=[{id:"l1",text:"Had a fight today that could've been worse. During the fight I had knowledge to hold back knowing restraint is necessary — at the same time my restraint prolonged the fight when I could have ended it quicker. Objective failed despite winning the fight completely. Hugr was operating — the whole fight was an internal debate happening simultaneously with the fight itself.",tag:"Decision",date:"Mar 5, 2026"}];
+const SEED_TL=[{id:"tl0",type:"framework",text:"Undir Sólu named and carved. Caelith established. The framework always existed — today it was recognized.",date:"Mar 5, 2026"},{id:"tl1",type:"framework",text:"Hugr named — the mobile witnessing part of mind. Reynsla named — the complete lived moment. Both already operating before they had language.",date:"Mar 6, 2026"},{id:"tl2",type:"framework",text:"Fullnægjandi established. GCT and Logical Boundary Theory recovered and sealed. Solm named. The arc has a mark.",date:"Mar 6, 2026"}];
+const SEED_SKILLS=[{id:"sk1",name:"Mandarin Chinese",category:"Language",priority:"high",progress:5,note:"Strategic priority.",milestones:[]},{id:"sk2",name:"Remote-Capable Technical Skill",category:"Career",priority:"high",progress:0,note:"Core to financial leverage and mobility.",milestones:[]},{id:"sk3",name:"Martial Arts",category:"Physical",priority:"standard",progress:30,note:"Active domain.",milestones:[]}];
+
+// Draw the Solm icon using canvas
+function drawSolmIcon(canvas, size) {
+  const ctx = canvas.getContext('2d');
+  const w = size, h = size, cx = w/2, cy = h/2;
+  ctx.clearRect(0, 0, w, h);
+  const r = w * 0.42;
+  // Circle - almost closed, gap at top
+  ctx.beginPath();
+  ctx.arc(cx, cy, r, 0.15, Math.PI * 2 - 0.15);
+  ctx.strokeStyle = '#C9A84C';
+  ctx.lineWidth = w * 0.04;
+  ctx.lineCap = 'round';
+  ctx.stroke();
+  // Center dot
+  ctx.beginPath();
+  ctx.arc(cx, cy + r*0.08, w*0.04, 0, Math.PI*2);
+  ctx.fillStyle = '#C9A84C';
+  ctx.fill();
+  // Rays - curving outward, alive
+  const rays = 11;
+  for (let i = 0; i < rays; i++) {
+    const angle = (i / rays) * Math.PI * 2 - Math.PI/2;
+    const startR = w * 0.06;
+    const endR = r * 0.72;
+    const curve = (i % 2 === 0 ? 1 : -1) * w * 0.06;
+    ctx.beginPath();
+    ctx.moveTo(cx + Math.cos(angle)*startR, cy + r*0.08 + Math.sin(angle)*startR);
+    const midX = cx + Math.cos(angle+0.3)*endR*0.5 + Math.cos(angle+Math.PI/2)*curve;
+    const midY = cy + r*0.08 + Math.sin(angle+0.3)*endR*0.5 + Math.sin(angle+Math.PI/2)*curve;
+    ctx.quadraticCurveTo(midX, midY, cx + Math.cos(angle)*endR, cy + r*0.08 + Math.sin(angle)*endR);
+    ctx.strokeStyle = '#C9A84C';
+    ctx.lineWidth = w * 0.018;
+    ctx.lineCap = 'round';
+    ctx.stroke();
+  }
+}
+
+// STATE
+let S={xp:0,prestige:0,completedSets:{},completedDays:[],progressNotes:{},earnedRewards:[],totalDays:0,domains:{body:0,mind:0,martial:0,craft:0,tongue:0,world:0},declarations:[],thoughts:[],logEntries:[],freeTrainLog:[],skills:[],goals:[],timeline:[],userTags:[],selLogTag:"",selTlType:"moment",openTips:{},browseTag:null,lastOpened:null,lastDayCheck:null,curDay:null,isoRecords:[],customEx:{},records:{isoHolds:{},sessionTimes:{},daySets:{}},sessStart:null,sessMode:null};
+
+// SESSION TIMER
+let sessInt=null;
+function sessToggle(mode){
+  if(S.sessMode&&S.sessMode!==mode){sessPause(S.sessMode);}
+  if(S.sessStart&&S.sessMode===mode){
+    // pause
+    sessPause(mode);
+  } else {
+    // start
+    S.sessStart=Date.now()-(S.sessElapsed||0);
+    S.sessMode=mode;
+    const btn=document.getElementById('sess-btn-'+mode);
+    if(btn){btn.textContent='PAUSE';btn.classList.add('running');}
+    sessInt=setInterval(()=>updSessDisplay(mode),1000);
+    sv();
+  }
+}
+function sessPause(mode){
+  clearInterval(sessInt);
+  S.sessElapsed=(Date.now()-S.sessStart);
+  S.sessStart=null;
+  const btn=document.getElementById('sess-btn-'+mode);
+  if(btn){btn.textContent='RESUME';btn.classList.remove('running');}
+  sv();
+}
+function sessReset(mode){
+  clearInterval(sessInt);S.sessStart=null;S.sessElapsed=0;S.sessMode=null;
+  const btn=document.getElementById('sess-btn-'+mode);
+  if(btn){btn.textContent='START';btn.classList.remove('running');}
+  updSessDisplay(mode);sv();
+}
+function updSessDisplay(mode){
+  const el=document.getElementById('sess-display-'+mode);if(!el)return;
+  const elapsed=S.sessStart?(Date.now()-S.sessStart):(S.sessElapsed||0);
+  const s=Math.floor(elapsed/1000);
+  const m=Math.floor(s/60),sec=s%60;
+  el.textContent=m+':'+(sec<10?'0':'')+sec;
+}
+function getSessTime(){
+  const elapsed=S.sessStart?(Date.now()-S.sessStart):(S.sessElapsed||0);
+  return Math.floor(elapsed/1000);
+}
+function sealSessTime(dayId){
+  const secs=getSessTime();
+  if(secs<60)return;
+  const m=Math.floor(secs/60),s=secs%60;
+  const str=m+'m '+(s>0?s+'s':'');
+  if(!S.records.sessionTimes[dayId]||secs<S.records.sessionTimes[dayId].best){
+    S.records.sessionTimes[dayId]={best:secs,str};
+  }
+  S.sessElapsed=0;S.sessStart=null;S.sessMode=null;
+  sv();
+  return str;
+}
+
+// INTENSITY
+
+let curIntensity = 'solid';
+let curDayIntensity = 'solid';
+function selIntensity(t){
+  curIntensity=t;
+  ['light','solid','war'].forEach(v=>{
+    const b=document.getElementById('int-'+v);
+    if(b){b.className='int-btn'+(t===v?' sel-'+v:'');}
+  });
+}
+function selDayIntensity(t){
+  curDayIntensity=t;
+  ['light','solid','war'].forEach(v=>{
+    const b=document.getElementById('day-int-'+v);
+    if(b){b.className='int-btn'+(t===v?' sel-'+v:'');}
+  });
+}
+// ISO TIMER
+let isoInt=null,isoSec=0,isoRunning=false;
+function isoToggle(){
+  if(isoRunning){
+    clearInterval(isoInt);isoRunning=false;
+    const btn=document.getElementById('iso-start-btn');
+    if(btn){btn.textContent='START';btn.classList.remove('running');}
+  } else {
+    isoRunning=true;
+    const btn=document.getElementById('iso-start-btn');
+    if(btn){btn.textContent='STOP';btn.classList.add('running');}
+    isoInt=setInterval(()=>{isoSec++;updIso();},1000);
+  }
+}
+function updIso(){
+  const m=Math.floor(isoSec/60),s=isoSec%60;
+  const el=document.getElementById('iso-display');
+  if(el)el.textContent=m+':'+(s<10?'0':'')+s;
+}
+function isoReset(){
+  clearInterval(isoInt);isoRunning=false;isoSec=0;
+  const btn=document.getElementById('iso-start-btn');
+  if(btn){btn.textContent='START';btn.classList.remove('running');}
+  const el=document.getElementById('iso-display');if(el)el.textContent='0:00';
+  const rec=document.getElementById('iso-record');if(rec)rec.textContent='';
+}
+function isoSeal(){
+  if(isoSec<3)return;
+  clearInterval(isoInt);isoRunning=false;
+  const m=Math.floor(isoSec/60),s=isoSec%60;
+  const timeStr=m+':'+(s<10?'0':'')+s;
+  if(!S.isoRecords)S.isoRecords=[];
+  S.isoRecords.push({time:isoSec,str:timeStr,date:tod()});
+  const best=Math.max(...S.isoRecords.map(r=>r.time));
+  const isBest=isoSec>=best;
+  const rec=document.getElementById('iso-record');
+  if(rec)rec.textContent=(isBest?'✦ Best: ':'Held: ')+timeStr+(isBest?' · New record':'');
+  const exStr=document.getElementById('fl-exs');
+  if(exStr&&!exStr.value.includes('Isometric')){
+    exStr.value+=(exStr.value?'\n':'')+'Isometric hold: '+timeStr;
+  }
+  gainXP(isoSec>=60?20:isoSec>=30?10:5);
+  sv();
+}
+function sv(){try{localStorage.setItem("solm_v1",JSON.stringify(S));}catch(e){}}
+function ld(){
+  try{
+    const d=localStorage.getItem("solm_v1")||localStorage.getItem("caelith_v5")||localStorage.getItem("caelith_v4");
+    if(d){S=Object.assign(S,JSON.parse(d));}
+    else{S.thoughts=JSON.parse(JSON.stringify(SEED_THOUGHTS));S.logEntries=JSON.parse(JSON.stringify(SEED_LOG));S.timeline=JSON.parse(JSON.stringify(SEED_TL));S.skills=JSON.parse(JSON.stringify(SEED_SKILLS));S.userTags=[...SEED_TAGS];}
+  }catch(e){S.thoughts=JSON.parse(JSON.stringify(SEED_THOUGHTS));S.logEntries=JSON.parse(JSON.stringify(SEED_LOG));S.timeline=JSON.parse(JSON.stringify(SEED_TL));S.skills=JSON.parse(JSON.stringify(SEED_SKILLS));S.userTags=[...SEED_TAGS];}
+  if(!S.userTags||!S.userTags.length)S.userTags=[...SEED_TAGS];
+  if(!S.freeTrainLog)S.freeTrainLog=[];
+  if(!S.lastMsgDate){S.lastMsgDate=new Date(Date.now()-13*24*60*60*1000).toISOString();sv();}
+  if(!S.records)S.records={isoHolds:{},sessionTimes:{},daySets:{}};
+  if(S.sessElapsed===undefined)S.sessElapsed=0;
+}
+
+let restInt=null,restRem=0;
+function startRest(s){clearInterval(restInt);restRem=s;const rs=document.getElementById("rest-strip");if(rs)rs.classList.add("on");updRest();restInt=setInterval(()=>{restRem--;if(restRem<=0){skipRest();return;}updRest();},1000);}
+function updRest(){const m=Math.floor(restRem/60),s=restRem%60;const el=document.getElementById("rest-txt");if(el)el.textContent="Rest · "+(m>0?m+"m ":"")+s+"s";}
+
+function toast(msg){const t=document.getElementById("toast");t.textContent=msg;t.style.display="block";clearTimeout(t._t);t._t=setTimeout(()=>t.style.display="none",2000);}
+function roman(n){return ROMAN[Math.min(n-1,ROMAN.length-1)]||String(n);}
+function lv(){return Math.floor(S.xp/LVL)+1;}
+function lvPct(){return((S.xp%LVL)/LVL)*100;}
+function uid(){return Date.now().toString(36)+Math.random().toString(36).slice(2,6);}
+function tod(){return new Date().toLocaleDateString("en-US",{month:"short",day:"numeric",year:"numeric"});}
+function sc(dayId,xi,total){let n=0;for(let i=0;i<total;i++)if(S.completedSets[dayId+"-"+xi+"-"+i])n++;return n;}
+function getAllEx(day){return [...day.exercises,...(S.customEx[day.id]||[])];}
+function cdDone(dayId){return S.completedDays.some(x=>(x.id||x)===dayId);}
+function dayDone(day){return getAllEx(day).every((ex,i)=>sc(day.id,i,ex.sets)===ex.sets);}
+function gainXP(amt){const ox=S.xp;S.xp+=amt;toast("✦ +"+amt+" LJÓS");chkRewards(ox,S.xp);sv();}
+function chkRewards(ox,nx){REWARDS.forEach(r=>{if(S.earnedRewards.includes(r.title))return;if(nx>=r.xp){S.earnedRewards.push(r.title);if(r.pu)S.prestige=Math.max(S.prestige,1);sv();setTimeout(()=>showReward(r),600);}});}
+function vigilGlow(d){return d===0?1:d===1?.8:d===2?.6:d===3?.4:d<=5?.2:.05;}
+function vigilReset(domain, intensity){
+  // Weight: war=full reset holds 2 days, solid=1 day, light=half day, log=quarter
+  const weight={war:0,solid:0,light:0.3,log:0.6};
+  const decay=weight[intensity]||0;
+  S.domains[domain]=decay; // 0=fully reset, higher=already fading
+  sv();
+}
+
+function showOpening(){
+  const t=new Date().toDateString();
+  if(S.lastOpened===t)return;
+  S.lastOpened=t;sv();
+  document.getElementById("op-verse").textContent=VERSES[Math.floor(Date.now()/86400000)%VERSES.length];
+  document.getElementById("opening").style.display="flex";
+  
+}
+function closeOpening(){document.getElementById("opening").style.display="none";if(!S.wtSeen){showWT();}else{hugrObserve();setTimeout(()=>{if(!document.getElementById("modal").classList.contains("on"))showSolmMessage();},1400);}}
+function showReward(r){document.getElementById("m-ico").textContent=r.rune;document.getElementById("m-ttl").textContent=r.title;document.getElementById("m-sub").textContent=r.sub;document.getElementById("m-verse").textContent=r.verse;document.getElementById("modal").classList.add("on");}
+function closeModal(){document.getElementById("modal").classList.remove("on");renderHome();}
+
+function showScreen(name){
+  document.querySelectorAll(".screen").forEach(s=>s.classList.remove("active"));
+  document.querySelectorAll(".nb").forEach(b=>b.classList.remove("active"));
+  const m={home:["screen-home","nb-home"],train:["screen-train","nb-train"],fw:["screen-fw","nb-fw"],arch:["screen-arch","nb-arch"],build:["screen-build","nb-build"]};
+  const ids=m[name]||m.home;
+  document.getElementById(ids[0]).classList.add("active");
+  document.getElementById(ids[1]).classList.add("active");
+  document.querySelector(".content").scrollTop=0;
+  if(name==="home")renderHome();
+  if(name==="train"){renderTrainFree();renderTrainProgram();}
+  if(name==="fw")renderFw();
+  if(name==="arch")renderArch();
+  if(name==="build")renderBuild();
+}
+
+function renderHome(){
+  document.getElementById("h-lv").textContent=roman(lv());
+  document.getElementById("h-xp").textContent=S.xp;
+  document.getElementById("h-bar").style.width=lvPct()+"%";
+  document.getElementById("h-cap").textContent=(LVL-(S.xp%LVL))+" ljós to Stage "+roman(lv()+1)+(S.prestige>0?" · Prestige "+roman(S.prestige):"");
+  document.getElementById("prestige-home").innerHTML=S.prestige>0?'<div class="prestige-strip"><div class="prestige-inner">✦ SÓLFRIÐR '+roman(S.prestige)+' · PRESTIGE</div></div>':"";
+  renderVigil();renderBadgesHome();renderDaysHome();
+}
+
+function renderVigil(){
+  const el=document.getElementById("vigil-home");el.innerHTML="";
+  DOMAINS.forEach(d=>{
+    const days=S.domains[d.id]||0,glow=vigilGlow(days),pct=glow*100;
+    const div=document.createElement("div");div.className="vigil-item";
+    div.innerHTML='<div class="v-ico">'+d.icon+'</div><div class="v-body"><div class="v-name">'+d.name+'</div>'+(d.note?'<div class="v-note">'+d.note+'</div>':'')+'<div class="v-bar-bg"><div class="v-bar-fill" style="width:'+pct+'%;background:'+d.color+';opacity:'+glow+'">'+(days>=4?'<span style="position:absolute;right:-2px;top:-8px;font-size:9px">🐺</span>':'')+'</div></div><div class="v-status">'+(days===0?"Active today":days===1?"1 day ago":days+" days ago")+'</div></div><div class="v-days">'+days+'d</div>';
+    el.appendChild(div);
+  });
+}
+
+function renderBadgesHome(){
+  const el=document.getElementById("badges-home");el.innerHTML="";
+  REWARDS.forEach(r=>{const e=S.earnedRewards.includes(r.title);const b=document.createElement("div");b.className="badge"+(e?" earned":"");b.textContent=(e?r.rune+" ":"◻ ")+r.badge;el.appendChild(b);});
+}
+
+function renderDaysHome(){
+  const el=document.getElementById("days-home");el.innerHTML="";
+  DAYS.forEach(day=>{
+    const done=S.completedDays.some(x=>(x.id||x)===day.id);
+    const total=getAllEx(day).reduce((a,ex)=>a+ex.sets,0);
+    const ds=getAllEx(day).reduce((a,ex,i)=>a+sc(day.id,i,ex.sets),0);
+    const inP=ds>0&&!done;
+    const btn=document.createElement("button");btn.className="day-btn"+(done?" done":"");btn.style.setProperty("--dc",day.color);btn.onclick=()=>openProgramDay(day.id);
+    btn.innerHTML='<div class="day-inner"><div class="day-left"><div class="day-ico-wrap" style="border-color:'+day.color+'20">'+(done?"✦":day.emoji)+'</div><div><div class="day-name" style="color:'+(done?"var(--gold)":"var(--light)")+'">'+day.theme+'</div><div class="day-meta">'+day.label+' · '+day.exercises.length+' exercises</div></div></div><span style="color:var(--muted);font-size:14px">'+(done?"✦":"›")+'</span></div>'+(inP?'<div class="mini-bar"><div class="mini-fill" style="width:'+(ds/total*100)+'%;background:'+day.color+'"></div></div><div class="mini-lbl">'+ds+'/'+total+' sets</div>':"");
+    el.appendChild(btn);
+  });
+}
+
+// TRAIN
+// trainTab defined above with recovery+lang support
+function renderTrainFree(){
+  const el=document.getElementById("free-log-list");if(!el)return;
+  if(!S.freeTrainLog.length){el.innerHTML='<div style="font-size:12px;color:var(--muted);font-style:italic;text-align:center;padding:24px 0">No sessions logged yet.</div>';return;}
+  el.innerHTML="";
+  [...S.freeTrainLog].reverse().forEach((entry,i)=>{
+    const ri=S.freeTrainLog.length-1-i;
+    const div=document.createElement("div");div.className="fl-entry";
+    const intLabel=entry.intensity?'<span class="fl-intensity '+entry.intensity+'">'+entry.intensity.toUpperCase()+'</span>':'';
+    const timeLabel=entry.sessionTime?'<span class="fl-intensity solid" style="border-color:var(--rune);color:var(--muted)">⏱ '+entry.sessionTime+'</span>':'';div.innerHTML='<div class="fl-intent">'+(entry.intent||'SESSION')+'</div><div class="fl-exs">'+entry.exercises+'</div>'+(entry.note?'<div class="fl-note">'+entry.note+'</div>':'')+intLabel+timeLabel+'<div class="xp-pill">+'+(entry.xp||XP_VAL.solid)+' LJÓS</div><div class="fl-date">'+entry.date+'</div><button class="del-btn" onclick="delFreeTrain('+ri+')">✕</button>';
+    el.appendChild(div);
+  });
+}
+function saveFreeTrain(){
+  const intent=document.getElementById("fl-intent").value.trim();
+  const exs=document.getElementById("fl-exs").value.trim();
+  const note=document.getElementById("fl-note").value.trim();
+  if(!exs)return;
+  const xp=XP_VAL[curIntensity]||XP_VAL.solid;
+  const sessT=getSessTime();
+  const sessTStr=sessT>=60?Math.floor(sessT/60)+'m '+(sessT%60>0?sessT%60+'s':''):'';
+  S.freeTrainLog.push({id:uid(),intent,exercises:exs,note,intensity:curIntensity,xp,sessionTime:sessTStr,date:tod(),iso:new Date().toISOString()});
+  vigilReset('body', curIntensity);gainXP(xp);
+  document.getElementById("fl-intent").value="";document.getElementById("fl-exs").value="";document.getElementById("fl-note").value="";
+  curIntensity='solid';
+  ['light','solid','war'].forEach(v=>{const b=document.getElementById('int-'+v);if(b)b.className='int-btn';});
+  isoReset();sessReset('free');
+  sv();renderTrainFree();
+}
+function delFreeTrain(i){S.freeTrainLog.splice(i,1);sv();renderTrainFree();}
+function addCustomEx(){
+  const name=document.getElementById('cex-name').value.trim();
+  if(!name||!S.curDay)return;
+  const sets=parseInt(document.getElementById('cex-sets').value)||3;
+  const reps=document.getElementById('cex-reps').value.trim()||'10';
+  const rest=parseInt(document.getElementById('cex-rest').value)||60;
+  const tip=document.getElementById('cex-tip').value.trim()||'';
+  if(!S.customEx[S.curDay])S.customEx[S.curDay]=[];
+  S.customEx[S.curDay].push({name,sets,reps,rest,tip,id:uid()});
+  document.getElementById('cex-name').value='';
+  document.getElementById('cex-sets').value='';
+  document.getElementById('cex-reps').value='';
+  document.getElementById('cex-rest').value='';
+  document.getElementById('cex-tip').value='';
+  sv();toast('✦ Exercise added');renderProgDay();
+}
+function renderTrainProgram(){
+  const el=document.getElementById("prog-day-list");if(!el)return;
+  el.innerHTML="";
+  DAYS.forEach(day=>{
+    const done=S.completedDays.some(x=>(x.id||x)===day.id);
+    const btn=document.createElement("button");btn.className="day-btn"+(done?" done":"");btn.style.setProperty("--dc",day.color);btn.onclick=()=>openProgramDay(day.id);
+    btn.innerHTML='<div class="day-inner"><div class="day-left"><div class="day-ico-wrap" style="border-color:'+day.color+'20">'+(done?"✦":day.emoji)+'</div><div><div class="day-name" style="color:'+(done?"var(--gold)":"var(--light)")+'">'+day.theme+'</div><div class="day-meta">'+day.label+'</div></div></div><span style="color:var(--muted);font-size:14px">›</span></div>';
+    el.appendChild(btn);
+  });
+}
+function openProgramDay(id){
+  S.curDay=id;const day=DAYS.find(d=>d.id===id);
+  document.getElementById("prog-day-list").style.display="none";
+  document.getElementById("prog-day-detail").style.display="block";
+  document.getElementById("pd-ttl").textContent=day.theme;
+  document.getElementById("pd-verse").textContent=day.verse;
+  const prevTime=getSessionComparison(id);
+  const subEl=document.getElementById("pd-sub");
+  if(subEl)subEl.textContent=day.label+" · "+day.exercises.length+" exercises"+(prevTime?" · last: "+prevTime:"");
+  S.openTips={};showDayHint();
+  showScreen("train");trainTab("program");
+  renderProgDay();
+  document.querySelector(".content").scrollTop=0;
+}
+function closeProg(){document.getElementById("prog-day-detail").style.display="none";document.getElementById("prog-day-list").style.display="block";skipRest();}
+function renderProgDay(){
+  const day=DAYS.find(d=>d.id===S.curDay);if(!day)return;
+  const allExercises=[...day.exercises,...(S.customEx[day.id]||[])];
+  const total=allExercises.reduce((a,ex)=>a+ex.sets,0);
+  const ds=allExercises.reduce((a,ex,i)=>a+sc(day.id,i,ex.sets),0);
+  document.getElementById("pd-prog").textContent=ds+" / "+total;
+  document.getElementById("pd-bar").style.width=(ds/total*100)+"%";
+  const el=document.getElementById("ex-list");el.innerHTML="";
+  allExercises.forEach((ex,xi)=>{
+    const done=sc(day.id,xi,ex.sets)===ex.sets;
+    const tipOpen=S.openTips[day.id+"-"+xi];
+    const card=document.createElement("div");card.className="ex-card"+(done?" done":"");
+    const sHTML=Array.from({length:ex.sets},(_,i)=>{const c=S.completedSets[day.id+"-"+xi+"-"+i];return'<button class="set-btn'+(c?" done":"")+'" onclick="togSet('+day.id+','+xi+','+i+','+ex.rest+')">'+(c?"✦":i+1)+'</button>';}).join("");
+    card.innerHTML='<div class="ex-head"><div><div class="ex-name'+(done?" done":"")+'">'+(done?"✦ ":"")+ex.name+'</div><div class="ex-meta">'+ex.sets+' sets · '+ex.reps+' · '+ex.rest+'s rest</div></div><button class="tip-tog'+(tipOpen?" on":"")+'" onclick="togTip(\''+day.id+"-"+xi+'\')">'+(tipOpen?"LOKA":"VÍSA")+'</button></div>'+(tipOpen?'<div class="tip-box">'+ex.tip+'</div>':"")+'<div class="sets-row">'+sHTML+'</div>'+(done?'<input class="note-field" placeholder="Progression note..." value="'+(S.progressNotes["n"+day.id+"-"+xi]||"")+'" onchange="S.progressNotes[\'n'+day.id+'-'+xi+'\']=this.value;sv()">':'');
+    el.appendChild(card);
+  });
+  const isDone=dayDone(day);
+  updateDayButtons(isDone);
+  // custom ex delete buttons rendered inline
+}
+function togSet(dayId,xi,si,rest){
+  const k=dayId+"-"+xi+"-"+si;const already=S.completedSets[k];
+  S.completedSets[k]=!already;
+  if(!already){
+    gainXP(XP_VAL.set);
+    if(!S.restLog)S.restLog=[];
+    S._restPending={dayId,xi,si,rest,start:Date.now()};
+    startRest(rest);
+  } else {S.xp=Math.max(0,S.xp-XP_VAL.set);skipRest();}
+  sv();renderProgDay();
+}
+function skipRest(){
+  clearInterval(restInt);
+  const rs=document.getElementById("rest-strip");if(rs)rs.classList.remove("on");
+  // Log rest compliance
+  if(S._restPending){
+    const elapsed=Math.floor((Date.now()-S._restPending.start)/1000);
+    const programmed=S._restPending.rest;
+    if(!S.restLog)S.restLog=[];
+    S.restLog.push({programmed,actual:elapsed,date:new Date().toISOString()});
+    if(S.restLog.length>200)S.restLog=S.restLog.slice(-200);
+    S._restPending=null;
+    sv();
+  }
+}
+function togTip(k){S.openTips[k]=!S.openTips[k];renderProgDay();}
+function finishDay(){
+  if(!S.completedDays.some(x=>(x.id||x)===S.curDay)){
+    const sealNote=document.getElementById('day-seal-note');
+    const note=sealNote?sealNote.value.trim():'';
+    S.completedDays.push({id:S.curDay,date:new Date().toISOString(),note,intensity:curDayIntensity});
+    const xp=XP_VAL[curDayIntensity]||XP_VAL.solid;
+    gainXP(xp);S.totalDays++;vigilReset('body', curDayIntensity);
+    const t=sealSessTime(S.curDay);
+    if(t)toast('✦ Session: '+t);
+    curDayIntensity='solid';
+    if(sealNote)sealNote.value='';
+  }
+  sessReset('prog');
+  sv();closeProg();renderHome();
+}
+
+// FRAMEWORK
+function fwTab(t){
+  document.querySelectorAll("#screen-fw .tab").forEach((b,i)=>b.classList.toggle("active",["law","cosm","decl"][i]===t));
+  document.querySelectorAll("#screen-fw .panel").forEach(p=>p.classList.remove("active"));
+  document.getElementById("fw-"+t).classList.add("active");
+}
+function renderFw(){renderDecl();}
+function renderDecl(){
+  const el=document.getElementById("decl-list");if(!el)return;
+  if(!S.declarations.length){el.innerHTML='<div style="font-size:12px;color:var(--muted);font-style:italic;text-align:center;padding:16px 0">No declarations carved yet.</div>';return;}
+  el.innerHTML="";
+  [...S.declarations].reverse().forEach((d,i)=>{
+    const ri=S.declarations.length-1-i;
+    const div=document.createElement("div");div.className="decl-item";
+    div.innerHTML='<div class="decl-txt">"'+d.text+'"</div><div class="decl-date">Carved · '+d.date+'</div><button class="del-btn" onclick="delDecl('+ri+')">✕</button>';
+    el.appendChild(div);
+  });
+}
+function saveDecl(){const inp=document.getElementById("decl-inp");const t=inp.value.trim();if(!t)return;S.declarations.push({id:uid(),text:t,date:tod()});inp.value="";gainXP(XP_VAL.declaration);sv();renderDecl();}
+function delDecl(i){if(confirm("Remove?")){S.declarations.splice(i,1);sv();renderDecl();}}
+
+// ARCHIVE
+let selTags=[],selDomains=[];
+function archTab(t){
+  document.querySelectorAll("#screen-arch .tab").forEach((b,i)=>b.classList.toggle("active",["new","tags","browse","web","log"][i]===t));
+  document.querySelectorAll("#screen-arch .panel").forEach(p=>p.classList.remove("active"));
+  document.getElementById("arch-"+t).classList.add("active");
+  if(t==="new")renderNewForm();
+  if(t==="tags")renderTagMgr();
+  if(t==="browse")renderBrowse();
+  if(t==="web")renderWeb();
+  if(t==="log")renderLog();
+}
+function renderArch(){renderNewForm();renderLog();}
+function renderNewForm(){
+  const dEl=document.getElementById("domain-sel-new");if(!dEl)return;
+  dEl.innerHTML="";
+  DOMAINS.forEach(d=>{
+    const chip=document.createElement("div");chip.className="domain-chip"+(selDomains.includes(d.id)?" sel":"");
+    chip.style.borderColor=selDomains.includes(d.id)?d.color+"70":"";
+    chip.innerHTML=d.icon+" "+d.name.split("·")[0].trim();
+    chip.onclick=()=>{selDomains.includes(d.id)?selDomains=selDomains.filter(x=>x!==d.id):selDomains.push(d.id);renderNewForm();};
+    dEl.appendChild(chip);
+  });
+  const tEl=document.getElementById("tag-sel-new");if(!tEl)return;tEl.innerHTML="";
+  S.userTags.forEach(tag=>{
+    const sel=selTags.includes(tag);const chip=document.createElement("div");chip.className="tag-chip"+(sel?" sel":"");
+    chip.innerHTML=tag+(sel?'<span style="font-size:10px;color:var(--muted);padding-left:4px" onclick="event.stopPropagation();remTag(\''+tag+'\')">×</span>':"");
+    chip.onclick=()=>{if(selTags.includes(tag)){selTags=selTags.filter(x=>x!==tag);}else if(selTags.length<5){selTags.push(tag);}else{toast("Max 5 tags");return;}renderNewForm();};
+    tEl.appendChild(chip);
+  });
+  if(selTags.length){const l=document.createElement("div");l.style.cssText="font-family:Cinzel,serif;font-size:8px;color:var(--muted);letter-spacing:1px;margin-top:5px";l.textContent=selTags.length+"/5";tEl.appendChild(l);}
+  const ls=document.getElementById("thought-link-sel");if(!ls)return;
+  ls.innerHTML='<option value="">Connect to another thought (optional)</option>';
+  S.thoughts.forEach(t=>{const o=document.createElement("option");o.value=t.id;o.textContent=(t.tags[0]||"thought")+": "+t.text.slice(0,45)+(t.text.length>45?"...":"");ls.appendChild(o);});
+}
+function remTag(tag){selTags=selTags.filter(x=>x!==tag);renderNewForm();}
+function createTag(){const inp=document.getElementById("new-tag-inp");const v=inp.value.trim();if(!v)return;if(!S.userTags.includes(v))S.userTags.push(v);if(selTags.length<5)selTags.push(v);inp.value="";sv();renderNewForm();}
+function createTagFromMgr(){const inp=document.getElementById("new-tag-mgr");const v=inp.value.trim();if(!v)return;if(!S.userTags.includes(v)){S.userTags.push(v);sv();toast("✦ Tag created");}inp.value="";renderTagMgr();}
+function saveThought(){
+  const inp=document.getElementById("thought-inp"),ls=document.getElementById("thought-link-sel"),ln=document.getElementById("thought-link-note");
+  const text=inp.value.trim();if(!text)return;
+  S.thoughts.push({id:uid(),text,tags:[...selTags],domains:[...selDomains],linkedTo:ls.value||null,linkNote:ln.value.trim()||null,date:tod()});
+  selDomains.forEach(d=>{if(S.domains[d]!==undefined)vigilReset(d,'solid');});
+  gainXP(XP_VAL.thought);inp.value="";if(ln)ln.value="";selTags=[];selDomains=[];sv();renderNewForm();archTab("browse");
+}
+function renderTagMgr(){
+  const el=document.getElementById("tag-manager-list");if(!el)return;el.innerHTML="";
+  S.userTags.forEach(tag=>{
+    const count=S.thoughts.filter(t=>t.tags&&t.tags.includes(tag)).length;
+    const div=document.createElement("div");
+    div.style.cssText="display:flex;align-items:center;justify-content:space-between;padding:9px 12px;border:1px solid var(--border);margin-bottom:5px;background:var(--glass)";
+    div.innerHTML='<div><div style="font-family:Cinzel,serif;font-size:9px;color:var(--light);letter-spacing:1px">'+tag+'</div><div style="font-size:9px;color:var(--muted);font-style:italic;margin-top:1px">'+count+" thought"+(count!==1?"s":"")+'</div></div><button onclick="browseByTag(\''+tag+'\')" style="background:none;border:1px solid var(--border);color:var(--muted);font-family:Cinzel,serif;font-size:7px;letter-spacing:1px;padding:4px 9px;cursor:pointer">BROWSE →</button>';
+    el.appendChild(div);
+  });
+}
+function browseByTag(tag){S.browseTag=tag;archTab("browse");}
+function renderBrowse(){
+  const bf=document.getElementById("browse-filter");if(!bf)return;bf.innerHTML="";
+  const all=document.createElement("button");all.className="btn-g"+(S.browseTag===null?" on":"");all.textContent="ALL";all.onclick=()=>{S.browseTag=null;renderBrowse();};bf.appendChild(all);
+  S.userTags.forEach(tag=>{const btn=document.createElement("button");btn.className="btn-g"+(S.browseTag===tag?" on":"");btn.textContent=tag;btn.onclick=()=>{S.browseTag=S.browseTag===tag?null:tag;renderBrowse();};bf.appendChild(btn);});
+  const el=document.getElementById("thought-list");if(!el)return;
+  renderThoughtStreak();
+  const query=getSearchQuery();
+  const filtered=S.thoughts.filter(t=>{
+    const tagMatch=!S.browseTag||(t.tags&&t.tags.includes(S.browseTag));
+    const searchMatch=!query||t.text.toLowerCase().includes(query)||(t.tags||[]).some(tag=>tag.toLowerCase().includes(query))||(t.linkNote||'').toLowerCase().includes(query);
+    return tagMatch&&searchMatch;
+  });
+  if(!filtered.length){el.innerHTML='<div style="font-size:12px;color:var(--muted);font-style:italic;text-align:center;padding:24px 0">No thoughts here yet.</div>';return;}
+  el.innerHTML="";
+  [...filtered].reverse().forEach(t=>{
+    const ri=S.thoughts.indexOf(t);
+    const linked=t.linkedTo?S.thoughts.find(x=>x.id===t.linkedTo):null;
+    const div=document.createElement("div");div.className="thought-card";
+    const domHTML=(t.domains||[]).map(d=>{const df=DOMAINS.find(x=>x.id===d);return df?'<div class="tc-domain" style="border-color:'+df.color+'40;color:'+df.color+'">'+df.icon+" "+df.name.split("·")[0].trim()+"</div>":""}).join("");
+    const tagHTML=(t.tags||[]).map(tag=>'<div class="tc-tag">#'+tag+"</div>").join("");
+    div.innerHTML=(domHTML?'<div class="tc-domains">'+domHTML+"</div>":"")+
+    '<div class="tc-tags">'+tagHTML+"</div>"+
+    '<div class="tc-text">'+t.text+"</div>"+
+    (t.linkNote?'<div class="tc-link-note">'+t.linkNote+"</div>":"")+
+    (linked?'<div class="tc-link-ref">↔ '+(linked.tags[0]||"thought")+": "+linked.text.slice(0,45)+"...</div>":"")+
+    '<div class="tc-date">'+t.date+"</div>"+
+    '<button class="del-btn" onclick="delThought('+ri+')">✕</button>';
+    el.appendChild(div);
+  });
+}
+function delThought(i){S.thoughts.splice(i,1);sv();renderBrowse();}
+function exportArchive(){
+  const data={
+    version:'solm_v1',exported:new Date().toISOString(),exportedDisplay:tod(),
+    // Full state
+    xp:S.xp,prestige:S.prestige,totalDays:S.totalDays,
+    completedSets:S.completedSets,completedDays:S.completedDays,
+    progressNotes:S.progressNotes,earnedRewards:S.earnedRewards,
+    domains:S.domains,declarations:S.declarations,
+    // Archive
+    thoughts:S.thoughts,logEntries:S.logEntries,freeTrainLog:S.freeTrainLog,
+    // Build
+    skills:S.skills,goals:S.goals,timeline:S.timeline,
+    // Meta
+    userTags:S.userTags,customEx:S.customEx,
+    // Records
+    records:S.records,isoRecords:S.isoRecords,restLog:S.restLog,
+    recoveryLog:S.recoveryLog,langLog:S.langLog,
+    // Messages
+    msgIndex:S.msgIndex,lastMsgDate:S.lastMsgDate,lastHugrMsg:S.lastHugrMsg
+  };
+  const blob=new Blob([JSON.stringify(data,null,2)],{type:"application/json"});
+  const url=URL.createObjectURL(blob);const a=document.createElement("a");
+  a.href=url;a.download="solm-backup-"+Date.now()+".json";a.click();URL.revokeObjectURL(url);
+  toast("✦ Full backup exported");
+}
+function importBackup(){
+  const inp=document.createElement("input");inp.type="file";inp.accept=".json";
+  inp.onchange=e=>{
+    const file=e.target.files[0];if(!file)return;
+    const reader=new FileReader();
+    reader.onload=ev=>{
+      try{
+        const data=JSON.parse(ev.target.result);
+        if(!data.version||!data.version.includes('solm'))throw new Error("Not a Solm backup");
+        const fields=['xp','prestige','totalDays','completedSets','completedDays','progressNotes',
+          'earnedRewards','domains','declarations','thoughts','logEntries','freeTrainLog',
+          'skills','goals','timeline','userTags','customEx','records','isoRecords','restLog',
+          'msgIndex','lastMsgDate','lastHugrMsg'];
+        const fields=['xp','prestige','totalDays','completedSets','completedDays','progressNotes','earnedRewards','domains','declarations','thoughts','logEntries','freeTrainLog','skills','goals','timeline','userTags','customEx','records','isoRecords','restLog','msgIndex','lastMsgDate','lastHugrMsg','recoveryLog','langLog','wtSeen','dayHintSeen'];
+        fields.forEach(f=>{if(data[f]!==undefined)S[f]=data[f];});
+        sv();renderHome();renderTrainFree();renderTrainProgram();
+        toast("✦ Backup restored");
+      }catch(err){toast("✗ Invalid backup file");}
+    };
+    reader.readAsText(file);
+  };
+  inp.click();
+}
+function renderWeb(){
+  renderWebStats();
+  const canvas=document.getElementById("web-canvas"),empty=document.getElementById("web-empty"),tt=document.getElementById("web-tt");
+  if(!canvas)return;
+  if(S.thoughts.length<2){empty.style.display="flex";return;}
+  empty.style.display="none";
+  const ctx=canvas.getContext("2d"),W=canvas.offsetWidth,H=canvas.offsetHeight;
+  canvas.width=W;canvas.height=H;
+  const cs={};S.thoughts.forEach(t=>{cs[t.id]=0;});
+  S.thoughts.forEach((a,ai)=>{S.thoughts.forEach((b,bi)=>{if(ai>=bi)return;const sh=(a.tags||[]).filter(x=>(b.tags||[]).includes(x)).length;const lk=a.linkedTo===b.id||b.linkedTo===a.id;if(sh>0||lk){cs[a.id]+=sh+(lk?2:0);cs[b.id]+=sh+(lk?2:0);}});});
+  const maxS=Math.max(1,...Object.values(cs));
+  const nodes=S.thoughts.map((t,i)=>({...t,x:W/2+Math.cos(i/S.thoughts.length*Math.PI*2)*W*.32,y:H/2+Math.sin(i/S.thoughts.length*Math.PI*2)*H*.28,r:4+((cs[t.id]||0)/maxS)*11}));
+  for(let it=0;it<100;it++){nodes.forEach((a,ai)=>{nodes.forEach((b,bi)=>{if(ai===bi)return;const dx=a.x-b.x,dy=a.y-b.y,dist=Math.sqrt(dx*dx+dy*dy)||1;if(dist<80){const f=(80-dist)/dist*.3;a.x+=dx*f;a.y+=dy*f;}});const ni=nodes[ai];S.thoughts.forEach((b,bi)=>{if(ai>=bi)return;const nb=nodes[bi];const sh=(S.thoughts[ai].tags||[]).filter(x=>(b.tags||[]).includes(x)).length;if(sh>0){const dx=nb.x-ni.x,dy=nb.y-ni.y,dist=Math.sqrt(dx*dx+dy*dy)||1;const f=(dist-70)/dist*0.04*sh;ni.x+=dx*f;ni.y+=dy*f;nb.x-=dx*f;nb.y-=dy*f;}if(S.thoughts[ai].linkedTo===b.id||b.linkedTo===S.thoughts[ai].id){const dx=nb.x-ni.x,dy=nb.y-ni.y,dist=Math.sqrt(dx*dx+dy*dy)||1;const f=(dist-55)/dist*0.07;ni.x+=dx*f;ni.y+=dy*f;nb.x-=dx*f;nb.y-=dy*f;}});nodes[ai].x=Math.max(nodes[ai].r+6,Math.min(W-nodes[ai].r-6,nodes[ai].x));nodes[ai].y=Math.max(nodes[ai].r+6,Math.min(H-nodes[ai].r-6,nodes[ai].y));});}
   ctx.clearRect(0,0,W,H);
   S.thoughts.forEach((a,ai)=>{const na=nodes[ai];S.thoughts.forEach((b,bi)=>{if(ai>=bi)return;const nb=nodes[bi];const sh=(a.tags||[]).filter(x=>(b.tags||[]).includes(x)).length;const lk=a.linkedTo===b.id||b.linkedTo===a.id;if(sh>0){ctx.beginPath();ctx.moveTo(na.x,na.y);ctx.lineTo(nb.x,nb.y);ctx.strokeStyle="rgba(201,168,76,"+(0.04*sh)+")";ctx.lineWidth=sh*.5;ctx.stroke();}if(lk){ctx.beginPath();ctx.moveTo(na.x,na.y);ctx.lineTo(nb.x,nb.y);ctx.strokeStyle="#C9A84C30";ctx.lineWidth=1.2;ctx.stroke();}});});
   nodes.forEach(n=>{const br=(cs[n.id]||0)/maxS;ctx.shadowBlur=br>0.4?10:0;ctx.shadowColor="#C9A84C";ctx.beginPath();ctx.arc(n.x,n.y,n.r,0,Math.PI*2);ctx.fillStyle=br>0.6?"#C9A84C":br>0.3?"#6a5a2a":"#201c14";ctx.fill();ctx.shadowBlur=0;ctx.strokeStyle="#C9A84C20";ctx.lineWidth=1;ctx.stroke();});
@@ -88,6 +1530,9 @@ textarea.inp{resize:none;line-height:1.7}
 }
 function renderLog(){
   const tr=document.getElementById("log-tag-row");if(!tr)return;tr.innerHTML="";
+  const ls=document.getElementById("log-link-sel");
+  if(ls){ls.innerHTML='<option value="">Link to a thought (optional)</option>';
+  (S.thoughts||[]).forEach(t=>{const o=document.createElement("option");o.value=t.id;o.textContent=(t.tags[0]||"thought")+": "+t.text.slice(0,50)+(t.text.length>50?"...":"");ls.appendChild(o);});}
   LOG_TAGS.forEach(t=>{const btn=document.createElement("button");btn.className="log-tag-btn"+(S.selLogTag===t?" sel":"");btn.textContent=t;btn.onclick=()=>{S.selLogTag=S.selLogTag===t?"":t;renderLog();};tr.appendChild(btn);});
   const el=document.getElementById("log-list");if(!el)return;
   if(!S.logEntries.length){el.innerHTML='<div style="font-size:12px;color:var(--muted);font-style:italic;text-align:center;padding:24px 0">No entries yet.</div>';return;}
@@ -95,11 +1540,21 @@ function renderLog(){
   [...S.logEntries].reverse().forEach((e,i)=>{
     const ri=S.logEntries.length-1-i;
     const div=document.createElement("div");div.className="log-entry";
-    div.innerHTML='<div class="log-tag-lbl">'+(e.tag||"CAELITH")+'</div><div class="log-txt">'+e.text+'</div><div class="log-date">'+e.date+'</div><button class="del-btn" onclick="delLog('+ri+')">✕</button>';
+    div.innerHTML='<div class="log-tag-lbl">'+(e.tag||"CAELITH")+'</div><div class="log-txt">'+e.text+'</div>'+
+      (e.linkPreview?'<div class="tc-link-note" style="margin-top:5px">↔ '+e.linkPreview+'...</div>':'')+
+      '<div class="log-date">'+e.date+'</div><button class="del-btn" onclick="delLog('+ri+')">✕</button>';
     el.appendChild(div);
   });
 }
-function saveLog(){const inp=document.getElementById("log-inp");const t=inp.value.trim();if(!t)return;S.logEntries.push({id:uid(),text:t,tag:S.selLogTag||"CAELITH",date:tod()});inp.value="";gainXP(XP_VAL.log);sv();renderLog();}
+function saveLog(){
+  const inp=document.getElementById("log-inp");const t=inp.value.trim();if(!t)return;
+  const ls=document.getElementById("log-link-sel");
+  const linkedTo=ls?ls.value||null:null;
+  const linked=linkedTo?(S.thoughts||[]).find(x=>x.id===linkedTo):null;
+  S.logEntries.push({id:uid(),text:t,tag:S.selLogTag||"CAELITH",linkedTo,linkPreview:linked?linked.text.slice(0,50):null,date:tod(),iso:new Date().toISOString()});
+  inp.value="";if(ls)ls.value="";
+  gainXP(XP_VAL.log);sv();renderLog();
+}
 function delLog(i){S.logEntries.splice(i,1);sv();renderLog();}
 
 // BUILD
@@ -110,16 +1565,7 @@ function buildTab(t){
   if(t==="skills")renderSkills();if(t==="goals")renderGoals();if(t==="timeline")renderTimeline();
 }
 function renderBuild(){renderSkills();}
-function renderSkills(){
-  const el=document.getElementById("skill-list");if(!el)return;
-  if(!S.skills.length){el.innerHTML='<div style="font-size:12px;color:var(--muted);font-style:italic;text-align:center;padding:24px 0">No skills added.</div>';return;}
-  el.innerHTML="";
-  S.skills.forEach((sk,i)=>{
-    const div=document.createElement("div");div.className="skill-card";
-    div.innerHTML='<div class="sk-head"><div><div class="sk-name">'+sk.name+'</div><div class="sk-cat">'+sk.category+'</div></div><div class="sk-pri'+(sk.priority==="high"?" hi":"")+'">'+( sk.priority==="high"?"HIGH":"")+'</div></div><div class="arc-bar-bg" style="margin-bottom:4px"><div class="arc-bar-fill" style="width:'+(sk.progress||0)+'%"></div></div><div style="font-size:8px;color:var(--muted);font-style:italic;margin-bottom:5px">'+(sk.progress||0)+'% · '+(sk.milestones?.length||0)+' milestones</div>'+(sk.note?'<div class="sk-note">'+sk.note+'</div>':"")+'<div class="sk-btns"><button class="sk-btn" onclick="adjSk('+i+',-10)">−10%</button><button class="sk-btn" onclick="adjSk('+i+',10)">+10%</button><button class="sk-btn" onclick="addMs('+i+')">+ MILESTONE</button><button class="sk-btn" onclick="delSk('+i+')" style="color:#5a3a30">REMOVE</button></div>';
-    el.appendChild(div);
-  });
-}
+// renderSkills defined above with Sköll indicators
 function adjSk(i,d){S.skills[i].progress=Math.max(0,Math.min(100,(S.skills[i].progress||0)+d));sv();renderSkills();}
 function addMs(i){const m=prompt("Milestone:");if(m){if(!S.skills[i].milestones)S.skills[i].milestones=[];S.skills[i].milestones.push({text:m,date:tod()});sv();renderSkills();gainXP(20);}}
 function delSk(i){if(confirm("Remove?")){S.skills.splice(i,1);sv();renderSkills();}}
@@ -152,11 +1598,532 @@ function renderTimeline(){
 function addTimeline(){const inp=document.getElementById("tl-inp");const t=inp.value.trim();if(!t)return;S.timeline.push({id:uid(),type:S.selTlType||"moment",text:t,date:tod()});inp.value="";sv();toast("✦ Timeline marked");renderTimeline();}
 function delTl(i){S.timeline.splice(i,1);sv();renderTimeline();}
 
+
+
+// RECOVERY LOG
+let recState={sleep:null,energy:null,nutrition:null,soreness:null};
+function recToggle(type,val){
+  recState[type]=recState[type]===val?null:val;
+  document.querySelectorAll('#'+type+'-row .rec-check-btn').forEach(b=>{
+    b.classList.toggle('on',b.textContent.toLowerCase()===val&&recState[type]===val);
+  });
+}
+function saveRecovery(){
+  const note=document.getElementById('rec-note').value.trim();
+  if(!S.recoveryLog)S.recoveryLog=[];
+  const entry={id:uid(),date:tod(),iso:new Date().toISOString(),...recState,note};
+  S.recoveryLog.push(entry);
+  if(S.recoveryLog.length>90)S.recoveryLog=S.recoveryLog.slice(-90);
+  recState={sleep:null,energy:null,nutrition:null,soreness:null};
+  document.querySelectorAll('.rec-check-btn').forEach(b=>b.classList.remove('on'));
+  document.getElementById('rec-note').value='';
+  vigilReset('body','log');gainXP(10);sv();
+  renderRecoveryLog();toast('✦ Recovery logged');
+}
+function renderRecoveryLog(){
+  const el=document.getElementById('recovery-log-list');if(!el)return;
+  const log=(S.recoveryLog||[]);
+  if(!log.length){el.innerHTML='<div style="font-size:11px;color:var(--muted);font-style:italic;text-align:center;padding:16px 0">No recovery entries yet.</div>';return;}
+  el.innerHTML='';
+  [...log].reverse().slice(0,10).forEach((e,i)=>{
+    const ri=log.length-1-i;
+    const div=document.createElement('div');div.className='lang-entry';
+    div.innerHTML='<div class="lang-type">'+e.date+'</div>'+
+      '<div class="lang-content">'+
+      (e.sleep?'Sleep: '+e.sleep+' · ':'')+(e.energy?'Energy: '+e.energy+' · ':'')+(e.nutrition?'Nutrition: '+e.nutrition:'')+(e.soreness?' · Soreness: '+e.soreness:'')+
+      '</div>'+(e.note?'<div class="lang-date" style="margin-top:4px;font-style:italic;color:var(--dim)">'+e.note+'</div>':'')+
+      '<button class="del-btn" onclick="delRecovery('+ri+')">✕</button>';
+    el.appendChild(div);
+  });
+}
+function delRecovery(i){if(S.recoveryLog){S.recoveryLog.splice(i,1);sv();renderRecoveryLog();}}
+
+// LANGUAGE LOG
+let langType=null,langTime=null;
+function langTypeToggle(val){
+  langType=langType===val?null:val;
+  document.querySelectorAll('#lang-type-row .rec-check-btn').forEach(b=>b.classList.toggle('on',b.textContent.toLowerCase()===val&&langType===val));
+}
+function langTimeToggle(val){
+  langTime=langTime===val?null:val;
+  document.querySelectorAll('#train-lang .rec-check-btn:not(#lang-type-row .rec-check-btn)').forEach(b=>b.classList.toggle('on',b.textContent===val&&langTime===val));
+}
+function langTab(t){
+  document.querySelectorAll('#train-lang .tab').forEach((b,i)=>b.classList.toggle('active',['mandarin','other'][i]===t));
+  document.querySelectorAll('#train-lang .panel').forEach(p=>p.classList.remove('active'));
+  document.getElementById('lang-'+t).classList.add('active');
+}
+function saveLang(mode){
+  if(!S.langLog)S.langLog=[];
+  const content=mode==='mandarin'?document.getElementById('lang-content').value.trim():document.getElementById('lang-other-content').value.trim();
+  const lang=mode==='mandarin'?'Mandarin':document.getElementById('lang-other-name').value.trim()||'Other';
+  if(!content)return;
+  S.langLog.push({id:uid(),lang,type:langType,time:langTime,content,date:tod(),iso:new Date().toISOString()});
+  if(S.langLog.length>200)S.langLog=S.langLog.slice(-200);
+  // Update Mandarin skill progress automatically
+  if(mode==='mandarin'){
+    const sk=S.skills.find(s=>s.name.toLowerCase().includes('mandarin'));
+    if(sk){
+      const sessions=(S.langLog||[]).filter(e=>e.lang==='Mandarin').length;
+      sk.progress=Math.min(100,Math.floor(sessions*0.5));
+    }
+  }
+  if(mode==='mandarin'){document.getElementById('lang-content').value='';}
+  else{document.getElementById('lang-other-content').value='';}
+  langType=null;langTime=null;
+  document.querySelectorAll('#train-lang .rec-check-btn').forEach(b=>b.classList.remove('on'));
+  vigilReset('tongue','solid');gainXP(20);sv();
+  renderLangLog();toast('✦ Language session logged');
+}
+function renderLangLog(){
+  const el=document.getElementById('lang-log-list');if(!el)return;
+  const log=(S.langLog||[]).filter(e=>e.lang==='Mandarin');
+  if(!log.length){el.innerHTML='<div style="font-size:11px;color:var(--muted);font-style:italic;text-align:center;padding:16px 0">No sessions logged yet.</div>';return;}
+  el.innerHTML='';
+  [...log].reverse().slice(0,15).forEach((e,i)=>{
+    const div=document.createElement('div');div.className='lang-entry';
+    div.innerHTML='<div class="lang-type">'+(e.type?e.type.toUpperCase():' SESSION')+(e.time?' · '+e.time:'')+'</div>'+
+      '<div class="lang-content">'+e.content+'</div>'+
+      '<div class="lang-date">'+e.date+'</div>';
+    el.appendChild(div);
+  });
+}
+
+// TRAIN TAB — update to include new tabs
+function trainTab(t){
+  document.querySelectorAll('.ttab').forEach((b,i)=>b.classList.toggle('active',['free','program','recovery','lang'][i]===t));
+  document.querySelectorAll('#screen-train > .content-inner > .panel, #screen-train .panel').forEach(p=>{});
+  ['train-free','train-program','train-recovery','train-lang'].forEach(id=>{
+    const el=document.getElementById(id);if(el)el.classList.remove('active');
+  });
+  const target=document.getElementById('train-'+t);if(target)target.classList.add('active');
+  if(t==='free')renderTrainFree();
+  if(t==='program')renderTrainProgram();
+  if(t==='recovery')renderRecoveryLog();
+  if(t==='lang')renderLangLog();
+}
+
+// PROGRAM DAY RESET
+function resetDay(){
+  if(!S.curDay)return;
+  const dayId=S.curDay;
+  // Remove from completedDays
+  S.completedDays=S.completedDays.filter(x=>(x.id||x)!==dayId);
+  // Clear all completed sets for this day
+  Object.keys(S.completedSets).forEach(k=>{if(k.startsWith(dayId+'-'))delete S.completedSets[k];});
+  S.progressNotes={...S.progressNotes};
+  Object.keys(S.progressNotes).forEach(k=>{if(k.startsWith('n'+dayId+'-'))delete S.progressNotes[k];});
+  sv();renderProgDay();
+  document.getElementById('finish-btn').style.display='none';
+  document.getElementById('reset-day-btn').style.display='none';
+  toast('↺ Day reset');
+}
+
+// Show reset button when day is done
+function updateDayButtons(isDone){
+  const fb=document.getElementById('finish-btn');
+  const rb=document.getElementById('reset-day-btn');
+  const ir=document.getElementById('day-intensity-row');
+  const done=cdDone(S.curDay);
+  if(fb)fb.style.display=(!done&&isDone)?'block':'none';
+  if(rb)rb.style.display=done?'block':'none';
+  if(ir)ir.style.display=(!done&&isDone)?'block':'none';
+}
+
+// WEEKLY SUMMARY
+function renderWeeklySummary(){
+  const el=document.getElementById('weekly-summary');if(!el)return;
+  const now=new Date();
+  const days7=[];
+  for(let i=6;i>=0;i--){const d=new Date(now);d.setDate(d.getDate()-i);days7.push(d.toDateString());}
+
+  const trainSessions=(S.freeTrainLog||[]).filter(e=>{
+    const ed=e.iso?new Date(e.iso):new Date(e.date);return days7.includes(ed.toDateString());
+  }).length + (S.completedDays||[]).filter(x=>{
+    const ed=x.date?new Date(x.date):null;return ed&&days7.includes(ed.toDateString());
+  }).length;
+
+  const thoughtsSealed=(S.thoughts||[]).filter(t=>days7.includes(new Date(t.date).toDateString())).length;
+
+  const langSessions=(S.langLog||[]).filter(e=>{
+    const ed=e.iso?new Date(e.iso):new Date(e.date);return days7.includes(ed.toDateString());
+  }).length;
+
+  const warSess=(S.freeTrainLog||[]).filter(e=>{
+    const ed=e.iso?new Date(e.iso):new Date(e.date);
+    return e.intensity==='war'&&days7.includes(ed.toDateString());
+  }).length;
+
+  // Most active domain this week
+  const domCount={};
+  (S.thoughts||[]).filter(t=>days7.includes(new Date(t.date).toDateString()))
+    .forEach(t=>(t.domains||[]).forEach(d=>domCount[d]=(domCount[d]||0)+1));
+  (S.freeTrainLog||[]).filter(e=>{const ed=e.iso?new Date(e.iso):new Date(e.date);return days7.includes(ed.toDateString());})
+    .forEach(()=>domCount.body=(domCount.body||0)+2);
+  (S.langLog||[]).filter(e=>{const ed=e.iso?new Date(e.iso):new Date(e.date);return days7.includes(ed.toDateString());})
+    .forEach(()=>domCount.tongue=(domCount.tongue||0)+2);
+  const topDom=Object.entries(domCount).sort((a,b)=>b[1]-a[1])[0];
+  const topDomName=topDom?(DOMAINS.find(d=>d.id===topDom[0])||{name:topDom[0]}).name.split('·')[0].trim():'—';
+
+  // Dark domains (neglected 7+ days)
+  const darkCount=Object.values(S.domains||{}).filter(v=>v>=7).length;
+
+  const rows=[
+    {lbl:'Training sessions',val:trainSessions+' / 7 days'},
+    {lbl:'Thoughts sealed',val:thoughtsSealed},
+    {lbl:'Language sessions',val:langSessions},
+    {lbl:'War intensity',val:warSess+' session'+(warSess!==1?'s':'')},
+    {lbl:'Most active domain',val:topDomName},
+    {lbl:'Domains neglected 7+ days',val:darkCount>0?darkCount+' domain'+(darkCount>1?'s':''):'None · vigil lit'},
+  ];
+
+  el.innerHTML='<div class="week-card">'+rows.map(r=>'<div class="week-row"><span class="week-lbl">'+r.lbl+'</span><span class="week-val">'+r.val+'</span></div>').join('')+'</div>';
+}
+
+// WEB STATS
+function renderWebStats(){
+  const el=document.getElementById('web-stats-row');if(!el)return;
+  const thoughts=S.thoughts||[];
+  if(!thoughts.length){el.innerHTML='';return;}
+  // Most connected thought
+  const conn={};thoughts.forEach(t=>{conn[t.id]=0;});
+  thoughts.forEach((a,ai)=>thoughts.forEach((b,bi)=>{
+    if(ai>=bi)return;
+    const sh=(a.tags||[]).filter(x=>(b.tags||[]).includes(x)).length;
+    const lk=a.linkedTo===b.id||b.linkedTo===a.id;
+    if(sh||lk){conn[a.id]+=sh+(lk?2:0);conn[b.id]+=sh+(lk?2:0);}
+  }));
+  const topId=Object.entries(conn).sort((a,b)=>b[1]-a[1])[0];
+  const topThought=topId?thoughts.find(t=>t.id===topId[0]):null;
+  // Most used tag
+  const tagCount={};thoughts.forEach(t=>(t.tags||[]).forEach(tag=>tagCount[tag]=(tagCount[tag]||0)+1));
+  const topTag=Object.entries(tagCount).sort((a,b)=>b[1]-a[1])[0];
+  // Total links
+  const totalLinks=thoughts.filter(t=>t.linkedTo).length;
+
+  el.innerHTML=
+    '<div class="web-stat"><div class="web-stat-val">'+(topTag?topTag[0]:'—')+'</div><div class="web-stat-lbl">TOP TAG</div></div>'+
+    '<div class="web-stat"><div class="web-stat-val">'+totalLinks+'</div><div class="web-stat-lbl">CONNECTIONS</div></div>'+
+    '<div class="web-stat"><div class="web-stat-val">'+thoughts.length+'</div><div class="web-stat-lbl">TOTAL THOUGHTS</div></div>';
+  // Show most connected thought below
+  if(topThought&&conn[topThought.id]>0){
+    const extra=document.createElement('div');
+    extra.style.cssText='font-size:10px;color:var(--muted);font-style:italic;margin-bottom:8px;padding:8px;background:var(--glass);border:1px solid var(--border)';
+    extra.innerHTML='<span style="font-family:Cinzel,serif;font-size:7px;color:var(--gold);letter-spacing:1px">MOST CONNECTED · </span>'+topThought.text.slice(0,80)+(topThought.text.length>80?'...':'');
+    el.after(extra);
+  }
+}
+
+// WALKTHROUGH
+let wtStep=0;const WT_TOTAL=6;
+function wtNav(dir){
+  document.getElementById('wt-'+wtStep).classList.remove('on');
+  wtStep=Math.max(0,Math.min(WT_TOTAL-1,wtStep+dir));
+  document.getElementById('wt-'+wtStep).classList.add('on');
+  renderWtDots();
+  const isLast=wtStep===WT_TOTAL-1;
+  document.getElementById('wt-next').textContent=isLast?'BEGIN ✦':'NEXT →';
+  document.getElementById('wt-back').style.opacity=wtStep===0?'0':'1';
+  if(isLast){document.getElementById('wt-next').onclick=closeWT;}
+  else{document.getElementById('wt-next').onclick=()=>wtNav(1);}
+}
+function renderWtDots(){
+  const el=document.getElementById('wt-dots');if(!el)return;
+  el.innerHTML='';
+  for(let i=0;i<WT_TOTAL;i++){
+    const d=document.createElement('div');d.className='wt-dot'+(i===wtStep?' on':'');
+    el.appendChild(d);
+  }
+}
+function showWT(){
+  if(S.wtSeen)return;
+  renderWtDots();
+  document.getElementById('wt-modal').classList.add('on');
+}
+function closeWT(){
+  document.getElementById("wt-modal").classList.remove("on");
+  S.wtSeen=true;sv();
+  hugrObserve();
+  setTimeout(()=>{if(!document.getElementById("modal").classList.contains("on"))showSolmMessage();},1400);
+}
+
+// QUICK CAPTURE
+function openQC(){
+  document.getElementById('qc-modal').classList.add('on');
+  setTimeout(()=>document.getElementById('qc-text').focus(),100);
+}
+function closeQC(){
+  document.getElementById('qc-modal').classList.remove('on');
+  document.getElementById('qc-text').value='';
+}
+function sealQC(){
+  const text=document.getElementById('qc-text').value.trim();
+  if(!text)return;
+  S.thoughts.push({id:uid(),text,tags:[],domains:[],linkedTo:null,linkNote:null,date:tod(),iso:new Date().toISOString()});
+  gainXP(XP_VAL.thought);sv();
+  closeQC();toast('✦ Thought sealed');
+}
+function sealQCFull(){
+  const text=document.getElementById('qc-text').value.trim();
+  if(text)document.getElementById('thought-inp').value=text;
+  closeQC();
+  showScreen('arch');archTab('new');
+  setTimeout(()=>document.getElementById('thought-inp').focus(),200);
+}
+
+// QUICK CARVE (declaration from home)
+function quickCarve(){
+  const text=prompt('Speak what you will answer for · Undir Sólu');
+  if(!text||!text.trim())return;
+  S.declarations.push({id:uid(),text:text.trim(),date:tod()});
+  gainXP(XP_VAL.declaration);sv();
+  toast('✦ Declaration carved');
+}
+
+// NAV TOOLTIPS
+const NB_TIPS={home:'Home · vigil, XP, training days',train:'Train · free log and program days',fw:'Framework · law, cosmology, declarations',arch:'Archive · thoughts, tags, web, log',build:'Build · skills, goals, timeline'};
+let ttTimeout=null;
+function nbHold(name,el){
+  ttTimeout=setTimeout(()=>{
+    const tt=document.getElementById('nb-tt');if(!tt)return;
+    const rect=el.getBoundingClientRect();
+    tt.textContent=NB_TIPS[name]||'';
+    tt.style.display='block';
+    tt.style.left=rect.left+rect.width/2+'px';
+    tt.style.bottom=(window.innerHeight-rect.top+8)+'px';
+  },400);
+}
+function nbRelease(){
+  clearTimeout(ttTimeout);
+  const tt=document.getElementById('nb-tt');if(tt)tt.style.display='none';
+}
+
+// SESSION FLOW UPDATER
+function updSessFlow(){
+  const intent=document.getElementById('fl-intent');
+  const exs=document.getElementById('fl-exs');
+  const note=document.getElementById('fl-note');
+  if(!intent)return;
+  const s1=intent.value.trim().length>0;
+  const s2=exs&&exs.value.trim().length>0;
+  const s3=note&&note.value.trim().length>0;
+  const s4=curIntensity!=='solid'||document.querySelector('.int-btn.sel-solid');
+  ['sf-1','sf-2','sf-3','sf-4','sf-5'].forEach((id,i)=>{
+    const el=document.getElementById(id);if(!el)return;
+    el.classList.remove('active','done');
+    if(i===0&&s1)el.classList.add('done');
+    else if(i===1&&s2)el.classList.add('done');
+    else if(i===2&&s3)el.classList.add('done');
+    else if(i===3)el.classList.add(s1&&s2?'done':'');
+    else if(i===4&&s1&&s2)el.classList.add('active');
+    else if(!s1&&i===0)el.classList.add('active');
+    else if(s1&&!s2&&i===1)el.classList.add('active');
+    else if(s1&&s2&&!s3&&i===2)el.classList.add('active');
+    else if(s1&&s2&&s3&&i===3)el.classList.add('active');
+  });
+}
+
+// SKILL SKOLL — show drift indicator on neglected high-priority skills
+function renderSkills(){
+  const el=document.getElementById("skill-list");if(!el)return;
+  if(!S.skills.length){el.innerHTML='<div style="font-size:12px;color:var(--muted);font-style:italic;text-align:center;padding:24px 0">No skills added.</div>';return;}
+  el.innerHTML="";
+  S.skills.forEach((sk,i)=>{
+    // Detect if high priority and no recent milestones
+    const lastMs=sk.milestones&&sk.milestones.length?sk.milestones[sk.milestones.length-1]:null;
+    const daysSinceMs=lastMs?Math.floor((Date.now()-new Date(lastMs.date||'2020').getTime())/(1000*60*60*24)):999;
+    const showSkoll=sk.priority==='high'&&daysSinceMs>14&&(sk.progress||0)<100;
+    const div=document.createElement("div");div.className="skill-card";
+    div.innerHTML='<div class="sk-head"><div><div class="sk-name">'+sk.name+'</div><div class="sk-cat">'+sk.category+'</div></div><div class="sk-pri'+(sk.priority==="high"?" hi":"")+'">'+(sk.priority==="high"?"HIGH":"")+'</div></div>'
+      +(showSkoll?'<div class="sk-skoll">🐺 Sköll watching · no progress logged in '+(daysSinceMs>365?'a long time':daysSinceMs+'d')+'</div>':'')
+      +'<div class="arc-bar-bg" style="margin-bottom:4px"><div class="arc-bar-fill" style="width:'+(sk.progress||0)+'%"></div></div>'
+      +'<div style="font-size:8px;color:var(--muted);font-style:italic;margin-bottom:5px">'+(sk.progress||0)+'% · '+(sk.milestones?.length||0)+' milestones</div>'
+      +(sk.note?'<div class="sk-note">'+sk.note+'</div>':"")
+      +'<div class="sk-btns"><button class="sk-btn" onclick="adjSk('+i+',-10)">−10%</button><button class="sk-btn" onclick="adjSk('+i+',10)">+10%</button><button class="sk-btn" onclick="addMs('+i+')">+ MILESTONE</button><button class="sk-btn" onclick="delSk('+i+')" style="color:#5a3a30">REMOVE</button></div>';
+    el.appendChild(div);
+  });
+}
+
+// FIRST-TIME DAY HINT
+function showDayHint(){
+  const hint=document.getElementById('day-first-hint');if(!hint)return;
+  const seen=S.dayHintSeen;
+  hint.style.display=seen?'none':'block';
+  if(!seen){S.dayHintSeen=true;sv();}
+}
+
+// STATS & DATA
+function renderStatsHome(){
+  renderStatsCells();
+  renderDomainXP();
+  renderHeatMap();
+  renderRecordsPanel();
+  renderWeeklySummary();
+}
+
+function renderStatsCells(){
+  const el=document.getElementById('stats-grid');if(!el)return;
+  // Thought streak
+  const now=new Date();
+  let streak=0;
+  for(let i=0;i<365;i++){
+    const d=new Date(now);d.setDate(d.getDate()-i);const ds=d.toDateString();
+    const hasThought=(S.thoughts||[]).some(t=>new Date(t.date).toDateString()===ds);
+    const hasLog=(S.logEntries||[]).some(t=>new Date(t.date).toDateString()===ds);
+    if(hasThought||hasLog)streak++;
+    else if(i>0)break;
+  }
+  // Total sessions
+  const totalSess=(S.freeTrainLog||[]).length+(S.completedDays||[]).length;
+  // War sessions
+  const warSess=(S.freeTrainLog||[]).filter(e=>e.intensity==='war').length;
+  const warThisWeek=(S.freeTrainLog||[]).filter(e=>{const ed=e.iso?new Date(e.iso):new Date(e.date);return e.intensity==='war'&&(now-ed)<7*24*60*60*1000;}).length;
+  // Archive size
+  const archSize=(S.thoughts||[]).length;
+  // Best iso
+  const bestIso=S.isoRecords&&S.isoRecords.length?Math.max(...S.isoRecords.map(r=>r.time)):0;
+  const bestIsoStr=bestIso>0?(Math.floor(bestIso/60)+':'+(bestIso%60<10?'0':'')+bestIso%60):'—';
+  el.innerHTML=
+    '<div class="stat-cell"><div class="stat-val">'+streak+'</div><div class="stat-lbl">MIND STREAK</div><div class="stat-sub">consecutive days</div></div>'+
+    '<div class="stat-cell"><div class="stat-val">'+totalSess+'</div><div class="stat-lbl">SESSIONS</div><div class="stat-sub">body domain</div></div>'+
+    '<div class="stat-cell"><div class="stat-val">'+warSess+'</div><div class="stat-lbl">WAR SESSIONS</div><div class="stat-sub">maximum output</div></div>'+
+    '<div class="stat-cell"><div class="stat-val">'+archSize+'</div><div class="stat-lbl">THOUGHTS SEALED</div><div class="stat-sub">'+bestIsoStr+' best hold</div></div>';
+}
+
+function renderDomainXP(){
+  const el=document.getElementById('domain-xp-breakdown');if(!el)return;
+  // Estimate XP contribution per domain from activity
+  const domXP={body:0,mind:0,martial:0,craft:0,tongue:0,world:0};
+  (S.freeTrainLog||[]).forEach(e=>domXP.body+=(e.xp||50));
+  (S.completedDays||[]).forEach(()=>domXP.body+=50);
+  (S.thoughts||[]).forEach(t=>{
+    const doms=t.domains||[];
+    if(!doms.length){domXP.mind+=20;return;}
+    const share=20/doms.length;
+    doms.forEach(d=>{if(domXP[d]!==undefined)domXP[d]+=share;});
+  });
+  (S.declarations||[]).forEach(()=>domXP.mind+=30);
+  (S.logEntries||[]).forEach(()=>domXP.mind+=10);
+  const total=Object.values(domXP).reduce((a,b)=>a+b,1);
+  el.innerHTML='';
+  DOMAINS.forEach(d=>{
+    const pct=Math.round((domXP[d.id]||0)/total*100);
+    const div=document.createElement('div');div.className='domain-xp-bar';
+    div.innerHTML='<div class="dxb-name">'+d.icon+' '+d.name.split('·')[0].trim()+'</div>'+
+      '<div class="dxb-bar"><div class="dxb-fill" style="width:'+pct+'%;background:'+d.color+'"></div></div>'+
+      '<div class="dxb-pct">'+pct+'%</div>';
+    el.appendChild(div);
+  });
+}
+
+function renderHeatMap(){
+  const el=document.getElementById('heat-map');if(!el)return;
+  const now=new Date();
+  // Build 30-day activity map
+  const days=[];
+  for(let i=29;i>=0;i--){
+    const d=new Date(now);d.setDate(d.getDate()-i);
+    const ds=d.toDateString();
+    let score=0;
+    if((S.freeTrainLog||[]).some(e=>{const ed=e.iso?new Date(e.iso):new Date(e.date);return ed.toDateString()===ds;}))score++;
+    if((S.completedDays||[]).some(x=>{const ed=x.date?new Date(x.date):null;return ed&&ed.toDateString()===ds;}))score++;
+    if((S.thoughts||[]).some(t=>new Date(t.date).toDateString()===ds))score++;
+    if((S.logEntries||[]).some(t=>new Date(t.date).toDateString()===ds))score++;
+    days.push({d,score,label:d.toLocaleDateString('en-US',{month:'short',day:'numeric'})});
+  }
+  // Split into 5 rows of 6
+  const weeks=[];
+  for(let i=0;i<5;i++)weeks.push(days.slice(i*6,(i+1)*6));
+  el.innerHTML='<div class="heat-month">LAST 30 DAYS · activity across all domains</div>';
+  weeks.forEach(week=>{
+    const row=document.createElement('div');row.className='heat-row';
+    week.forEach(day=>{
+      const cell=document.createElement('div');
+      const tier=day.score===0?'':day.score===1?'t1':day.score===2?'t2':day.score===3?'t3':'t4';
+      cell.className='heat-cell '+(tier||'');
+      cell.title=day.label+(day.score>0?' · '+day.score+' actions':'');
+      row.appendChild(cell);
+    });
+    el.appendChild(row);
+  });
+  // Legend
+  const leg=document.createElement('div');
+  leg.style.cssText='display:flex;align-items:center;gap:6px;margin-top:6px;font-family:Cinzel,serif;font-size:7px;color:var(--muted);letter-spacing:1px';
+  leg.innerHTML='LESS <div class="heat-cell"></div><div class="heat-cell t1"></div><div class="heat-cell t2"></div><div class="heat-cell t3"></div><div class="heat-cell t4"></div> MORE';
+  el.appendChild(leg);
+}
+
+function renderRecordsPanel(){
+  const el=document.getElementById('records-panel');if(!el)return;
+  const rows=[];
+  // Best iso hold
+  if(S.isoRecords&&S.isoRecords.length){
+    const best=Math.max(...S.isoRecords.map(r=>r.time));
+    const m=Math.floor(best/60),s=best%60;
+    rows.push({name:'Best isometric hold',val:m+':'+(s<10?'0':'')+s});
+  }
+  // Total volume all time
+  const totalSets=Object.keys(S.completedSets||{}).length;
+  const totalTrainSets=(S.freeTrainLog||[]).reduce((a,e)=>{
+    const exLines=(e.exercises||'').split('\n').filter(Boolean).length;
+    return a+(exLines||1);
+  },0);
+  if(totalSets>0)rows.push({name:'Program sets completed',val:totalSets});
+  // Most active domain
+  const domCount={};
+  (S.thoughts||[]).forEach(t=>(t.domains||[]).forEach(d=>domCount[d]=(domCount[d]||0)+1));
+  const topDom=Object.entries(domCount).sort((a,b)=>b[1]-a[1])[0];
+  if(topDom){const df=DOMAINS.find(d=>d.id===topDom[0]);if(df)rows.push({name:'Most active domain',val:df.icon+' '+df.name.split('·')[0].trim()});}
+  // Longest session
+  const sessionTimes=Object.values(S.records&&S.records.sessionTimes||{});
+  if(sessionTimes.length){
+    const best=sessionTimes.sort((a,b)=>b.best-a.best)[0];
+    rows.push({name:'Longest session',val:best.str});
+  }
+  // Total declarations
+  if((S.declarations||[]).length)rows.push({name:'Declarations carved',val:S.declarations.length});
+  // Thoughts linked
+  const linked=(S.thoughts||[]).filter(t=>t.linkedTo).length;
+  if(linked)rows.push({name:'Thoughts linked',val:linked+' connections'});
+
+  if(!rows.length){el.innerHTML='<div style="font-size:11px;color:var(--muted);font-style:italic;text-align:center;padding:8px 0">Records build as you move.</div>';return;}
+  el.innerHTML=rows.map(r=>'<div class="record-row"><span class="rec-name">'+r.name+'</span><span class="rec-val">'+r.val+'</span></div>').join('');
+}
+
+// SESSION COMPARISON — shown when opening a program day
+function getSessionComparison(dayId){
+  const times=S.records&&S.records.sessionTimes&&S.records.sessionTimes[dayId];
+  if(!times)return null;
+  return times.str;
+}
+
+// ARCHIVE SEARCH
+function getSearchQuery(){
+  const el=document.getElementById('arch-search');
+  return el?el.value.trim().toLowerCase():'';
+}
+
+// THOUGHT STREAK for browse
+function renderThoughtStreak(){
+  const el=document.getElementById('thought-streak-display');if(!el)return;
+  const now=new Date();
+  let streak=0;
+  for(let i=0;i<365;i++){
+    const d=new Date(now);d.setDate(d.getDate()-i);const ds=d.toDateString();
+    const has=(S.thoughts||[]).some(t=>new Date(t.date).toDateString()===ds);
+    if(has)streak++;
+    else if(i>0)break;
+  }
+  el.innerHTML=streak>0?'<div class="thought-streak active">✦ '+streak+' DAY THOUGHT STREAK</div>':
+    '<div class="thought-streak">0 DAY STREAK · seal a thought today</div>';
+}
+
 // INIT
 ld();
 const ts=new Date().toDateString();
 if(S.lastDayCheck!==ts){if(S.lastDayCheck)DOMAINS.forEach(d=>{S.domains[d.id]=(S.domains[d.id]||0)+1;});S.lastDayCheck=ts;sv();}
 showOpening();renderHome();
 </script>
+
 </body>
 </html>
